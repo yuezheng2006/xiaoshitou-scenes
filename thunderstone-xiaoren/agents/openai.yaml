@@ -1,6 +1,0 @@
-interface:
-  display_name: "小石头实物场景图"
-  short_description: "小石头：flat 2D 简笔实物场景，#f39200 胶囊体，16:9 或长卷"
-  default_prompt: "Use $thunderstone-xiaoren 为这篇中文内容设计并生成几张小石头实物场景 16:9 配图（Character Lock 对照 thunderstone-xiaoren-ref.png）；若要求彩蛋/长卷则生成超横版故事图。"
-policy:
-  allow_implicit_invocation: true
