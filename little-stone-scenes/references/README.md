@@ -7,7 +7,7 @@
 两种模式都会用到的公共规则：
 
 - `common-little-stone-ip.md`：小石头角色 IP、Character Lock 与禁忌。
-- `common-logo-safety.md`：Logo / 品牌资产安全规则；雷石 Logo 仅在明确触发场景中使用。
+- `common-logo-safety.md`：Logo / 品牌资产安全规则；可选品牌 Logo 默认不启用，仅在明确触发场景中使用。
 - `common-author-persona.md`：作者「老杨」出镜与互动规则。
 - `common-story-extraction.md`：从正文提炼处境、动作、标签的方法。
 - `common-prompt-templates.md`：实物图、手绘图、长卷和批量图的 prompt 模板。

@@ -62,6 +62,14 @@ IP 规范：[little-stone-scenes/references/common-little-stone-ip.md](little-st
 
 ---
 
+## 品牌与去敏感化
+
+小石头的品牌感内化在角色本身：皮肤色 `#f39200` 取自雷石品牌橙，「小石头」之名也由此而来。除这一层血脉外，正文、示例与提示词默认**不展开公司业务详情**，避免敏感信息外泄。
+
+可选的品牌 Logo / 工牌资产保留在 `assets/brand/`，但**默认不启用**，仅在用户明确要求工牌、展会或物料场景时使用；公开示例不展示具体品牌。详见 [NOTICE.md](NOTICE.md) 与 `little-stone-scenes/references/common-logo-safety.md`。
+
+---
+
 ## 致谢
 
 本仓库是对 Ian / helloianneo 配图工作流的二次整理与小石头化改写：
@@ -81,10 +89,10 @@ IP 规范：[little-stone-scenes/references/common-little-stone-ip.md](little-st
 .
 ├── README.md / LICENSE / NOTICE.md
 ├── examples/prompts.md               # 双模式常用 prompt
-├── examples/test-scenarios.md        # 15 个实物图试跑场景 + prompt
+├── examples/test-scenarios.md        # 18 个实物图试跑场景（含 15 张样张）+ prompt
 └── little-stone-scenes/             # ← 复制到 Codex skills
     ├── SKILL.md
-    ├── assets/brand/                 # 小石头锚点 + 可选雷石 Logo / 品牌参考
+    ├── assets/brand/                 # 小石头锚点 + 可选品牌 Logo / 参考（默认不启用）
     ├── assets/persona/               # 作者数字形象参考（可选出镜）
     ├── assets/examples/              # 实物图母版 01–06
     └── references/                   # common-* / physical-* / handdrawn-* 规则
