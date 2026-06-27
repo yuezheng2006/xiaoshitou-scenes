@@ -11,7 +11,7 @@
 | 名称 | 值 |
 | --- | --- |
 | **项目** | 小石头 IP 配图 |
-| **建议仓库名** | `little-stone-scenes` |
+| **建议仓库名** | `xiaoshitou-scenes` |
 | **Skill 目录** | `little-stone-scenes/`（Codex 安装包；安装后自然语言即可触发） |
 | **角色** | 小石头 (Little Stone) |
 
@@ -103,8 +103,8 @@ IP 规范：[little-stone-scenes/references/common-little-stone-ip.md](little-st
 ## 安装
 
 ```bash
-git clone git@github.com:yuezheng2006/little-stone-scenes.git
-cd little-stone-scenes
+git clone git@github.com:yuezheng2006/xiaoshitou-scenes.git
+cd xiaoshitou-scenes
 
 mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
 cp -R ./little-stone-scenes "${CODEX_HOME:-$HOME/.codex}/skills/"
