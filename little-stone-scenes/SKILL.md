@@ -5,7 +5,7 @@ description: |
 when-to-use: |
   用户要用小石头 IP 为中文内容生成配图、插图、shot list、解释图或长卷故事图时触发——**不必**要求用户写 `$little-stone-scenes` 或 `Use $...`。
   显式风格词：小石头实物图、实物图、实物场景、物件小现场；小石头手绘图、手绘图、手绘解释、白板图、逻辑图。
-  典型意图：生成/设计/出图/配图/插图；16:9 正文图；K 歌服务、点歌、麦克风、房态、服务工单、雷石员工工牌、值班牌、戴工牌、人物戴工牌、老杨戴工牌；流程解释、结构拆解、方法论图；彩蛋模式、长卷、超横版、项目复盘、产品演化、成长路径；老杨/作者/yuezheng2006 出镜并和小石头互动；先分析配图方案暂不生图；改图、减标签、重生成。
+  典型意图：生成/设计/出图/配图/插图；16:9 正文图；K 歌服务、点歌、麦克风、房态、服务工单、员工工牌、值班牌、戴工牌、人物戴工牌、老杨戴工牌；流程解释、结构拆解、方法论图；彩蛋模式、长卷、超横版、项目复盘、产品演化、成长路径；老杨/作者/yuezheng2006 出镜并和小石头互动；先分析配图方案暂不生图；改图、减标签、重生成。
   输入可以是正文、主题、观点、节点列表、项目说明或指定母版类型。
 allowed-tools:
   - Read
@@ -86,7 +86,7 @@ Skill 安装到 Codex 后，用户**直接用中文说意图即可**，例如「
 公共规则（两种模式都可能用）：
 
 - `references/common-little-stone-ip.md`：小石头 IP、Character Lock、禁忌。
-- `references/common-logo-safety.md`：Logo / 品牌资产安全规则；雷石 Logo 仅在明确触发的公司、工牌、展会或物料场景中使用。
+- `references/common-logo-safety.md`：Logo / 品牌资产安全规则；可选品牌 Logo 默认不启用，仅在用户明确触发工牌、展会或物料场景时使用。
 - `references/common-author-persona.md`：老杨 / 作者 / yuezheng2006 出镜规则。
 - `references/common-story-extraction.md`：如何从正文里提炼用户处境、动作和短标签。
 - `references/common-prompt-templates.md`：实物图、手绘图、长卷与批量图的提示词模板。
@@ -104,7 +104,7 @@ Skill 安装到 Codex 后，用户**直接用中文说意图即可**，例如「
 - `references/handdrawn-composition-patterns.md`：手绘图结构类型、隐喻生成和反复刻规则。
 - `references/handdrawn-qa-checklist.md`：手绘图生成后质量检查。
 
-- `assets/brand/`：小石头参考图，以及可选雷石 Logo / 品牌参考图（默认不自动使用）。
+- `assets/brand/`：小石头参考图，以及可选品牌 Logo / 参考图（默认不自动使用、不进公开示例）。
 - `assets/persona/`：作者数字形象参考图（仅触发作者出镜时读取）。
 - `assets/examples/`：实物图母版 PNG（`01`–`06`）。生成前 Read 对应 PNG + `physical-master-anchors.md` 抽象骨架。
 
@@ -114,8 +114,8 @@ Skill 安装到 Codex 后，用户**直接用中文说意图即可**，例如「
 - 用户是否触发 **老杨 / 作者 / yuezheng2006 / 我本人** 出镜。
 - 用户是否要标准 16:9 正文图，还是彩蛋长卷故事图。
 - 用户是否提供了必须保留的人名、品牌名、项目名或经历节点。
-- 用户是否明确触发 **雷石 / Thunderstone / Logo / 员工工牌 / 服务工牌 / 值班牌 / 戴工牌 / 人物戴工牌 / K 歌服务**；若触发，读取 `references/common-logo-safety.md`，涉及 Logo 时优先读取 `assets/brand/thunderstone-logo.png`，必要时再读取 `assets/brand/thunderstone-logo-core.png`。
-- “戴工牌”默认让小石头戴 Thunderstone / 雷石挂绳工牌；“人物戴工牌 / 老杨戴工牌”必须由用户明确说出才让人物或老杨戴。
+- 用户是否明确触发 **品牌 Logo / 员工工牌 / 服务工牌 / 值班牌 / 戴工牌 / 人物戴工牌 / K 歌服务**；若触发，读取 `references/common-logo-safety.md`，并按其中资产映射读取 `assets/brand/` 下的可选品牌 Logo 资产。
+- “戴工牌”默认让小石头戴独立挂绳品牌工牌；“人物戴工牌 / 老杨戴工牌”必须由用户明确说出才让人物或老杨戴。
 - 如果没有明确要求生成图片，只先输出 shot list 或配图方案。
 - 如果用户要求“看效果 / 输出 / 生成”，实物图必须先选择 01-06 中最匹配的母版**类型**；彩蛋长卷按长卷骨架生成；手绘图必须先选择结构类型。没有模式锁定，不进入生图。
 - 生图前 Read `assets/brand/little-stone-ref.png`。如果作者出镜，还必须 Read `assets/persona/author-persona-ref.jpg` 与 `references/common-author-persona.md`。实物图若所选母版 PNG 存在，再 Read 该 PNG。生成后必须查看候选图再交付。
@@ -455,7 +455,7 @@ assets/<topic-slug>-thunderstone-long-scroll/
 
 ### Gate 1：CRITICAL（不过 = 不交付为最终图）
 
-- 标准模式必须有母版类型锁定；彩蛋模式必须锁定 07 类型。
+- 标准模式必须有母版类型锁定；彩蛋模式必须锁定彩蛋长卷骨架（无编号母版，见 `physical-style-dna.md`「彩蛋长卷故事图」）。
 - 标准模式必须有至少 3 个当前内容变异点。
 - 小石头必须出现，承担核心物理动作；形体对照 `little-stone-ref.png`。
 - 一次任务生成 2 张及以上时，全批须同一 Character Lock。
