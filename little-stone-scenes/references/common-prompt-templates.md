@@ -10,6 +10,14 @@
 Little Stone (小石头): solid #f39200 rounded capsule body, small white circular eyes, optional tiny black pupils, thin black line limbs, flat 2D simple style. Serious, slightly clumsy, stubborn, action-driven. No logo, no brand text, no trademark mark on the body. Little Stone must perform the core physical/conceptual action, not decorate the scene.
 ```
 
+**2D Flat Lock（每张必写，强制）**：
+
+```text
+2D Flat Lock for Little Stone ONLY:
+Render Little Stone as a flat 2D sticker / paper cutout / simple vector illustration, NOT a 3D character. The capsule body must be a solid flat #f39200 fill with no gradient, no highlight, no ambient shading, no clay/vinyl/Pixar/soft-toy rendering, no bevel, no embossed edges, no glossy material. Eyes are flat white circles with optional tiny black dots, not glossy 3D spheres. Limbs are thin black lines only, not rounded 3D tubes or soft-clay arms/legs. Little Stone may touch real objects and may have a tiny contact shadow under the feet only, but the body itself must stay flat-colored with no internal volume shading. If the author persona appears, keep the author as light-Q 3D digital toy, but Little Stone must remain strictly flat 2D and visually distinct from the author.
+Negative: no 3D mascot, no emoji 3D, no blind-box figure, no inflatable toy, no game character render, no Blender/C4D look, no gradient on orange body, no specular highlight on orange body.
+```
+
 共同约束：
 
 - 纯白或近白背景，留白充足。
@@ -81,7 +89,7 @@ Color accents:
 Use only sparse small accents: cobalt blue tape, soft pink tape, lemon yellow tab or dot, tiny green dot, tomato-red underline or warning mark. 4-6 accents total.
 
 Constraints:
-No whiteboard explanation diagram, no line-art-only sketch, no flat icon diagram, no flow arrows as the main subject. No UI screenshot, no app logo, no unrequested company name, no unrequested personal information, no pasted rectangular photo edge, no collage chaos. User-provided names, project names, and self-introduction facts may appear only when essential to the requested image. If the user asks for an exact real logo, generate a clean blank logo area on the prop and place the real logo asset afterward; do not ask the image model to redraw the logo. No big title. No long explanation. No workflow chart. No multiple scenes. No office room background. No dark tech background. No off-white background, no grey background, no vignette, no gradient. No concept inventory, no element checklist image, no dumping laptop + phone + papers + cords unless they form one compact main object group. Do not copy the selected master as a topic-swap. Do not repeat its exact object combination, left-right layout, Little Stone pose, prop set, or label positions. The examples are high-quality template masters and the required quality bar, not layouts to trace.
+No whiteboard explanation diagram, no line-art-only sketch, no flat icon diagram, no flow arrows as the main subject. No UI screenshot, no app logo, no unrequested company name, no unrequested personal information, no pasted rectangular photo edge, no collage chaos. User-provided names, project names, and self-introduction facts may appear only when essential to the requested image. If the user asks for an exact real logo, generate a clean blank logo area on the prop and place the real logo asset afterward; do not ask the image model to redraw the logo. No big title. No long explanation. No workflow chart. No multiple scenes. No office room background. No dark tech background. No off-white background, no grey background, no vignette, no gradient. No concept inventory, no element checklist image, no dumping laptop + phone + papers + cords unless they form one compact main object group. Do not copy the selected master as a topic-swap. Do not repeat its exact object combination, left-right layout, Little Stone pose, prop set, or label positions. The examples are high-quality template masters and the required quality bar, not layouts to trace. Little Stone must stay flat 2D: no 3D rendering, no clay figure, no soft vinyl toy, no Pixar style, no gradient/highlight/volume shading on the orange body, no glossy 3D eyes, no rounded 3D limbs. Real objects may have studio lighting; Little Stone must not inherit that 3D render language.
 ```
 
 ## 手绘图模板
@@ -130,7 +138,7 @@ Color use:
 Black for main line art, modules, text, and structure. Orange for main flow/path/arrows. Red only for key warnings/problems/results. Blue only for secondary notes or system state. Keep colors sparse.
 
 Constraints:
-One image explains only one core structure. Keep the main subject around 40%-60% of the canvas. Preserve at least 35% blank white space. Use at most 5-8 short handwritten Chinese labels. Do not write a title in the top-left corner. Do not write the structure type on the image. Do not make it a PPT infographic, course slide, formal flowchart, dense architecture diagram, dashboard, UI screenshot, or physical-object studio scene. Do not copy prior examples or reuse known case compositions unless explicitly requested; invent a fresh visual metaphor for this specific content.
+One image explains only one core structure. Keep the main subject around 40%-60% of the canvas. Preserve at least 35% blank white space. Use at most 5-8 short handwritten Chinese labels. Do not write a title in the top-left corner. Do not write the structure type on the image. Do not make it a PPT infographic, course slide, formal flowchart, dense architecture diagram, dashboard, UI screenshot, or physical-object studio scene. Do not copy prior examples or reuse known case compositions unless explicitly requested; invent a fresh visual metaphor for this specific content. Little Stone must stay flat 2D hand-drawn sticker style: solid flat #f39200 fill, thin black line limbs, flat white eyes, no 3D mascot, no clay/vinyl toy, no gradient or volume shading on the orange body.
 ```
 
 ## 彩蛋长卷模板
@@ -166,7 +174,7 @@ Right closing:
 {右侧现在关注 / 结论 / 下一阶段}
 
 Constraints:
-Do not create separate cards or modules. Do not add numbered circles, step numbers, milestone numbers, or timeline markers. Do not make a tight horizontal row, a regular sine-wave route, or equal node spacing. Do not make one giant object dominate the canvas. Do not make it a PPT, UI screenshot, dashboard, collage, or multiple scenes. Do not copy any sample master's personal facts, third-party names, or exact object/text details unless the user explicitly provides equivalent facts.
+Do not create separate cards or modules. Do not add numbered circles, step numbers, milestone numbers, or timeline markers. Do not make a tight horizontal row, a regular sine-wave route, or equal node spacing. Do not make one giant object dominate the canvas. Do not make it a PPT, UI screenshot, dashboard, collage, or multiple scenes. Do not copy any sample master's personal facts, third-party names, or exact object/text details unless the user explicitly provides equivalent facts. Little Stone must stay flat 2D at every node: solid flat #f39200 fill, thin black line limbs, flat white eyes, no 3D clay/vinyl/Pixar rendering, no gradient or volume shading on the orange body.
 ```
 
 ## 多图批量生成提示
@@ -174,7 +182,7 @@ Do not create separate cards or modules. Do not add numbered circles, step numbe
 当用户要求一次生成多张，先为每张写独立主题，再逐张调用生图工具。
 
 ```text
-Character lock: same #f39200 Little Stone capsule body, same white-eye style, same flat 2D simple style — see little-stone-ref.png. For multi-person scenes, keep the same IP identity but vary body height/width, tilt, facing direction, limb poses, action roles, and position depth so the characters feel like different individuals rather than copy-pasted clones.
+Character lock: same #f39200 Little Stone capsule body, same white-eye style, same flat 2D simple style — see little-stone-ref.png. 2D Flat Lock: flat sticker / paper cutout only, solid flat orange fill, no 3D gradient/shading/clay/vinyl/Pixar look, thin black line limbs, flat white eyes. For multi-person scenes, keep the same IP identity but vary body height/width, tilt, facing direction, limb poses, action roles, and position depth so the characters feel like different individuals rather than copy-pasted clones.
 ```
 
 ```text
@@ -199,4 +207,10 @@ Regenerate the image with the same core metaphor, but reduce visual complexity. 
 
 ```text
 Adjust Little Stone: solid orange #f39200 rounded capsule body per little-stone-ref.png, small white circular eyes, thin black limbs, flat 2D simple style, no logo, no brand mark. Keep the original composition and mode.
+```
+
+修正 3D 漂移（小石头被画成 3D 时优先用）：
+
+```text
+Fix Little Stone rendering only: convert Little Stone back to a strict flat 2D sticker / paper cutout / simple vector character. Solid flat #f39200 fill with no gradient, no highlight, no ambient shading, no clay/vinyl/Pixar/soft-toy look. Flat white circular eyes, thin black line limbs only. No 3D mascot, no glossy spheres, no rounded 3D arms/legs, no volume modeling on the orange body. Keep all real objects, labels, composition, author persona (if any), and scene lighting unchanged. Only flatten Little Stone.
 ```
