@@ -4,7 +4,7 @@
 
 ## 共同底线
 
-不论 `实物图` 还是 `手绘图`，都必须保留小石头自己的识别：
+不论哪种模式，都必须保留小石头自己的识别：
 
 ```text
 Little Stone (小石头): solid #f39200 rounded capsule body, small white circular eyes, optional tiny black pupils, thin black line limbs, flat 2D simple style. Serious, slightly clumsy, stubborn, action-driven. No logo, no brand text, no trademark mark on the body. Little Stone must perform the core physical/conceptual action, not decorate the scene.
@@ -14,7 +14,7 @@ Little Stone (小石头): solid #f39200 rounded capsule body, small white circul
 
 ```text
 2D Flat Lock for Little Stone ONLY:
-Render Little Stone as a flat 2D sticker / paper cutout / simple vector illustration, NOT a 3D character. The capsule body must be a solid flat #f39200 fill with no gradient, no highlight, no ambient shading, no clay/vinyl/Pixar/soft-toy rendering, no bevel, no embossed edges, no glossy material. Eyes are flat white circles with optional tiny black dots, not glossy 3D spheres. Limbs are thin black lines only, not rounded 3D tubes or soft-clay arms/legs. Little Stone may touch real objects and may have a tiny contact shadow under the feet only, but the body itself must stay flat-colored with no internal volume shading. If the author persona appears, keep the author as light-Q 3D digital toy, but Little Stone must remain strictly flat 2D and visually distinct from the author.
+Render Little Stone as a flat 2D sticker / paper cutout / simple vector illustration, NOT a 3D character. The capsule body must be a solid flat #f39200 fill with no gradient, no highlight, no ambient shading, no clay/vinyl/Pixar/soft-toy rendering, no bevel, no embossed edges, no glossy material. Eyes are flat white circles with optional tiny black dots, not glossy 3D spheres. Limbs are thin black lines only, not rounded 3D tubes or soft-clay arms/legs. Little Stone may touch real objects and may have a tiny contact shadow under the feet only, but the body itself must stay flat-colored with no internal volume shading. If the author persona appears, render the author per the current mode (light-Q 3D digital toy in physical-object mode; flat black-line sketch figure in handdrawn / knowledge-card / PPT modes), but Little Stone must always remain strictly flat 2D and visually distinct from the author.
 Negative: no 3D mascot, no emoji 3D, no blind-box figure, no inflatable toy, no game character render, no Blender/C4D look, no gradient on orange body, no specular highlight on orange body.
 ```
 
@@ -23,7 +23,7 @@ Negative: no 3D mascot, no emoji 3D, no blind-box figure, no inflatable toy, no 
 - 纯白或近白背景，留白充足。
 - 短中文标签 / 批注，不要大段解释。
 - 一个核心动作，不要元素清单化。
-- 不要商业海报、PPT、UI 截图、复杂架构图；实物图允许真实物件质感，手绘图则保持白板线稿。
+- 实物图/手绘图：不要商业海报、PPT、UI 截图、复杂架构图；实物图允许真实物件质感，手绘图则保持白板线稿。知识卡模式允许海报级信息量，PPT 演讲模式本身就应该像 PPT 页面——这两种模式各自的规则见 `knowledge-card-mode.md` / `ppt-presentation-mode.md`，不受这条约束。
 - 作者出镜只在用户明确提到「老杨 / 作者 / yuezheng2006 / 我本人 / 我的数字形象」时启用；否则不要出现真人或作者形象。
 - “戴工牌”默认指小石头佩戴独立挂绳品牌工牌；Logo 只在工牌牌面，不直接印在小石头身体上。老杨和其他人物默认不戴工牌，除非用户明确说“老杨戴工牌 / 人物戴工牌”。
 - 多人 / 多个 Agent / 团队协作场景中，多个小石头必须共享 IP 识别，但体型、姿态、朝向、动作分工要明显不同；不要像复制粘贴。
@@ -59,7 +59,7 @@ Required mutations:
 Without reading any explanation, a viewer should understand this conflict in 3 seconds: {画面 3 秒读懂句}.
 
 Scene budget:
-One core physical action only. One real main object or one compact main object group only. At most 1-2 small props. At most 3 handwritten Chinese labels. Do not include every noun from the theme.
+One core physical action only. One real main object or one compact main object group only. At most 1-2 small props. At most 4 handwritten Chinese labels, 3 preferred. Do not include every noun from the theme.
 
 Physical-object requirements:
 The main object must be real, clear, complete, and naturally integrated in the same white studio space. All objects must share consistent lighting, perspective, and very light contact shadows. The object should not look like a flat icon, a whiteboard line drawing, or a pasted stock asset. Little Stone must touch, push, pull, block, carry, inspect, or repair the object. The labels float around the physical scene; they must not become the main structure.
@@ -83,7 +83,7 @@ Handwritten Chinese labels:
 {短标签1} / {短标签2} / {短标签3}
 
 Optional author presence (only if triggered):
-{如触发老杨/作者/yuezheng2006：Include the author persona (老杨), the author yuezheng2006, using assets/persona/author-persona-ref.jpg as identity reference. Keep only a likeness: mature 35+ Asian male, about 183cm and 85kg, taller and solid build, slightly broader shoulders, upright posture, more mature face, mature neck and jawline, short straight black hair, black rectangular glasses, clean light top, calm and friendly. Render him as a light-Q 3D digital toy / soft-clay character with rounded volume, soft edges, clean matte skin-color surfaces, and gentle contact shadow, NOT a flat 2D cutout, NOT a semi-realistic digital human, and NOT a photorealistic portrait. Keep the likeness through face shape, glasses, short straight hair silhouette, hairline, mature late-30s presence, and taller solid build. Simplify facial features, avoid curly or fluffy hair, realistic skin texture, pores, photo lighting, and realistic human-arm details. Avoid making him too young, too thin, childish, anime-like, elderly, tired-looking, or exaggerated bodybuilder-like. The author persona must interact with Little Stone and the physical scene, such as handing a note/tool, checking feedback, or holding part of the object. Little Stone still performs the core physical action. Keep the author persona supporting, usually no more than 30%-35% of the main visual weight. Do not make it a portrait, personal branding poster, interview cover, ID photo, celebrity, anime character, childish cartoon, elderly man, tired worker, or muscle-man caricature. Do not invent employer, contact info, credentials, or private facts. 若未触发则删除本段。}
+{如触发老杨/作者/yuezheng2006：Include the author persona (老杨), the author yuezheng2006, using assets/persona/author-persona-spec.png as identity reference (follow its 必须保留 anchors closely, especially the hairline and chin shape). Keep only a likeness: mature 35+ Asian male leaning toward late-30s, about 183cm and 85kg, taller and solid build with a slightly athletic physique (broader shoulders, thicker chest/back, restrained muscle definition, not a slim office-worker build, not an exaggerated bodybuilder), upright posture, sunny and slightly trendy vibe, rugged face, healthy tan/wheat-toned skin (not pale). Two distinctive identity features: (1) a HAIRLINE that is nearly straight across with only a very subtle, soft dip in the center — NOT a sharp V-shaped widow's-peak point, NOT dramatically receded temples, NOT an M-shape; the forehead itself is moderate, NOT wide or broad; (2) a NARROWER, slightly pointed CHIN — the face tapers from the cheekbones down to a narrower chin, an oval/tapered face shape (not a wide square jaw, not a broad square chin). Also: fuller lips with a clear lip shape and a slightly thicker lower lip (not thin/simplified lips), clean-shaven, a natural short straight black crew-cut about 3-5cm long with a bit of natural textured/slightly-tousled feel at the front (not perfectly slicked flat, no big curls, no puffy volume, no messy explosion), thin rectangular glasses with a light-gray / translucent frame (not a thick black frame), short-sleeve T-shirt or polo with athletic/jogger-style long pants (sportswear, not dress pants, not skinny jeans), clean sunny athleisure style. Render him as a light-Q 3D digital toy / soft-clay character with rounded volume, soft edges, clean matte skin-color surfaces, and gentle contact shadow, NOT a flat 2D cutout, NOT a semi-realistic digital human, and NOT a photorealistic portrait. Keep the likeness through the nearly-straight hairline with a subtle soft center dip (not a sharp peak, not a wide forehead), the narrower tapered chin, fuller lip shape, thin light-frame glasses, short straight hair silhouette, tan skin tone, mature late-30s presence, and a taller, slightly athletic solid build. Simplify facial features but keep the hairline shape and chin shape recognizable; avoid curly/explosive fluffy hair, a wide full forehead, an exaggerated sharp widow's-peak hairline, a wide square jaw, pale skin, soft baby-face, thin lips, realistic skin texture, pores, photo lighting, and realistic human-arm details. Avoid making him too young, too thin, childish, anime-like, elderly, tired-looking, or exaggerated bodybuilder-like. The author persona must interact with Little Stone and the physical scene, such as handing a note/tool, checking feedback, or holding part of the object. Little Stone must stay in its own strict flat 2D #f39200 sticker style per little-stone-ref.png (solid flat orange capsule body, thin black line limbs, flat white circular eyes, no 3D volume/shading) even while the author is rendered as light-Q 3D — the two characters must look visually distinct in render style. Little Stone still performs the core physical action. Keep the author persona supporting, usually no more than 30%-35% of the main visual weight. Do not make it a portrait, personal branding poster, interview cover, ID photo, celebrity, anime character, childish cartoon, elderly man, tired worker, or muscle-man caricature. Do not invent employer, contact info, credentials, or private facts. 若未触发则删除本段。}
 
 Color accents:
 Use only sparse small accents: cobalt blue tape, soft pink tape, lemon yellow tab or dot, tiny green dot, tomato-red underline or warning mark. 4-6 accents total.
@@ -132,7 +132,7 @@ Chinese handwritten labels:
 {标注词1} / {标注词2} / {标注词3} / {标注词4} / {可选标注词5}
 
 Optional author presence (only if triggered):
-{如触发老杨/作者/yuezheng2006：Include the author persona (老杨), the author yuezheng2006, using assets/persona/author-persona-ref.jpg as identity reference. In handdrawn mode, simplify him into a slightly Q whiteboard-sketch human presenter: mature 35+ Asian male, taller and solid build, slightly broader shoulders, more mature face, short straight black hair, black rectangular glasses, clean light top. Keep likeness, not realism. Avoid making him too young, too thin, childish, curly-haired, fluffy-haired, anime-like, elderly, tired-looking, or exaggerated bodybuilder-like. He should write annotations, draw a small arrow, or hand a module to Little Stone. Little Stone still performs the core conceptual action. Do not make it a realistic portrait, anime character, childish cartoon, elderly man, tired worker, muscle-man caricature, or personal branding poster. 若未触发则删除本段。}
+{如触发老杨/作者/yuezheng2006：Include the author persona (老杨), using assets/persona/author-persona-handdrawn.png as identity and style reference. Render him as a flat black-line hand-drawn sketch figure matching Little Stone's handdrawn visual language (pure white background, minimalist black ink line art, no 3D volume, no clay/soft-toy rendering) — NOT the light-Q 3D digital toy used in physical-object mode. Keep the likeness: mature Asian male leaning toward late-30s (not young/smooth-skinned, not elderly/tired), taller and solid build with a slightly athletic physique, slightly broader shoulders, rugged face, healthy tan skin tone. A nearly-straight hairline with only a very subtle, soft center dip (NOT a sharp V-point widow's-peak, NOT dramatically receded temples; the forehead itself is moderate, not wide) and a narrower, slightly pointed chin (oval/tapered face, not a wide square jaw). Also fuller lips with a clear lip shape, a natural short straight 3-5cm crew-cut (neat and straight, not fluffy, not curly, not puffy), thin light-frame rectangular glasses (not thick black frame), short-sleeve top with athletic/jogger-style long pants. Keep likeness, not realism, but keep the hairline shape, chin shape, and mature age recognizable even when simplified into line art. Little Stone must stay in its own flat 2D hand-drawn line-art style per its own identity block — do not let Little Stone pick up any 3D rendering. Avoid making him too young, too thin, childish, pale-skinned, soft baby-faced, thin-lipped, a wide full forehead, a wide square jaw, curly/explosive fluffy hair, anime-like, elderly, tired-looking, or exaggerated bodybuilder-like. He should write annotations, draw a small arrow, or hand a module to Little Stone. Little Stone still performs the core conceptual action. Do not make it a realistic portrait, a 3D digital toy, anime character, childish cartoon, elderly man, tired worker, muscle-man caricature, or personal branding poster. 若未触发则删除本段。}
 
 Color use:
 Black for main line art, modules, text, and structure. Orange for main flow/path/arrows. Red only for key warnings/problems/results. Blue only for secondary notes or system state. Keep colors sparse.
@@ -175,6 +175,91 @@ Right closing:
 
 Constraints:
 Do not create separate cards or modules. Do not add numbered circles, step numbers, milestone numbers, or timeline markers. Do not make a tight horizontal row, a regular sine-wave route, or equal node spacing. Do not make one giant object dominate the canvas. Do not make it a PPT, UI screenshot, dashboard, collage, or multiple scenes. Do not copy any sample master's personal facts, third-party names, or exact object/text details unless the user explicitly provides equivalent facts. Little Stone must stay flat 2D at every node: solid flat #f39200 fill, thin black line limbs, flat white eyes, no 3D clay/vinyl/Pixar rendering, no gradient or volume shading on the orange body.
+```
+
+## 知识卡模板
+
+用于方法论、步骤、对比、案例、诊断、课程总览等需要独立传播/收藏的内容。生成前完成 `knowledge-card-mode.md` 的必填字段结构锁定。
+
+```text
+Generate one standalone knowledge-card image in Little Stone hand-drawn visual language, sized for social/collection sharing (not a 16:9 article illustration, not a PPT slide).
+
+Mode:
+小石头知识卡. A complete content container with a clear title, reading order, and information structure — not a single-metaphor illustration.
+
+Shared Little Stone identity:
+Little Stone (小石头): solid #f39200 rounded capsule body, small white circular eyes, optional tiny black pupils, thin black line limbs, flat 2D simple style. No logo, no brand text, no trademark mark on the body.
+
+Multi-person collaboration (default for method/step/process/comparison/case/risk/action-list content):
+Assign 1 Little Stone as the main presenter/pointer near the title or conclusion, and 1-3 more Little Stones performing concrete actions inside the steps/cases/risks: handing a card, carrying, holding up a sign, pointing at an error, weighing, marking a risk with an X. Keep the same IP identity but vary height, width, tilt, facing direction, pose, and action role — no clone-stamp duplicates. Pure opinion/quote cards may use only one Little Stone or none.
+
+Aspect ratio:
+{3:4 / 4:5 / 9:16，按 knowledge-card-mode.md 判断}
+
+Card form:
+{观点卡 / 路线图卡 / 白板讲解卡 / 行动清单卡 / 章节总览卡 / 诊断评分卡 / 分镜对比卡 / 或为当前内容定制的新形态}
+
+Information density:
+{讲清楚重点 / 内容更完整 / 完整海报}
+
+Title:
+{图内标题}
+
+Modules / steps:
+{模块1} / {模块2} / {模块3} / {可选模块4-8}
+
+Core message:
+{核心观点}
+
+Little Stone action per module:
+{每个小石头在哪个模块做什么}
+
+Chinese labels:
+{标注词1} / {标注词2} / {标注词3}
+
+Visual DNA:
+Pure or near-white background. Black hand-drawn line art as the main structure, inherited from Little Stone's whiteboard style. Orange for main path/emphasis, red only for risk/warning/result, blue only for secondary notes. Colors sparse. Allowed: a clear title, module separators, light section blocks — but no large gradient, no glossy commercial template blocks.
+
+Constraints:
+Must have a readable title and top-to-bottom or left-to-right reading order — not just one metaphor plus a few labels. Must not look like a PPT slide (see ppt-presentation-mode.md for that distinction) or a photographed physical-object scene. Do not copy a prior knowledge-card layout; design structure from the current content. Chinese text must stay accurate and readable; if too much text, split into two cards instead of cramming. Little Stone must stay flat 2D: no 3D gradient/highlight/clay/vinyl/Pixar rendering.
+```
+
+## PPT 演讲页面模板
+
+用于已完成导演规划卡和 page card 后的单页生成。每页单独生成，严格对齐 page card。
+
+```text
+Generate one standalone 16:9 PPT-style presentation page in Little Stone hand-drawn visual language, following the confirmed page card. It must look like a real presentation page — not a knowledge card, not an infographic poster, not a training handout.
+
+Page card reference:
+Page type: {页面类型，例如 封面页/机制页/场景页/大判断页}
+Visual weight: {anchor / dense / breathing}
+Communication task: {沟通任务}
+Core message: {核心观点}
+
+Shared Little Stone identity:
+Little Stone (小石头): solid #f39200 rounded capsule body, small white circular eyes, thin black line limbs, flat 2D simple style. No logo, no brand text on the body.
+
+Little Stone / author role on this page:
+{是否出镜、比例大小、承担的讲解/指向/演示/收束职责；若不出镜则省略}
+
+Title:
+{主标题，稳定粗黑清晰字体}
+
+Visual/text ratio:
+{图文比例}
+
+Main visual:
+{本页核心画面结构}
+
+Chinese on-page text:
+{标题文字} / {模块标签，控制数量，字多就建议拆页}
+
+Visual style:
+White or near-white background, black-gray line art as the main structure. Orange only for emphasis/path/annotation. Blue only for structure/connector lines. No large gradient, no glossy commercial template colors. Stable, business-appropriate title typography; handwritten text only for light annotations, not primary information.
+
+Constraints:
+Must look like one page of a real presentation deck with a single communication task — not a knowledge card, not an infographic poster, not a training handout, not a business report template. Do not put the character too large unless this is a cover/identity/turning-point/closing page. Little Stone must stay flat 2D: no 3D gradient/highlight/clay/vinyl/Pixar rendering.
 ```
 
 ## 多图批量生成提示

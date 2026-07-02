@@ -1,8 +1,8 @@
 # 小石头 IP 配图
 
-> 个人 Codex Skill：用「小石头」把中文内容转成两类配图。
+> 个人 Codex Skill：用「小石头」把中文内容转成四类配图。
 >
-> 小石头实物图 | 小石头手绘图 | 16:9 正文图 | 彩蛋长卷 | Codex Skill
+> 小石头实物图 | 小石头手绘图 | 知识卡 | PPT 演讲模式 | 16:9 正文图 | 彩蛋长卷 | Codex Skill
 
 ---
 
@@ -35,14 +35,18 @@
 
 ---
 
-## 双模式
+## 四种模式
 
 | 模式 | 适合内容 | 视觉核心 |
 | --- | --- | --- |
 | **小石头实物图** | 处境、情绪、项目故事、正文观点隐喻、彩蛋长卷 | 小石头 + 简笔物件 + 物理动作 + 短标签 + 留白 |
 | **小石头手绘图** | 流程、结构、系统关系、方法论、认知拆解 | 小石头 + 白板手绘结构 + 红橙蓝批注 + 核心概念动作 |
+| **小石头知识卡** | 方法论、步骤、对比、案例、诊断、课程总览等需要独立传播/收藏的内容 | 小石头 + 竖版收藏容器（3:4/4:5/9:16）+ 标题/模块 + 多人协作分工 |
+| **PPT 演讲模式** | 直播分享、课程课件、主题演讲、案例复盘 | 小石头 + 整套 16:9 手绘风演讲页面 + 导演规划卡 + 页面节奏 |
 
-不论哪种模式，都必须保留小石头自己的特点：`#f39200` 胶囊体、白圆眼、细线肢体、物理动作、短中文标签、充足留白，以及认真但有点笨的气质。
+实物图、手绘图是默认主力模式；知识卡、PPT 演讲模式体量更大，只在用户明确触发或内容明显需要独立传播容器/整套演讲页面时才使用。
+
+不论哪种模式，都必须保留小石头自己的特点：`#f39200` 胶囊体、白圆眼、细线肢体、物理/概念动作、短中文标签，以及认真但有点笨的气质；实物图和手绘图还必须保留充足留白，不做成信息堆叠。
 
 IP 规范：[little-stone-scenes/references/common-little-stone-ip.md](little-stone-scenes/references/common-little-stone-ip.md)
 
@@ -88,14 +92,16 @@ IP 规范：[little-stone-scenes/references/common-little-stone-ip.md](little-st
 ```text
 .
 ├── README.md / LICENSE / NOTICE.md
-├── examples/prompts.md               # 双模式常用 prompt
+├── examples/prompts.md               # 四种模式常用 prompt
 ├── examples/test-scenarios.md        # 18 个实物图试跑场景（含 15 张样张）+ prompt
 └── little-stone-scenes/             # ← 复制到 Codex skills
     ├── SKILL.md
+    ├── agents/                       # Codex agent 接口配置
     ├── assets/brand/                 # 小石头锚点 + 可选品牌 Logo / 参考（默认不启用）
-    ├── assets/persona/               # 作者数字形象参考（可选出镜）
+    ├── assets/persona/               # 作者数字形象风格化资产（可选出镜，不含真人照片）
     ├── assets/examples/              # 实物图母版 01–06
-    └── references/                   # common-* / physical-* / handdrawn-* 规则
+    ├── evals/                        # 关键验收用例
+    └── references/                   # common-* / physical-* / handdrawn- / knowledge-card- / ppt- 规则
 ```
 
 ---

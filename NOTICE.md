@@ -33,5 +33,10 @@
 | --- | --- |
 | `little-stone-scenes/assets/brand/` | 小石头角色锚点，以及可选品牌 Logo / 参考资产（默认不启用） |
 | `little-stone-scenes/assets/examples/` | 母版 `01`–`06` |
+| `little-stone-scenes/assets/persona/` | 作者数字形象**风格化**资产（轻 Q 3D 规范说明图/动作扩展图、手绘版参考图），不含可识别真实肖像细节 |
 
-安装 Skill 时复制整个 `little-stone-scenes/` 即可。
+安装 Skill 时复制整个 `little-stone-scenes/` 即可。仓库不包含、不分发任何真人照片；`assets/persona/private/` 保留在 `.gitignore` 中作为防线，防止真人照片被误提交。
+
+## 历史遗留资产提醒
+
+早期提交（`bd401b0`）中曾把一张作者真人照片 `assets/persona/author-persona-ref.jpg` 提交进公开仓库并推送。2026-07-02 已通过 `git filter-repo` 重写历史、彻底移除该文件并强制推送；当前仓库工作区与全部历史中均不再包含真人照片。若你持有更早的旧 clone，请删除后重新 clone。

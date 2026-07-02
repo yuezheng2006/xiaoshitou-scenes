@@ -6,3 +6,6 @@ node_modules/
 dist/
 build/
 generated/
+
+# 真人照片/未授权分发的私有角色资产：不进公开仓库，仅本地留档供生图时读取参考。
+assets/persona/private/

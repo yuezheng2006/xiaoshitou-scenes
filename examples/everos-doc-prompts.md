@@ -30,5 +30,3 @@
 小石头实物图：生成一张 16:9 配图：离线 Reflection，session 之间合并 episode 簇，记忆越用越准。
 标签：离线合并 / 越用越准 / Reflection
 ```
-
-样张 PNG：`assets/everos-demo/`
