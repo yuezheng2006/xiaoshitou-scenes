@@ -1,0 +1,33 @@
+<title>小石头 IP 配图 Skill</title>
+<callout emoji="💡" background-color="light-blue">
+<p><span text-color="blue">仓库</span> <a href="https://github.com/yuezheng2006/xiaoshitou-scenes">github.com/yuezheng2006/xiaoshitou-scenes</a> · 核心包 <code>scene-skill-core/</code> · MIT 开源</p>
+</callout>
+<h2>定义</h2>
+<p>一个装在 Codex 里的 <b>Skill</b>：读中文内容与意图，按 IP 规范生成<strong>小石头风格配图</strong>。不是单次「随便出一张图」，而是一套带<strong>角色锁定、模式路由、生成模板、形象 QA</strong>的稳定出图流程。</p>
+<h2>作用</h2>
+<ul>
+<li><b>正文 / 长文</b> → 16:9 实物图或手绘解释图，表达处境或结构</li>
+<li><b>方法论 / 步骤 / 对比</b> → 竖版知识卡，可单独收藏转发</li>
+<li><b>演讲大纲 / 直播课件</b> → 整套 16:9 PPT 演讲页</li>
+<li><b>项目复盘 / 成长路径</b> → 彩蛋长卷超横版故事线</li>
+<li><b>说「老杨 / 老杨和小石头」</b> → 双 IP 互动：老杨讲，小石头干</li>
+<li><b>说「先推荐」</b> → 先给模式 + 张数 + 互动方案，不逼你先选词</li>
+</ul>
+<h2>设计</h2>
+<p>核心思路：<strong>「怎么出图」和「出谁的形象」分开</strong>。</p>
+<pre lang="text"><code>scene-skill-core/          ← 通用：四种模式、母版、路由、QA、模板
+  └── ip-profiles/
+        default-little-stone/  ← 默认 IP：小石头 + 老杨 + 角色资产
+              character.md · persona-author*.md · assets/</code></pre>
+<p>换 IP 只改 profile 目录，不动 skill 主干。默认小石头是 flat 2D 橙色胶囊；触发老杨后四种模式都支持双 IP，生成前后有 Character Lock / Persona Lock / 形象检查。</p>
+<p><b>出镜习惯</b>：<strong>实物图</strong>以「小石头 + 真实物件小现场」为主，默认不请老杨；<strong>手绘 / 知识卡 / PPT</strong>更适合老杨主讲、小石头执行。老杨可以出镜，但宜<strong>少用</strong>，别每张都变人物海报。</p>
+<h2>怎么用</h2>
+<pre lang="bash"><code>git clone git@github.com:yuezheng2006/xiaoshitou-scenes.git
+mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
+cp -R ./scene-skill-core "${CODEX_HOME:-$HOME/.codex}/skills/"</code></pre>
+<p>装好后<strong>直接用中文说意图</strong>，不必写 <code>$scene-skill-core</code>。起手示例：</p>
+<pre lang="text"><code>老杨：这篇内容想配图，请先推荐。
+小石头实物图：把下面内容生成 4 张 16:9 正文配图。
+老杨和小石头：把这个工作流画成一张白板图。</code></pre>
+<h2>场景示例</h2>
+<p>下面每节 = <strong>一句可复制 prompt</strong> + <strong>出图效果</strong>。#1–12 以<strong>小石头单 IP</strong>为主；#13–18 展示<strong>老杨双 IP</strong>场景；#19–23 为<strong>全身 IP 锚点</strong>（双 IP 并列 / 协作 / 实物同框 / 小石头动作）。</p>

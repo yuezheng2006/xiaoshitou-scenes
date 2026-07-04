@@ -20,8 +20,16 @@ Current profile main character: use the character name, primary color, body shap
 
 ```text
 2D Flat Lock for the profile main character ONLY:
-Render the profile main character as a flat 2D sticker / paper cutout / simple vector illustration, NOT a 3D character. The capsule body must be a solid flat profile-primary-color fill with no gradient, no highlight, no ambient shading, no clay/vinyl/Pixar/soft-toy rendering, no bevel, no embossed edges, no glossy material. Eyes are flat white circles with optional tiny black dots, not glossy 3D spheres. Limbs are thin black lines only, not rounded 3D tubes or soft-clay arms/legs. the profile main character may touch real objects and may have a tiny contact shadow under the feet only, but the body itself must stay flat-colored with no internal volume shading. If the author persona appears, render the author per the current mode (light-Q 3D digital toy in physical-object mode; flat black-line sketch figure in handdrawn / knowledge-card / PPT modes), but the profile main character must always remain strictly flat 2D and visually distinct from the author.
-Negative: no 3D mascot, no emoji 3D, no blind-box figure, no inflatable toy, no game character render, no Blender/C4D look, no gradient on profile-primary-color body, no specular highlight on profile-primary-color body.
+Render the profile main character as a flat 2D sticker / paper cutout / simple vector illustration, NOT a 3D character. The capsule body must be a solid flat profile-primary-color fill with one uniform color region: no gradient, no soft center-to-edge shading, no top-left lighting, no highlight, no ambient shading, no clay/vinyl/Pixar/soft-toy rendering, no bevel, no embossed edges, no glossy material. Eyes are flat white circles with optional tiny black dots, not glossy 3D spheres. Limbs are thin black lines only, not rounded 3D tubes or soft-clay arms/legs. the profile main character may touch real objects and may have a tiny contact shadow under the feet only, but the body itself must stay flat-colored with no internal volume shading. If the author persona appears, render the author per the active persona profile mode (for this profile: mature restrained stylized 3D in physical-object mode; flat black-line sketch figure in handdrawn / knowledge-card / PPT modes), but the profile main character must always remain strictly flat 2D and visually distinct from the author.
+Negative: no 3D mascot, no emoji 3D, no blind-box figure, no inflatable toy, no game character render, no Blender/C4D look, no gradient on profile-primary-color body, no specular highlight on profile-primary-color body, no orange volume lighting, no shaded orange capsule. Even a mild orange gradient on the body fails the flat lock.
+```
+
+**Limbs Lock（每张必写，与 2D Flat Lock 并列）**：
+
+```text
+Limbs Lock for the profile main character ONLY:
+Exactly 2 arms + 2 legs per individual. Each arm = one continuous thin black line from upper-third lateral body side. Each leg = one continuous thin black line from bottom edge (left/right or center). At most one simple hand terminal per arm (small circle / C-grip / line hook). No mouth, no teeth, no lip line on the capsule — emotion via pose and 0-1 sweat only. Rope/arrow/tether must NOT merge into an extra hand.
+Negative limbs: extra arm, floating broken limb, forked fingers, thick 3D tube limbs, mouth on capsule.
 ```
 
 共同约束：
@@ -32,7 +40,37 @@ Negative: no 3D mascot, no emoji 3D, no blind-box figure, no inflatable toy, no 
 - 实物图/手绘图：不要商业海报、PPT、UI 截图、复杂架构图；实物图允许真实物件质感，手绘图则保持白板线稿。知识卡模式允许海报级信息量，PPT 演讲模式本身就应该像 PPT 页面——这两种模式各自的规则见 `knowledge-card-mode.md` / `ppt-presentation-mode.md`，不受这条约束。
 - 作者出镜只在用户明确提到「persona / 作者 / persona 触发词 / 我本人 / 我的数字形象 / 让我和主角色一起 / 作者出镜 / persona出镜」时启用；否则不要出现真人或作者形象。
 - “戴工牌”默认指主角色佩戴独立挂绳品牌工牌；Logo 只在工牌牌面，不直接印在主角色身体上。persona 和其他人物默认不戴工牌，除非用户明确说“persona戴工牌 / 人物戴工牌”。
-- 多人 / 多个 Agent / 团队协作场景中，多个主角色必须共享 IP 识别，但体型、姿态、朝向、动作分工要明显不同；不要像复制粘贴。
+- 多人 / 多个 Agent / 团队协作场景中，多个主角色必须共享 IP 识别与**相同胶囊宽高比**（形体一致锁）；只允许整体等比缩放、姿态、朝向、动作分工不同；**禁止**瘦高/矮胖/横扁形体混用；眼睛（白圆眼+可选 tiny 瞳孔）与手臂（体侧连续细黑线、每侧一臂）批内严格一致；不要像复制粘贴。
+
+## Persona Identity Lock（画面出现 persona 时必写）
+
+persona 触发，或画面主动画出 persona 肖像（含双 IP、文档预览、能力总览）时，prompt 必须包含：
+
+```text
+Persona Identity Lock:
+Must reference author-persona-spec.png as identity ground truth; for hand-drawn/line-art panels also reference author-persona-handdrawn.png. Lao Yang = large thin LIGHT-GRAY rectangular glasses (NOT thick black frames), short straight black hair 3-5cm, beige short-sleeve T-shirt + dark gray jogger pants + cream sneakers, thicker lower lip, tan skin, mature Chinese male ~40, restrained stylized 3D in physical panels / flat black-line in sketch panels. Front or 3/4 face visible in hand-drawn/knowledge-card/PPT — NO back view, NO speech bubble only without face. Expression: calm, focused, slightly serious; lips closed or micro-explain without teeth; NO exaggerated smile or marketing grin. Do NOT invent a generic business man, cartoon lecturer, black long-sleeve shirt, or thick black glasses. If panel is too small for a locked portrait, use abstract dual-IP symbols only (labels, arrows, silhouettes) — NO generic human face.
+When Little Stone appears together, also reference primary-character-reference.png; Little Stone stays flat 2D profile-primary-color with Limbs Lock and NO mouth.
+Negative persona: thick black glasses, black sweater/long sleeve, generic avatar, photo-real face, chibi/clay toy, wrong outfit, back view, toothy smile, old-lady silhouette.
+```
+
+与 Character Lock / 2D Flat Lock **并列**写入，不可省略。
+
+## 预览 / 文档 / 能力总览模板
+
+用于 README、飞书、gallery、工作流总览等多格说明图。**每一格若含 persona 脸，仍须 Persona Identity Lock；格子太小则用抽象符号，禁止 generic 人脸。**
+
+```text
+Generate one 16:9 documentation/preview illustration for scene-skill-core.
+
+Rules:
+- Pure white background, minimal hand-drawn infographic style, Chinese labels only.
+- For panels about dual IP: either (A) use abstract symbols only — arrows, role labels「老杨讲」「小石头干」, orange capsule icon for Little Stone, NO human face; OR (B) if drawing Lao Yang, MUST attach author-persona-spec.png (+ author-persona-handdrawn.png for line-art style) and follow Persona Identity Lock above exactly.
+- For Little Stone in any panel: attach primary-character-reference.png; flat 2D #f39800 uniform fill, **vertical rounded oval capsule** (NOT grey pebble, NOT smooth river stone, NOT orange blob with black-dot eyes only), **two flat white circle eyes** + optional tiny pupil, thin black limbs.
+- After generation, run identity QA before saving to assets/examples/.
+
+Panel content: {描述各格主题，如四模式/路由/双IP/母版/工作流}
+Negative: generic business man, thick black glasses, black long-sleeve shirt, uninvented mascot, 3D Little Stone, grey pebble Little Stone, smiley orange blob without white circle eyes, version numbers, brand logos.
+```
 
 ## 实物图模板
 
@@ -50,7 +88,7 @@ Shared the profile main character identity:
 Current profile main character: use character.md for name, primary color, shape, eyes, limbs, temperament, assets, and prohibitions. The main character must perform the core physical action.
 
 Multi-person variation (only if the scene has 2-4 profile main characters):
-Keep all profile main characters in the same IP family: same profile-primary-color body, same white circular eyes, same thin black limbs, same flat 2D simple style, no logos. But make them clearly different individuals, not duplicated clones: vary height, width, tilt angle, facing direction, arm/leg pose, foreground/background position, held prop, and action role. Each profile main character must have a distinct job such as handing a card, receiving a card, holding a line, sticking a label, checking feedback, or pressing down an object. Avoid clone-stamp / copy-paste feeling: no identical body size, identical pose, identical angle, or identical limb shapes merely moved to different positions.
+Keep all profile main characters in the same IP family: same profile-primary-color body, same white circular eyes, same thin black limbs, same flat 2D simple style, same capsule width:height ratio as primary-character-reference.png, no logos. Make them clearly different individuals via overall scale (±10-15% height only), tilt angle, facing direction, arm/leg pose, foreground/background position, held prop, and action role — NEVER vary body width:height ratio (no skinny stick, no fat ball, no horizontal blob). Each profile main character must have a distinct job such as handing a card, receiving a card, holding a line, sticking a label, checking feedback, or pressing down an object. Avoid clone-stamp / copy-paste feeling.
 
 Core visual DNA:
 Pure seamless #FFFFFF white background. A clean pure-white studio surface. No off-white, no warm white, no grey vignette, no background gradient, no paper texture. Real photographed objects naturally integrated with very light contact shadows only. the profile main character is flat 2D but physically interacts with the real objects. Premium, restrained, weird, clear, not cute poster, not PPT, not infographic.
@@ -114,7 +152,7 @@ Shared the profile main character identity:
 Current profile main character: use character.md for name, primary color, shape, eyes, limbs, temperament, assets, and prohibitions. The main character must perform the core conceptual action, not decorate the diagram.
 
 Multi-person variation (only if the sketch has 2-4 profile main characters):
-Keep all profile main characters in the same IP family: same profile-primary-color body, same white circular eyes, same thin black limbs, same flat 2D simple style, no logos. But make them clearly different individuals, not duplicated clones: vary height, width, tilt angle, facing direction, arm/leg pose, position in the structure, and conceptual action role. One can pull the line, one can hold a module, one can point at feedback, one can block a wrong path. Avoid clone-stamp / copy-paste feeling: no identical pose or identical body just repeated across the diagram.
+Keep all profile main characters in the same IP family: same profile-primary-color body, same white circular eyes, same thin black limbs, same flat 2D simple style, same capsule width:height ratio as primary-character-reference.png, no logos, NO mouth on any capsule. Make them clearly different individuals via overall scale (±10-15% height only), tilt angle, facing direction, arm/leg pose, position in the structure, and conceptual action role — NEVER vary body width:height ratio (no skinny stick, no fat ball, no horizontal blob). Apply Limbs Lock to every individual. One can pull the line, one can hold a module, one can point at feedback, one can block a wrong path. Avoid clone-stamp / copy-paste feeling.
 
 Visual DNA:
 Pure #FFFFFF white background. Minimalist black hand-drawn line art with slightly wobbly pen lines. Lots of empty white space. Sparse red/orange/blue handwritten Chinese annotations. Clean absurd product-sketch feeling. Clear structure, but not a formal diagram or course slide.
@@ -192,6 +230,9 @@ Generate one standalone knowledge-card image in the profile main character hand-
 
 Mode:
 主角色知识卡. A complete content container with a clear title, reading order, and information structure — not a single-metaphor illustration.
+
+Persona Identity Lock (when author persona triggered — CRITICAL):
+Read author-persona-spec.png + author-persona-handdrawn.png. Lao Yang = flat black-line hand-drawn mature Chinese man ~40, front or 3/4 view facing reader, pointing/annotating near title or conclusion. Six anchors: large light-gray thin-frame glasses / 3-5cm short straight dark hair / beige short-sleeve T + dark gray sweatpants / thick lower lip / wheat skin / calm mature face. FORBIDDEN: back view, rear silhouette, speech bubble only without face, gray curly white hair, old woman/elderly lady silhouette, generic businessman, thick black glasses, black long sleeves. Little Stone still flat 2D #f39800 + primary-character-reference.png.
 
 Shared the profile main character identity:
 the profile main character (主角色): solid profile primary color rounded capsule body, small white circular eyes, optional tiny black pupils, thin black line limbs, flat 2D simple style. No logo, no brand text, no trademark mark on the body.

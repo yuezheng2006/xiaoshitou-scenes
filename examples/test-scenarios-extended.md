@@ -110,16 +110,16 @@ PPT 演讲模式：第 3 页，页面类型「痛点页」。
 
 ---
 
-## 老杨 × 小石头 · 实物图（轻 Q 3D）
+## 老杨 × 小石头 · 实物图（成熟克制风格化 3D）
 
-**摘要**：双 IP 物件现场协作；读 `author-persona-spec.png` + `persona-scene-patterns.md`；老杨调度/递卡，小石头执行；老杨 3D，小石头 flat 2D。
+**摘要**：双 IP 物件现场协作；读 `author-persona-spec.png` + `persona-scene-patterns.md`；老杨调度/递卡，小石头执行；老杨成熟克制风格化 3D，小石头严格 flat 2D。
 
 **文件**：`test-author-persona-physical-prompt-review.png`
 
 ```text
 老杨和小石头：一起评审提示词草稿，生成一张 16:9 实物图。
 老杨递任务卡，小石头圈一句话；标签：这句行吗 / 再改 / 上线前
-要求：双 IP 互动；老杨轻 Q 3D，小石头 flat 2D，渲染语言必须区分。
+要求：双 IP 互动；老杨成熟克制风格化 3D，小石头严格 flat 2D，渲染语言必须区分。
 ```
 
 ---

@@ -48,6 +48,7 @@
 
 - 方法论 / 步骤 / 流程 / 对比 / 案例 / 风险 / 行动清单类：默认老杨 + 2–3 个小石头分工，不能只有老杨和文字。
 - 纯观点卡 / 金句卡：老杨主讲占主视觉，0–1 个小石头执行点缀。
+- **Persona Identity Lock（触发老杨时 CRITICAL）**：生成前必读 `persona-author-assets.md`，传 `author-persona-spec.png` + `author-persona-handdrawn.png`；老杨须**正面或 3/4 侧脸**贴近标题/结论区**指向或批注**，六项识别可见（大镜片浅灰细框眼镜 / 3–5cm 短直黑发 / 米色短袖 T + 深灰运动裤 / 厚下唇 / 小麦肤 / 偏 40 岁成熟男）。**禁止**仅用「老杨讲」气泡、背身、后脑勺、灰卷白发、老太太/老妇人形、泛化讲师。
 - 每个小石头遵守 `common-character-lock.md` 多人差异锁。
 - 未触发 persona 时：一个主角色承担主讲/指向，其余 1–3 个主角色承担步骤里的具体动作（不引入老杨）。
 - Persona 规则见 `common-persona-routing.md` 与 profile 下 `persona-author.md`（及 `persona-author-modes.md`）。
@@ -91,6 +92,8 @@
 - 太商业、太精致插画、太幼态可爱。
 - 复刻旧知识卡构图，没有为当前内容重新设计结构。
 - 主角色维度漂移、多人复制粘贴、persona 识别丢失——同 `physical-qa-checklist.md` / `handdrawn-qa-checklist.md` 已有判定标准。
+- **老杨背身 / 后脑勺 / 仅气泡无脸**：知识卡里老杨只剩「老杨讲」标签或背对观众 → 不合格，须正面/3/4 可见眼镜与短发。
+- **老杨像老太太 / 老妇人**：灰卷白发、盘发、老年女性轮廓、与 spec 性别/年龄不符 → 不合格，对照 handdrawn + identity 返修。
 - 图内文字过多、错字、看不清阅读顺序。
 
 ## QA 与返修
@@ -99,6 +102,7 @@
 
 知识卡专属检查顺序：
 
+0. **形象 Confirm Gate**（`common-character-lock.md`）：小石头 L1–L4/E1–E2；老杨 P1–P7（双 IP 时）；结论 `CONFIRMED` 才继续。
 1. 是否像当前 profile 的主角色 / persona 锚点，识别锚点是否保留。
 2. 是否有清楚的标题、阅读顺序和信息结构（不是配图感）。
 3. 方法论/步骤/流程/对比/案例/风险/行动清单类内容是否安排了多个主角色协作，而不是只有主角+文字。

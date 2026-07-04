@@ -34,7 +34,8 @@ persona（老杨）= 主讲 / 拆解 / 批注 / 调度
 2. 若命中 persona 触发词，读取 profile 指向的 persona 文件。
 3. 读取 `persona-scene-patterns.md`，选定互动场景类型和分工。
 4. 按 persona 文件中定义的模式路由读取对应资产。
-5. 生图后按 persona 文件中的识别锚点、双 IP 互动和失败信号做 QA。
+5. **生成前**：写入 Character Lock + 2D Flat Lock；画面含 persona 肖像时另写 **Persona Identity Lock**（见 `common-character-lock.md`），并传 spec（+ handdrawn / actions 按场景）。
+6. **生成后**：先做形象检查（主角色 + persona），再做模式 QA；文档/预览/仓库示例图无例外。
 
 ## 画面职责
 

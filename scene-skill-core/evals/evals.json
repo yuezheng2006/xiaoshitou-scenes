@@ -52,7 +52,7 @@
     {
       "id": "little-stone-2d-lock-with-author",
       "prompt": "小石头实物图：老杨递给小石头一个工具，两人一起处理一个问题。",
-      "expected_output": "老杨可以渲染为轻 Q 3D 数字玩偶，但小石头必须始终保持 flat 2D 平涂简笔（#f39800 橙身/细黑线肢体/白圆眼），不能因为老杨是 3D 就被带成 3D 灰石头或软陶公仔；两者渲染语言必须明显区分。",
+      "expected_output": "老杨应为成熟克制的风格化 3D（对齐 author-persona-spec.png），但小石头必须始终保持 flat 2D 平涂简笔（#f39800 橙身/细黑线肢体/白圆眼），不能因为老杨是 3D 就被带成 3D 灰石头或软陶公仔；两者渲染语言必须明显区分。",
       "files": []
     },
     {
@@ -125,6 +125,24 @@
       "id": "modes-and-sizes-read",
       "prompt": "小石头知识卡：这篇长文信息量很大，帮我选最合适的竖版尺寸和信息密度档位。",
       "expected_output": "应读取 common-modes-and-sizes.md，在 3:4/4:5/9:16 和讲清楚重点/内容更完整/完整海报三档中给出推荐并说明理由，而不是默认 16:9。",
+      "files": []
+    },
+    {
+      "id": "preview-asset-persona-identity-lock",
+      "prompt": "为 scene-skill-core 生成一张 16:9 能力总览预览图，其中有一格要讲双 IP，保存到 assets/examples/gallery/。",
+      "expected_output": "应读取 common-character-lock.md 与 persona-author-assets.md；双 IP 格若过小须用抽象符号（箭头、职责标签），禁止 generic 人脸；若画老杨肖像须传 author-persona-spec.png 并写 Persona Identity Lock；小石头须传 primary-character-reference.png；生成后须做形象检查，拦截粗黑框眼镜、黑长袖、泛化讲师。",
+      "files": []
+    },
+    {
+      "id": "multi-agent-body-proportion-qa",
+      "prompt": "（QA 场景）实物图里 3 个小石头协作：A 是极细长竖条、B 是矮胖圆球、C 是横扁椭圆，但颜色都是橙色。这张图能交付吗？",
+      "expected_output": "应判定不合格：违反 common-character-lock.md 形体一致锁——多人同图胶囊宽高比必须与 primary-character-reference.png 一致，只允许整体等比缩放 ±10–15%，禁止瘦高/矮胖/横扁混用；同时应检查眼睛（白圆眼批内一致）与手臂（每侧一臂、体侧连续连接）；必须重生成，不得交付。",
+      "files": []
+    },
+    {
+      "id": "physical-multi-agent-generation",
+      "prompt": "小石头实物图：3 个 Agent 协作交接任务——A 递卡、B 接卡、C 贴标签到看板，16:9 白底真实物件小现场。",
+      "expected_output": "应走实物图模式 + Character Lock + 形体一致锁 + 眼睛/手臂严格锁；真实哑光任务卡与小看板；三个小石头相同胶囊宽高比、仅整体缩放与动作分工不同；生成后形象快检与 physical-qa-checklist.md 必过项。",
       "files": []
     }
   ]
