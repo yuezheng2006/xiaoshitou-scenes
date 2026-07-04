@@ -18,6 +18,22 @@ context: fork
 
 # Profile 化多模式配图
 
+## 🚀 快速开始（Agent 必读）
+
+**第一次执行任务？先读这个：**
+
+→ **`QUICK-START.md`**（5 秒决策表：模式判断 + 必读文件 + persona 触发 + 简化 Confirm Gate）
+
+不要直接读完本文件全部内容；按 QUICK-START 的决策表按需加载。
+
+**常见场景快速跳转：**
+- 实物图任务 → `QUICK-START.md` 决策表 A
+- 手绘图任务 → `QUICK-START.md` 决策表 B
+- 知识卡任务 → `QUICK-START.md` 决策表 C
+- PPT 任务 → `QUICK-START.md` 决策表 D
+- 触发 persona（老杨）→ `references/persona-quick-checklist.md`
+- 模式不确定 → `references/mode-decision-matrix.md`
+
 ## 触发方式
 
 Skill 安装到 Codex 后，用户**直接用中文说意图即可**。默认 profile 是 `ip-profiles/default-little-stone/profile.md`（小石头 + 老杨双 IP）。Agent 应自动加载本 Skill，**不要**要求用户先写 `Use $scene-skill-core`。
