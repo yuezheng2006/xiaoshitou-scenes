@@ -9,10 +9,15 @@
 | 概念 | 唯一定义位置 | 其他文件 |
 |------|------------|---------|
 | 小石头形象规范 | `ip-profiles/default-little-stone/character.md` | 其他文件只引用，不重复定义 |
+| `{IP_DESC}` / `{IP_STYLE_ADAPT}` | 当前 profile 的 `character.md` | `common-prompt-slots.md` 只定义槽位顺序 |
+| 双参考协议（对齐人） | `persona-author-assets.md` + `assets/persona/examples/README.md` | `common-prompt-slots.md` / QUICK-START 只引用；**对象是老杨，不是小石头** |
+| 小石头参考图 | `character.md`（默认单锚点） | 可选 `assets/character/examples/` |
+| 无角色路径 | `ip-profiles/none/` | 不在默认 profile 内重复 |
 | 老杨形象规范 | `ip-profiles/default-little-stone/persona-author-identity.md` | 其他文件只引用 |
 | 2D Flat Lock 完整 prompt | `character.md` | `common-character-lock.md` 不重复，只说"见 character.md" |
 | Limbs Lock 完整 prompt | `character.md` | `common-character-lock.md` 不重复 |
 | Persona Identity Lock 完整 prompt | `persona-author-identity.md` 或 `persona-quick-checklist.md` | `common-character-lock.md` 不重复 |
+| Prompt 槽位组装顺序 | `references/common-prompt-slots.md` | 模板文件按此顺序填槽 |
 | 实物图母版 01-06 规则 | `references/physical-master-anchors.md` | 不在其他文件重复描述母版 |
 | 手绘图结构类型 | `references/handdrawn-composition-patterns.md` | 不在其他文件重复 |
 | 知识卡形态库 | `references/knowledge-card-mode.md` | 不在其他文件重复 |
@@ -78,9 +83,11 @@ mode-decision-matrix.md（模式决策）
 ### 场景 1：实物图 + 单 IP
 ```
 QUICK-START.md → 决策表 A
-→ character.md（小石头唯一定义 + 2D Flat Lock + Limbs Lock）
+→ character.md（小石头唯一定义 + {IP_DESC}/{IP_STYLE_ADAPT} + Flat/Limbs Lock；单锚点）
+→ common-prompt-slots.md（组装顺序，首次或换 IP 时）
 → physical-master-anchors.md（选母版类型）
 → physical-style-dna.md（比例/留白/颜色）
+→ 传小石头设定图后生成
 → 生成后：简化 Confirm Gate（L1-L2 + E1）
 → physical-qa-checklist.md（模式 QA）
 ```
@@ -116,6 +123,9 @@ QUICK-START.md → 决策表 C + Persona 增补
 | 修改内容 | 唯一修改位置 | 需同步检查 |
 |---------|------------|-----------|
 | 小石头形象调整（颜色/形体） | `character.md` | `QUICK-START.md`（确认引用正确） |
+| `{IP_DESC}` / `{IP_STYLE_ADAPT}` | `character.md` | `common-prompt-slots.md` 槽位名不变 |
+| 老杨双参考 / 校准样张 | `persona-author-assets.md` + `assets/persona/examples/` | `persona-quick-checklist.md`、QUICK-START |
+| 无角色路径调整 | `ip-profiles/none/` | `QUICK-START.md` 触发词 |
 | 老杨形象调整（眼镜/穿搭） | `persona-author-identity.md` | `persona-quick-checklist.md`（确认快速版同步） |
 | 新增母版类型 07 | `physical-master-anchors.md` | `QUICK-START.md` 决策表 A 无需改 |
 | 新增知识卡形态 | `knowledge-card-mode.md` | 无需改其他文件 |
@@ -129,7 +139,10 @@ QUICK-START.md → 决策表 C + Persona 增补
 
 每次修改后检查：
 
-- [ ] `character.md` 是否仍是小石头形象的唯一定义？
+- [ ] `character.md` 是否仍是小石头形象的唯一定义（单锚点 + IP 槽位）？
+- [ ] `persona-author-assets.md` 是否仍把双参考定义为**对齐老杨**？
+- [ ] `common-prompt-slots.md` 是否只定义组装顺序、不硬编码具体角色？
+- [ ] `ip-profiles/none/` 是否仍可独立运行、不依赖默认角色资产？
 - [ ] `persona-author-identity.md` 是否仍是老杨形象的唯一定义？
 - [ ] `common-character-lock.md` 是否只描述机制、不重复具体 Lock 内容？
 - [ ] `persona-quick-checklist.md` 的快速版是否与完整版（`persona-author-identity.md`）一致？

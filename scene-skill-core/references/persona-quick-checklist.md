@@ -37,18 +37,17 @@
 
 ---
 
-## 第三步：资产组合速查表（按模式）
+## 第三步：资产组合 · 双风格老杨
 
-| 模式 | 必传资产 | 可选资产 | 渲染语言 |
-|------|---------|---------|---------|
-| 实物图 | author-persona-spec.png | author-persona-actions.png（复杂动作/小比例） | 成熟克制的风格化 3D |
-| 手绘图 | author-persona-spec.png + author-persona-handdrawn.png | — | 扁平黑线（对齐 handdrawn） |
-| 知识卡 | author-persona-spec.png + author-persona-handdrawn.png | — | 扁平黑线 |
-| PPT 演讲 | author-persona-spec.png + author-persona-handdrawn.png | — | 扁平黑线 |
+| 模式 | 必传 | 说明 |
+|------|------|------|
+| 实物图 | panorama（实体） | 脸不稳 +face-lock；复杂姿态 +actions |
+| 手绘/知识卡/PPT | **panorama-handdrawn + panorama** | 手绘全景更重要；实体锁同一人 |
+| 手绘全身比例 | 上表 + **handdrawn-body** | 头肩腿对齐金样；跑偏返修必加 |
+| **多场景同批（≥2）** | 上表 + **face-lock** | 压跨图脸漂；差异过大整批返修 |
 
-**小石头资产**（老杨同框时仍需传）：
-- `primary-character-reference.png`（必传）
-- `primary-character-actions.png`（复杂姿态/多人时可选）
+小石头同框：+ `primary-character-reference.png`  
+猫：金**黄**金渐层；仅点名/彩蛋
 
 ---
 
@@ -58,30 +57,28 @@
 
 ### Persona Identity Lock
 ```text
-Persona Identity Lock（老杨身份锚点）：
-- 身份锚点：author-persona-spec.png（必传）
-- 渲染：[实物图 → 风格化 3D] / [手绘系 → spec + handdrawn 扁平黑线]
-- 六项识别（缺任一项即失败）：
-  1. 大镜片浅灰细框眼镜（非粗黑框）
-  2. 短直发 3-5cm（非卷发/灰白发）
-  3. 米色短袖 T + 深灰运动裤（非黑长袖/正装）
-  4. 厚下唇（整体偏厚，下唇尤其明显）
-  5. 小麦肤色（非苍白）
-  6. 偏 40 岁成熟感（非少年脸/疲惫叔）
-- 与小石头同框：+ primary-character-reference.png；小石头仍 flat 2D #f39800
+Persona Identity Lock（老杨 · 双风格）：
+- 实物：author-persona-panorama.png（真人实体全景）
+- 手绘系：author-persona-panorama-handdrawn.png + author-persona-panorama.png（手绘更重要，实体锁同一人）
+- 六项识别：细框大镜片眼镜 / 短直发3-5cm / 米色T+橄榄卡其短裤 / 厚下唇 / 小麦肤 / 偏40成熟感
+- **面相族裔**：中国北方/山东男性脸，脸宽结实；**禁止韩范**（小脸、V下巴、冷白皮、爱豆脸）
+- **多场景**：same exact person；跨图脸/眼镜/发/穿搭差异要小
+- 猫（若出现）：金**黄**金渐层英短
+- 小石头同框：+ primary-character-reference.png；小石头 flat 2D #f39800
 ```
 
 ### Persona Feature Stability Lock
 ```text
-Persona Feature Stability Lock（特征稳定）：
-- 脸：长但不细的长方椭圆 + 圆下巴；下半脸略宽
+Persona Feature Stability Lock（特征稳定 · 多场景复用同一段）：
+- 脸：长但不细的长方椭圆 + 圆下巴；下半脸略宽；北方/山东男骨架
 - 眼镜：大镜片浅灰细框矩形；批内框线粗细一致
 - 发：短直发 3-5cm；接近平直发际线
 - 唇：整体偏厚，下唇尤其明显
 - 肤：健康小麦色
-- 穿搭：米色短袖 T + 深灰束脚运动裤 + 米白运动鞋
+- 穿搭：米色短袖棉 T + 橄榄卡其短裤 + 米白帆布鞋（同批禁止换装）
 - 可见性：知识卡/手绘/PPT 须正面或 3/4 可见眼镜+短发+厚下唇
-Negative: thick black-frame glasses, black long sleeve, back view only
+- Cross-scene: face proportions/glasses/hair/outfit must match panoramas with minimal variation — do NOT redesign the face between scenes
+Negative: thick black-frame glasses, black long sleeve, grey sweatpants, Korean idol face, V-line jaw, back view only
 ```
 
 ### Persona Expression Lock
@@ -107,7 +104,7 @@ Negative: toothy smile, exaggerated laugh, back view, old lady silhouette
 | P2 | 发型 | 短直发 3-5cm；平直发际线 | 卷发、灰白发、板寸贴皮 |
 | P3 | 脸型 | 长但不细长方椭圆；圆下巴；下半脸略宽 | 窄长少年脸、V 脸、老太太轮廓 |
 | P4 | 嘴唇 | 整体偏厚，下唇尤其明显 | 薄唇、过小嘴 |
-| P5 | 穿搭 | 米色短袖 T + 深灰运动裤 | 黑长袖、正装、批内换装 |
+| P5 | 穿搭 | 米色短袖 T + 橄榄卡其短裤 | 黑长袖、正装、运动裤、批内换装 |
 | P6 | 可见性 | 正面或 3/4 可见上述锚点 | 背身、后脑勺、仅气泡无脸 |
 | P7 | 表情 | 平静/专注/略严肃；唇闭合或微解释不露齿 | 夸张笑、露齿、疲惫叔、幼态脸 |
 
@@ -127,6 +124,20 @@ Negative: toothy smile, exaggerated laugh, back view, old lady silhouette
 ```
 
 **只有结论为 CONFIRMED 才能交付**。
+
+### 多场景 / 同批跨图快检（2 张及以上 · CRITICAL）
+
+把本批各张脸部并排对照全景：
+
+| # | 检查 | PASS | FAIL |
+|---|------|------|------|
+| X1 | 像同一人 | 旁人一眼认出同一个人 | 每张脸像换人 / 差异过大 |
+| X2 | 眼镜一致 | 同框型同粗细 | 一张细框一张粗黑框 |
+| X3 | 下颌/唇厚 | 宽下颌+厚下唇稳定 | 一张宽脸一张尖下巴/薄唇 |
+| X4 | 穿搭一致 | 米色T+卡其短裤全批 | 中途换裤/换色 |
+| X5 | 年龄肤色 | 小麦肤、偏40感稳定 | 一张幼态一张叔感 |
+
+任一 X 项 FAIL → **整批 REJECT**，对照双全景（+spec）返修，禁止只改标签文案。
 
 ---
 
@@ -186,7 +197,7 @@ Negative: toothy smile, exaggerated laugh, back view, old lady silhouette
 **可辨识底线**（至少满足 4/6 项）：
 1. 浅灰细框眼镜轮廓可见
 2. 短发 3-5cm 发际线可见
-3. 米色短袖 + 深灰裤辨识度
+3. 米色短袖 + 卡其短裤辨识度
 4. 健康肤色（非苍白/灰调）
 5. 成熟男性体态（非少年/女性）
 6. 厚下唇至少在某帧可见
@@ -208,6 +219,7 @@ Negative: toothy smile, exaggerated laugh, back view, old lady silhouette
 | 老杨像老太太 | 禁止灰卷白发、盘发、老年女性轮廓；对照 P2/P3 返修 |
 | 小石头被带成 3D | 重申 2D Flat Lock：主角色始终 flat 2D，即使老杨是 3D |
 | 批内特征漂移 | 同批共用 Persona Feature Stability Lock；禁止一张粗框一张细框 |
+| 多场景不像同一人 | 每张复用同一段 Lock + 双全景；并排快检 X1–X5；差异大整批返修 |
 
 ---
 

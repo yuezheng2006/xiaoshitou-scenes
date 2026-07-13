@@ -1,6 +1,8 @@
 # scene-skill-core
 
-Codex Skill 核心包。默认 profile 是 **小石头 + 老杨双 IP 互动**（`ip-profiles/default-little-stone/`）。
+Codex Skill 核心包。默认 profile 是 **小石头 + 老杨双 IP 互动**（`ip-profiles/default-little-stone/`）。无品牌角色见 `ip-profiles/none/`。
+
+生图时：**双参考对齐老杨**（spec + 模式校准图）；小石头默认单锚点。Prompt 按 `references/common-prompt-slots.md` 组装。
 
 ## 📖 文档导航（按角色）
 

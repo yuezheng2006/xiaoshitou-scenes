@@ -3,6 +3,18 @@
 *.bak
 *.swp
 
+# 本地临时参考/下载/试跑（不入库）
+.temp/
+temp/
+assets/test-output/
+**/test-output/
+test-*.png
+test-*.jpg
+test-*.jpeg
+test-*.webp
+*-test.png
+*-test.jpg
+
 node_modules/
 dist/
 build/
