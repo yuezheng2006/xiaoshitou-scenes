@@ -35,3 +35,64 @@ When rebuilding Lao Yang persona assets, use the 1:1 portrait reference provided
 Author presence (handdrawn mode):
 Include the author persona (老杨). Read author-persona-panorama-handdrawn.png + author-persona-panorama.png (+ author-persona-handdrawn-body.png for full-body proportions; + author-persona-face-lock.png for multi-scene). Flat black-line hand-drawn, no 3D. Match body proportions of handdrawn-body when full body is visible. Northern Chinese / Shandong male face — NOT Korean idol. Preserve facial structure anchors: mature Chinese male leaning toward age 40, calm and grounded, NOT baby-faced or boyish; long-but-not-thin rectangular-oval face with visible cheek width, slightly wider rounded lower cheeks / jaw width and ROUNDED chin; large-lens thin light-gray glasses; short STRAIGHT black 3-5cm hair, not wavy/curly; natural nose-to-mouth spacing, relaxed mouth corners, lips noticeably thick, lower lip thicker and taller than upper; moderate-small slightly hooded/downturned calm eyes with tiny eye-corner fine lines; tiny subtle stubble dots mainly on BOTH side cheeks / lower cheeks, chin edge and jaw sides; clean mouth area, NOT moustache/goatee/beard; darker tan skin; tall solid 183cm/85kg build; beige T + olive khaki shorts; NO wristwatch. Dual-IP: Lao Yang presents/annotates; Little Stone executes in structure. Do not chase photo-real facial detail, deep wrinkles, nasolabial folds, eye bags, pores, or ID-photo texture.
 ```
+
+## 穿搭配件层（每张必带）
+
+```text
+Outfit Layer: beige cotton T + olive khaki shorts + off-white canvas sneakers.
+Accessory Layer (MUST keep across scenes/expressions): large thin light-gray rectangular glasses on face; short straight 3-5cm black hair, near-flat hairline. Do NOT drop or redesign glasses/hair when changing pose or expression.
+```
+
+## 表情预设（选一写入）
+
+```text
+Expression Preset E0_calm: calm, slightly serious, lips gently closed, focused teaching presence.
+Expression Preset E1_explain: micro-explain mouth slightly open WITHOUT teeth, light brow focus, pointing or annotating.
+Expression Preset E2_think: thoughtful, slight side glance, optional hand near chin, lips closed.
+Expression Preset E3_focus: focused gaze, subtle furrowed brow, lips closed, grounded seriousness.
+Expression Preset E4_warm: subtle closed-mouth warm smile (only if user asks); still mature and grounded.
+When repairing expression: strengthen face-lock / panorama refs; weaken expression rewrite (low denoise). Do not use strong expression to cover face drift.
+```
+
+## 年龄锁（CRITICAL）
+
+```text
+Age Lock: about 35-37 Chinese male — ~3 years younger than wrinkled late-30s look. Mature via bone structure & calm presence only. NO nasolabial folds, NO deep forehead wrinkles, NO heavy eye bags. Same age across ALL views/outfit variants.
+```
+
+## 嘴部锁（CRITICAL）
+
+```text
+Mouth Lock: fuller thicker lower lip than upper; soft subtle cupid's bow; lips gently closed; neutral relaxed corners (not smile, not frown); clear philtrum; natural matte lip color; clean mouth area. NO nasolabial folds beside the mouth. NO toothy smile.
+```
+
+## 脸型比例锁（CRITICAL · 1:1 跟宽脸校准图）
+
+```text
+Face Width Lock HARD (1:1 to wide-face calibrate photo): NOTICEABLY WIDE short-square / wide soft-rectangle Northern Chinese face. Bizygomatic & jaw width dominate — cheek-to-cheek span is a primary ID trait. Face width reads as wide as or wider than face length. Full solid cheeks, broad soft jaw, moderately broad rounded chin, sturdy neck. Match the calibrate photo's horizontal proportions first. NOT medium oval, NOT slender, NOT long face, NOT narrow jaw, NOT V-line, NOT elongated midface. If unsure, go WIDER not longer.
+```
+
+## 身材锁（CRITICAL · 183 偏高腿长）
+
+```text
+Body Lock: ~183cm / 85kg tall solid Chinese male — visibly taller silhouette than stocky-short reads; longer legs (legs about half or more of height); balanced head-to-shoulder; NOT short legs, NOT short stocky body, NOT oversized head.
+```
+
+## 眉毛 / 颧骨校准追加（面相精修）
+
+```text
+Face mid/upper calibrate (keep other refined details):
+Eyebrows: dark natural thick brows with soft gentle arch; some slight stray hairs OK; NOT thin Korean brows, NOT over-groomed.
+Cheekbones: slightly high with clear mid-face bone support — a bit higher than soft rounded idol midface; natural soft shadow under malar — NOT flat midface, NOT sharp V-influencer cheekbones.
+Face width: WIDER short-rectangular / soft-square Northern Chinese face — NOT slender long face, NOT narrow oval.
+Eyes: moderate-small, slightly hooded/downturned, calm — NOT large bright sparkly idol eyes.
+Skin: lived-in wheat/tan skin with subtle texture; NOT over-smooth K-beauty airbrush, NOT pale cream idol skin.
+Ethnicity: Northern Chinese / Shandong male bone structure — wide solid jaw; NOT Korean idol face.
+Do not redesign glasses frame type (keep thin light-gray) or hair length while applying this calibrate.
+```
+
+## 多场景预览门禁
+
+```text
+Multi-scene Preview Gate: generate ONE preview image first for the target mode. Only if P1 glasses / P3 face / P6 visibility (+ body proportion for full-body handdrawn) PASS, proceed to the remaining scenes with the SAME Feature Stability Lock + Outfit/Accessory Layer. If preview FAIL, do not batch. Repair only failing images; keep passing ones.
+```

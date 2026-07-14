@@ -87,7 +87,9 @@
 
 - [ ] 实物老杨：实体 panorama 已进上下文
 - [ ] 手绘老杨：手绘 panorama + 实体 panorama 已进上下文（锁同一人）
-- [ ] 多场景同批：每张同一套参考 + face-lock + 同一段 Feature Stability Lock；写明 minimal face variation
+- [ ] 多场景同批：已做 **1 张预览门禁**；通过后再批跑
+- [ ] 多场景同批：每张同一套参考 + face-lock + 同一段 Feature Stability Lock + Outfit/Accessory Layer
+- [ ] 表情：已声明 Expression Preset（E0–E4），未临场乱写
 - [ ] 手绘全身：已加 handdrawn-body（或比例已确认对齐金样）
 - [ ] 出猫：金黄金渐层，非灰虎斑
 - [ ] 仅小石头：设定图已进上下文（单锚点）

@@ -44,49 +44,61 @@
 | 实物图 | panorama（实体） | 脸不稳 +face-lock；复杂姿态 +actions |
 | 手绘/知识卡/PPT | **panorama-handdrawn + panorama** | 手绘全景更重要；实体锁同一人 |
 | 手绘全身比例 | 上表 + **handdrawn-body** | 头肩腿对齐金样；跑偏返修必加 |
-| **多场景同批（≥2）** | 上表 + **face-lock** | 压跨图脸漂；差异过大整批返修 |
+| **多场景同批（≥2）** | 上表 + **face-lock** | **先 1 张预览门禁** → 通过再批跑；压跨图脸漂 |
 
 小石头同框：+ `primary-character-reference.png`  
 猫：金**黄**金渐层；仅点名/彩蛋
+
+**多场景预览门禁**：未出预览或预览 P1/P3/P6 FAIL → 不得批跑其余场景。
 
 ---
 
 ## 第四步：生成前并列写入（CRITICAL）
 
-每张双 IP 图的 prompt 必须**并列**写入以下三个 Lock：
+每张双 IP 图的 prompt 必须**并列**写入以下 Lock（表情用预设，不要临场发挥）：
 
 ### Persona Identity Lock
 ```text
 Persona Identity Lock（老杨 · 双风格）：
 - 实物：author-persona-panorama.png（真人实体全景）
 - 手绘系：author-persona-panorama-handdrawn.png + author-persona-panorama.png（手绘更重要，实体锁同一人）
-- 六项识别：细框大镜片眼镜 / 短直发3-5cm / 米色T+橄榄卡其短裤 / 厚下唇 / 小麦肤 / 偏40成熟感
+- 六项识别：细框大镜片眼镜 / 短直发3-5cm / 米色T+橄榄卡其短裤 / **厚下唇** / 小麦肤 / **约35-37成熟感（无法令纹）**
+- **Age Lock**：约35-37；NO nasolabial folds / deep forehead wrinkles；成熟不靠皱纹
+- **Mouth Lock**：下唇厚于上唇；闭合中性；人中清晰；无法令纹
 - **面相族裔**：中国北方/山东男性脸，脸宽结实；**禁止韩范**（小脸、V下巴、冷白皮、爱豆脸）
 - **多场景**：same exact person；跨图脸/眼镜/发/穿搭差异要小
 - 猫（若出现）：金**黄**金渐层英短
 - 小石头同框：+ primary-character-reference.png；小石头 flat 2D #f39800
 ```
 
-### Persona Feature Stability Lock
+### Persona Feature Stability Lock + 配件层
 ```text
 Persona Feature Stability Lock（特征稳定 · 多场景复用同一段）：
-- 脸：长但不细的长方椭圆 + 圆下巴；下半脸略宽；北方/山东男骨架
-- 眼镜：大镜片浅灰细框矩形；批内框线粗细一致
-- 发：短直发 3-5cm；接近平直发际线
+- 脸：长但不细的长方椭圆 + 圆下巴；整体比软萌窄脸再宽一点；下半脸有支撑；北方/山东男骨架
+- 眼睛：适中偏小、略垂沉稳；禁止过大明亮偶像眼
+- 颧骨：略高一点、中脸有骨感分明（比磨皮圆脸更高）；非刀削网红颧
+- 眉毛：深色自然粗眉、轻柔自然拱形；可有少量散乱眉丝
+- 皮肤：生活感小麦肤，极轻纹理；禁止韩系磨皮奶油肌 / 过度平滑
+- Outfit Layer: 米色短袖棉 T + 橄榄卡其短裤 + 米白帆布鞋（同批禁止换装）
+- Accessory Layer (场景/表情变化也必须保留):
+  - face: 大镜片浅灰细框矩形眼镜
+  - head: 短直发 3-5cm；接近平直发际线
 - 唇：整体偏厚，下唇尤其明显
-- 肤：健康小麦色
-- 穿搭：米色短袖棉 T + 橄榄卡其短裤 + 米白帆布鞋（同批禁止换装）
+- 肤：健康小麦色（非冷白）
 - 可见性：知识卡/手绘/PPT 须正面或 3/4 可见眼镜+短发+厚下唇
-- Cross-scene: face proportions/glasses/hair/outfit must match panoramas with minimal variation — do NOT redesign the face between scenes
-Negative: thick black-frame glasses, black long sleeve, grey sweatpants, Korean idol face, V-line jaw, back view only
+- Cross-scene: face proportions/glasses/hair/brows/cheekbones/outfit must match with minimal variation — do NOT redesign the face; do NOT drop glasses/hair when changing expression
+Negative: thick black-frame glasses, black long sleeve, grey sweatpants, Korean idol face, V-line jaw, narrow soft face, oversized bright eyes, flat midface, over-smooth K-beauty skin, pale cream skin, thin groomed brows, back view only
 ```
 
-### Persona Expression Lock
+### Persona Expression Lock（选用一个预设）
 ```text
-Persona Expression Lock（表情稳定域）：
-- 默认：平静、略严肃内敛、唇自然闭合、专注讲解或指向
-- 允许：轻微皱眉、解释型微张嘴（不露齿）、侧目思考
-- 禁止：夸张大笑、营销亲和笑、露齿、哭脸、怒喷、疲惫叔感、幼态卖萌
+Expression Preset: E0_calm | E1_explain | E2_think | E3_focus | E4_warm
+- E0_calm: calm, slightly serious, lips gently closed, focused teaching presence
+- E1_explain: micro-explain mouth slightly open WITHOUT teeth, light brow focus
+- E2_think: thoughtful, slight side glance, optional hand near chin, lips closed
+- E3_focus: focused gaze, subtle furrowed brow, lips closed
+- E4_warm: subtle closed-mouth warm smile only if user asks for warmth
+Repair tip: when fixing expression, strengthen face-lock refs and weaken expression rewrite (low denoise).
 Negative: toothy smile, exaggerated laugh, back view, old lady silhouette
 ```
 
@@ -127,17 +139,21 @@ Negative: toothy smile, exaggerated laugh, back view, old lady silhouette
 
 ### 多场景 / 同批跨图快检（2 张及以上 · CRITICAL）
 
+**先确认预览门禁**：本批是否已有通过的 1 张预览？无 → 不得交付批结果。
+
 把本批各张脸部并排对照全景：
 
 | # | 检查 | PASS | FAIL |
 |---|------|------|------|
+| X0 | 预览门禁 | 已出预览且 P1/P3/P6 过 | 未预览就批跑 |
 | X1 | 像同一人 | 旁人一眼认出同一个人 | 每张脸像换人 / 差异过大 |
-| X2 | 眼镜一致 | 同框型同粗细 | 一张细框一张粗黑框 |
+| X2 | 眼镜一致（配件层） | 同框型同粗细且未丢失 | 一张细框一张粗黑框 / 某张无眼镜 |
 | X3 | 下颌/唇厚 | 宽下颌+厚下唇稳定 | 一张宽脸一张尖下巴/薄唇 |
-| X4 | 穿搭一致 | 米色T+卡其短裤全批 | 中途换裤/换色 |
+| X4 | 穿搭一致（服装层） | 米色T+卡其短裤全批 | 中途换裤/换色 |
 | X5 | 年龄肤色 | 小麦肤、偏40感稳定 | 一张幼态一张叔感 |
+| X6 | 表情预设 | 仅 E0–E4 内 | 露齿/大笑/未声明预设 |
 
-任一 X 项 FAIL → **整批 REJECT**，对照双全景（+spec）返修，禁止只改标签文案。
+X 项 FAIL → **只返修 FAIL 张**（合格样保留）；对照双全景 + face-lock（± handdrawn-body）。禁止只改标签文案。预览 FAIL → 整批不得开跑。
 
 ---
 
@@ -218,13 +234,15 @@ Negative: toothy smile, exaggerated laugh, back view, old lady silhouette
 | 老杨背身/后脑勺 | 知识卡/手绘/PPT 须正面或 3/4；传 spec+handdrawn 返修 |
 | 老杨像老太太 | 禁止灰卷白发、盘发、老年女性轮廓；对照 P2/P3 返修 |
 | 小石头被带成 3D | 重申 2D Flat Lock：主角色始终 flat 2D，即使老杨是 3D |
-| 批内特征漂移 | 同批共用 Persona Feature Stability Lock；禁止一张粗框一张细框 |
-| 多场景不像同一人 | 每张复用同一段 Lock + 双全景；并排快检 X1–X5；差异大整批返修 |
+| 批内特征漂移 | 同批共用 Persona Feature Stability Lock + 配件层；禁止一张粗框一张细框 |
+| 多场景不像同一人 | 先预览门禁；每张复用同一段 Lock + 双全景；并排快检 X0–X6；**只返修 FAIL 张** |
+| 换表情丢眼镜/发型 | 配件层（face/head）必须写入每张 prompt |
+| 表情过猛把脸改没 | 降低表情改写力度，加重 face-lock（低 denoise） |
 
 ---
 
 **使用建议**：
 1. 触发 persona 后立即读本文件，按 6 步流程执行
-2. 生成前必须写入三个并列 Lock（Identity + Feature Stability + Expression）
-3. 生成后先做老杨 P1-P7 快检，再做模式 QA
-4. 返修时优先对照 spec 资产，不要凭感觉改
+2. 生成前写入 Identity + Feature/配件层 + Expression Preset（E0–E4）
+3. 多场景：先预览门禁，再批跑；生成后做 X0–X6
+4. 返修时优先对照 face-lock / 全景；表情返修用低 denoise，只修 FAIL 张

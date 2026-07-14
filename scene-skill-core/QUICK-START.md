@@ -194,10 +194,11 @@ references/persona-quick-checklist.md
 ### 核心变化
 - **角色分工**：老杨主讲/拆解/批注，小石头执行 Agent
 - **资产组合**：
-  - 实物图 → `author-persona-spec.png`（复杂动作 + `actions.png`）
-  - 手绘图/知识卡/PPT → `spec.png` + `handdrawn.png`
-- **生成前并列写入**：Persona Identity Lock + Feature Stability Lock + Expression Lock
-- **生成后增加检查**：P1-P7（老杨六项识别 + 表情）
+  - 实物图 → `author-persona-panorama.png`（脸不稳 +face-lock；复杂动作 +actions）
+  - 手绘/知识卡/PPT → **手绘全景 + 实体全景**（全身 +handdrawn-body；多场景 +face-lock）
+- **生成前并列写入**：Identity + Feature/配件层 + Expression Preset（E0–E4）
+- **多场景**：先 1 张预览门禁，再批跑；FAIL 只返修单张
+- **生成后检查**：P1–P7 + 跨图 X0–X6
 
 ---
 
@@ -254,6 +255,8 @@ references/persona-quick-checklist.md
 | 触发 persona 但忘记读 persona-quick-checklist | ❌ 所有双 IP 任务必读 |
 | 韩范脸 / 非中国山东脸 | ❌ 必须北方中国男性脸型，禁止小脸V下巴冷白皮 |
 | 手绘老杨缺手绘全景 | ❌ 必传 panorama-handdrawn + 实体 panorama |
+| 多场景未预览就批跑 | ❌ 先 1 张预览过门再批跑 |
+| 换表情丢眼镜/发型 | ❌ 配件层 face/head 每张必带 |
 | 猫不够金黄 / 灰虎斑 | ❌ 必须金黄金渐层英短 |
 | 方法论知识卡只有老杨+文字 | ❌ 必须安排小石头执行分工 |
 
