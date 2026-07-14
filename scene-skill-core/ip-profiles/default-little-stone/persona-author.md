@@ -26,8 +26,8 @@
 
 | 文件 | 负责什么 | 何时读 |
 | --- | --- | --- |
-| [persona-author-identity.md](persona-author-identity.md) | 识别锚点、外形约束、小比例最低识别线、禁止偏移 | 生图前、返修「不像老杨」、QA 识别度 |
-| [persona-author-assets.md](persona-author-assets.md) | 三份固定资产、双渲染语言、传图规则、隐私边界 | 每次 persona 出镜必读 |
+| [persona-author-identity.md](persona-author-identity.md) | 识别锚点、表情预设 E0–E4、多场景锁、小比例线 | 生图前、返修「不像老杨」、QA 识别度 |
+| [persona-author-assets.md](persona-author-assets.md) | 全景双风格、face-lock、配件层、预览门禁、传图 | 每次 persona 出镜必读 |
 | [persona-author-modes.md](persona-author-modes.md) | 各模式画面职责、双 IP 权重、与小石头协作结构 | 锁定模式后 |
 | [persona-author-prompts.md](persona-author-prompts.md) | 可复制提示词片段（双 IP / 小比例 / 返修 / 手绘） | 构造生图 prompt 时 |
 
@@ -42,17 +42,23 @@ persona-author.md（本文件，确认触发与分工）
   → persona-author-identity.md（QA 或返修时再读）
 ```
 
-## 三份固定资产（摘要）
+## 核心固定资产（摘要）
 
 路径均在 `assets/persona/`：
 
 | # | 文件 | 职责 |
 | --- | --- | --- |
-| 01 | `author-persona-spec.png` | 身份锚点 + 规范说明（必须保留 / 禁止偏移） |
-| 02 | `author-persona-actions.png` | 3D 动作、小比例、与小石头协作分区 |
-| 03 | `author-persona-handdrawn.png` | 手绘渲染语言 + 线稿协作版式 |
+| 01 | `author-persona-panorama.png` | 真人实体全身身份（实物/长卷必传） |
+| 02 | `author-persona-panorama-handdrawn.png` | 手绘全身身份（手绘系必传，更关键） |
+| 03 | `author-persona-face-lock.png` | 多角度面相锁定（**多场景同批必加**；宽脸） |
+| 03b | `author-persona-handdrawn-body.png` | 手绘全身比例金样（头肩腿协调） |
+| 03c | `author-persona-flat-ip-sheet.png` | 复古扁平立体设定图金样（米色 · 用户认定满意） |
+| 03d | `author-persona-flat-ip-sheet-navy.png` | 同脸 navy T 变体 |
+| 04 | `author-persona-spec.png` | 面相规范补强 |
+| 05 | `author-persona-actions.png` | 实物小比例/复杂姿态 |
+| 06 | `author-persona-handdrawn.png` | 旧手绘动作参考（全景优先） |
 
-传图组合细则见 [persona-author-assets.md](persona-author-assets.md)。
+传图组合与多场景一致性锁见 [persona-author-assets.md](persona-author-assets.md)。
 
 ## 双 IP 硬性底线
 

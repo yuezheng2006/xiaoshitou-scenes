@@ -58,11 +58,16 @@
 默认 profile：
 
 - 入口：`scene-skill-core/ip-profiles/default-little-stone/profile.md`
-- 主角色：`scene-skill-core/ip-profiles/default-little-stone/character.md`
-- 作者 persona（分层）：`scene-skill-core/ip-profiles/default-little-stone/persona-author.md` → identity / assets / modes / prompts
+- 主角色：`scene-skill-core/ip-profiles/default-little-stone/character.md`（`{IP_DESC}` / `{IP_STYLE_ADAPT}`；默认单锚点）
+- **双参考（对齐老杨）**：实体 `author-persona-panorama.png`；手绘 `author-persona-panorama-handdrawn.png` + 实体 panorama；金黄金渐层猫
+- 作者 persona（分层）：`persona-author.md` → identity / assets / modes / prompts
 - Logo 边界：`scene-skill-core/ip-profiles/default-little-stone/logo-safety.md`
 
-通用规则在 `scene-skill-core/references/`。其中 `common-character-lock.md`、`common-persona-routing.md` 和 `common-logo-safety.md` 只描述机制，不写死具体 IP。
+无品牌角色：`scene-skill-core/ip-profiles/none/`（触发词：不要人物 / 纯物件 / 无 IP / none）。
+
+通用规则在 `scene-skill-core/references/`。其中 `common-prompt-slots.md` 定义槽位组装（双参考只用于对齐人）；`common-character-lock.md`、`common-persona-routing.md` 和 `common-logo-safety.md` 只描述机制，不写死具体 IP。
+
+角色形象与 MIT 代码授权分离：见 [IP-NOTICE.md](IP-NOTICE.md)。
 
 ## 老杨 × 小石头 双 IP
 
@@ -118,12 +123,13 @@ cp -R ./scene-skill-core "${CODEX_HOME:-$HOME/.codex}/skills/"
 .
 ├── assets/                 # 公开示例与本地试跑图
 ├── examples/               # 可复制提示词与测试场景
+├── IP-NOTICE.md            # 角色形象与 MIT 分离声明
 └── scene-skill-core/        # Codex Skill 核心包
     ├── SKILL.md
     ├── assets/masters/      # 实物图母版 01-06
-    ├── ip-profiles/         # 可替换 IP profile
+    ├── ip-profiles/         # 可替换 IP profile（含 none）
     ├── evals/               # 验收用例
-    └── references/          # 通用流程、模式、QA、模板
+    └── references/          # 通用流程、模式、QA、模板、槽位组装
 ```
 
 ## 合规
@@ -136,4 +142,4 @@ cp -R ./scene-skill-core "${CODEX_HOME:-$HOME/.codex}/skills/"
 
 ## License
 
-MIT — 见 [LICENSE](LICENSE)。
+MIT — 见 [LICENSE](LICENSE)。角色形象边界见 [IP-NOTICE.md](IP-NOTICE.md)。

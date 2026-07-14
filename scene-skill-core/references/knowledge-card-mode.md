@@ -48,7 +48,7 @@
 
 - 方法论 / 步骤 / 流程 / 对比 / 案例 / 风险 / 行动清单类：默认老杨 + 2–3 个小石头分工，不能只有老杨和文字。
 - 纯观点卡 / 金句卡：老杨主讲占主视觉，0–1 个小石头执行点缀。
-- **Persona Identity Lock（触发老杨时 CRITICAL）**：生成前必读 `persona-author-assets.md`，传 `author-persona-spec.png` + `author-persona-handdrawn.png`；老杨须**正面或 3/4 侧脸**贴近标题/结论区**指向或批注**，六项识别可见（大镜片浅灰细框眼镜 / 3–5cm 短直黑发 / 米色短袖 T + 深灰运动裤 / 厚下唇 / 小麦肤 / 偏 40 岁成熟男）。**禁止**仅用「老杨讲」气泡、背身、后脑勺、灰卷白发、老太太/老妇人形、泛化讲师。
+- **Persona Identity Lock（触发老杨时 CRITICAL）**：生成前必读 `persona-author-assets.md`，传 **手绘全景 + 实体全景**（多场景再加 `author-persona-face-lock.png`；全身比例加 `author-persona-handdrawn-body.png`）；老杨须**正面或 3/4 侧脸**贴近标题/结论区**指向或批注**，六项识别可见（大镜片浅灰细框眼镜 / 3–5cm 短直黑发 / 米色短袖 T + 橄榄卡其短裤 / 厚下唇 / 小麦肤 / 偏 40 岁成熟男）。**禁止**仅用「老杨讲」气泡、背身、后脑勺、灰卷白发、老太太/老妇人形、泛化讲师。
 - 每个小石头遵守 `common-character-lock.md` 多人差异锁。
 - 未触发 persona 时：一个主角色承担主讲/指向，其余 1–3 个主角色承担步骤里的具体动作（不引入老杨）。
 - Persona 规则见 `common-persona-routing.md` 与 profile 下 `persona-author.md`（及 `persona-author-modes.md`）。

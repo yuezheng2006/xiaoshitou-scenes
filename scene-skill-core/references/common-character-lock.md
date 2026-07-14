@@ -1,13 +1,19 @@
 # 通用角色锁规则
 
-本文件只描述通用流程；具体角色名称、颜色、形体、资产路径和禁忌从当前 `ip-profiles/<ip-id>/profile.md` 读取。
+本文件只描述通用流程；**具体角色定义的单一真相来源**：
+
+- **小石头规则** → `ip-profiles/default-little-stone/character.md`（唯一定义）
+- **老杨规则** → `ip-profiles/default-little-stone/persona-author.md` 及其分层文件（唯一定义）
+- **本文件职责**：只描述"如何锁定""如何检查""跨图稳定机制"，不重复定义角色本身
 
 ## 读取顺序
 
 1. 先读取当前 profile 的 `profile.md`。
-2. 再读取 profile 指向的 `character.md`。
-3. 生图前读取 profile 的主角色锚点资产。
-4. 多人、复杂姿态或小比例远景时，再读取 profile 的动作/小比例扩展资产。
+2. 再读取 profile 指向的 `character.md`（小石头唯一定义；`{IP_DESC}` / `{IP_STYLE_ADAPT}`；默认单锚点）。
+3. 触发 persona 时，读取 `persona-author.md` + `persona-author-assets.md`（**老杨双参考 · 对齐人**）+ `persona-quick-checklist.md`。
+4. 生图前：小石头传设定图；老杨出镜传 spec + 模式校准图。组装顺序见 `common-prompt-slots.md`。
+5. 多人、复杂姿态或小比例远景时，再读取对应动作扩展资产。
+6. 用户要求无角色 / 纯物件时，改读 `ip-profiles/none/`，跳过本文件对默认角色的强制项。
 
 ## Character Lock
 
@@ -19,28 +25,24 @@
 
 ## 维度锁
 
-如果当前 profile 声明主角色是 flat 2D，则每张图都必须写入 2D Flat Lock，并在 QA 时检查：
+如果当前 profile 声明主角色是 flat 2D（如默认的小石头），则每张图都必须写入 2D Flat Lock，并在 QA 时检查：
 
 - 主角色身体是否仍为平涂色块。
 - 眼睛和肢体是否仍是 profile 指定的平面风格。
 - 肢体数量是否正确：每个主角色只能有两只手臂、两条腿；不得出现重复手臂、分叉手、额外手指状线条，牵引线/绳子/箭头也不能被画成第三只手。
 - 是否被真实物件、3D persona 或模型默认风格带成 3D。
 
-如果未来 profile 声明主角色为 3D、线稿或其他风格，也应在 profile 内给出对应维度锁；通用层只负责要求“生成前声明、生成后核对”。
+**维度锁具体内容**：见 `character.md` 的 “2D Flat Lock + Limbs Lock” 章节（唯一定义），本文件不重复。
+
+如果未来 profile 声明主角色为 3D、线稿或其他风格，也应在 profile 内给出对应维度锁；通用层只负责要求”生成前声明、生成后核对”。
 
 ## Persona Identity Lock（画面出现 persona 肖像时强制）
 
-只要画面里会出现 persona 的**脸、半身、全身或可被读成该 persona 的小比例人形**（含双 IP、文档预览、能力总览、README/飞书示例图），生成前必须写入 Persona Identity Lock，并读取 profile 的 persona 资产（默认：`author-persona-spec.png`；手绘/线稿风再加 `author-persona-handdrawn.png`；小比例/复杂动作加 `author-persona-actions.png`）。
+只要画面里会出现 persona 的**脸、半身、全身或可被读成该 persona 的小比例人形**（含双 IP、文档预览、能力总览、README/飞书示例图），生成前必须写入 Persona Identity Lock。
 
-```text
-Persona Identity Lock：
-- 身份锚点：author-persona-spec.png（必传；禁止临场发明长相）
-- 渲染：实物/3D 面板 → 成熟克制的风格化 3D，对齐 spec；手绘/线稿面板 → spec + handdrawn，禁止粗黑框商务男
-- 六项识别（缺任一项即失败）：大镜片浅灰细框眼镜 / 短直发 3–5cm / 米色短袖 T + 深灰运动裤 / 厚下唇 / 小麦肤色 / 偏 40 岁成熟感
-- 表情稳定域：平静/专注/略严肃；唇闭合或微解释不露齿；禁止夸张笑、背身、仅气泡无脸
-- 禁止：粗黑框眼镜、黑长袖/针织衫、泛化讲师、卡通商务男、照片级真人、过度 Q 版
-- 与小石头同框：+ primary-character-reference.png；小石头仍 flat 2D #f39800
-```
+**Persona Lock 具体内容**：见 `persona-quick-checklist.md`（快速决策版）或 `persona-author-identity.md`（完整规范版），本文件不重复。
+
+**触发后必读**：`persona-quick-checklist.md` 第四步"生成前并列写入"。
 
 **文档 / 预览 / 能力总览 / 仓库示例图** 同样适用，不得因「不是正文配图」跳过 Persona Lock。若格子太小、只能放符号：
 
@@ -51,42 +53,35 @@ Persona Identity Lock：
 
 ## 四肢锁定（Limbs Lock · 生成前必写）
 
-小石头（及同 profile 的 flat 2D 主角色）除 2D Flat Lock 外，**每张 prompt 必须并列写入**：
+**Limbs Lock 具体内容**：见 `character.md` 的 "2D Flat Lock + Limbs Lock" 章节（唯一定义），本文件不重复完整 prompt 片段。
 
-```text
-Limbs Lock（小石头）：
-- 计数：每个体恰好 2 条手臂 + 2 条腿；牵引线/绳子/箭头不得与手臂粘连成第三只手
-- 臂锚点：从胶囊体侧 **上 1/3 高度带** 左右各伸出 **一条** 连续细黑线；禁止从头顶、眼睛下方、底缘乱长
-- 腿锚点：从胶囊 **底缘左右两侧或底缘正中** 各向下 **一条** 连续细黑线；禁止从体中部横出、禁止悬浮断线
-- 线质：与 reference 同级 **细黑线**；禁止 3D 圆管、粗臂、渐变阴影
-- 末端：每臂最多一个简化末端（小圆 / C 形握 / 单线钩）；禁止分叉指、额外小手、同侧双手
-- 嘴：小石头 **无嘴、无牙、无唇线**；情绪只靠动作、汗滴 0–1、眼位/倾斜，不靠五官
-Negative limbs: extra arm, broken floating limb, forked fingers, rope merged into hand, mouth on capsule
-```
+**生成前必做**：每张 prompt 必须并列写入 Limbs Lock（计数 + 臂锚点 + 腿锚点 + 线质 + 末端 + 无嘴）。
+
+**核心要点**：
+- 每个体恰好 2 臂 + 2 腿
+- 臂从体侧上 1/3、腿从底缘连续向下
+- 细黑线，禁止 3D 圆管
+- 无嘴（情绪靠动作+汗滴）
 
 多人 / 同批图：四肢 **线宽、锚点高度带、末端画法** 全批一致；差异只来自动作姿态，不换线质或锚点规则。
 
 ## Persona 特征稳定锁 + 表情锁（生成前必写）
 
-画面出现老杨（或当前 profile persona）时，除 Persona Identity Lock 外，**必须并列写入**：
+画面出现老杨（或当前 profile persona）时，除 Persona Identity Lock 外，**必须并列写入** Feature Stability Lock 和 Expression Lock。
 
-```text
-Persona Feature Stability Lock：
-- 脸：长但不细的长方椭圆 + 圆下巴；下半脸略宽；禁止 V 脸、窄长少年脸
-- 眼镜：大镜片 **浅灰细框** 矩形；批内框线粗细一致；禁止粗黑框 / 无框 / 小圆框
-- 发：短直发 3–5cm；接近平直发际线；禁止卷/簇/灰白发
-- 唇：整体偏厚，**下唇尤其明显**；嘴角自然；禁止薄唇、过小嘴
-- 肤：健康小麦色；禁止苍白滤镜脸
-- 穿搭：米色短袖 T + 深灰束脚运动裤 + 米白运动鞋；禁止黑长袖、正装、紧身牛仔
-- 可见性：知识卡/手绘/PPT 须 **正面或 3/4** 可见眼镜+短发+厚下唇；禁止背身、后脑勺、仅「老杨讲」气泡无脸
+**具体内容**：见 `persona-quick-checklist.md` 第四步（快速决策版）或 `persona-author-identity.md`（完整规范版），本文件不重复完整 prompt 片段。
 
-Persona Expression Lock（表情稳定域）：
-- 默认：平静、略严肃内敛、**唇自然闭合**、专注讲解或指向
-- 允许：轻微皱眉、解释型微张嘴（**不露齿**）、侧目思考
-- 禁止：夸张大笑、营销亲和笑、露齿、哭脸、怒喷、疲惫叔感、幼态卖萌
-- 同批多张：表情可在「专注 / 略严肃 / 微解释」内变化，但 **眼镜/发型/唇厚/脸型/穿搭不得漂移**
-Negative persona expression: toothy smile, back view, old lady silhouette, generic lecturer face
-```
+**核心要点**：
+- 脸型：长但不细的长方椭圆
+- 眼镜：大镜片浅灰细框（非粗黑框）
+- 发型：短直发 3-5cm（非卷发/灰白发）
+- 嘴唇：厚下唇
+- 穿搭：米色短袖 T + 橄榄卡其短裤（同批禁止换装）
+- 配件层：眼镜（face）+ 短发（head）场景/表情变化时必须保留
+- 可见性：知识卡/手绘/PPT 须正面或 3/4（禁止背身）
+- 表情：选用 Expression Preset E0–E4（见 `persona-author-identity.md`），唇闭合或微解释不露齿
+- 多场景：先 1 张预览门禁；same exact person；跨图脸部差异要小；FAIL 只返修单张
+- 禁止每张换脸 / 丢眼镜 / 未预览就批跑
 
 ## 形象检查（生成后强制，与模式 QA 并列）
 
@@ -94,7 +89,7 @@ Negative persona expression: toothy smile, back view, old lady silhouette, gener
 
 | 检查项 | 主角色 | persona（若出现） |
 | --- | --- | --- |
-| 锚点对照 | primary-character-reference.png | author-persona-spec.png（+ handdrawn 若线稿风） |
+| 锚点对照 | primary-character-reference.png（单锚点） | 实物：实体 panorama；手绘：手绘 panorama + 实体 panorama |
 | 维度锁 | flat 2D 平涂、无渐变/高光 | 渲染语言与模式一致，非泛化头像 |
 | 眼睛 | 白圆眼+可选 tiny 瞳孔；位置/大小/间距批内一致 | 适中略垂眼；非 anime 大眼 |
 | 四肢 | Limbs Lock 四点检（见下） | 人体比例自然；手参与递/指/画 |
@@ -106,7 +101,40 @@ Negative persona expression: toothy smile, back view, old lady silhouette, gener
 
 ## 交付确认度（Confirm Gate · 生成后必输出）
 
-**候选图永远只是候选**；标 DONE / 写入 `assets/examples/` / 插入飞书前，必须逐项核对并输出确认结果。任一项 FAIL → **REJECT**，列出失败项，不得交付。
+**对 Agent**：候选图永远只是候选；标 DONE / 写入 `assets/examples/` / 插入飞书前，必须逐项核对。任一 CRITICAL 项 FAIL → **REJECT**，列出失败项，不得交付。
+
+**对用户**：隐藏技术术语（L1/P3 等代号），只在 FAIL 时用自然语言说明具体问题。
+
+### 简化 Confirm Gate（内部检查）
+
+**小石头 CRITICAL 项**：
+- L1 计数：每个体恰好 2 臂 + 2 腿
+- L2 锚点：臂从体侧上 1/3、腿从底缘连续向下
+- E1 眼睛：两只白圆眼、批内一致
+
+**老杨 CRITICAL 项**（双 IP 时）：
+- P1 眼镜：大镜片浅灰细框（非粗黑框）
+- P3 脸型：长但不细的长方椭圆
+- P6 可见性：正面或 3/4（禁止背身/后脑勊）
+
+**完整检查清单**（内部参考）：见下文详细表格。
+
+### 交付标准
+
+✅ **所有 CRITICAL 项 PASS** → 继续模式 QA → 交付  
+❌ **任一 CRITICAL 项 FAIL** → 对用户说明具体问题（不说代号）→ 返修
+
+**对用户说明示例**（FAIL 时）：
+```
+❌ "这张图小石头多了一只手臂，需要重新生成"
+   而不是："形象 Confirm Gate: L1 FAIL (extra arm)"
+
+❌ "老杨的眼镜是粗黑框，不符合他的形象（应该是浅灰细框），我来返修"
+   而不是："Persona Feature Stability Lock: P1 FAIL"
+
+✅ "这张图的形象检查通过，小石头和老杨的特征都符合标准，现在进行构图和信息量检查"
+   而不是："形象 Confirm Gate: CONFIRMED"
+```
 
 ### 小石头 · 四肢四点检（CRITICAL）
 
@@ -132,7 +160,7 @@ Negative persona expression: toothy smile, back view, old lady silhouette, gener
 | P2 | 发型 | 短直发 3–5cm；接近平直发际线 | 卷/簇、灰白发、板寸贴皮 |
 | P3 | 脸型 | 长但不细长方椭圆；圆下巴；下半脸略宽 | 窄长少年脸、V 脸、老太太轮廓 |
 | P4 | 嘴唇 | 整体偏厚，下唇尤其明显 | 薄唇、过小嘴、香肠营销嘴 |
-| P5 | 穿搭 | 米色短袖 T + 深灰运动裤 | 黑长袖、正装、批内换装 |
+| P5 | 穿搭 | 米色短袖 T + 橄榄卡其短裤 | 黑长袖、正装、运动裤、批内换装 |
 | P6 | 可见性 | 正面或 3/4 可见上述锚点 | 背身、后脑勺、仅气泡无脸 |
 | P7 | 表情 | 平静/专注/略严肃；唇闭合或微解释 **不露齿** | 夸张笑、露齿、疲惫叔感、幼态脸 |
 
@@ -141,18 +169,18 @@ Negative persona expression: toothy smile, back view, old lady silhouette, gener
 - 小石头：胶囊比例、眼法、四肢线宽、**无嘴** 全批一致
 - 老杨：眼镜框型、发长、唇厚感、脸型、穿搭全批一致；表情仅在稳定域内变化
 
-### 确认输出格式（交付前必写）
+### 确认输出格式（内部记录，不展示给用户）
 
 ```text
-形象 Confirm Gate：
-- 小石头 L1–L4：PASS / FAIL（失败项：…）
-- 小石头 E1–E2：PASS / FAIL（失败项：…）
-- 老杨 P1–P7：PASS / N/A / FAIL（失败项：…）
-- 跨图稳定：PASS / N/A / FAIL（失败项：…）
-结论：CONFIRMED 可交付 | REJECT 需返修
+形象快检（内部）：
+- 小石头 L1-L2（计数+锚点）：PASS / FAIL（失败项：...）
+- 小石头 E1（眼睛）：PASS / FAIL（失败项：...）
+- 老杨 P1/P3/P6（核心识别）：PASS / N/A / FAIL（失败项：...）
+- 跨图稳定：PASS / N/A / FAIL（失败项：...）
+内部结论：CONFIRMED 可交付 | REJECT 需返修
 ```
 
-**只有结论为 CONFIRMED** 才能标 DONE、保存示例、更新飞书。FAIL 时按 `common-qa-repair.md` 映射返修，并 **重写 Limbs Lock / Persona Expression Lock** 后再生成。
+**只有结论为 CONFIRMED** 才能标 DONE、保存示例、更新飞书。FAIL 时按 `common-qa-repair.md` 的"问题-原因-方案"格式对用户说明，并 **重写 Limbs Lock / Persona Expression Lock** 后再生成。
 
 ## 跨图 / 同批一致锁（一次出 2 张及以上时）
 
@@ -161,8 +189,10 @@ Negative persona expression: toothy smile, back view, old lady silhouette, gener
 | 对象 | 全批必须一致 | 允许变化 |
 | --- | --- | --- |
 | 小石头 | `#f39800` 竖胶囊宽高比、白圆眼+瞳孔画法、细线肢线宽、无嘴/无 3D | 整体缩放 ±10–15%、倾斜、朝向、站位、动作、道具 |
-| 老杨 | 线稿/3D 渲染语言、眼镜（大镜片浅灰细框）、短发 3–5cm、米色 T + 深灰裤、厚下唇、小麦肤、~40 岁成熟男 | 姿势、指向、站位、占画比例 |
-| 禁止跨图漂移 | 一张粗黑框一张细框；一张背身一张正脸；一张小石头有嘴/漩涡眼一张白圆眼；一张胶囊细长一张矮胖 | — |
+| 老杨 | 线稿/3D 渲染语言、眼镜（大镜片浅灰细框）、短发 3–5cm、米色 T + 橄榄卡其短裤、厚下唇、小麦肤、北方/山东脸宽、~40 岁成熟男 | 姿势、指向、站位、占画比例（表情仅稳定域内） |
+| 禁止跨图漂移 | 一张粗黑框一张细框；一张宽脸一张韩范小脸；一张短裤一张运动裤；一张背身一张正脸；一张小石头有嘴/漩涡眼一张白圆眼；一张胶囊细长一张矮胖；**并排放不像同一人** | — |
+
+**老杨多场景硬协议**：先 1 张预览门禁；同批每张复用同一段 Persona Feature Stability Lock + Outfit/Accessory Layer；表情只用 E0–E4 预设；手绘系每张传双全景；交付前做并排叠影快检（见 `persona-quick-checklist.md` X0–X6）；FAIL 只返修单张。
 
 同图内多个小石头仍遵守上文「形体一致锁 + 眼睛/手臂严格锁」：**差异来自动作分工，不是换形体或换眼法**。
 

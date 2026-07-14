@@ -1,81 +1,115 @@
-# 老杨 · 三份固定资产与传图规则
+# 老杨 · 固定资产与传图规则
 
 ## 资产清单
 
 | # | 文件 | 负责什么 | 何时传给生图 |
 | --- | --- | --- | --- |
-| 00 会话临时 1:1 肖像参考 | 用户在当前会话提供的临时参考图 | 面相结构、五官相对位置、脸宽脸长比例、眼镜占比、鼻口距离、嘴唇比例、下颌/下巴比例、肤色深浅的最高优先级参考 | 仅重建 / 返修老杨三份风格化资产时临时读取；不保存到仓库，不作为普通生图输入 |
-| 01 规范说明图 | `author-persona-spec.png` | 身份锚点 +「必须保留 / 禁止偏移」纠偏区 | 实物图必传；手绘系必读作身份来源 |
-| 02 动作扩展图 | `author-persona-actions.png` | 复杂姿态、小比例远景、与小石头协作分区；只辅助姿态，不作为面相最高锚点 | 实物图 · 小比例或复杂动作时加传 |
-| 03 手绘参考图 | `author-persona-handdrawn.png` | 扁平线稿渲染语言、协作版式 | 手绘 / 知识卡 / PPT 触发老杨时与 spec 同读 |
+| 00 会话临时 1:1 肖像 | 用户当前会话临时参考 | 重建资产时的面相最高优先级 | 仅重建资产；不落仓 |
+| 01 真人实体全景 | `author-persona-panorama.png` | **真人实体风格**全身身份：正侧背、表情、动态、休闲穿搭、金黄金渐层猫 | 实物图 / 长卷出镜**必传** |
+| 02 手绘全景 | `author-persona-panorama-handdrawn.png` | **手绘风格**全身身份（与①同一人）；线稿/轻色块全景 | 手绘 / 知识卡 / PPT 出镜**必传**（一致性更关键） |
+| 03 面相锁定表 | `author-persona-face-lock.png` | **多角度脸特写**（正面/3/4/讲解），压跨场景脸漂；**明显偏宽方圆脸** | **多场景同批必加传**；单张脸占比大或不稳时加传 |
+| 03b 手绘身材比例 | `author-persona-handdrawn-body.png` | **手绘全身比例金样**（头肩协调、腿长自然；用户认定契合） | 手绘系全身出镜**建议加传**；比例跑偏返修**必传** |
+| 03c 复古扁平立体设定图 | `author-persona-flat-ip-sheet.png` | **用户认定满意金样**（米色 IP 装、宽脸、约 35–37、无法令纹、183 偏高腿长） | 做复古扁平立体 / 角色设定图时加传；全身脸漂返修可加 |
+| 03d 复古扁平立体 · navy | `author-persona-flat-ip-sheet-navy.png` | 与 03c **同脸同身材**的深蓝 T 变体 | navy 服装设定图 / 同人换装对照时加传 |
+| 04 面相规范图 | `author-persona-spec.png` | 面相特写与禁止偏移区（历史补强） | 仍可加传；优先用③面相锁定表 |
+| 05 动作扩展 | `author-persona-actions.png` | 实物小比例/复杂姿态 | 实物需要时加传 |
+| 06 旧手绘参考 | `author-persona-handdrawn.png` | 历史线稿动作参考 | 可作补充；**手绘全景②优先** |
 
-三份公开风格化资产分工不同，**不要一次全塞**；按下方规则选组合。1:1 肖像只作为当前会话临时输入，用于重建这些风格化资产，不参与普通出图路由，也不落仓。
+> **一致性原则：**  
+> - 真人实体出图 → 跟 `author-persona-panorama.png`  
+> - 手绘出图 → 跟 `author-persona-panorama-handdrawn.png`（**更重要**）  
+> - 手绘全身比例 → 跟 `author-persona-handdrawn-body.png`（头不大、腿不短）  
+> - 两张全景必须是**同一个人**；禁止串成泛化讲师脸  
+> - **多场景同批** → 全景（按模式）+ `author-persona-face-lock.png`，跨图差异要小  
+> - 面相必须是**中国北方/山东男性脸**，禁止韩范偶像脸（见 `persona-author-identity.md` 面相族裔锁）
 
-## 双渲染语言（不能混用）
+## 双风格对齐协议（强制）
 
-| 模式 | 老杨渲染 | 使用资产 |
+### 实物图 / 长卷（真人实体）
+
+1. **必传** `author-persona-panorama.png`
+2. 多场景同批或脸特写不稳：**加传** `author-persona-face-lock.png`（可再加 spec）
+3. 小比例/复杂姿态 **加传** `author-persona-actions.png`
+
+### 手绘 / 知识卡 / PPT（手绘风格 · 优先加强）
+
+1. **必传** `author-persona-panorama-handdrawn.png`（手绘全身身份）
+2. **必传** `author-persona-panorama.png`（真人实体锚点，锁「同一个人」）
+3. **全身出镜建议加** `author-persona-handdrawn-body.png`（锁身材比例；比例跑偏返修必加）
+4. **多场景同批必加** `author-persona-face-lock.png`；单张脸漂也可加
+5. 可选加 `author-persona-handdrawn.png` / `author-persona-spec.png` 作表情或面相补强
+
+硬门禁：对应风格的全景未进上下文，不得声称已锁定老杨。多场景未加 face-lock 且跨图差异大 → 整批返修。全身头大短腿 → 对照 handdrawn-body 返修。
+
+## 金渐层猫
+
+- **金黄色 / 暖金杏色**被毛的金渐层英短（非灰虎斑、非银渐层）
+- 绿或黄绿眼，圆脸英短
+- 锚点：两张全景蹲姿摸猫区
+- 默认正文不强制带猫；点名「猫 / 金渐层」或生活彩蛋时再出
+
+## 穿搭与配件层（CRITICAL · 场景必带）
+
+分两层写进每张 prompt，**表情/场景变化时配件层不得省略**：
+
+| 层 | 字段 | 锁定内容 |
 | --- | --- | --- |
-| 实物图、彩蛋长卷 | 成熟克制的风格化 3D；保留面相比例优先，避免过度 Q 版玩偶化 | spec；必要时 + actions |
-| 手绘图 | 扁平黑线人物 | spec + handdrawn |
-| 知识卡、PPT | 同手绘图 | spec + handdrawn |
+| **服装** | top / bottom / shoes | 米色短袖棉 T / 橄榄卡其短裤 / 米白帆布鞋 |
+| **配件 · face** | glasses | 大镜片浅灰/透明细框方框（第一识别件） |
+| **配件 · head** | hair | 短直发 3–5cm、接近平直发际 |
+| **配件 · 禁止** | — | 粗黑框、帽子（默认无）、手表腕饰 |
 
-不要把 3D 风格塞进手绘模式，也不要把手绘线稿用在实物模式。与小石头同框时，**必须**加读 `assets/character/primary-character-reference.png`。
-
-Q 版 / 玩偶化会削弱老杨的面相识别。若“可爱 Q 感”和“人物面相比例”冲突，永远优先面相比例：脸宽脸长、眼镜占比、眼距、鼻口间距、嘴唇比例、下颌宽度和偏 40 岁成熟感。
-
-## 引用优先级
-
-实物图：
-
+Prompt 可复制片段：
 ```text
-author-persona-spec.png > author-persona-actions.png > 临时生成图
+Outfit Layer: beige cotton T + olive khaki shorts + off-white canvas sneakers.
+Accessory Layer (MUST keep across scenes/expressions): large thin light-gray rectangular glasses on face; short straight 3-5cm black hair, near-flat hairline. Do NOT drop or redesign glasses/hair when changing pose or expression.
 ```
 
-手绘系（手绘 / 知识卡 / PPT）：
+与两张全景一致；**同批多场景禁止换装**（含禁止漂成深灰运动裤），除非用户明确要求工装/运动场景。
 
-```text
-author-persona-spec.png（身份）> author-persona-handdrawn.png（渲染）> 临时生成图
-```
+## 多场景传图（人物一致性加强）
 
-手绘系**不加读** actions，避免 3D 分区带乱线稿版式。
+一次出 2 张及以上 / 跨多场景时：
 
-资产重建 / 重大返修：
+1. **预览门禁（强制）**：先只生成 **1 张预览**（目标模式 + 最代表场景）；过 P1/P3/P6（手绘全身加比例）与配件层可见性后，才允许批跑其余场景
+2. **同批固定同一套参考**：不要中途换全景版本
+3. 实物多场景：每张都传 `author-persona-panorama.png` + `author-persona-face-lock.png`
+4. 手绘多场景：每张都传 **手绘全景 + 实体全景 + face-lock**（全身再加 handdrawn-body）
+5. Prompt 复用同一段 Feature Stability Lock + **Outfit/Accessory Layer**；显式写 `same exact person, minimal face variation`
+6. 交付前做跨图并排快检：不像同一人 → **只返修 FAIL 张**（合格样保留），禁止为修一张而整批重跑；若预览都 FAIL → 整批不得开跑
 
-```text
-当前会话临时 1:1 肖像参考（面相结构与比例最高优先级，不落仓）> author-persona-spec.png > author-persona-actions.png / author-persona-handdrawn.png
-```
+## 与小石头
+
+同框另加 `primary-character-reference.png`（单锚点）。小石头不占老杨锚点名额。
 
 ## 传图决策表
 
-| 场景 | 读取资产 |
+| 场景 | 传图 |
 | --- | --- |
-| 实物图 · 普通互动 | spec |
-| 实物图 · 小比例 / 复杂多姿态 / 长卷远景节点 | spec + actions |
-| 实物图 · 返修不像老杨 | spec（对照必须保留 / 禁止偏移区） |
-| 重建老杨三份风格化资产 | 当前会话临时 1:1 肖像参考 + spec；再分别生成 actions / handdrawn；临时肖像不保存到仓库 |
-| 手绘 / 知识卡 / PPT · 任何老杨出镜 | spec + handdrawn |
+| 实物 · 普通 | panorama（实体） |
+| 实物 · 脸不稳 / 返修 | panorama + face-lock（± spec） |
+| 实物 · 小比例复杂姿态 | panorama + actions（± face-lock） |
+| 实物 · **多场景同批** | **先 1 张预览** → 通过后每张 panorama + **face-lock** |
+| 手绘 / 知识卡 / PPT | **panorama-handdrawn + panorama**（双风格锁同一人） |
+| 手绘 · **全身比例** | 上表 + **handdrawn-body**（头肩腿比例金样） |
+| 手绘 · **多场景同批** | **先 1 张预览** → 通过后每张双全景 + **face-lock**（± handdrawn-body） |
+| 要猫 | 对应风格全景（金黄金渐层） |
 | 小石头同框 | + primary-character-reference.png |
-| 资产缺失（fork 丢 PNG） | 退回 persona-author-identity.md 文字锚点；交付标注资产缺失 |
-| **文档 / 预览 / 能力总览 / README / 飞书示例** | spec（3D 面板）或 spec + handdrawn（线稿面板）；**禁止**无资产临场画 generic 人脸 |
-| **格子过小只能放符号** | 用抽象双 IP 符号（箭头、标签、剪影），**不要**画未锁定的人脸 |
+| 格子过小 | 抽象符号，不画 generic 脸 |
 
-## 文档与预览图（无例外）
+## 失败信号
 
-生成 README、飞书、gallery、能力总览、工作流示意图等**非正文配图**时：
+- 韩范脸：小脸、V下巴、冷白皮、爱豆五官
+- 手绘出图却只传实体全景、未传手绘全景
+- 实体/手绘两套脸不像同一个人
+- **多场景未做预览门禁就整批开跑**
+- **多场景并排放：眼镜/发际/下颌/唇厚漂移到像换人**
+- **场景变了眼镜/发型消失或换款**（配件层未带入）
+- **手绘全身头过大、短腿、躯干过长**（未对齐 handdrawn-body）
+- **同批一张短裤一张运动裤 / 一张幼态一张叔感**
+- 猫是灰虎斑或不够金黄
+- 粗黑框、幼态、过叔、泛化商务男
 
-1. 画面若含 persona 肖像 → 必须走 Persona Identity Lock（见 `common-character-lock.md`）并传上表资产。
-2. 若仅为说明「双 IP」概念且格子很小 → **优先抽象符号**，不出现可识别的人脸。
-3. 生成后仍做形象检查；不得因「只是文档图」跳过 QA。
+## 隐私
 
-失败样例（必须拦截）：粗黑框眼镜、黑长袖、泛化卡通讲师、与 spec 穿搭不一致的商务男。
-
-## 与小石头渲染隔离
-
-生成 `author-persona-actions.png` 等同框资产时，小石头部分必须沿用 flat 2D 设定（`#f39800` 平涂、细线、白圆眼），不得临时发明 3D 小石头或灰石头。
-
-## 隐私与开源边界
-
-- 公开仓库只分发**风格化** PNG，不含真人照片或照片级反例。
-- 真人或照片级 1:1 肖像参考只在当前会话临时使用，用于锁面相和比例；不保存到仓库，不进入公开文档、示例和普通生成提示词。若需要长期保留，只能由用户放在仓库外的个人私有素材库。
-- 识别度靠「由 1:1 面相比例重建出的风格化资产」+ `persona-author-identity.md` 文字锚点维持；不要退回泛化头像。
-- fork 者替换 persona 时，应替换本目录三份 PNG 并同步改 identity 文档中的文字锚点。
+公开仓只留风格化 PNG；1:1 肖像不落仓。fork 时同步替换两张全景与其余 persona 资产。

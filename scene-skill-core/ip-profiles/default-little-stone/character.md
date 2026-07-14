@@ -36,10 +36,43 @@
 
 ## 资产
 
-- 主锚点：`assets/character/primary-character-reference.png`
-- 动作/多人/小比例扩展：`assets/character/primary-character-actions.png`
+| 图 | 路径 | 作用 |
+| --- | --- | --- |
+| **设定图（必传）** | `assets/character/primary-character-reference.png` | 形体、主色、白圆眼、细线肢体 |
+| **动作扩展（条件）** | `assets/character/primary-character-actions.png` | 复杂姿态 / 多人 / 小比例 |
+| **可选模式样张** | `assets/character/examples/` | 身份漂移时可选 1 张辅助；**非强制** |
 
-主锚点负责“像不像小石头”。扩展图只在复杂姿态、表情基调、多个小石头协作或小比例远景时加读，不替代主锚点。
+小石头识别简单（胶囊 + 白圆眼），**默认单锚点即可**。  
+**双参考协议的重点是对齐老杨**，见 `persona-author-assets.md` / `assets/persona/examples/README.md`。不要把「双参考」名额用在小石头上。
+
+主设定图负责“像不像小石头”。扩展图只在复杂姿态、表情基调、多个小石头协作或小比例远景时加读，不替代主设定图。身份明显漂移时，可从 `examples/{physical|handdrawn|knowledge-card}/` 加读 1 张样张辅助，仍以设定图为最高锚点。
+
+## 填入 `{IP_DESC}`
+
+> 组装顺序见 `references/common-prompt-slots.md`。本段紧接参考图，写在模式 DNA 之前。
+
+```text
+[Match the attached Little Stone character sheet]
+Little Stone (小石头): flat 2D rounded vertical oval / capsule body, solid uniform #f39800 fill (no gradient, no highlight, no clay/vinyl/Pixar volume),
+two flat white circular eyes + optional tiny black pupil dots (not glossy 3D eyeballs),
+NO mouth / teeth / lip line on the capsule — emotion via pose and at most 0-1 sweat drop,
+exactly 2 thin black line arms from upper-third lateral body sides + 2 thin black line legs from bottom edge,
+hand terminal at most one simple grip per arm (small circle / C-shape / line hook),
+temperament: earnest, reliable, slightly clumsy, a bit stubborn — express via physical action, not cute mascot posing.
+Keep exact colors and proportions from the character sheet.
+```
+
+## 填入 `{IP_STYLE_ADAPT}`
+
+> 写在通用 `{STYLE_ADAPT}` 之后。管 IP 锁色，不管构图。
+
+```text
+Little Stone color lock:
+- Body fill = solid uniform #f39800 only; even a mild orange gradient, center highlight, rim shadow, or volume lighting fails
+- Scene accent colors (cobalt tape, tomato-red marks, lemon tabs, soft pink) may appear on objects/annotations ONLY — never tint the capsule body, eyes, or limbs
+- Limbs stay thin black lines; eyes stay flat white circles — do not inherit studio lighting or whiteboard wash into the character
+- When author persona appears in a different render language, Little Stone must remain strictly flat 2D and visually distinct
+```
 
 ## 品牌血脉
 
