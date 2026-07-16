@@ -3,15 +3,31 @@
 *.bak
 *.swp
 
+# 本地临时参考/下载/试跑（不入库）
+.temp/
+temp/
+assets/test-output/
+**/test-output/
+test-*.png
+test-*.jpg
+test-*.jpeg
+test-*.webp
+*-test.png
+*-test.jpg
+
 node_modules/
 dist/
 build/
 generated/
+
+# 本地 Codex 试跑 / 生图验证 / 并行 eval 工具（不进 git）
+.validation-output/
+scripts/run-evals-parallel.sh
+scripts/score-evals.py
 
 # 真人照片/未授权分发的私有角色资产：不进公开仓库，仅本地留档供生图时读取参考。
 assets/persona/private/
 scene-skill-core/assets/persona/private/
 scene-skill-core/assets/brand/private/
 scene-skill-core/ip-profiles/*/assets/persona/private/
-scene-skill-core/ip-profiles/*/assets/brand-private/
 

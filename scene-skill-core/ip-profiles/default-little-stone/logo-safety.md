@@ -6,13 +6,16 @@
 
 小石头可以带一点数字娱乐 / KTV / 门店经营的道具气味，但这只是可选语境，不等于自动出现真实公司名、Logo 或商标。
 
+**雷石员工（AI native）**：见 `character.md`「雷石员工」——工牌**仅**在此语境出现。  
+**KTV 巡检 / 房态 / 场所服务**：**非本 profile 场景**；默认不生成，且**不带任何工牌**。
+
 内部 VI、Logo 源文件、PPT 模板和品牌规范文档只作为用户本地私有参考。公开 README、examples、profile 文档和生成提示词不得引用这些私有链接、文件名或品牌规范细节。
 
 ## 硬性规则
 
 - **小石头身上**：禁止 Logo、品牌名、商标符号或「某某公司」引导标签。
-- **背景气味表达**：可使用房态卡、经营看板、麦克风、设备巡检单、会员反馈卡、挂绳空白工牌等中性道具；不要用真实品牌名替代角色设定。
-- **场景道具**：默认不出现真实品牌 Logo；只有用户**明确要求** Logo / 员工工牌 / 服务工牌 / 值班牌 / 戴工牌 / 人物戴工牌 / 展会物料时，才把 Logo 放在工牌、展板、物料、贴纸等道具上。
+- **背景气味表达**：可用任务卡、权限牌、抽象控制台等**系统侧**中性道具；**不要**默认房态牌、包厢巡检、挂绳工牌。
+- **场景道具**：默认不出现真实品牌 Logo；只有用户**明确要求** Logo / 员工工牌 / 戴工牌 / 雷石 / 展会物料时，才把 Logo 放在工牌、展板、物料、贴纸等道具上。
 - **使用方式**：品牌 Logo 必须来自用户本地私有参考图，不要凭空重画、近似替代或改造几何；公开核心包不提供真实 Logo 源文件。
 - **内部资料**：VI 手册、Logo 压缩包、AI 源文件、PPT 模板、字体包等不进入公开仓库；若需要参考，只能在本地私有目录使用，并避免把原始文件名、下载链接或品牌规范内容写进公开文档。
 - **公开示例**：默认示例、试跑样张和文档**不展示具体品牌 Logo**；需要时由用户在自己的生成请求里显式说明，并自行确认授权。
@@ -35,22 +38,75 @@
 
 ## 员工工牌系列
 
-当用户明确要求 **员工工牌 / 服务工牌 / 值班牌 / 权限牌 / 戴工牌 / 人物戴工牌 / 老杨戴工牌 / 现场服务身份** 时，可以把品牌工牌作为实物图主物件、辅助物件，或让指定角色佩戴工牌。
+> 小石头 **IP + 雷石员工**：`character.md`「雷石员工」。
 
-推荐工牌结构：
+当用户明确要求 **雷石员工工牌 / 戴工牌 / 雷石 / AI native 员工** 时，使用下文 **雷石工牌规格**。  
+**KTV 巡检 / 房态 / 包厢服务** 不是我们的场景——默认不生成；若出现也 **不带任何工牌**。
 
-- 白底或浅灰白底实体工牌，有清楚厚度、圆角、挂绳孔或夹扣。
-- 左上或上方预留一个小而清楚的空白 Logo 区，通常占工牌宽度的 8%-12%，只做身份识别，不抢主视觉。
-- 若用户要求 Logo **完全一样 / 精确 / 不变形**：生图阶段应先生成空白 Logo 区，交付前由用户在本地用授权 Logo 原图按比例贴入；不要依赖模型重画 Logo，也不要把 Logo 源文件提交进仓库。
-- 工牌内容使用概括性服务字段，不发明真实个人信息：`服务`、`值班`、`现场`、`权限`、`巡检`、`工单`。
-- 可以配合挂绳、卡套、夹扣、值班贴、房态卡、服务工单、麦克风检查卡。
-- 小石头戴工牌时，工牌应是挂在脖子前方的**独立小卡片**，尺寸小而可读，不要变成胸前大海报；Logo 只在卡片上，不在小石头身体上。
-- 人物戴工牌 / 老杨戴工牌时，必须由用户明确指定；否则人物和老杨默认不戴工牌。
+### 雷石工牌规格（比例 · Logo 区 · 挂绳）
+
+对照用户本地工牌参考（会话传入，**不落公开库**）。**默认只用品牌卡（Logo only）**：
+
+**品牌卡 · Logo only（默认 · 唯一推荐形态）**
+
+| 项 | 规格 |
+| --- | --- |
+| 比例 | **竖版长方形 3:5（宽:高）**——竖长、比 9:16 略宽；佩戴时牌面宽度约 **小石头体宽的 25–32%**，**必须小于头宽/眼距** |
+| 牌面 | **雷石橙 `#f39800` 同系饱和橙** 哑光塑料感；圆角矩形；**无照片、无姓名、无岗位、无部门** |
+| **Logo** | 牌面内 **居中、可读、突出**——字标占**牌面**可视区约 50–70%（不是把工牌本身放大）；**默认带字标**（眼形 swirl + **THUNDERSTONE** 全大写） |
+| 挂绳 | **白色扁带**；橙色重复 THUNDERSTONE + 眼形图标；白色方扣 |
+
+**牌面禁止出现**：真实/虚构**姓名**、**岗位**、**部门**、工号、二维码、照片区文字、`接工单` / `跑链路` / `回传` / `AI native` 等流程或场景文案。工牌**只承载公司 Logo**。
+
+**Logo 1:1 还原（强制 · 禁止模型发挥）**
+
+雷石 Logo（眼形 swirl 图标；字标场景用 **THUNDERSTONE**）**不得**手绘、近似或改形。
+
+**生图方式：prompt + 参考图**（不做 Python / ImageMagick 后处理贴图）
+
+| 步骤 | 要求 |
+| --- | --- |
+| 1 · 传参 | **工牌牌面必传** `assets/brand-private/thunderstone-logo-with-wordmark.png`（图标 + THUNDERSTONE 字标）；仅纯图标场景才用 `thunderstone-logo-mark.png` |
+| 2 · prompt | 写清工牌规格 + **reproduce attached logo-with-wordmark reference 1:1 on badge face, no redraw, no stylize** |
+| 3 · 禁止 | prompt 里不要写「画 swirl / 画 THUNDERSTONE 字体」——只引用参考图几何与字标 |
+| 4 · 返修 | Logo 走形 → 加强参考图权重、缩小工牌占比、重生成；**不要**走脚本合成 |
+
+**授权 Logo 源（profile 内）**
+
+路径根：`scene-skill-core/ip-profiles/default-little-stone/assets/brand-private/`
+
+| 文件 | 用途 |
+| --- | --- |
+| `thunderstone-logo-with-wordmark.png` | **工牌牌面默认** · 眼形 swirl 图标 + THUNDERSTONE 字标 |
+| `thunderstone-logo-mark.png` | 纯图标（挂绳重复 icon、小尺寸牌面等） |
+
+**禁止**：模型自画 Logo、改 swirl 曲线、换字体、加瞳孔/螺旋眼、异色 Logo、近似替代。
+
+**佩戴方式**
+
+- 独立挂绳卡悬于颈前；**小尺寸**、细白带；卡面略倾斜可读；**禁止**工牌贴在小石头橙身上、**禁止工牌 ≥ 头宽**。
+- 小石头仍是 flat 2D 执行者；工牌是道具，不是第二身体。
+- **牌面禁止承载流程/场景/人事文案**：姓名、岗位、部门、工号、流程标签等**一律不得**上工牌；工牌**只体现公司 Logo**，且 Logo **居中、大、突出**。
+
+**Prompt 可复制**
+
+```text
+Attach reference: assets/brand-private/thunderstone-logo-with-wordmark.png (required — icon + THUNDERSTONE wordmark on badge face).
+Thunderstone employee badge: separate SMALL lanyard ID card, **portrait rectangle 3:5 (width:height)** — taller than wide, NOT square, NOT ultra-narrow 9:16; card width ~25-32% of body, smaller than head.
+Reproduce attached logo-with-wordmark on orange badge face 1:1 — eye-swirl icon + THUNDERSTONE text exactly as reference. NO redraw, NO stylize, NO approximate geometry.
+Logo-only orange card: NO photo, NO name, NO job title, NO department, NO workflow text on badge face.
+White lanyard optional. Logo NEVER on orange capsule body.
+Little Stone = AI-native employee context, NOT KTV venue service.
+```
 
 ## 禁止
 
 - 把 Logo 直接印在小石头身体上，或把工牌画成身体纹身 / 胸口印花。
-- 用户只说“戴工牌”时，让老杨或其他人物戴工牌、小石头不戴。
+- 工牌比例失真（**非 3:5 竖长形**、过窄如 9:16、接近正方形、大于头宽、占满胸口）。
+- 雷石员工 + KTV 巡检 / 房态 / 包厢递麦。
+- **KTV 巡检类画面 + 任何工牌**（雷石或中性均不要）。
+- 用户只说「戴工牌」时，让老杨或其他人物戴工牌、小石头不戴。
 - 生成真实姓名、手机号、工号、二维码、部门架构或未经提供的履历信息。
-- 自画简化 Logo、螺旋眼、黑色瞳孔版 Logo，或让品牌文字与 Logo 异色。
-- 让 Logo 成为画面主角；主角仍是小石头与服务动作。
+- **让生图模型手绘/改形雷石 Logo**（必须 1:1 贴授权资产；不能发挥）。
+- **工牌牌面写姓名/岗位/流程文案**；工牌 Logo 须**居中、大、突出**。
+- Logo 占满**整张插图**成为画面主角（工牌牌面上的 Logo 可以且应当**大、居中、突出**）。

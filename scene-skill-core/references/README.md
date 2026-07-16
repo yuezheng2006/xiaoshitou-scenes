@@ -7,11 +7,13 @@
 多种模式都会用到的公共规则：
 
 - `common-character-lock.md`：通用 Character Lock、Persona Identity Lock、维度锁、形象检查、多人差异锁；具体角色读取当前 profile。
+- `common-persona-calibration.md`：所有人像参考图的生成前校准卡、生成后身份/年龄/比例复核；校准失败不得生成或交付。
 - `common-persona-routing.md`：通用 persona 触发、双 IP 路由和安全边界。
 - `persona-scene-patterns.md`：默认 profile 触发老杨时的六类互动场景、出图方案推荐和失败信号。
 - `common-logo-safety.md`：通用 Logo / 品牌资产安全规则；具体品牌边界读取当前 profile。
 - `common-story-extraction.md`：从正文提炼处境、动作、标签的方法。
-- `common-generation-templates.md`：实物图、手绘图、长卷和批量图的提示词模板。
+- `common-prompt-slots.md`：通用 prompt 槽位组装；**双参考用于对齐老杨（人）**；`{IP_DESC}` / `{IP_STYLE_ADAPT}` 分层。
+- `common-generation-templates.md`：实物图、手绘图、长卷和批量图的提示词模板（按槽位填入）。
 - `common-qa-repair.md`：装饰性测试、用户反馈映射表、标准化返修输出格式。
 - `common-modes-and-sizes.md`：尺寸池与图内信息量分级语言。
 

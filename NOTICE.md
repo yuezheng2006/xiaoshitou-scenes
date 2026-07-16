@@ -11,6 +11,10 @@
 
 本仓库默认 profile 为 **default-little-stone**，其中 **小石头** 是原创配图角色规范（`#f39800` 胶囊体、flat 2D 简笔、物理动作叙事）。详见 `scene-skill-core/ip-profiles/default-little-stone/profile.md` 与 `scene-skill-core/ip-profiles/default-little-stone/character.md`。
 
+无品牌角色路径：`scene-skill-core/ip-profiles/none/`。
+
+**角色形象授权与 MIT 代码授权分离**，详见 [IP-NOTICE.md](IP-NOTICE.md)。
+
 ## 上游致谢
 
 双模式生图工作流改编自 Ian / helloianneo 的原始配图项目：
@@ -32,8 +36,9 @@
 | 路径 | 内容 |
 | --- | --- |
 | `scene-skill-core/assets/masters/` | 母版 `01`–`06` |
-| `scene-skill-core/ip-profiles/default-little-stone/assets/character/` | 默认主角色锚点与动作扩展 |
-| `scene-skill-core/ip-profiles/default-little-stone/assets/persona/` | 默认作者 persona 风格化资产；发布前需确认不包含真人照片或照片级反例 |
+| `scene-skill-core/ip-profiles/default-little-stone/assets/character/` | 默认主角色设定图、动作扩展与模式校准图 |
+| `scene-skill-core/ip-profiles/default-little-stone/assets/persona/` | 老杨：全景 panorama、spec、actions、handdrawn；金渐层猫设定在 panorama |
+| `scene-skill-core/ip-profiles/none/` | 无品牌角色 stub |
 
 安装 Skill 时复制整个 `scene-skill-core/` 即可。仓库不应包含、不分发任何真人照片；`assets/persona/private/` 保留在 `.gitignore` 中作为防线，防止真人照片被误提交。
 

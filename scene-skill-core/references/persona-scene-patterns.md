@@ -143,7 +143,7 @@
 | --- | --- |
 | 用户 IP 主讲 | 老杨 |
 | 执行 Agent | 小石头（可 1–3 个分工） |
-| 角色三件套 | author-persona-spec / actions / handdrawn |
+| 角色参考资产 | 实体全景 / 手绘全景；面相补强 spec、复杂动作 actions |
 | 内容确认卡 | SKILL.md 2A |
 | 先推荐出图方案 | 本节「出图方案推荐」 |
 

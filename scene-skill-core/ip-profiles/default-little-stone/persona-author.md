@@ -22,12 +22,14 @@
 
 示例：`老杨：这篇内容想配图，请先推荐。` / `老杨和小石头：出一张白板图。`
 
+> **路径分流**：若用户表述里出现 **`小剧场`**（含 `老杨小剧场` / `IP小剧场` / 单独 `小剧场`），**不要**走本文件的双 IP 规则；改读 [persona-author-theater.md](persona-author-theater.md)（路径 C，单人小剧场，默认无小石头）。**无「小剧场」不进 C**（仅「视觉印记」等不够）。本文件触发词列表**不含**「小剧场」，避免混轨。
+
 ## 分层文件（按需读取）
 
 | 文件 | 负责什么 | 何时读 |
 | --- | --- | --- |
-| [persona-author-identity.md](persona-author-identity.md) | 识别锚点、外形约束、小比例最低识别线、禁止偏移 | 生图前、返修「不像老杨」、QA 识别度 |
-| [persona-author-assets.md](persona-author-assets.md) | 三份固定资产、双渲染语言、传图规则、隐私边界 | 每次 persona 出镜必读 |
+| [persona-author-identity.md](persona-author-identity.md) | 识别锚点、表情预设 E0–E4、多场景锁、小比例线 | 生图前、返修「不像老杨」、QA 识别度 |
+| [persona-author-assets.md](persona-author-assets.md) | 全景双风格、face-lock、配件层、预览门禁、传图 | 每次 persona 出镜必读 |
 | [persona-author-modes.md](persona-author-modes.md) | 各模式画面职责、双 IP 权重、与小石头协作结构 | 锁定模式后 |
 | [persona-author-prompts.md](persona-author-prompts.md) | 可复制提示词片段（双 IP / 小比例 / 返修 / 手绘） | 构造生图 prompt 时 |
 
@@ -42,17 +44,34 @@ persona-author.md（本文件，确认触发与分工）
   → persona-author-identity.md（QA 或返修时再读）
 ```
 
-## 三份固定资产（摘要）
+## 核心固定资产（摘要）
 
 路径均在 `assets/persona/`：
 
 | # | 文件 | 职责 |
 | --- | --- | --- |
-| 01 | `author-persona-spec.png` | 身份锚点 + 规范说明（必须保留 / 禁止偏移） |
-| 02 | `author-persona-actions.png` | 3D 动作、小比例、与小石头协作分区 |
-| 03 | `author-persona-handdrawn.png` | 手绘渲染语言 + 线稿协作版式 |
+| 01 | `author-persona-panorama.png` | 真人实体全身身份（实物/长卷必传） |
+| 02 | `author-persona-panorama-handdrawn.png` | 手绘全身身份（手绘系必传，更关键） |
+| 03 | `author-persona-face-lock.png` | 多角度面相锁定（**多场景同批必加**；宽脸） |
+| 03b | `author-persona-handdrawn-body.png` | 手绘全身比例金样（183cm · 4:6 上短下长） |
+| **批内金样** | `assets/persona/examples/validated-batch-anchor-handdrawn.png` | 用户验收 likeness 锚；多场景同批预览通过后加传 |
+| 03c | `author-persona-flat-ip-sheet.png` | 复古扁平立体设定图金样（米色 · 用户认定满意） |
+| 03d | `author-persona-flat-ip-sheet-navy.png` | 同脸 navy T 变体 |
+| 05 | `author-persona-actions.png` | 动作扩展（小比例/复杂姿态） |
+| 05 | `author-persona-actions.png` | 实物小比例/复杂姿态 |
+| 06 | `author-persona-handdrawn.png` | 旧手绘动作参考（全景优先） |
 
-传图组合细则见 [persona-author-assets.md](persona-author-assets.md)。
+传图组合与多场景一致性锁见 [persona-author-assets.md](persona-author-assets.md)（含**三档分工**、**引用优先级链**、**双 IP 同框最小传图**、**批内金样锚定**）。
+
+**验收与校准索引**：[`examples/local-validation-dual-ip.md`](../../../../examples/local-validation-dual-ip.md)
+
+## 双 IP 同框 · 最小传图（摘要）
+
+```text
+老杨：按模式 01 主锚（手绘 = handdrawn-panorama + panorama；多场景 + face-lock）
+小石头：primary-character-reference.png（单锚点，不占老杨名额）
+条件：小比例老杨 +actions；复杂小石头 +primary-character-actions；手绘全身 +handdrawn-body
+```
 
 ## 双 IP 硬性底线
 

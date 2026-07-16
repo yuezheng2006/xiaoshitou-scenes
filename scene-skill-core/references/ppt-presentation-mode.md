@@ -51,7 +51,7 @@
 QA 风险：
 ```
 
-用户确认导演规划后，每页生成前形成 page card：
+用户确认导演规划后，每页生成前形成 page card；如果页面涉及人像参考图，还必须先完成 `common-persona-calibration.md` 校准卡：
 
 ```text
 页码：

@@ -1,6 +1,6 @@
 interface:
   display_name: "小石头多模式配图"
-  short_description: "实物图 / 手绘图 / 知识卡 / PPT 演讲 · #f39800 胶囊体 · 16:9 / 竖版 / 长卷 · 21 条 evals"
-  default_prompt: "默认根据内容自动选择小石头实物图或小石头手绘图；用户明确说知识卡/图文号知识卡/手机海报/方法拆解图/收藏图/竖版传播图，或 PPT/课件/直播分享页/主题演讲/整套演讲页面/按大纲逐页出图/导演规划卡时，才进入知识卡或 PPT 演讲模式。无论哪种模式，都保持 #f39800 胶囊体、白圆眼、物理/概念动作和短中文标签；实物图/手绘图还必须保持充足留白。作者出镜时：实物图用 author-persona-spec（轻 Q 3D，复杂动作或小比例加 author-persona-actions），手绘/知识卡/PPT 用 author-persona-spec（身份锚点）+ author-persona-handdrawn（扁平黑线）。"
+  short_description: "实物图 / 手绘图 / 知识卡 / PPT 演讲 · #f39800 胶囊体 · 16:9 / 竖版 / 长卷 · 27 条 evals"
+  default_prompt: "默认根据内容自动选择小石头实物图或小石头手绘图；用户明确说知识卡/图文号知识卡/手机海报/方法拆解图/收藏图/竖版传播图，或 PPT/课件/直播分享页/主题演讲/整套演讲页面/按大纲逐页出图/导演规划卡时，才进入知识卡或 PPT 演讲模式。无论哪种模式，都保持 #f39800 胶囊体、白圆眼、物理/概念动作和短中文标签；实物图/手绘图还必须保持充足留白。作者出镜时：实物图用 author-persona-panorama（复杂动作或小比例加 author-persona-actions）；手绘/知识卡/PPT 用 author-persona-panorama-handdrawn + author-persona-panorama（全身比例加 author-persona-handdrawn-body，多场景加 author-persona-face-lock；author-persona-spec 仅作面相补强）。"
 policy:
   allow_implicit_invocation: true

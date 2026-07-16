@@ -8,9 +8,17 @@
 - 未触发时，不出现 persona；只使用 profile 主角色。
 - persona 可以出现在任意模式中，但必须遵守当前模式的渲染语言和 profile persona 文件的资产路由。
 
-## 双 IP 互动（默认 profile）
+### 默认 profile：路径分流
 
-默认 profile 触发老杨后，不是「主角色 + 可选作者露脸」，而是**双 IP 互动**：
+| 路径 | 触发 | 行为 |
+| --- | --- | --- |
+| **B 双 IP** | `老杨`、`yuezheng2006`、`老杨和小石头` 等（见 `persona-author.md`）；**无「小剧场」** | 读本文件「双 IP 互动」+ `persona-scene-patterns.md` |
+| **C 小剧场** | **必须含** `小剧场`；可再加 `小石头` → **C 组合** | 读 `persona-author-theater.md`；**不**套用下方双 IP 强制规则 |
+| 冲突 | 「小剧场」+「小石头」 | **C 组合**（不打回 B） |
+
+## 双 IP 互动（默认 profile · 仅路径 B）
+
+默认 profile **路径 B** 触发老杨后，不是「主角色 + 可选作者露脸」，而是**双 IP 互动**：
 
 ```text
 persona（老杨）= 主讲 / 拆解 / 批注 / 调度
@@ -28,14 +36,16 @@ persona（老杨）= 主讲 / 拆解 / 批注 / 调度
 
 每张图必须有明确的双 IP 动作关系；不能只有 persona 肖像，也不能 persona 触发后只有小石头干活。
 
+路径 C 的读取链见 `persona-author-theater.md`，不要把「每张必须双 IP」套到小剧场。
+
 ## 读取顺序
 
 1. 读取当前 profile 的 `profile.md`。
 2. 若命中 persona 触发词，读取 profile 指向的 persona 文件。
 3. 读取 `persona-scene-patterns.md`，选定互动场景类型和分工。
 4. 按 persona 文件中定义的模式路由读取对应资产。
-5. **生成前**：写入 Character Lock + 2D Flat Lock；画面含 persona 肖像时另写 **Persona Identity Lock**（见 `common-character-lock.md`），并传 spec（+ handdrawn / actions 按场景）。
-6. **生成后**：先做形象检查（主角色 + persona），再做模式 QA；文档/预览/仓库示例图无例外。
+5. **生成前**：写入 Character Lock + 2D Flat Lock；画面含 persona 肖像时另写 **Persona Identity Lock**（见 `common-character-lock.md`），并按 `persona-author-assets.md` 传对应模式的全景资产（复杂动作/小比例再加 actions，面相补强再加 spec）。
+6. **生成后**：先按 `common-persona-calibration.md` 做人像身份/年龄/比例校准，再做形象检查和模式 QA；文档/预览/仓库示例图无例外。
 
 ## 画面职责
 

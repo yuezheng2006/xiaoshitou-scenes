@@ -46,13 +46,13 @@
     {
       "id": "author-persona-stylized-assets",
       "prompt": "老杨和小石头：一起复盘这个项目的三个阶段，出一张实物图。",
-      "expected_output": "应读取 common-persona-routing.md、persona-author.md、persona-author-assets.md、persona-scene-patterns.md；双 IP 互动；读取 author-persona-spec.png（复杂动作/小比例时加读 author-persona-actions.png）；小石头 flat 2D 不变。",
+      "expected_output": "应读取 common-persona-routing.md、persona-author.md、persona-author-assets.md、persona-scene-patterns.md；双 IP 互动；实物图读取 author-persona-panorama.png（复杂动作/小比例时加读 author-persona-actions.png）；小石头 flat 2D 不变。",
       "files": []
     },
     {
       "id": "little-stone-2d-lock-with-author",
       "prompt": "小石头实物图：老杨递给小石头一个工具，两人一起处理一个问题。",
-      "expected_output": "老杨应为成熟克制的风格化 3D（对齐 author-persona-spec.png），但小石头必须始终保持 flat 2D 平涂简笔（#f39800 橙身/细黑线肢体/白圆眼），不能因为老杨是 3D 就被带成 3D 灰石头或软陶公仔；两者渲染语言必须明显区分。",
+      "expected_output": "老杨应为成熟克制的风格化 3D（对齐 author-persona-panorama.png，author-persona-spec.png 仅作面相补强），但小石头必须始终保持 flat 2D 平涂简笔（#f39800 橙身/细黑线肢体/白圆眼），不能因为老杨是 3D 就被带成 3D 灰石头或软陶公仔；两者渲染语言必须明显区分。",
       "files": []
     },
     {
@@ -112,13 +112,13 @@
     {
       "id": "author-handdrawn-asset-routing",
       "prompt": "小石头手绘图：老杨在白板旁解释这个 Agent 工作流，小石头负责拉线。",
-      "expected_output": "应同时读取 author-persona-spec.png（身份锚点）和 author-persona-handdrawn.png（扁平黑线渲染语言），不应读取 author-persona-actions.png，也不应把老杨描述成轻 Q 3D 数字玩偶。",
+      "expected_output": "应同时读取 author-persona-panorama-handdrawn.png（手绘身份锚点）和 author-persona-panorama.png（同一人实体锚点），不应读取 author-persona-actions.png，也不应把老杨描述成轻 Q 3D 数字玩偶。",
       "files": []
     },
     {
       "id": "physical-no-handdrawn-author",
       "prompt": "小石头实物图：老杨和小石头一起整理服务工单，出一张图。",
-      "expected_output": "实物图模式应读取 author-persona-spec.png 作为身份锚点（复杂动作或小比例时加读 author-persona-actions.png）；不应读取 author-persona-handdrawn.png；小石头仍须 flat 2D。",
+      "expected_output": "实物图模式应读取 author-persona-panorama.png 作为身份锚点（复杂动作或小比例时加读 author-persona-actions.png）；不应读取 author-persona-panorama-handdrawn.png；小石头仍须 flat 2D。",
       "files": []
     },
     {
@@ -130,7 +130,7 @@
     {
       "id": "preview-asset-persona-identity-lock",
       "prompt": "为 scene-skill-core 生成一张 16:9 能力总览预览图，其中有一格要讲双 IP，保存到 assets/examples/gallery/。",
-      "expected_output": "应读取 common-character-lock.md 与 persona-author-assets.md；双 IP 格若过小须用抽象符号（箭头、职责标签），禁止 generic 人脸；若画老杨肖像须传 author-persona-spec.png 并写 Persona Identity Lock；小石头须传 primary-character-reference.png；生成后须做形象检查，拦截粗黑框眼镜、黑长袖、泛化讲师。",
+      "expected_output": "应读取 common-character-lock.md 与 persona-author-assets.md；双 IP 格若过小须用抽象符号（箭头、职责标签），禁止 generic 人脸；若画老杨肖像须传对应模式的 panorama 资产并写 Persona Identity Lock；小石头须传 primary-character-reference.png；生成后须做形象检查，拦截粗黑框眼镜、黑长袖、泛化讲师。",
       "files": []
     },
     {
@@ -143,6 +143,24 @@
       "id": "physical-multi-agent-generation",
       "prompt": "小石头实物图：3 个 Agent 协作交接任务——A 递卡、B 接卡、C 贴标签到看板，16:9 白底真实物件小现场。",
       "expected_output": "应走实物图模式 + Character Lock + 形体一致锁 + 眼睛/手臂严格锁；真实哑光任务卡与小看板；三个小石头相同胶囊宽高比、仅整体缩放与动作分工不同；生成后形象快检与 physical-qa-checklist.md 必过项。",
+      "files": []
+    },
+    {
+      "id": "little-stone-recognition-rule-qa",
+      "prompt": "（QA 场景）手绘图里小石头是 #f39800 平涂、白圆眼、无嘴，但只占画面 5% 且看不清眼睛，去掉它图仍讲得通。能交付吗？",
+      "expected_output": "应判定不合格：违反 character.md Recognition Rule（小比例至少 4/6）与装饰性测试——小比例仍须保留胶囊轮廓+白圆眼+核心动作；去掉小石头隐喻仍成立说明只是装饰。必须重生成或改构图。",
+      "files": []
+    },
+    {
+      "id": "persona-drift-repair-routing",
+      "prompt": "（返修场景）知识卡里的老杨变成粗黑框眼镜、V 下巴，不像了。该怎么修？",
+      "expected_output": "应先查 persona-author-prompts.md 走形修复索引：加传 face-lock + spec 禁止偏移区（或 flat-ip-sheet 对）；粘贴 Accessory Layer + Face Width Lock + Ethnicity 句；加强 face-lock 参考、减弱表情改写；只返修 FAIL 张。",
+      "files": []
+    },
+    {
+      "id": "little-stone-onsite-service-adapt",
+      "prompt": "（QA 场景）雷石 AI native 员工戴工牌，配图里小石头在 KTV 包厢递麦克风、查房态门牌。能交付吗？",
+      "expected_output": "应判定不合格：KTV 巡检/房态/包厢递麦不是本 profile 场景；且此类画面不应带任何工牌。雷石员工仅限 AI native 系统语境并可戴雷石工牌。应改为 Agent/工单/权限闸隐喻或拒绝生成场所巡检图。",
       "files": []
     }
   ]
