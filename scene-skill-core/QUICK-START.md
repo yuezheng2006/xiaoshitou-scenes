@@ -222,10 +222,11 @@ references/persona-quick-checklist.md
 - L2 锚点：臂从体侧上 1/3、腿从底缘连续向下
 - E1 眼睛：两只白圆眼、批内一致
 
-**老杨 CRITICAL 项**（双 IP 时）：
+**老杨 CRITICAL 项**（双 IP / 小剧场时）：
 - P1 眼镜：大镜片浅灰细框（非粗黑框）
 - P3 脸型：长但不细的长方椭圆
 - P6 可见性：正面或 3/4（禁止背身/后脑勺）
+- **P12 身高**（全身/大半身）：**183 视觉档 + 4:6 长腿**；禁止漂成 ~175 平均身高 / 短腿敦实
 
 ### 交付标准
 - ✅ **所有 CRITICAL 项 PASS** → 继续模式 QA → 交付
@@ -238,6 +239,9 @@ references/persona-quick-checklist.md
 
 ❌ 不合格："老杨的眼镜是粗黑框，不符合他的形象（应该是浅灰细框），我来返修"
    而不是："Persona Feature Stability Lock: P1 FAIL"
+
+❌ 不合格："老杨这张看起来像普通 175 身高，腿偏短，我按 183、上短下长加长腿返修"
+   而不是："P12 Height Lock FAIL (~175 drift)"
 ```
 
 ---
@@ -270,6 +274,7 @@ references/persona-quick-checklist.md
 | 换表情丢眼镜/发型 | ❌ 配件层 face/head 每张必带 |
 | 猫不够金黄 / 灰虎斑 | ❌ 必须金黄金渐层英短 |
 | 方法论知识卡只有老杨+文字 | ❌ 必须安排小石头执行分工 |
+| 老杨漂成 ~175 / 短腿敦实 | ❌ 全身必写 Height Lock 183+4:6；加传 handdrawn-body；P12 FAIL 必返修 |
 
 ---
 

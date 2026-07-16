@@ -23,6 +23,7 @@ persona出镜时单独判断一次：去掉persona，画面核心冲突是否仍
 | --- | --- |
 | 不像主角色 | 对照当前 profile 的 `character.md` 和主角色锚点资产，强化名称、主色、形体、眼睛、肢体和维度锁；检查是否漂成非 profile 风格 |
 | 不像persona / 不像我 | 实物图对照 `author-persona-panorama.png`（复杂动作/小比例加 `author-persona-actions.png`）；手绘图/知识卡/PPT 同时对照 `author-persona-panorama-handdrawn.png` + `author-persona-panorama.png`，面相漂移再加 `author-persona-face-lock.png`；**先查** `persona-author-prompts.md` 走形修复索引；强化发际线、脸型、眼周、嘴唇、体态；查 `common-persona-routing.md` 小比例最低识别线 |
+| 老杨偏矮 / 像 175 / 短腿 / 头大 | **P12 Height Lock FAIL**：加传 `author-persona-handdrawn-body.png`；写入 Height Lock HARD（183 + 4:6 长腿，禁 175 漂移）；加长腿、压矮头身比、拉开上短下长；全身/大半身必检 |
 | 预览/总览图老杨不像 / 粗黑框 / 黑长袖 | 文档图也必须走 Persona Identity Lock；过小格子改抽象符号；对照对应模式的 panorama 六项识别返修，禁止 generic 讲师 |
 | 老杨背身 / 后脑勺 / 像老太太 | 知识卡/手绘/PPT 须正面或 3/4 可见眼镜+短发+厚下唇；禁止灰卷白发、老年女性轮廓、仅「老杨讲」气泡无脸；传手绘全景 + 实体全景返修 |
 | 同批两张不像 / 小石头眼法不一 | 声明跨图一致锁；全批同一胶囊比例+白圆眼画法；同图多人只改缩放/姿态/分工，禁止换形体或漩涡眼/有嘴 |

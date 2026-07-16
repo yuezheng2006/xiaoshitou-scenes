@@ -95,12 +95,18 @@ Body Lock 183cm net height: upper-to-lower body ratio **4:6** (short torso, long
 Glasses: large thin LIGHT-GRAY rectangular frames (NOT thick black frames from casual portrait).
 ```
 
-## 身材锁（CRITICAL · 183cm · 上短下长 4:6）
+## 身材锁（CRITICAL · 183cm · 上短下长 4:6 · 禁 175 漂移）
 
 ```text
-Body Lock HARD: ~183cm / 85-86kg tall solid Chinese male — upper body to legs ratio 4:6 (short upper body, long lower body; legs ~60% of standing height); visibly taller elegant silhouette; stable slightly broad shoulders; balanced head-to-shoulder; align author-persona-handdrawn-body.png. NOT 5:5 equal split, NOT short legs, NOT short stocky body, NOT oversized head, NOT long torso / short leg (6:4).
+Height Lock HARD (Lao Yang — full / half body CRITICAL):
+~183cm / 85-86kg tall solid Chinese male — MUST look visibly TALLER than average ~175cm office male.
+Upper body to legs ratio 4:6 (short upper body, LONG lower body; legs ~60% of standing height).
+Head ~1:7–1:7.5 of height; stable slightly broad shoulders; align author-persona-handdrawn-body.png (REQUIRED for full-body handdrawn / knowledge / PPT).
+Visual fail test: if silhouette reads as typical 175cm Chinese male → FAIL and redraw taller with longer legs.
+FORBIDDEN: 175cm average height drift, short stubby legs, 5:5 equal split, long-torso/short-leg 6:4, short stocky body, oversized head, squat toy proportions.
 ```
 
+全身出镜时与 Identity Lock **并列写入**；生成后按 P12 检查。偏矮返修优先加传 `author-persona-handdrawn-body.png` + 本段。
 ## 眉毛 / 颧骨 / 厚唇校准（面相精修 · 与上节三锚点一致）
 
 ```text
@@ -118,7 +124,7 @@ Do not redesign glasses frame type (keep thin light-gray) or hair length while a
 ## 多场景预览门禁
 
 ```text
-Multi-scene Preview Gate: generate ONE preview image first for the target mode. Only if P1 glasses / P3 face / P6 visibility (+ body proportion for full-body handdrawn) PASS, proceed to the remaining scenes with the SAME Feature Stability Lock + Outfit/Accessory Layer. If preview FAIL, do not batch. Repair only failing images; keep passing ones.
+Multi-scene Preview Gate: generate ONE preview image first for the target mode. Only if P1 glasses / P3 face / P6 visibility / **P12 height (full or half body)** PASS, proceed to the remaining scenes with the SAME Feature Stability Lock + Outfit/Accessory Layer + Height Lock. If preview FAIL, do not batch. Repair only failing images; keep passing ones.
 ```
 
 ---
@@ -133,7 +139,7 @@ Multi-scene Preview Gate: generate ONE preview image first for the target mode. 
 | 薄唇 / 嘴位低 / 法令纹 | face-lock 或 spec | 「嘴部锁」Lip Lock HARD |
 | 眉过细 / 无眉 / 韩范眉 | face-lock + flat-ip-sheet 对 | 「中上脸三锚点锁」Brow Lock |
 | 中脸塌 / 低颧 / 磨皮圆脸 | face-lock + flat-ip-sheet 对 | Cheekbone Lock + Face Width Lock |
-| 手绘头大 / 短腿 / 5:5 均分 / 偏矮敦实 | handdrawn-body | 「身材锁」4:6 上短下长 |
+| 手绘头大 / 短腿 / 5:5 均分 / **偏矮像 175** | handdrawn-body | 「身材锁」Height Lock HARD 183+4:6；加长腿压矮头 |
 | 换表情丢眼镜 / 发型 | face-lock + 双全景 | 「穿搭配件层」Accessory Layer MUST keep |
 | 多场景不像同一人 | 双全景 + face-lock | 「多场景预览门禁」+ Feature Stability Lock 全段 |
 | 小比例远景丢识别 | panorama + **actions** + face-lock | 「小比例/复杂动作追加」 |

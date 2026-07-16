@@ -19,7 +19,7 @@ Likeness: 神似 ONLY via anchors — do NOT chase photo 1:1.
 SPIRIT ANCHORS (OUR face/hair — NOT Punk's sunglasses face):
 - Mature Chinese male ~36-38 成熟一丝丝 NOT older. Face: 憨厚 slightly LONGER soft-rectangle / short-rectangle — NOT round chubby face, NOT soft circle cheeks. Compact head-top, cheekbones a BIT HIGHER, eyes a BIT SMALLER, LOWER LIP clearly THICKER, thick brows. Stubble: cheek-side short only, mouth clean. Thin light-gray glasses. Warm tan.
 - Hair (OURS): SHORT STRAIGHT HARD black 3-5cm (硬直). Bang/fringe CHARACTERISTIC: NOT left-right symmetric — RIGHT side slightly LONGER than left (右边略长). FORBIDDEN curly/wavy/fluffy, FORBIDDEN perfectly symmetric bangs, FORBIDDEN 1cm scalp 毛寸.
-BODY (hard): TALL+SOLID 183/90 微健壮 + slight soft belly; legs LONG 4:6 sturdy-thick — FORBIDDEN short stubby legs / average 175 squat toy. Head ~1:7–1:7.5.
+BODY (hard): TALL+SOLID **183cm** /90 微健壮 + slight soft belly; legs LONG 4:6 sturdy-thick — MUST look clearly taller than average **175cm** male; FORBIDDEN short stubby legs / average 175 squat toy / equal 5:5 torso-leg. Head ~1:7–1:7.5.
 Hero outfit: navy crew tee + khaki shorts + off-white chunky sneakers + black sports watch. Solo. NO Little Stone.
 Attach: Punk style sheet for STYLE only + face-lock/flat-ip-sheet for spirit anchors.
 ```
@@ -31,7 +31,7 @@ Lao Yang Visual Theater (Adrian vinyl-toy 3D anime imprint + 神似 — solo def
 TWO inputs: (1) approved stylized character sheet; (2) «{CONTENT_OR_TOPIC}».
 STYLE: same 3D vinyl-toy / matte collectible anime rendering as Punk sheet — NOT semi-real, NOT photo-real.
 Keep spirit face/hair/glasses + navy/khaki outfit; only pose changes.
-BODY: tall long sturdy legs 4:6 upright. SAFE pointing: elbow ~90° clear chain.
+BODY: **183cm** tall long sturdy legs 4:6 upright — visibly taller than ~175 average; SAFE pointing: elbow ~90° clear chain.
 Character INSIDE idea. Solo unless Combo fragment is attached. NO Little Stone in solo mode.
 ```
 

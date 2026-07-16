@@ -180,7 +180,7 @@ Prompt：
 
 ### 生成协议（多场景强制）
 
-1. **预览门禁**：先出 1 张预览；P1/P3/P6（+ 全身比例）通过后才批跑。
+1. **预览门禁**：先出 1 张预览；P1/P3/P6（全身/大半身再加 **P12**）通过后才批跑。
 2. **同批共用同一套参考图**：实物跟实体全景；手绘系跟「手绘全景 + 实体全景」；多场景加 face-lock；全身加 handdrawn-body。
 3. **每张 prompt 复用**同一段 Feature Stability Lock + Outfit/Accessory Layer；表情只写预设 ID + 对应英文锁。
 4. Prompt 显式写入：
@@ -229,18 +229,27 @@ Prompt 必写：
 
 ## 手绘全身比例锁（CRITICAL · 183cm · 上短下长 4:6）
 
-手绘 / 知识卡 / PPT 里老杨占全身或大半身时，身材比例必须满足：
+手绘 / 知识卡 / PPT / 小剧场里老杨占全身或大半身时，身材比例必须满足：
 
-| 维度 | 锁定值 | 禁止 |
+| 维度 | 锁定值 | 禁止（高频漂移） |
 | --- | --- | --- |
-| 净身高 | **183cm** 视觉档 | 175–178 偏矮、190+ 巨人感 |
+| 净身高 | **183cm** 视觉档 — **一眼高于普通成年男** | **~175cm 平均身高**、178 偏矮、190+ 巨人感 |
 | 上下身比 | **上身:下身 = 4:6**（头+肩+躯干 : 腿） | 5:5 均分、6:4 上身偏长 |
-| 腿 | 约占立姿身高 **60%**；站姿舒展 | 短腿、膝下被截、下半身压缩 |
-| 头身 | 头与肩宽协调；头不过大 | 漫画大头、头占身高 >1/7 |
+| 腿 | 约占立姿身高 **60%**；站姿舒展、膝下够长 | 短腿、膝下被截、下半身压缩、敦实玩具腿 |
+| 头身 | 约 **1:7–1:7.5**；头与肩宽协调 | 漫画大头、头占身高 >1/7、潮玩矮胖头身 |
 | 肩 | 稳实略宽，非瘦削 Office 体 | 窄肩、少年细肢 |
 
-生成时写入：
-`Body Lock HARD: 183cm net height Chinese male — upper body to legs ratio 4:6 (short torso, long legs; legs ~60% of standing height); visibly tall elegant silhouette; align author-persona-handdrawn-body.png; NOT 5:5 equal split, NOT short legs, NOT stocky-short, NOT oversized head.`
+**肉眼判定句（生成后必问）**：
+
+```text
+把他放在门框 / 桌沿 / 流程图模块旁：像 183 高挑，还是普通 175？
+若像 175 → P12 FAIL，加长腿、压矮头、加传 handdrawn-body 返修。
+```
+
+生成时**必须**写入（全身/大半身）：
+`Height Lock HARD: 183cm tall Chinese male — visibly TALLER than average ~175cm office male; upper:lower = 4:6 (short torso, LONG legs ~60% height); head ~1:7–1:7.5; align author-persona-handdrawn-body.png. FORBIDDEN: 175cm average drift, short stubby legs, 5:5 split, stocky-short, oversized head.`
+
+全身手绘 / 知识卡 / PPT：**必传** `author-persona-handdrawn-body.png`（比例金样），不能只口头写 183。
 
 ## 渲染语言（随模式，识别锚点不变）
 
