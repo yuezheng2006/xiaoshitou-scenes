@@ -163,6 +163,13 @@ PPT 演讲：老杨主讲页 + 小石头执行点缀（双 IP 推荐）
 - `references/common-qa-repair.md`：装饰性测试、用户反馈映射表、标准化返修输出格式；收到主观返修意见或做角色装饰性检查时读取。
 - `references/common-modes-and-sizes.md`：尺寸池与图内信息量分级语言；判断出图方案或触发知识卡/PPT 演讲模式时读取。
 
+交接协议：
+
+- `references/contracts/task-card.md`：记录用户需求、事实、Profile 和 Persona 入口。
+- `references/contracts/plan-card.md`：记录模式、结构、动作、资产和生成前方案。
+- `references/contracts/render-card.md`：记录 Prompt、参考图、硬性限制和返修预案。
+- `references/contracts/qa-card.md`：记录 Confirm Gate、模式 QA 和返修定位。
+
 实物图规则：
 
 - `references/physical-style-dna.md`：实物图视觉 DNA、比例、留白、颜色、真实物件规则。
@@ -262,6 +269,23 @@ Persona 触发词由当前 profile 定义。默认 profile 里，`老杨`、`yue
 ### 2. 先出 shot list
 
 如果用户说“分析 / 思考 / 怎么配图”，先给 shot list；每张必须写清模式/母版或结构类型、主题、共鸣点、核心动作、主物件或结构、主角色动作、短中文标签和成图理由。用户明确要“看效果 / 输出 / 生成”时可以直接生图，但仍必须先完成对应模式锁定。
+
+### 2A-0. 交接卡协议
+
+所有多图、长文、Persona、品牌或事实推断较多的任务，按以下顺序建立交接卡：
+
+```text
+Task Card → Plan Card → Render Card → 生成 → QA Card
+```
+
+单张且内容明确的简单任务可以内部快速填写，不必把完整卡片展示给用户；但生成前仍必须完成对应模式锁定，生成后仍必须通过 Confirm Gate 和模式 QA。
+
+实物图试点优先使用：
+
+- `references/contracts/task-card.md`
+- `references/contracts/plan-card.md`
+- `references/contracts/render-card.md`
+- `references/contracts/qa-card.md`
 
 ### 2A. 内容确认卡（长文/多图任务强制）
 

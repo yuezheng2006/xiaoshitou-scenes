@@ -2,6 +2,45 @@
   "skill_name": "scene-skill-core",
   "evals": [
     {
+      "id": "contract-physical-single-image",
+      "prompt": "小石头实物图：解释项目进度追踪，小石头把进度卡贴到看板上，16:9。",
+      "expected_output": "应完成实物图模式锁定；内部建立 Task Card、Plan Card、Render Card 和 QA Card。Plan Card 至少包含核心动作、主物件、母版或结构、短标签和角色资产；不得因为是单张简单图而跳过生成后 QA。",
+      "files": [
+        "references/contracts/task-card.md",
+        "references/contracts/plan-card.md",
+        "references/contracts/render-card.md",
+        "references/contracts/qa-card.md"
+      ]
+    },
+    {
+      "id": "contract-physical-long-form",
+      "prompt": "小石头实物图：把这篇讲需求评审总被拉回改的长文配 4 张 16:9 图，先给方案。",
+      "expected_output": "应先输出 Task Card 摘要和 Plan Card / shot list，区分用户事实与 Agent 推断；每张实物图都要有母版类型、至少 3 个变异点、核心物理动作、主物件、短标签和参考资产，不能直接批量生成。",
+      "files": [
+        "references/contracts/task-card.md",
+        "references/contracts/plan-card.md"
+      ]
+    },
+    {
+      "id": "contract-render-asset-routing",
+      "prompt": "小石头实物图：生成一张 16:9 图，小石头在解开打结的线，直接出图。",
+      "expected_output": "应在生成前形成 Render Card，包含模式与比例、主角色动作、主物件、参考资产及传图顺序、硬性限制、负向约束和返修预案；生成后形成 QA Card，不得只输出一段 Prompt 就交付。",
+      "files": [
+        "references/contracts/render-card.md",
+        "references/contracts/qa-card.md"
+      ]
+    },
+    {
+      "id": "contract-qa-localization",
+      "prompt": "（QA 场景）候选实物图中小石头多了一只手臂，但构图和标签都很好。请判断能否交付，并说明怎么修。",
+      "expected_output": "应生成 QA Card，状态为 REJECT，失败层定位为 Profile / Character Lock 或 QA，而不是内容层；明确指出多一只手臂属于 Critical 失败，必须返修当前图后再做模式 QA。",
+      "files": [
+        "references/contracts/qa-card.md",
+        "references/common-character-lock.md",
+        "references/physical-qa-checklist.md"
+      ]
+    },
+    {
       "id": "mode-routing-implicit",
       "prompt": "帮我把这篇讲『需求评审总是被拉回改』的文章配 4 张图，没说要实物图还是手绘图。",
       "expected_output": "应判断内容是处境/情绪类，默认走实物图模式而不是手绘图或知识卡模式；不应反复追问用户要哪种模式，先给 1-2 句说明后直接按实物图模式给 shot list。",

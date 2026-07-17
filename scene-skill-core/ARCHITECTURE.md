@@ -20,6 +20,7 @@
 | 知识卡形态 | `references/knowledge-card-mode.md` | 只引用形态和 QA |
 | PPT 页面类型 | `references/ppt-presentation-mode.md` | 只引用页面类型和流程 |
 | 返修格式 | `references/common-qa-repair.md` | 各模式 QA 引用 |
+| 任务交接协议 | `references/contracts/` | Task Card、Plan Card、Render Card、QA Card；各模式按需填写 |
 
 ## Agent 最小读取路径
 
@@ -52,6 +53,14 @@ QUICK-START.md → character.md
 → 生成后对应模式 QA
 ```
 
+### 实物图试点 + 交接卡
+
+```text
+QUICK-START.md → task-card.md
+→ plan-card.md → physical-master-anchors.md → physical-style-dna.md
+→ render-card.md → 生成后 qa-card.md + physical-qa-checklist.md
+```
+
 ## 修改影响范围
 
 | 修改内容 | 唯一修改位置 | 只需检查 |
@@ -71,5 +80,6 @@ QUICK-START.md → character.md
 - 老杨资产是否仍以实体全景/手绘全景为主锚？
 - Quick Start 是否只是快速入口，没有创造新规则？
 - 各模式 QA 是否只保留模式特有检查？
+- 交接卡是否只传递上一阶段已确认的信息，没有重新发明事实？
 - 是否出现旧资产名、旧颜色或旧 Skill 名称？
 - 新增模式是否同步更新模式矩阵、Quick Start 和 SKILL 跳转？

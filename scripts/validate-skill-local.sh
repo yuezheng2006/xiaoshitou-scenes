@@ -29,9 +29,30 @@ for f in \
   "$CORE/references/common-persona-routing.md" \
   "$CORE/references/knowledge-card-mode.md" \
   "$CORE/references/handdrawn-composition-patterns.md" \
+  "$CORE/references/contracts/task-card.md" \
+  "$CORE/references/contracts/plan-card.md" \
+  "$CORE/references/contracts/render-card.md" \
+  "$CORE/references/contracts/qa-card.md" \
   "$CORE/evals/evals.json"
 do
   [[ -f "$f" ]] && ok "$(basename "$f")" || err "缺失: $f"
+done
+
+echo
+echo "[1B] 交接卡字段"
+declare -A CONTRACT_FIELDS
+CONTRACT_FIELDS[task-card.md]="用户原话"
+CONTRACT_FIELDS[plan-card.md]="模式："
+CONTRACT_FIELDS[render-card.md]="最终 Prompt："
+CONTRACT_FIELDS[qa-card.md]="状态：CONFIRMED / NEEDS_REVIEW / REJECT"
+for name in task-card.md plan-card.md render-card.md qa-card.md
+do
+  file="$CORE/references/contracts/$name"
+  if grep -q "${CONTRACT_FIELDS[$name]}" "$file"; then
+    ok "$name → ${CONTRACT_FIELDS[$name]}"
+  else
+    err "$name 缺失字段: ${CONTRACT_FIELDS[$name]}"
+  fi
 done
 
 echo
