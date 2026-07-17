@@ -12,6 +12,8 @@
 | --- | --- |
 | 默认 / 拿不准 | `physical/calibrate-object-scene.png` |
 | 多人协作 / Agent 分工 | `physical/calibrate-multi-agent.png` |
+| **手部拟人 / 多人递接拉绳** | `calibrate-hands-multi.png`（B 档：细黑线小掌+2–3 短指） |
+| **K 歌 / 握麦点歌合唱**（内容相关时） | `calibrate-karaoke-actions.png` |
 | 白板 / 流程 / 拉线 | `handdrawn/calibrate-whiteboard.png` |
 | 知识卡模块 | `knowledge-card/calibrate-knowledge-card.png` |
 | **雷石工牌 / AI native 员工** | `logo-safety.md` + 用户会话工牌参考（本地） |
@@ -22,9 +24,11 @@
 | 需求 | 优先加读 |
 | --- | --- |
 | 复杂姿态 / 小比例 / 多人形体 | `../primary-character-actions.png` |
+| 手漂回纯 C 钩/白手套，或多人假互动 | `calibrate-hands-multi.png` |
+| K 歌动作漂成舞台麦/包厢巡检/无握姿 | `calibrate-karaoke-actions.png` |
 | 画风里身份仍不像（颜色/平面感对但形漂） | 本目录 calibrate **1 张** |
 | 两者都需要 | actions + calibrate 各 1 张（设定图仍必传） |
 
 完整规则见 `character.md`「校准图决策」与「迭代 palette」。
 
-`v1.1` · 2026-07-14
+`v1.6` · 2026-07-16 · K 歌校准务实版：禁悬浮假肢；多道具勿三接触；允许自然发挥

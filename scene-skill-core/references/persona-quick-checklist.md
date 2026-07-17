@@ -148,7 +148,9 @@ Negative: toothy smile, exaggerated laugh, back view, old lady silhouette
 **小石头 L1-L4 + E1-E2 快检**（见 `common-character-lock.md`）：
 - L1 计数：每体 2 臂 + 2 腿
 - L2 锚点：臂从体侧上 1/3、腿从底缘连续
+- L4 手末端：握姿可读即可（偏好细黑线小掌+短指）；硬禁悬浮假肢，不因未叉腰判 FAIL
 - E1 眼睛：两只白圆眼、批内一致
+- 2+ 体时加 L7：独立动词 + 共享接触点；多道具勿三接触；禁同姿克隆 / 禁改胖瘦体型
 
 ### 交付确认
 ```text

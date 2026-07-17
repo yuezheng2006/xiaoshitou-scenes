@@ -33,7 +33,7 @@ Negative: no 3D mascot, no emoji 3D, no blind-box figure, no inflatable toy, no 
 ```text
 Limbs Lock for the profile main character ONLY:
 Exactly 2 arms + 2 legs per individual. Each arm = one continuous thin black line from upper-third lateral body side. Each leg = one continuous thin black line from bottom edge (left/right or center). At most one simple hand terminal per arm (small circle / C-grip / line hook). No mouth, no teeth, no lip line on the capsule — emotion via pose and 0-1 sweat only. Rope/arrow/tether must NOT merge into an extra hand.
-Negative limbs: extra arm, floating broken limb, forked fingers, thick 3D tube limbs, mouth on capsule.
+Negative limbs: extra arm, floating broken limb, thick 3D tube limbs, realistic 5-finger hands, bare C-hook/loop replacing hands, mouth on capsule. Hands = tiny palm + 2-3 finger stubs.
 ```
 
 共同约束：

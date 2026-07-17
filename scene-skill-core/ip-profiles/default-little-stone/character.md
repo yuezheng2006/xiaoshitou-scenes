@@ -32,7 +32,7 @@
 | 眼与肢 | 白圆眼画法、2 臂 2 腿、锚点与线宽 | 臂/腿**姿态**（弯、伸、跑、蹲、扶） |
 | 气质 | 认真、靠谱、略笨、有点倔 | **费劲感** 0–1 汗滴；略卡壳/顶住的姿势 |
 | 叙事 | 承担**与锚定句相关**的核心动作 | 道具类型、标签文案、占画比例、朝向 |
-| 多人 | 同胶囊比例；差异来自分工 | 2–4 个体：站位、职责、所持物件 |
+| 多人 | 同胶囊比例；差异来自分工 + 手脚姿态 | 2–4 个体：站位、职责、所持物件、接触点 |
 
 **自适应原则（不要死板）**
 
@@ -181,7 +181,54 @@ Little Stone color lock:
 | flat 2D 简笔 | 标签 |
 | 细线肢体 | |
 
-多人 / 多 Agent / 团队协作场景允许 2-4 个小石头，但它们必须像同一 IP 家族里的不同个体：共享 **#f39800 平涂、相同胶囊宽高比、相同白圆眼画法、相同细线肢体语言**；只允许通过 **整体等比缩放（±10–15% 高度差）、角度、站位、动作职责** 拉开差异，**禁止**把 A 画成细长条、B 画成矮胖球、C 画成横扁椭圆；禁止复制粘贴平移。
+多人 / 多 Agent / 团队协作场景允许 2-4 个小石头，但它们必须像同一 IP 家族里的不同个体：共享 **#f39800 平涂、相同胶囊宽高比、相同白圆眼画法、相同细线肢体语言**；只允许通过 **整体等比缩放（±10–15% 高度差）、角度、站位、手脚姿态、动作职责** 拉开差异，**禁止**把 A 画成细长条、B 画成矮胖球、C 画成横扁椭圆；禁止复制粘贴平移。
+
+> **金样对齐**：`primary-character-actions.png` 多人协作格文案为「体量与姿态差异要明显」；手语为 **B 档简笔拟人**（细黑线小掌+2–3 短指）。手部/多人专项校准可加读 `assets/character/examples/calibrate-hands-multi.png`。
+
+### 多人协作精细锁（CRITICAL · 2+ 个小石头同图）
+
+| 维度 | 要求 | 禁止 |
+| --- | --- | --- |
+| 形体 | 同胶囊宽高比；高度差仅 ±10–15% | 瘦高条 / 矮胖球 / 横扁混用 |
+| 分工 | 每人一个清晰动词（递/接/拉/扶/贴/拦…） | 两人同姿站桩、无互动 |
+| 接触点 | 递接物停在**两人握持之间**；绳/线与臂线分离可数 | 物悬浮无握、绳粘成第三臂 |
+| 朝向 | 互动双方朝向共享物件或对方 | 背对背各干各的 |
+| 差异维度 | 至少拉开 3 项：缩放 / 倾斜 / 站位 / 手脚姿态 / 职责 / 道具 | 复制粘贴平移 |
+
+**互动母版（生成时选一并写清）**
+
+1. **递接（handoff）**：A 前倾递出、B 伸臂承接；卡/物在两握点中段；双方腿分前后略撑稳。
+2. **共拉（pull）**：身体明显后仰；双臂前伸握绳端；双脚前后或外八撑住；绳为独立细线，**手握住绳**（简笔掌+指），不得把绳画成第三臂。
+3. **一扶一做**：一侧短肢扶物/扶边，另一侧做主动作；扶点线连续、不断线悬浮。
+
+### 手脚末端精细锁（与 Limbs Lock 一并写入）
+
+手要**简笔拟人**：能看出「手在做事」，不是纯几何 C/环符号。臂仍是细黑线；末端升级为小掌 + 短指。
+
+| 动作 | 手末端（每臂 1 只简笔手） | 脚 / 站姿 |
+| --- | --- | --- |
+| 空闲 / 叉腰 | 小掌 + **2–3 短指**自然下垂或叉腰 | 双腿短 L 弯；重心可读 |
+| 挥手 / 指 / 拨 | 小掌 + 短指张开或食指方向可读 | 站稳即可 |
+| 握卡 / 递物 | 小掌托/捏卡缘，**拇指可相对**；指包住卡边 | 前后步或微屈一侧 |
+| 拉绳 / 握环 | 双手握住绳端（掌+指绕绳），绳继续延伸 | **外八或前后撑** |
+
+**手部定稿（拟人简笔）**
+
+- **要**：细黑线臂 → 末端**同线宽黑线**小掌 + **2–3 根短指**（可含拇指示意）；握物时指/掌与物件接触可读。
+- **对齐主设定**：挥手时可呈 2–3 个短指瓣（见 `primary-character-reference.png`），全批同一手语。
+- **不要**：白填充手套/肉掌、解剖五指写实手、指甲关节、3D 圆管肢、纯 C 钩/纯小环代替手（旧几何握法退役）、绳粘成第三臂。
+
+脚仍保持短 L / 下撇，不画脚趾鞋形（拟人重点在手）。
+
+Prompt 可复制（多人时追加）：
+
+```text
+Multi-Stone Coordination Lock:
+Same capsule aspect for every Stone; height scale ±10-15% ONLY — NOT skinny vs chubby body shapes.
+Each Stone has a distinct verb (hand-off / receive / pull / brace). Contact: shared prop between two grips; rope SEPARATE from arm lines.
+Hands (anthropomorphic mini): thin black arms end in a tiny palm + 2-3 short finger stubs (optional thumb); gripping cards/ropes with readable finger wrap — NOT bare C-hook/loop symbols, NOT realistic 5-finger anatomy, NOT thick gloves.
+Feet: short L-bend; pull/brace = wider planted stance. NO clone poses.
+```
 
 ## 2D Flat Lock + Limbs Lock
 
@@ -197,11 +244,11 @@ Little Stone color lock:
 - The orange body must be one uniform flat color block; even a subtle orange gradient, center highlight, rim shadow, or volume lighting is a failure
 
 Limbs Lock:
-- Exactly 2 arms + 2 legs per individual
-- Arms: one continuous thin black line from each upper-third lateral body side
-- Legs: one continuous thin black line from each bottom edge side or bottom center
-- Hand terminal: at most one simple grip (small circle / C-shape / line hook) per arm
-- Negative: extra arm, floating broken limb, forked fingers, rope-arrow merged into hand
+- Default: 2 arms + 2 legs per individual, continuous from correct anchors
+- Prefer readable grips (black-line mini palm + short fingers); allow natural two-handed work poses
+- Hard negative only: floating disconnected phantom hand/arm with no body attachment; same-side sprouted extra arm
+- Soft: do NOT force hip-akimbo + mic + screen three contact points (causes third-hand artifacts). Let lyric boards float when needed.
+- Soft negative: white mitten gloves, mouth/smile line — fix if easy; don't thrash whole sheet for finger perfection
 ```
 
 实物图里的真实物件可以有摄影棚光影，但小石头本体不能跟着变 3D。作者 persona 可以按模式使用不同渲染语言，但不能带偏小石头。
@@ -256,7 +303,36 @@ Little Stone proportion lock: vertical capsule aspect ~1:1.3–1:1.6; two flat w
 
 **概念动作（手绘 / 知识卡）**：画箭头、递模块、指向结构、拉线、贴标签、把卡塞进槽、标记风险
 
-**禁止默认**：放大镜、灯泡、纯站桩讲解、与锚定句无关的装饰姿态
+### K 歌 / 音乐娱乐动作（条件触发 · 非默认）
+
+仅当锚定句/用户明确涉及 **K 歌、点歌、麦克风、曲库、车载 K 歌、家庭开唱、合唱抢麦** 等时选用；**禁止**每张正文图默认塞麦或包厢。
+
+| 动词 | 姿态要点 | 典型物件（现代轻量） |
+| --- | --- | --- |
+| **握麦** | 单手持短柄无线麦，麦头朝上略偏；站稳或微倾 | 短柄圆润无线麦 |
+| **递麦 / 接麦** | 两人同胶囊比例；麦在两握点中段交接 | 双麦或单麦传递 |
+| **对麦 / 合唱** | 两人各持一麦，朝向共享节拍/歌单卡 | 双短柄麦 + 歌单卡 |
+| **点歌** | 指/按歌单卡或遥控器；另一手可扶卡 | 歌单卡、点歌遥控 |
+| **切歌** | 抽走旧歌单卡、推入「下一首」卡 | 歌单卡叠 |
+| **塞曲库** | 把曲库卡塞进盒/槽 | 曲库盒、新歌卡 |
+| **充麦** | 把麦立放/磁吸到充电座 | 磁吸充电座 + 短柄麦 |
+| **推音箱** | 双手推家用/车载小音箱就位 | 圆润 K 歌音箱 |
+| **打节拍** | 短指轻拍或打响指姿势（仍无嘴） | 可选铃鼓 |
+| **车载递麦** | 从杯架/扶手区递出麦（局部车内小现场） | 杯架 + 短柄麦 |
+
+**麦的画法（硬）**：现代短柄无线/便携 K 歌麦——圆润、哑光、细网罩、隐藏键；**禁止**复古舞台麦、头套麦、把麦画成小石头本体。手语仍走 B 档（细黑线小掌+短指握麦杆）。
+
+**四肢门禁（K 歌 / 复杂道具 · 务实版）**：
+- **硬禁（CRITICAL）**：悬浮断手、无臂连接的第三掌、同侧凭空多长一只臂——这是假肢伪影，必须返修。
+- **放宽（允许模型发挥）**：不再强制「闲置手必须叉腰」；双手都在做事时（握麦、扶卡、打节拍）即可，不要为了凑姿态再加第三接触点。
+- **多道具场景**（对麦+歌词屏等）：歌词牌/点歌屏优先**悬浮或单侧扶**，不要让每人都「叉腰 + 握麦 + 扶屏」三接触——那是三手高发配方。
+- 手指仍偏好细黑线小掌+短指；若模型画出可读握姿且无白手套假肢，可接受，**不要为指形反复重绘整表**。
+
+**仍禁止**：KTV 包厢实景、舞台灯效、房态巡检服务员叙事、真实品牌 Logo、点歌 App UI 截图。物件规则详见 `physical-object-patterns.md`。
+
+专项金样：`assets/character/examples/calibrate-karaoke-actions.png`（内容相关时加读；不替代主设定图）。
+
+**禁止默认**：放大镜、灯泡、纯站桩讲解、与锚定句无关的装饰姿态、无关内容硬塞麦克风/包厢
 
 ## 序列图导游（结构轴 = 路径 / 步骤序列时）
 
@@ -276,6 +352,8 @@ Little Stone proportion lock: vertical capsule aspect ~1:1.3–1:1.6; two flat w
 | --- | --- |
 | 默认 / 拿不准 | `assets/character/examples/physical/calibrate-object-scene.png` |
 | 多人协作 / Agent 分工 | `physical/calibrate-multi-agent.png` |
+| 手部拟人 / 递接拉绳手脚 | `examples/calibrate-hands-multi.png` |
+| K 歌 / 握麦点歌合唱 | `examples/calibrate-karaoke-actions.png`（仅内容相关） |
 | 白板 / 流程 / 拉线 | `handdrawn/calibrate-whiteboard.png` |
 | **雷石工牌 / AI native 员工** | `logo-safety.md` + 用户会话工牌参考（本地） |
 | 知识卡模块 | `knowledge-card/calibrate-knowledge-card.png` |
@@ -303,10 +381,10 @@ Scene accent colors (cobalt, tomato-red, lemon, soft pink) on objects and annota
 LOCK same capsule aspect ratio ~1:1.3–1:1.6 for every Little Stone in this image; scale ±10-15% height ONLY; NO skinny stick, NO fat ball, NO horizontal blob variants
 ```
 
-**有嘴 / 多手 / 锚点错**
+**有嘴 / 多手 / 锚点错 / 手脚末端糊**
 
 ```text
-NO mouth/teeth/lip line on capsule; exactly 2 arms from upper-third lateral sides + 2 legs from bottom edge; NO extra arm, NO forked fingers, NO rope-arrow merged into hand
+NO mouth/teeth/lip line on capsule; exactly 2 arms from upper-third lateral sides + 2 legs from bottom edge; NO extra arm, NO toes/shoes, NO rope-arrow merged into hand; hands = tiny palm + 2-3 finger stubs wrapping props (NOT bare C-hooks, NOT realistic anatomy); multi-Stone = distinct verbs + mid-point handoff contact
 ```
 
 **小比例远景丢识别点**
@@ -326,8 +404,10 @@ Even at ~10-20% frame width: keep #f39800 capsule silhouette, two white dot eyes
 - 道具显得老旧、复古、笨重、脏乱或舞台化；除非用户明确要求，不用年代感强、商业舞台感强或厚重脏乱的道具。
 - 删掉小石头后隐喻仍成立，说明它没有承担核心动作。
 - **多人形体比例漂移**：同图里胶囊宽高比不一致（瘦高 / 矮胖 / 横扁混用）——典型不合格，必须重生成。
+- **多人协作假互动**：两人同姿站桩、递接物无握点、绳与臂粘连、无前后撑姿——不合格。
 - **眼睛不合格**：眼距/大小批内不一致、anime 大眼、3D 反光眼、缺白圆或瞳孔画法不一。
 - **手臂/腿不合格**：断线悬浮、同侧双手、分叉指、绳线粘连成第三只手、从非锚点位置长出（头顶/眼下方/体中部横腿）。
+- **手脚末端不合格**：写实五指/厚手套；或仍用纯 C 钩/纯小环代替手；握物看不出掌指接触；鞋子轮廓；多人手语批内漂移。
 - **有嘴**：胶囊上出现嘴线、牙、唇形——直接不合格；情绪应靠动作与汗滴。
 - **四肢批内不一致**：同图/同批线宽、锚点高度、末端画法漂移。
 - **员工场景**：雷石员工画成 KTV 巡检/房态/递麦；或非员工场景误戴任何工牌；工牌比例过大。
