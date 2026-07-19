@@ -44,6 +44,14 @@
 
 ## 参考图协议
 
+每次组装前先读取当前 profile 的 Profile Contract，确认 `ref_mode` 和当前模式是否有 calibration asset：
+
+- `none`：不传固定角色设定图。
+- `single`：只传身份锚点。
+- `dual`：传身份锚点 + 当前模式校准图。
+- profile 默认是 `single` 且当前模式存在可用校准图时，可在本次 Render Card 中升级为 `dual`。
+- 当前模式没有校准图：运行降级为 `single`，并记录可懒加载校准图；不得声称已使用双参考。
+
 ### A. 老杨出镜 → 双风格对齐（强制）
 
 **实物 / 长卷（真人实体）**

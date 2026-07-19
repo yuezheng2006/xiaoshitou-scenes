@@ -201,6 +201,44 @@
       "prompt": "（QA 场景）雷石 AI native 员工戴工牌，配图里小石头在 KTV 包厢递麦克风、查房态门牌。能交付吗？",
       "expected_output": "应判定不合格：KTV 巡检/房态/包厢递麦不是本 profile 场景；且此类画面不应带任何工牌。雷石员工仅限 AI native 系统语境并可戴雷石工牌。应改为 Agent/工单/权限闸隐喻或拒绝生成场所巡检图。",
       "files": []
+    },
+    {
+      "id": "profile-enrollment-routing",
+      "prompt": "录入一个新的 IP：这是一个橙色胶囊角色，先根据我的描述建立角色档案，暂时不要生成配图。",
+      "expected_output": "应进入 profile_enrollment，不进入普通实物图/手绘图模式；建立 Profile Enrollment Card，提取身份锚点与缺口，并在用户确认前不调用图片生成工具。",
+      "files": [
+        "references/contracts/profile-contract.md",
+        "references/contracts/task-card.md",
+        "SKILL.md"
+      ]
+    },
+    {
+      "id": "profile-reference-single-fallback",
+      "prompt": "使用现有小石头 IP 做一张知识卡，但当前 profile 没有知识卡校准图。请说明参考图协议。",
+      "expected_output": "应读取 Profile Contract，声明当前运行使用 single：传身份锚点；不得声称 dual；可以记录知识卡 calibration asset 后续懒加载，但不阻塞当前任务。",
+      "files": [
+        "references/contracts/profile-contract.md",
+        "references/common-prompt-slots.md",
+        "ip-profiles/default-little-stone/profile.md"
+      ]
+    },
+    {
+      "id": "profile-contract-qa-localization",
+      "prompt": "候选图里角色颜色和形体已经漂移，但构图、标签和内容都正确。请判断问题属于哪一层。",
+      "expected_output": "应在 QA Card 中将 Profile Contract 或 Profile/Character Lock 标记为 FAIL，失败层定位到 Profile/资产/QA，不应通过修改场景内容掩盖身份漂移。",
+      "files": [
+        "references/contracts/profile-contract.md",
+        "references/contracts/qa-card.md"
+      ]
+    },
+    {
+      "id": "profile-enrollment-half-body-gate",
+      "prompt": "我上传了一张新角色半身图，请直接把它录入为 IP 并开始生成三张配图。",
+      "expected_output": "应进入 profile_enrollment；半身图只能标记为待补全，不能直接作为全身 canonical asset；先建立身份方案并请求确认，确认前不得生成普通内容图。",
+      "files": [
+        "references/contracts/profile-contract.md",
+        "QUICK-START.md"
+      ]
     }
   ]
 }

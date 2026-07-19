@@ -21,6 +21,8 @@
 待确认信息：
 Profile：default-little-stone / none / 其他
 Persona：未触发 / 老杨双 IP / 小剧场 / 其他
+Profile Contract：未读取 / 已读取；ref_mode：none / single / dual
+Profile Enrollment：不适用 / REQUESTED / IDENTITY_PLAN / CONFIRMED / CANONICAL_ASSET / AVAILABLE
 用户明确要求生成：是 / 否
 ```
 

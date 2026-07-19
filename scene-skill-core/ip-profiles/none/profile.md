@@ -13,6 +13,28 @@
 
 `none`
 
+## Profile Contract
+
+契约模板：`../../references/contracts/profile-contract.md`。
+
+```yaml
+id: none
+display_name: 无固定 IP
+identity:
+  canonical_asset: none
+  anchors: []
+references:
+  ref_mode: none
+  calibration: {}
+behavior:
+  actions: [指向, 搬运, 连接, 分拣]
+qa:
+  failure_signals: [误加入默认 IP, 误加入品牌资产]
+privacy:
+  public_assets: [通用物件与结构]
+  private_assets: []
+```
+
 ## 何时启用
 
 用户说以下任一类意图时，切换到本 profile（不要再读 `default-little-stone` 的角色资产）：

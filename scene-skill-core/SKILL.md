@@ -89,6 +89,20 @@ PPT 演讲：老杨主讲页 + 小石头执行点缀（双 IP 推荐）
 
 ## 模式路由
 
+### 自定义 IP 录入路由（优先于普通模式路由）
+
+用户说“录入 IP / 新建 IP / 上传形象 / 用这套形象 / 创建角色档案”等意图时，立即进入 `profile_enrollment`，不要把请求当成普通配图或海报任务。
+
+- 首轮只建立 Profile Enrollment Card，提取身份锚点、气质、设定图状态和待确认项。
+- 用户确认身份方案前，不调用图片生成工具，不进入四种内容生成模式。
+- 半身 / 胸像先标记为“待补全”，确认后再形成全身 canonical asset。
+- 当前模式没有校准图时使用 `single`，不能声称 `dual`。
+- 只有状态进入 `AVAILABLE` 后，才把该 profile 接入普通 Task Card → Plan Card → Render Card → QA Card。
+
+完整契约见 `references/contracts/profile-contract.md`。
+
+本 Skill 内的相对路径均相对于 `scene-skill-core/` Skill 根目录解析；不要把 `QUICK-START.md`、`references/` 或 `ip-profiles/` 误解析为工作区根目录下的同名路径。
+
 显式风格词优先：
 
 - 用户说 **实物图 / 实物场景 / 物件小现场**：使用 **实物图模式**。
@@ -169,6 +183,7 @@ PPT 演讲：老杨主讲页 + 小石头执行点缀（双 IP 推荐）
 - `references/contracts/plan-card.md`：记录模式、结构、动作、资产和生成前方案。
 - `references/contracts/render-card.md`：记录 Prompt、参考图、硬性限制和返修预案。
 - `references/contracts/qa-card.md`：记录 Confirm Gate、模式 QA 和返修定位。
+- `references/contracts/profile-contract.md`：记录 IP 身份、参考图、录入状态和发布边界。
 
 实物图规则：
 
@@ -206,6 +221,17 @@ PPT 演讲模式规则（仅触发 PPT 演讲模式时读取）：
 - **凡涉及人像参考图，必须先完成 `common-persona-calibration.md` 校准卡；校准 FAIL 不得生成。**
 
 ## Core Flow
+
+### 0. Profile Enrollment（仅自定义 IP）
+
+自定义 IP 录入使用独立状态机：
+
+```text
+REQUESTED → IDENTITY_PLAN → CONFIRMED → CANONICAL_ASSET
+          → MODE_CALIBRATION（可懒加载）→ AVAILABLE
+```
+
+该状态机只负责让 Profile 变得可用，不负责生成普通内容图。录入阶段的确认和资产状态必须记录在 Profile Enrollment Card 中；完成后才回到普通交接卡协议。
 
 ### 1. 消化内容
 

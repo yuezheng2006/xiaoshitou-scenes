@@ -74,6 +74,8 @@ Profile 不应定义某个模式的完整构图流程。它只回答：画面里
 
 当前默认 Profile：`default-little-stone`。
 
+Profile 身份层通过 `references/contracts/profile-contract.md` 暴露统一接口。Contract 只声明身份资产、参考模式、动作库、序列规则和失败信号；具体形象细节仍由当前 profile 的 `character.md` / persona 文件定义。
+
 无角色 Profile：`none`。它用于验证系统可以在没有固定品牌角色的情况下复用公共模式流程。
 
 ### 3.3 模式表达层
@@ -175,6 +177,19 @@ ip-profiles/<ip-id>/
 ```
 
 新增 IP 不应要求修改四种模式的核心规则。
+
+新增 IP 还必须填写 Profile Contract 的最小字段，并明确 `ref_mode`。当前模式缺少 calibration asset 时允许降级为 `single`，但必须在 Render Card / QA Card 中留下记录。
+
+### 5.1B Profile Enrollment 插件
+
+自定义 IP 不是普通模式的变体，而是入口层的独立状态机：
+
+```text
+REQUESTED → IDENTITY_PLAN → CONFIRMED → CANONICAL_ASSET
+          → MODE_CALIBRATION → AVAILABLE
+```
+
+它复用 Task / Plan / Render / QA Card 的交接思想，但首轮不得调用图片生成；只有 Profile 进入 `AVAILABLE` 后才进入普通内容链路。
 
 ### 5.2 Persona 插件
 

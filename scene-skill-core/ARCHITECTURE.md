@@ -21,6 +21,7 @@
 | PPT 页面类型 | `references/ppt-presentation-mode.md` | 只引用页面类型和流程 |
 | 返修格式 | `references/common-qa-repair.md` | 各模式 QA 引用 |
 | 任务交接协议 | `references/contracts/` | Task Card、Plan Card、Render Card、QA Card；各模式按需填写 |
+| IP 配置契约 | `references/contracts/profile-contract.md` | Profile 身份、参考协议、录入状态、动作库和发布边界 |
 
 ## Agent 最小读取路径
 

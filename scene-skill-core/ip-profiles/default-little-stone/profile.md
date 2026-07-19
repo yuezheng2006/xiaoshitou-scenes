@@ -17,6 +17,37 @@
 
 `default-little-stone`
 
+## Profile Contract
+
+契约模板：`../../references/contracts/profile-contract.md`。
+
+```yaml
+id: default-little-stone
+display_name: 小石头 + 老杨
+identity:
+  canonical_asset: assets/character/primary-character-reference.png
+  anchors: [橙色胶囊, 白圆眼, 无嘴, 2 臂 2 腿, flat 2D]
+  temperament: 认真、靠谱、略笨、有点倔
+references:
+  ref_mode: single
+  ref_mode_policy: 默认单锚点；当前模式明确使用校准图时升级为 dual
+  calibration:
+    physical: assets/character/examples/
+    handdrawn: assets/character/examples/
+    knowledge-card: none
+    ppt: none
+behavior:
+  actions: [拉, 挡, 推, 扛, 解, 贴, 接, 修, 守, 递]
+  sequence_guide: 沿故事路径承担一个连续动作，不在每个节点复制或站桩装饰
+qa:
+  failure_signals: [颜色漂移, 胶囊比例漂移, 有嘴, 多手臂, 角色只站桩]
+privacy:
+  public_assets: [主角色设定图, 非品牌公开样张]
+  private_assets: [品牌 Logo, 用户授权的人像参考图]
+```
+
+默认小石头主角色使用 `single` 身份锚点；老杨是独立 persona，遵循 persona 自己的双参考协议，不把双 IP 的参考图规则混入小石头 Profile。
+
 ## 主角色
 
 - 角色文件：`character.md`（含 `{IP_DESC}` / `{IP_STYLE_ADAPT}`；默认**单锚点**）

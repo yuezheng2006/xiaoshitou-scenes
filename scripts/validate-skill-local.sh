@@ -33,6 +33,7 @@ for f in \
   "$CORE/references/contracts/plan-card.md" \
   "$CORE/references/contracts/render-card.md" \
   "$CORE/references/contracts/qa-card.md" \
+  "$CORE/references/contracts/profile-contract.md" \
   "$CORE/evals/evals.json"
 do
   [[ -f "$f" ]] && ok "$(basename "$f")" || err "缺失: $f"
@@ -45,7 +46,8 @@ CONTRACT_FIELDS[task-card.md]="用户原话"
 CONTRACT_FIELDS[plan-card.md]="模式："
 CONTRACT_FIELDS[render-card.md]="最终 Prompt："
 CONTRACT_FIELDS[qa-card.md]="状态：CONFIRMED / NEEDS_REVIEW / REJECT"
-for name in task-card.md plan-card.md render-card.md qa-card.md
+CONTRACT_FIELDS[profile-contract.md]="ref_mode"
+for name in task-card.md plan-card.md render-card.md qa-card.md profile-contract.md
 do
   file="$CORE/references/contracts/$name"
   if grep -q "${CONTRACT_FIELDS[$name]}" "$file"; then

@@ -2,6 +2,17 @@
 
 **目标**：5 秒内判断模式 + 必读文件 + 是否触发 persona，无需完整阅读 SKILL.md。
 
+## 0. 自定义 IP 录入优先级
+
+| 触发词 | 路由 | 第一轮动作 |
+|---|---|---|
+| 录入 IP、新建 IP、上传形象、创建角色档案、用这套形象 | `profile_enrollment` | 读取 `references/contracts/profile-contract.md`，建立 Profile Enrollment Card；未确认前不生图 |
+| 已有 IP + 普通配图 | 普通模式路由 | 读取当前 profile 的 Contract 声明，再进入模式决策 |
+
+录入阶段必须先确认身份方案。半身图标记为待补全，不直接作为全身 canonical asset；当前模式没有校准图时，使用 `single`，不得伪称 `dual`。
+
+本表中的 `references/`、`ip-profiles/` 等相对路径均从 `scene-skill-core/` Skill 根目录解析，不从当前工作区根目录解析。
+
 ## 第一步：识别模式（显式风格词优先）
 
 | 用户输入关键词 | 模式 | 跳转 |
