@@ -6,10 +6,10 @@
 
 | 触发词 | 路由 | 第一轮动作 |
 |---|---|---|
-| 录入 IP、新建 IP、上传形象、创建角色档案、用这套形象 | `profile_enrollment` | 读取 `references/contracts/profile-contract.md`，建立 Profile Enrollment Card；未确认前不生图 |
+| 录入 IP、新建 IP、上传形象、创建角色档案、用这套形象 | `profile_enrollment` | 优先接收用户真实图，读取 `references/contracts/profile-contract.md`，建立 Profile Enrollment Card；未确认前不生图 |
 | 已有 IP + 普通配图 | 普通模式路由 | 读取当前 profile 的 Contract 声明，再进入模式决策 |
 
-录入阶段必须先确认身份方案。半身图标记为待补全，不直接作为全身 canonical asset；当前模式没有校准图时，使用 `single`，不得伪称 `dual`。
+录入阶段必须先确认身份方案。用户真实图是推荐的身份锚点；半身图标记为待补全，不直接作为全身 canonical asset。没有真实图时，生成草图只能作为待授权临时参考；当前模式没有校准图时，使用 `single`，不得伪称 `dual`。
 
 本表中的 `references/`、`ip-profiles/` 等相对路径均从 `scene-skill-core/` Skill 根目录解析，不从当前工作区根目录解析。
 

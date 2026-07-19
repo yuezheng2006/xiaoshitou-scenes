@@ -5,6 +5,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 CORE="$ROOT/scene-skill-core"
 PROFILE="$CORE/ip-profiles/default-little-stone"
+CUSTOM_PROFILE="$CORE/ip-profiles/custom-ip-demo"
 FAIL=0
 
 ok() { echo "  ✓ $1"; }
@@ -37,6 +38,22 @@ for f in \
   "$CORE/evals/evals.json"
 do
   [[ -f "$f" ]] && ok "$(basename "$f")" || err "缺失: $f"
+done
+
+echo
+echo "[1C] 自定义 IP 典型示例"
+for f in \
+  "$CUSTOM_PROFILE/README.md" \
+  "$CUSTOM_PROFILE/profile.md" \
+  "$CUSTOM_PROFILE/character.md" \
+  "$CUSTOM_PROFILE/assets/reference/reference-character-primary-brown.png" \
+  "$CUSTOM_PROFILE/assets/reference/reference-character-variant-blue.png" \
+  "$CUSTOM_PROFILE/assets/examples/01-handdrawn-calibration-input-process-output.png" \
+  "$CUSTOM_PROFILE/assets/examples/02-physical-scene-untangle-thread.png" \
+  "$CUSTOM_PROFILE/assets/examples/03-knowledge-card-three-steps.png" \
+  "$CUSTOM_PROFILE/assets/examples/04-action-library-pull-brace-handoff.png"
+do
+  [[ -f "$f" ]] && ok "custom-ip-demo/$(basename "$f")" || err "缺失自定义 IP 示例: $f"
 done
 
 echo

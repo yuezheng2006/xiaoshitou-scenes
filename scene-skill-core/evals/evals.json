@@ -213,6 +213,16 @@
       ]
     },
     {
+      "id": "profile-user-reference-preferred",
+      "prompt": "我上传了一张真实角色图，请用它录入一个自定义 IP；先确认身份锚点和参考图状态，不要凭空重画角色。",
+      "expected_output": "应将用户上传的真实图登记为 reference_source: user_provided，进入 USER_REFERENCE / IDENTITY_PLAN；先提取身份锚点并请求确认，不调用生图，也不把系统自生成形象替代用户参考图。",
+      "files": [
+        "references/contracts/profile-contract.md",
+        "references/contracts/task-card.md",
+        "QUICK-START.md"
+      ]
+    },
+    {
       "id": "profile-reference-single-fallback",
       "prompt": "使用现有小石头 IP 做一张知识卡，但当前 profile 没有知识卡校准图。请说明参考图协议。",
       "expected_output": "应读取 Profile Contract，声明当前运行使用 single：传身份锚点；不得声称 dual；可以记录知识卡 calibration asset 后续懒加载，但不阻塞当前任务。",

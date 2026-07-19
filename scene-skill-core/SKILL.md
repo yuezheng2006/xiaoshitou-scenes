@@ -93,9 +93,11 @@ PPT 演讲：老杨主讲页 + 小石头执行点缀（双 IP 推荐）
 
 用户说“录入 IP / 新建 IP / 上传形象 / 用这套形象 / 创建角色档案”等意图时，立即进入 `profile_enrollment`，不要把请求当成普通配图或海报任务。
 
-- 首轮只建立 Profile Enrollment Card，提取身份锚点、气质、设定图状态和待确认项。
+- 推荐用户先提供一张真实图；首轮优先接收并登记该图作为身份锚点。
+- 首轮只建立 Profile Enrollment Card，提取身份锚点、气质、参考图来源和待确认项。
 - 用户确认身份方案前，不调用图片生成工具，不进入四种内容生成模式。
-- 半身 / 胸像先标记为“待补全”，确认后再形成全身 canonical asset。
+- 半身 / 胸像先标记为“用户真实图-待补全”，不能直接冒充全身 canonical asset。
+- 没有真实图时，文字方案或系统生成草图只能标记为临时草稿；除非用户明确授权，不得作为正式 IP 参考。
 - 当前模式没有校准图时使用 `single`，不能声称 `dual`。
 - 只有状态进入 `AVAILABLE` 后，才把该 profile 接入普通 Task Card → Plan Card → Render Card → QA Card。
 
@@ -227,7 +229,7 @@ PPT 演讲模式规则（仅触发 PPT 演讲模式时读取）：
 自定义 IP 录入使用独立状态机：
 
 ```text
-REQUESTED → IDENTITY_PLAN → CONFIRMED → CANONICAL_ASSET
+REQUESTED → USER_REFERENCE → IDENTITY_PLAN → CONFIRMED → CANONICAL_ASSET
           → MODE_CALIBRATION（可懒加载）→ AVAILABLE
 ```
 

@@ -15,6 +15,7 @@ Profile / Character Lock：PASS / FAIL / N/A
 Persona Calibration：PASS / FAIL / N/A
 Profile Contract：PASS / FAIL / N/A
 Reference Protocol：none / single / dual / DEGRADED_TO_SINGLE
+Reference Source：user_provided / generated_draft / none
 内容准确性：PASS / FAIL
 模式质量：PASS / FAIL
 文字与标签：PASS / FAIL / N/A

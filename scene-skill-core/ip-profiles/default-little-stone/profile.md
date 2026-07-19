@@ -26,6 +26,7 @@ id: default-little-stone
 display_name: 小石头 + 老杨
 identity:
   canonical_asset: assets/character/primary-character-reference.png
+  reference_source: user_provided
   anchors: [橙色胶囊, 白圆眼, 无嘴, 2 臂 2 腿, flat 2D]
   temperament: 认真、靠谱、略笨、有点倔
 references:

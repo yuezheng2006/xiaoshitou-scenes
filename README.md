@@ -100,6 +100,35 @@ PNG：`author-persona-spec.png`、`author-persona-actions.png`、`author-persona
 - EverOS 示例：`examples/everos.md`
 - 实物图母版：`scene-skill-core/assets/masters/`
 
+### 自定义 IP 典型示例
+
+`scene-skill-core/ip-profiles/custom-ip-demo/` 展示用户提供真实参考图后的完整链路：
+
+```text
+两张用户参考图
+  → Profile Enrollment / 身份锚点确认
+  → 手绘模式校准
+  → 实物场景
+  → 知识卡
+  → 动作库
+```
+
+示例入口：[custom-ip-demo/README.md](scene-skill-core/ip-profiles/custom-ip-demo/README.md)
+
+参考图：
+
+- [主身份参考图](scene-skill-core/ip-profiles/custom-ip-demo/assets/reference/reference-character-primary-brown.png)
+- [变体参考图](scene-skill-core/ip-profiles/custom-ip-demo/assets/reference/reference-character-variant-blue.png)
+
+生成示例：
+
+- [手绘模式校准](scene-skill-core/ip-profiles/custom-ip-demo/assets/examples/01-handdrawn-calibration-input-process-output.png)
+- [实物场景](scene-skill-core/ip-profiles/custom-ip-demo/assets/examples/02-physical-scene-untangle-thread.png)
+- [知识卡](scene-skill-core/ip-profiles/custom-ip-demo/assets/examples/03-knowledge-card-three-steps.png)
+- [动作库](scene-skill-core/ip-profiles/custom-ip-demo/assets/examples/04-action-library-pull-brace-handoff.png)
+
+该示例中的参考图包含第三方角色 / 品牌元素，仅作为用户提供的本地流程演示，不代表公开分发或商业授权。
+
 默认 profile 的公开角色资产在：
 
 - `scene-skill-core/ip-profiles/default-little-stone/assets/character/`
