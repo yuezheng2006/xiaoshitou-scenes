@@ -126,6 +126,7 @@ PNG：`author-persona-spec.png`、`author-persona-actions.png`、`author-persona
 - [实物场景](scene-skill-core/ip-profiles/custom-ip-demo/assets/examples/02-physical-scene-untangle-thread.png)
 - [知识卡](scene-skill-core/ip-profiles/custom-ip-demo/assets/examples/03-knowledge-card-three-steps.png)
 - [动作库](scene-skill-core/ip-profiles/custom-ip-demo/assets/examples/04-action-library-pull-brace-handoff.png)
+- [丰富手绘动作库](scene-skill-core/ip-profiles/custom-ip-demo/assets/examples/05-handdrawn-action-library-rich.png)
 
 该示例中的参考图包含第三方角色 / 品牌元素，仅作为用户提供的本地流程演示，不代表公开分发或商业授权。
 

@@ -37,7 +37,7 @@ references:
     knowledge-card: assets/examples/03-knowledge-card-three-steps.png
     action-library: assets/examples/04-action-library-pull-brace-handoff.png
 behavior:
-  actions: [拉, 挡, 递]
+  actions: [拉, 拖, 抱, 探, 爬, 递, 挡, 守, 庆]
   sequence_guide: 沿故事路径承担一个动作，不在每个节点复制角色或站桩装饰
 qa:
   failure_signals: [长耳缺失, 头身比例漂移, 眼睛形状漂移, 多余角色, 品牌元素误复制]
@@ -63,6 +63,7 @@ privacy:
 - `02-physical-scene-untangle-thread.png`：实物图模式正式场景。
 - `03-knowledge-card-three-steps.png`：知识卡模式示例。
 - `04-action-library-pull-brace-handoff.png`：动作库示例。
+- `05-handdrawn-action-library-rich.png`：九宫格手绘丰富动作库。
 
 ## 录入状态
 

@@ -51,7 +51,8 @@ for f in \
   "$CUSTOM_PROFILE/assets/examples/01-handdrawn-calibration-input-process-output.png" \
   "$CUSTOM_PROFILE/assets/examples/02-physical-scene-untangle-thread.png" \
   "$CUSTOM_PROFILE/assets/examples/03-knowledge-card-three-steps.png" \
-  "$CUSTOM_PROFILE/assets/examples/04-action-library-pull-brace-handoff.png"
+  "$CUSTOM_PROFILE/assets/examples/04-action-library-pull-brace-handoff.png" \
+  "$CUSTOM_PROFILE/assets/examples/05-handdrawn-action-library-rich.png"
 do
   [[ -f "$f" ]] && ok "custom-ip-demo/$(basename "$f")" || err "缺失自定义 IP 示例: $f"
 done
