@@ -191,6 +191,113 @@ Profile 身份层 (ip-profiles/<id>/)
 
 ---
 
+## 📂 代码仓库与能力对应
+
+> 详细文档：[CODEBASE-CAPABILITY-MAPPING.md](https://github.com/yuezheng2006/xiaoshitou-scenes/blob/main/CODEBASE-CAPABILITY-MAPPING.md)
+
+### 仓库结构
+
+```
+xiaoshitou-scenes/
+├── scene-skill-core/           # 核心 Skill（Codex 加载）
+│   ├── SKILL.md                # 主工作流
+│   ├── QUICK-START.md          # 5秒决策表
+│   ├── references/             # 模式规则与公共编排
+│   │   ├── physical-*.md       # 实物图模式
+│   │   ├── handdrawn-*.md      # 手绘图模式
+│   │   ├── knowledge-card-mode.md
+│   │   ├── ppt-presentation-mode.md
+│   │   ├── video-mode.md
+│   │   ├── brand-mark-mode.md
+│   │   ├── common-*.md         # 公共规则
+│   │   └── codex-*.md          # 环境检测
+│   ├── ip-profiles/            # IP 身份定义
+│   │   ├── default-little-stone/  # 默认双 IP
+│   │   ├── none/               # 无角色
+│   │   └── mark-demo/          # 自定义示例
+│   └── scripts/                # 视频模式脚本
+├── assets/                     # 生成的图片
+│   ├── showcase/               # 展示图集
+│   └── masters/                # 实物图母版
+└── docs/                       # 项目文档
+```
+
+### 11 个核心能力
+
+| 能力 | 触发方式 | 核心文件 | 输出 |
+|------|---------|---------|------|
+| **1. 环境检测** | 自动 | QUICK-START § -1 | 检测报告 |
+| **2. 实物图** | "小石头实物图：..." | physical-*.md | 16:9 PNG |
+| **3. 手绘图** | "小石头手绘图：..." | handdrawn-*.md | 16:9 PNG |
+| **4. 双 IP** | "老杨：..." | persona-*.md | 16:9 PNG |
+| **5. 知识卡** | "做一张知识卡：..." | knowledge-card-mode.md | 3:4/4:5 PNG |
+| **6. PPT** | "做一套 PPT：..." | ppt-presentation-mode.md | 多张 PNG |
+| **7. 视频** | "小石头视频：..." | video-mode.md + scripts/ | MP4 |
+| **8. 自定义 IP** | "用这个 Logo..." | brand-mark-mode.md | 新 Profile |
+| **9. Confirm Gate** | 自动 | common-character-lock.md | 质量检查 |
+| **10. 提示词组装** | 自动 | common-prompt-slots.md | 完整提示词 |
+| **11. 内容提取** | 自动 | common-story-extraction.md | 视觉元素 |
+
+### 实物图生成完整路径示例
+
+```
+用户输入: "小石头实物图：技术债务越积越多"
+    ↓
+环境检测 (QUICK-START § -1)
+    ↓
+模式路由 → physical
+    ↓
+读取视觉 DNA (physical-style-dna.md)
+    ↓
+选择母版 (physical-master-anchors.md) → 03-problem-knot-alert
+    ↓
+内容提取 (common-story-extraction.md)
+    ↓
+读取 IP (character.md)
+    ↓
+组装提示词 (common-prompt-slots.md)
+    ↓
+imagen 生成 + 传入参考图
+    ↓
+Confirm Gate 检查 (common-character-lock.md)
+    ↓
+实物图 QA (physical-qa-checklist.md)
+    ↓
+保存到 assets/
+```
+
+### 关键设计原则
+
+1. **Profile 与模式解耦**
+   - IP 定义在 `ip-profiles/[id]/character.md`
+   - 模式规则在 `references/[mode]-*.md`
+   - 通过 `common-prompt-slots.md` 组装
+
+2. **环境检测前置**
+   - `QUICK-START.md § -1` 最优先
+   - Skill 加载后立即执行
+   - 失败立即停止，不浪费 token
+
+3. **Confirm Gate 自动化**
+   - 生成后自动检查 L1-L4, E1-E2
+   - 不合格自动返修（最多 2 次）
+   - 双 IP 额外检查 P1-P7
+
+4. **文档按需加载**
+   - 只读取当前模式需要的文件
+   - 节省 token，加快响应
+
+### 代码统计
+
+- **代码行数**: ~25,000 行
+- **核心文档**: 60+ 个文件
+- **IP Profile**: 3 个内置
+- **模式支持**: 7 种（实物图/手绘图/知识卡/PPT/视频/自定义 IP/彩蛋长卷）
+- **参考资产**: 20+ PNG 图片
+- **实物母版**: 6 个（01-06）
+
+---
+
 ## 💡 实战经验
 
 ### 关键发现 1: 会话工具加载机制
