@@ -5,6 +5,7 @@
 ## 环境与工具
 
 - `codex-environment-guidance.md`：**Codex 环境检测与 imagen 工具使用规范**。本 Skill 面向 Codex 环境设计，生图必须使用 Codex 自带的 `imagen` 工具。包含环境检测清单、工具调用格式、失败恢复、用户引导。
+- `codex-exec-best-practices.md`：**codex exec 实战经验与踩坑指南**。记录环境检测 + 生图的完整实战流程，包括：当前会话 vs 新会话、环境检测时机、imagen 参考图传递、Confirm Gate 验证、性能优化、常见场景模板。已通过实战验证（assets/little-stone-environment-check-passed.png）。
 
 ## `common-*`
 

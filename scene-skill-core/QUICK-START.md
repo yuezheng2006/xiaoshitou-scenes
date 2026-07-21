@@ -33,6 +33,8 @@
 
 **详细环境检测规则**：见 `references/codex-environment-guidance.md`。
 
+**实战经验与踩坑指南**：见 `references/codex-exec-best-practices.md`（包含 codex exec 使用、参考图传递、性能优化、常见场景模板）。
+
 ---
 
 ## 0. 自定义 IP 录入优先级
