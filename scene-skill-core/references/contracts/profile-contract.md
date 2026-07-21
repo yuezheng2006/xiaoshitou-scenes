@@ -37,6 +37,7 @@ qa:
 privacy:
   public_assets: [<可公开资产>]
   private_assets: [<仅本地 / 用户授权资产>]
+input_kind: brand_mark | character_art | generated_draft
 ```
 
 字段可以用 Markdown 表格或自然语言表达，但不能让 Prompt 临时发明身份规则。
@@ -59,6 +60,25 @@ Mode Calibration → 该模式下的线条、材质、比例和表达方式
 Scene Plan        → 当前画面画什么、做什么、写什么
 ```
 
+## 输入类型（input_kind）
+
+| input_kind | 含义 | Canonical 规则 |
+| --- | --- | --- |
+| brand_mark | Logo / App Icon / 扁平标识（**主路径**） | 原件即身份锚点；方标可用，不要求全身立绘 |
+| character_art | 已有角色立绘 | 半身/胸像标记待补全，不得直接冒充全身 canonical |
+| generated_draft | 无原件临时代绘 | 须用户明确同意；不得冒充 user_provided |
+
+用户说「用这个 Logo / Icon / 品牌标 / App 图标做 IP」时，默认 `input_kind=brand_mark`。
+品牌录入与 `logo-safety` 分工：logo-safety 管「默认流程不要乱出真 Logo」；Enrollment brand_mark 管「客户主动用自家标当 IP 身份」。
+
+**brand_mark 录入硬规则：**
+
+- brand_mark 录入不是「把 Logo 贴到小石头身上」；客户标即 IP 身份，不是给默认角色换皮。
+- `brand_mark` 录入或切换 profile 期间，以及客户 profile 未进入 `AVAILABLE` 前，默认 profile `default-little-stone`（小石头）不得出镜、不得作为当前 IP 使用。
+- Agent 必须创建或切换到客户 profile（`ip-profiles/<客户-ip-id>/`），进入 `profile_enrollment`；不得沿用默认小石头执行录入或配图。
+
+客户真标默认 `private_assets`；公开仓不得分发第三方商标。
+
 ## IP 录入状态机
 
 用户出现“录入 IP / 新建 IP / 上传形象 / 用这套形象”等意图时，进入独立的 `profile_enrollment` 路由，不进入普通内容生成。推荐路径是用户先提供一张真实图，系统将其作为身份锚点。
@@ -75,8 +95,10 @@ REQUESTED → USER_REFERENCE → IDENTITY_PLAN → CONFIRMED → CANONICAL_ASSET
 3. 用户没有确认身份方案前，不调用图片生成工具。
 4. 半身 / 胸像可以先作为输入参考，但不能直接标记为全身 canonical asset；需标记为“待补全”。
 5. 如果用户没有真实图，文字方案或生成草图只能标记为 `generated_draft`，必须得到用户明确同意后才能作为临时参考，不能默认替代真实图。
-6. 参考图确认后，按需为当前模式生成校准样张。
+6. 参考图确认后，按需生成 **拟人 identity_sheet**（Layer 2，用户确认），再生成当前模式校准样张（Layer 3）。
 7. 只有进入 `AVAILABLE` 后，才允许把该 IP 用于普通 Task Card。
+8. `brand_mark`：方标/Icon 可作为 canonical，不要求全身立绘；**拟人化必须从头生长**——从 Icon/Logo 提取脸、发型、主色、气质，画完整场景角色；**禁止**把 App Icon 圆角方标直接当脑袋（icon-as-head）、禁止 stick figure 贴方图。须先有 **identity_sheet**（拟人设定图）再进模式校准，详见 `references/brand-mark-mode.md`。
+9. `brand_mark` 模式校准与正式配图：**非必要不要纯黑白**——手绘/白板默认保留 Icon 主色与少量功能色（橙路径、红重点、蓝补充，见 `handdrawn-style-dna.md`）；只有用户明确要求「纯线稿 / 黑白」时才全 monochrome。
 
 Profile Enrollment Card 至少包含：
 
@@ -84,9 +106,13 @@ Profile Enrollment Card 至少包含：
 状态：REQUESTED / USER_REFERENCE / IDENTITY_PLAN / CONFIRMED / CANONICAL_ASSET / AVAILABLE
 用户原话：
 IP ID / 名称：
+input_kind：brand_mark / character_art / generated_draft
+原件类型：logo | app_icon | flat_mark | character_sheet | other
+授权确认：已确认可本地使用 / 未确认（阻塞公开分发）
 身份锚点：
 一句话气质：
 设定图：缺失 / 用户真实图-半身待补全 / 用户真实图-全身可用 / 生成草图-待授权
+拟人设定图 identity_sheet：缺失 / 已确认 / 待确认（brand_mark 必填）
 当前模式校准：none / single / dual
 待确认项：
 下一动作：

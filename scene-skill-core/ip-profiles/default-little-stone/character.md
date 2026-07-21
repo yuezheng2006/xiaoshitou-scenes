@@ -246,8 +246,12 @@ Feet: short L-bend; pull/brace = wider planted stance. NO clone poses.
 Limbs Lock:
 - Default: 2 arms + 2 legs per individual, continuous from correct anchors
 - Prefer readable grips (black-line mini palm + short fingers); allow natural two-handed work poses
-- Hard negative only: floating disconnected phantom hand/arm with no body attachment; same-side sprouted extra arm
-- Soft: do NOT force hip-akimbo + mic + screen three contact points (causes third-hand artifacts). Let lyric boards float when needed.
+- Hard negative: floating disconnected phantom hand/arm; same-side sprouted extra arm
+- Pose Budget (hard, every scene — not case lists):
+  - 1 primary verb per individual
+  - ≤2 arm-jobs total (one job per arm). A job = grip / point / wave / rest-on-hip / push / pull / brace
+  - ≤1 gripped prop per individual; any extra board/card/screen/sign FLOATS (no third grip)
+  - Near-body black strokes that are NOT continuous from arm/leg anchors are FORBIDDEN at limb stroke weight (no motion arcs / emphasis ticks that can be read as extra limbs)
 - Soft negative: white mitten gloves, mouth/smile line — fix if easy; don't thrash whole sheet for finger perfection
 ```
 
@@ -322,11 +326,7 @@ Little Stone proportion lock: vertical capsule aspect ~1:1.3–1:1.6; two flat w
 
 **麦的画法（硬）**：现代短柄无线/便携 K 歌麦——圆润、哑光、细网罩、隐藏键；**禁止**复古舞台麦、头套麦、把麦画成小石头本体。手语仍走 B 档（细黑线小掌+短指握麦杆）。
 
-**四肢门禁（K 歌 / 复杂道具 · 务实版）**：
-- **硬禁（CRITICAL）**：悬浮断手、无臂连接的第三掌、同侧凭空多长一只臂——这是假肢伪影，必须返修。
-- **放宽（允许模型发挥）**：不再强制「闲置手必须叉腰」；双手都在做事时（握麦、扶卡、打节拍）即可，不要为了凑姿态再加第三接触点。
-- **多道具场景**（对麦+歌词屏等）：歌词牌/点歌屏优先**悬浮或单侧扶**，不要让每人都「叉腰 + 握麦 + 扶屏」三接触——那是三手高发配方。
-- 手指仍偏好细黑线小掌+短指；若模型画出可读握姿且无白手套假肢，可接受，**不要为指形反复重绘整表**。
+**四肢门禁**：统一走上文 **Pose Budget**（1 动词 / ≤2 臂职 / ≤1 握持道具 / 禁同线宽近身动作弧）。场景再复杂也不另开特例清单；溢出接触点 → 道具悬浮。手指偏好细黑线小掌+短指；可读握姿且无假肢即可，不为指形反复重绘整表。
 
 **仍禁止**：KTV 包厢实景、舞台灯效、房态巡检服务员叙事、真实品牌 Logo、点歌 App UI 截图。物件规则详见 `physical-object-patterns.md`。
 

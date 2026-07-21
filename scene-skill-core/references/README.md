@@ -2,6 +2,10 @@
 
 本目录按用途前缀区分。具体 IP 形象、persona、Logo 边界和资产路径放在 `../ip-profiles/<ip-id>/`；本目录只保留通用流程、模式、QA 和模板。
 
+## 环境与工具
+
+- `codex-environment-guidance.md`：**Codex 环境检测与 imagen 工具使用规范**。本 Skill 面向 Codex 环境设计，生图必须使用 Codex 自带的 `imagen` 工具。包含环境检测清单、工具调用格式、失败恢复、用户引导。
+
 ## `common-*`
 
 多种模式都会用到的公共规则：
@@ -44,9 +48,14 @@
 - `persona-author-prompts.md`：可复制 prompt 片段
 - `persona-scene-patterns.md`：六类互动场景（本目录）
 
-## 知识卡模式 / PPT 演讲模式
+## `brand-mark-mode.md`
 
-体量较大的两种容器型模式，各用一份文件覆盖触发词、结构、必填字段、QA：
+`input_kind=brand_mark` 专用：Logo/App Icon → **三层参考**（canonical → identity_sheet → mode calibration）→ AVAILABLE → 正文试跑。拟人化硬规则、生动度、QA、prompt 片段。与 `contracts/profile-contract.md`、`common-prompt-slots.md` §D 联动。
+
+## 知识卡模式 / PPT 演讲模式 / 视频模式
+
+体量较大的容器型模式，各用一份文件覆盖触发词、结构、必填字段、QA：
 
 - `knowledge-card-mode.md`：知识卡模式的形态库、角色分工、硬性预算和失败信号。
 - `ppt-presentation-mode.md`：PPT 演讲模式的导演规划卡、page card、页面类型库和 QA。
+- `video-mode.md`：视频模式的工作流、plan.json 格式、场景插图生成（必须用 Codex imagen）、TTS 配置、Remotion 渲染、QA 检查清单。

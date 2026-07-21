@@ -14,6 +14,8 @@
 
 ## 快速使用
 
+**⚠️ 环境要求**：本 Skill 必须在 **Codex 环境**中运行（Codex CLI / Codex Desktop / claude.ai/code），因为生图依赖 Codex 自带的 `imagen` 工具。详见 `scene-skill-core/references/codex-environment-guidance.md`。
+
 安装 Skill 后，直接用中文说需求即可。
 
 ### 双 IP 入口（推荐）
@@ -100,9 +102,19 @@ PNG：`author-persona-spec.png`、`author-persona-actions.png`、`author-persona
 - EverOS 示例：`examples/everos.md`
 - 实物图母版：`scene-skill-core/assets/masters/`
 
-### 自定义 IP 典型示例
+### 自定义品牌标（公开占位 + 本地销售示例）
 
-`scene-skill-core/ip-profiles/custom-ip-demo/` 展示用户提供真实参考图后的完整链路：
+**对客户演示（推荐 · 本地）：** [`.temp/brand-mark-enrollment/doubao-local/`](.temp/brand-mark-enrollment/doubao-local/) — 豆包 App Icon → 三层参考（Icon → 拟人设定图 → 模式校准）→ 正文试跑（不进 Git）
+
+**公开占位金样：** [`scene-skill-core/ip-profiles/mark-demo/`](scene-skill-core/ip-profiles/mark-demo/) — 同上三层链路，自创示意标
+
+销售交付说明：[`examples/custom-ip-delivery.md`](examples/custom-ip-delivery.md)
+
+**完整验证（豆包）：** [`examples/local-validation-brand-mark-doubao.md`](examples/local-validation-brand-mark-doubao.md) · 报告 [`.validation-output/brand-mark-doubao/REPORT.md`](.validation-output/brand-mark-doubao/REPORT.md)
+
+### 自定义 IP · 立绘支线（本地私有样例）
+
+`custom-ip-demo` 展示「已有角色立绘」录入链路，**不作为公开销售金样**：
 
 ```text
 两张用户参考图

@@ -1,0 +1,18 @@
+{
+  "name": "handdrawn-explainer",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts HanddrawnExplainer out/video.mp4 --codec=h264 --audio-codec=aac",
+    "still": "remotion still src/index.ts HanddrawnExplainer out/preview.png --frame=60"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "@remotion/captions": "^4.0.0",
+    "@remotion/media": "^4.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {"@types/node": "^24.0.0", "@types/react": "^19.0.0", "@types/react-dom": "^19.0.0", "typescript": "^5.7.0"}
+}

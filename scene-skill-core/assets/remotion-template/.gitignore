@@ -1,0 +1,9 @@
+node_modules/
+out/
+.env
+.env.*
+!.env.example
+public/audio/*.mp3
+public/audio/*.wav
+public/voice-samples/
+public/reference-voices/

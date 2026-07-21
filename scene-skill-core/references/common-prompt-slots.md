@@ -1,5 +1,7 @@
 # 通用 Prompt 槽位组装
 
+> **工具约束**：本文件定义的提示词槽位专为 **Codex imagen 工具**优化，支持传入本地参考图文件。不得使用外部生图工具（DALL-E、Midjourney 等）。详见 `codex-environment-guidance.md`。
+
 > 本文件只定义组装顺序与槽位职责。具体 IP 文案来自当前 `ip-profiles/<id>/character.md`（及 persona 文件）；模式 DNA 来自 `physical-*` / `handdrawn-*` / 知识卡 / PPT 文件。不要在本文件硬编码具体角色名或主色。
 
 每张图单独组装。交付给用户的完整提示词仍以中文为主；槽位内部可保留稳定的英文锁色 / 风格关键词。
@@ -79,6 +81,17 @@
 
 不传角色设定图；画面以物件/结构为主；需要「谁在操作」时可画功能性简笔人。
 
+### D. `input_kind=brand_mark`（Logo / App Icon 拟人化）
+
+读取 `brand-mark-mode.md`。
+
+1. **必传 Layer 1**：`canonical_asset`（客户 App Icon / Logo 原件）
+2. **必传 Layer 2**（AVAILABLE 前必须有）：`identity_sheet` — 拟人设定图（完整头身，**禁止 icon-as-head**）
+3. **Layer 3（dual）**：当前模式 calibration 图（handdrawn / physical / action-library …）
+4. 无 Layer 2 时不得声称 dual；不得用 Icon 方标代替设定图进正式配图
+5. `{IP_DESC}` / `{IP_STYLE_ADAPT}` 写「从标内图形提取 + 设定图锁形」；**非 flat 2D 胶囊 profile 时不写 `{FLAT_LIMBS_LOCK}`**
+6. 默认保留暖色 + 功能色；非必要不纯黑白
+
 ---
 
 ## `{STYLE_ADAPT}` vs `{IP_STYLE_ADAPT}` vs `{PERSONA_STYLE_ADAPT}`
@@ -106,3 +119,4 @@
 - [ ] flat 2D profile：`{FLAT_LIMBS_LOCK}` 已写入
 - [ ] 未触发老杨：无 persona 肖像
 - [ ] none profile：无品牌角色
+- [ ] brand_mark：canonical + identity_sheet 已传；无 icon-as-head；见 `brand-mark-mode.md`

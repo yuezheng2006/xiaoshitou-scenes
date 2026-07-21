@@ -39,7 +39,7 @@ Profile 身份层
   character · persona · masters · examples · logo boundaries
         ↓
 生成与返修层
-  image tool / external generator · revision prompt
+  **Codex imagen 工具**（必须） · revision prompt
         ↓
 质量门禁层
   Confirm Gate · mode QA · persona calibration · decoration test
@@ -190,6 +190,8 @@ REQUESTED → USER_REFERENCE → IDENTITY_PLAN → CONFIRMED → CANONICAL_ASSET
 ```
 
 它复用 Task / Plan / Render / QA Card 的交接思想，但首轮不得调用图片生成；只有 Profile 进入 `AVAILABLE` 后才进入普通内容链路。
+
+主路径输入是 `brand_mark`（Logo/App Icon），不是从 0 生成吉祥物。`character_art` 与 `generated_draft` 为支线。公开演示 profile 为 `ip-profiles/mark-demo/`；`custom-ip-demo` 仅作私有立绘样例。
 
 ### 5.2 Persona 插件
 

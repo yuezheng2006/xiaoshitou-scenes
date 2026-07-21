@@ -34,10 +34,18 @@
 
 ### 主角色 IP
 
+当 `input_kind=brand_mark` 且为拟人助手 profile 时，改读 `brand-mark-mode.md`：
+
+- [ ] 无 icon-as-head；identity_sheet 与 canonical 气质一致
+- [ ] 拟人小助手与主物件接触互动，非 Logo 方块道具
+- [ ] 有主动作、有表情，非站桩
+
+### 主角色 IP（flat 2D 胶囊 profile）
+
 - 形体对照 `the active profile main character anchor`，皮肤 `the profile primary color`。
 - 白圆眼 + 可选 tiny 瞳孔；**不要** Logo 护目镜眼、不要 anime 眼。
 - **2D Flat Lock**：平涂 `the profile primary color` 主色身体、细黑线四肢、平面白圆眼；**禁止** 3D 渐变、高光、体积阴影、软陶/黏土/盲盒/Pixar/充气玩具质感。主色身体必须是一块均匀纯色，哪怕只有轻微橙色明暗渐变 / 中心高光 / 边缘阴影，也判 3D 漂移。
-- **肢体数量**：每个主角色只能有两只手臂、两条腿；牵引线、绳子、箭头不能和手臂粘连成额外肢体。
+- **肢体数量**：每个主角色只能有两只手臂、两条腿；牵引线、绳子、箭头不能和手臂粘连成额外肢体。生成侧遵守 Pose Budget（1 动词 / ≤2 臂职 / ≤1 握持；禁近身同线宽动作弧）。
 - 表情靠 **动作**，汗滴 0–1 个即可。
 - **身上** 无 Logo / 品牌名 / 商标标记。
 - 2 张及以上：全批同一主角色 + flat 2D。

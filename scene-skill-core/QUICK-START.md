@@ -2,12 +2,48 @@
 
 **目标**：5 秒内判断模式 + 必读文件 + 是否触发 persona，无需完整阅读 SKILL.md。
 
+## -1. 环境检测（首次任务必做）
+
+**硬性约束**：本 Skill 面向 **Codex 环境**，生图**必须**使用 Codex 自带的 `imagen` 工具。
+
+### 快速检测清单
+
+执行任务前确认：
+
+- [ ] 运行环境是 Codex（有 `imagen`、`Read`、`Write`、`Bash` 工具）
+- [ ] 当前目录在 `xiaoshitou-scenes` 或其子目录
+- [ ] 可以读取 `scene-skill-core/ip-profiles/default-little-stone/character.md`
+- [ ] 可以读取小石头参考图 `primary-character-reference.png`
+
+**如果任何一项失败**：停止任务 → 输出清晰错误信息和解决方案 → 等待用户修复。
+
+**非 Codex 环境引导**：
+
+```text
+这个 Skill 需要在 Codex 环境中运行，因为：
+1. 生图必须使用 Codex 自带的 imagen 工具（支持传入 IP 参考图）
+2. 需要读取本地 IP profile 资产文件
+3. 需要保存生成的图片到项目目录
+
+请在以下环境之一使用：
+- Codex CLI（终端命令行）
+- Codex Desktop（桌面应用）
+- claude.ai/code（Web 版 Codex）
+```
+
+**详细环境检测规则**：见 `references/codex-environment-guidance.md`。
+
+---
+
 ## 0. 自定义 IP 录入优先级
 
 | 触发词 | 路由 | 第一轮动作 |
 |---|---|---|
-| 录入 IP、新建 IP、上传形象、创建角色档案、用这套形象 | `profile_enrollment` | 优先接收用户真实图，读取 `references/contracts/profile-contract.md`，建立 Profile Enrollment Card；未确认前不生图 |
-| 已有 IP + 普通配图 | 普通模式路由 | 读取当前 profile 的 Contract 声明，再进入模式决策 |
+| 录入 IP、新建 IP、上传形象、创建角色档案、用这套形象 | `profile_enrollment` | 读取 `profile-contract.md`，建 Enrollment Card；未确认前不生图 |
+| 用这个 Logo / Icon / 品牌标 / App 图标做 IP | `profile_enrollment` + `input_kind=brand_mark` | 读 `brand-mark-mode.md`；Icon→identity_sheet→校准；禁止 icon-as-head |
+| 已有 IP + 普通配图 | 普通模式路由 | 读取当前 profile Contract，再进入模式决策 |
+
+`brand_mark` 是自定义 IP 主路径（客户已有标识）。`character_art` 为立绘支线。未 AVAILABLE 前不得进入普通 Task。
 
 录入阶段必须先确认身份方案。用户真实图是推荐的身份锚点；半身图标记为待补全，不直接作为全身 canonical asset。没有真实图时，生成草图只能作为待授权临时参考；当前模式没有校准图时，使用 `single`，不得伪称 `dual`。
 
@@ -21,9 +57,10 @@
 | 手绘图、白板图、逻辑图、小石头手绘图 | 手绘图模式 | → 决策表 B |
 | 知识卡、手机海报、收藏图、竖版传播图 | 知识卡模式 | → 决策表 C |
 | PPT、课件、直播分享页、整套演讲页面 | PPT 演讲模式 | → 决策表 D |
+| 视频讲解、动画视频、手绘视频、配音视频、小石头视频 | 视频模式 | → 决策表 E |
 | 彩蛋、长卷、超横版、项目复盘 | 实物图长卷 | → 决策表 A（长卷变体） |
 
-**未显式指定**：处境/情绪 → 实物图；流程/结构 → 手绘图；能收藏传播 → 知识卡；多页演讲 → PPT。
+**未显式指定**：处境/情绪 → 实物图；流程/结构 → 手绘图；能收藏传播 → 知识卡；多页演讲 → PPT；带旁白讲解 → 视频。
 
 ## 第二步：识别 Persona 触发
 
@@ -258,6 +295,62 @@ references/persona-quick-checklist.md
 
 ---
 
+## 决策表 E：视频模式
+
+### 必读文件（按顺序）
+```
+1. references/video-mode.md
+   → 视频工作流、plan.json 格式、TTS 配置
+
+2. ip-profiles/default-little-stone/character.md
+   → 确认小石头形象（视频中每个场景都要一致）
+
+3. references/physical-style-dna.md（实物图风格视频）
+   或 references/handdrawn-style-dna.md（手绘图风格视频）
+   → 场景图片生成规则
+```
+
+### 可选文件（按需）
+```
+- references/physical-master-anchors.md
+  → 实物图风格视频选母版时读
+
+- references/handdrawn-composition-patterns.md
+  → 手绘图风格视频选结构类型时读
+```
+
+### 生成前检查清单
+- [ ] 已生成 plan.json，包含 6-9 个场景
+- [ ] 每个场景包含：headline、narration、caption、imagePrompt
+- [ ] 已选定视频风格（实物图风格 or 手绘图风格）
+- [ ] 已选定视觉风格预设（warm-editorial / chalk-classroom 等）
+- [ ] imagePrompt 符合小石头 IP 规范
+- [ ] 旁白文案口语化，每句 15-25 字
+- [ ] 用户已配置 Fish Audio 或 ElevenLabs API key
+
+### 图片生成后检查清单
+- [ ] 每个场景都有 1080×1440 PNG 图片
+- [ ] **形象快检**（每个场景）：L1-L4 四肢 + E1-E2 眼面
+- [ ] 所有场景的小石头形象一致（不能场景 1 和场景 6 像两个不同角色）
+- [ ] 实物图：背景纯白、物件真实、留白充足
+- [ ] 手绘图：白底黑线、批注克制、结构清晰
+
+### 旁白生成后检查清单
+- [ ] 音频文件存在且可播放（public/audio/narration.mp3）
+- [ ] 音频时长与脚本匹配（无截断）
+- [ ] 声音自然（非机器人腔）
+- [ ] plan.json 已更新场景时长（audioDurationSeconds、durationInFrames）
+
+### 视频渲染后检查清单
+- [ ] 视频时长符合预期（60-90 秒）
+- [ ] 字幕与旁白同步
+- [ ] 场景切换流畅
+- [ ] 标题、图片、字幕都清晰可见
+- [ ] 无黑屏、无闪烁
+- [ ] 运行 video_verify_output.py 自动检查通过
+
+---
+
 ## 典型场景快查
 
 | 用户输入 | 5 秒决策 |
@@ -267,6 +360,7 @@ references/persona-quick-checklist.md
 | "老杨和小石头：白板图解释工作流" | 手绘图 + 双 IP → 读 character + handdrawn-style-dna + handdrawn-composition + persona-quick-checklist |
 | "做一张能发朋友圈的方法论图" | 知识卡（竖版+收藏） → 读 knowledge-card-mode + modes-and-sizes |
 | "把这 10 页大纲做成 PPT" | PPT 演讲 → 读 ppt-presentation-mode → 先出导演规划卡 |
+| "小石头视频：为什么存钱越早越轻松" | 视频模式 + 单 IP → 读 video-mode + character + style-dna → 生成 6-9 场景 |
 | "纯物件，不要小石头" | none profile → 读 `ip-profiles/none/`，跳过角色资产 |
 
 ---
@@ -278,6 +372,8 @@ references/persona-quick-checklist.md
 | 一次读完所有 references/ 文件 | ❌ 按决策表按需读取 |
 | 跳过母版锁定直接生图 | ❌ 实物图必须先选母版类型 + 写变异点 |
 | 跳过导演规划直接批量出 PPT | ❌ PPT 必须先出规划卡 |
+| 视频模式未配置 TTS 就开始渲染 | ❌ 必须先确认 Fish Audio/ElevenLabs API key 已配置 |
+| 视频场景图片不一致 | ❌ 所有场景必须传入同一个 character 设定图，确保 IP 一致性 |
 | 把 Confirm Gate 输出给用户看 | ❌ 只在内部检查，FAIL 时用自然语言说明问题 |
 | 触发 persona 但忘记读 persona-quick-checklist | ❌ 所有双 IP 任务必读 |
 | 韩范脸 / 非中国山东脸 | ❌ 必须北方中国男性脸型，禁止小脸V下巴冷白皮 |
@@ -291,7 +387,7 @@ references/persona-quick-checklist.md
 | 手太抽象（纯 C/环）或写实五指 | ❌ 简笔拟人手：小掌+2–3 短指；绳与臂分笔 |
 | 无关内容硬塞麦/包厢 | ❌ K 歌动作仅内容相关；加读 calibrate-karaoke-actions |
 | K 歌画成舞台麦/巡检递麦 | ❌ 现代短柄无线麦 + 握麦/点歌/合唱等执行动作 |
-| 悬浮断手 / 无连接假肢 | ❌ L1 硬禁；对麦合唱让歌词屏悬浮，勿叉腰+握麦+扶屏三接触 |
+| 悬浮断手 / 多手 / 第三握点 | ❌ L1 硬禁；Pose Budget：1 动词 / ≤2 臂职 / ≤1 握持，溢出道具悬浮 |
 | 为凑双手反复重绘指形 | ⚠️ 放宽：可读握姿可接受；优先自然动作，勿过度清点手数 |
 
 ---
