@@ -73,7 +73,7 @@
 | 无「小剧场」（仅视觉印记 / 流程拆解图等） | ❌ **不进 C** |
 | 老杨、yuezheng2006、老杨和小石头、让我和小石头一起（无「小剧场」） | ✅ **路径 B** 双 IP → `persona-quick-checklist.md` |
 | 小石头、未提及老杨 | ❌ 单 IP |
-| 不要人物、纯物件、无 IP、none | → 改用 `ip-profiles/none/`（跳过默认角色资产） |
+| 不要人物、纯物件、无 IP、none | → 改用 `ip-profiles/no-character/`（跳过默认角色资产） |
 
 **路径 B 触发后**：所有模式都增加 `persona-quick-checklist.md`。none 模式不读 persona。  
 **路径 C 触发后**：读 `persona-theater-checklist.md`，**不要**套双 IP「必须互动」规则。
@@ -118,7 +118,7 @@
 - references/physical-qa-checklist.md  
   → 生成后 QA 时读
   
-- ip-profiles/default-little-stone/assets/character/primary-character-actions.png  
+- ip-profiles/default-little-stone/assets/character/actions/primary-character-actions.png  
   → 复杂姿态、多人协作时读
 ```
 
@@ -363,7 +363,7 @@ references/persona-quick-checklist.md
 | "做一张能发朋友圈的方法论图" | 知识卡（竖版+收藏） → 读 knowledge-card-mode + modes-and-sizes |
 | "把这 10 页大纲做成 PPT" | PPT 演讲 → 读 ppt-presentation-mode → 先出导演规划卡 |
 | "小石头视频：为什么存钱越早越轻松" | 视频模式 + 单 IP → 读 video-mode + character + style-dna → 生成 6-9 场景 |
-| "纯物件，不要小石头" | none profile → 读 `ip-profiles/none/`，跳过角色资产 |
+| "纯物件，不要小石头" | none profile → 读 `ip-profiles/no-character/`，跳过角色资产 |
 
 ---
 

@@ -126,8 +126,8 @@ Keep flat #f39800 capsule, no mouth.
 
 | 图 | 路径 | 作用 |
 | --- | --- | --- |
-| **设定图（必传）** | `assets/character/primary-character-reference.png` | 形体、主色、白圆眼、细线肢体 |
-| **动作扩展（条件）** | `assets/character/primary-character-actions.png` | 复杂姿态 / 多人 / 小比例 |
+| **设定图（必传）** | `assets/character/reference/primary-character-reference.png` | 形体、主色、白圆眼、细线肢体 |
+| **动作扩展（条件）** | `assets/character/actions/primary-character-actions.png` | 复杂姿态 / 多人 / 小比例 |
 | **可选模式样张** | `assets/character/examples/` | 身份漂移时可选 1 张辅助；**非强制** |
 
 小石头识别简单（胶囊 + 白圆眼），**默认单锚点即可**。  

@@ -50,16 +50,11 @@
 | **四模式加购** | 知识卡 / PPT 校准与样张 |
 | **企业私有包** | 私有 profile + 行业物件 + 内部分发说明 |
 
-## 销售主示例（本地 · 豆包）
+## 销售主示例（本地 · 抖音）
 
-**推荐对客户演示：** [`.temp/brand-mark-enrollment/doubao-local/`](../.temp/brand-mark-enrollment/doubao-local/)（真 App Icon → 拟人化小助手，样张更生动；**不进 Git**）
+**推荐对客户演示：** 飞书文档 [§5 自定义 IP（抖音 · 拉布布）](https://m2miovoqda.feishu.cn/wiki/KCaAwyeeaiIxiokw0T9cAwWanEe) · 本地样张 `.temp/feishu-douyin-demo/`（**不进 Git**）
 
-- [豆包 Icon 原件](../.temp/brand-mark-enrollment/doubao-local/assets/reference/doubao-app-icon.png)
-- [00 拟人设定图](../.temp/brand-mark-enrollment/doubao-local/assets/examples/00-identity-sheet.png)
-- [01 手绘校准](../.temp/brand-mark-enrollment/doubao-local/assets/examples/01-handdrawn-calibration.png)
-- [02 实物场景](../.temp/brand-mark-enrollment/doubao-local/assets/examples/02-physical-scene.png)
-- [03 动作库](../.temp/brand-mark-enrollment/doubao-local/assets/examples/03-action-library.png)
-- [04 正文试跑 · Agent 三步](../.temp/brand-mark-enrollment/doubao-local/assets/examples/04-content-demo-handdrawn.png)
+公开占位金样：[`mark-demo`](scene-skill-core/ip-profiles/mark-demo/)（自创示意标，无第三方商标）
 
 ## 公开占位金样（无第三方商标）
 

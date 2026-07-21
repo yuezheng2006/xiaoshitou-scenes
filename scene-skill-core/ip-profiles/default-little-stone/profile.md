@@ -25,7 +25,7 @@
 id: default-little-stone
 display_name: 小石头 + 老杨
 identity:
-  canonical_asset: assets/character/primary-character-reference.png
+  canonical_asset: assets/character/reference/primary-character-reference.png
   reference_source: user_provided
   anchors: [橙色胶囊, 白圆眼, 无嘴, 2 臂 2 腿, flat 2D]
   temperament: 认真、靠谱、略笨、有点倔
@@ -52,8 +52,8 @@ privacy:
 ## 主角色
 
 - 角色文件：`character.md`（含 `{IP_DESC}` / `{IP_STYLE_ADAPT}`；默认**单锚点**）
-- 设定图：`assets/character/primary-character-reference.png`（必传）
-- 动作/多人/小比例扩展：`assets/character/primary-character-actions.png`（条件）
+- 设定图：`assets/character/reference/primary-character-reference.png`（必传）
+- 动作/多人/小比例扩展：`assets/character/actions/primary-character-actions.png`（条件）
 - 可选样张：`assets/character/examples/`（身份漂移时可选，非强制）
 - 默认触发词：`小石头`、`Little Stone`
 - 主要颜色：`#f39800`
@@ -99,7 +99,7 @@ privacy:
 
 - Profile Logo 规则：`logo-safety.md`
 - 公开包不随 profile 分发真实品牌 Logo 源文件。
-- 雷石 Logo 参考：`assets/brand-private/thunderstone-logo-with-wordmark.png`（工牌牌面默认）、`thunderstone-logo-mark.png`（纯图标）；**prompt + 传参考图**。
+- 雷石 Logo 参考：`assets/brand/private/thunderstone-logo-with-wordmark.png`（工牌牌面默认）、`thunderstone-logo-mark.png`（纯图标）；**prompt + 传参考图**。
 - `K 歌 / KTV / 音乐科技 / 车载 / 汽车内 / 智能电动 / 家用 / 商用 / 门店经营` 只触发可选物件语境，不自动触发真实 Logo。
 - 小石头的背景气味通过中性道具、动作和场景关系表达，不通过真实公司名或商标表达。
 
@@ -118,4 +118,4 @@ privacy:
 
 ## 替换 IP 的原则
 
-新增 IP 时复制本目录结构为 `ip-profiles/<ip-id>/`，只替换 profile 文件、角色资产、persona（含双参考资产与 `examples/`）、`{IP_DESC}` / `{IP_STYLE_ADAPT}` 和 Logo 策略；不要修改通用模式路由、母版 QA 或生成流程，除非新 IP 真的需要新的通用能力。无品牌角色可直接用 `ip-profiles/none/`。有「要对齐的人」时，把双参考写在 persona/人物层，不要写在简笔主角色层。
+新增 IP 时复制本目录结构为 `ip-profiles/<ip-id>/`，只替换 profile 文件、角色资产、persona（含双参考资产与 `examples/`）、`{IP_DESC}` / `{IP_STYLE_ADAPT}` 和 Logo 策略；不要修改通用模式路由、母版 QA 或生成流程，除非新 IP 真的需要新的通用能力。无品牌角色可直接用 `ip-profiles/no-character/`。有「要对齐的人」时，把双参考写在 persona/人物层，不要写在简笔主角色层。

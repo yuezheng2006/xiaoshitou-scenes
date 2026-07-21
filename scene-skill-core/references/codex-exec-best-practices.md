@@ -210,7 +210,7 @@ ERROR: Reference image not found
 pwd  # 应该在 xiaoshitou-scenes
 
 # 确认参考图存在
-ls scene-skill-core/ip-profiles/default-little-stone/assets/character/primary-character-reference.png
+ls scene-skill-core/ip-profiles/default-little-stone/assets/character/reference/primary-character-reference.png
 
 # 使用绝对路径（备选）
 /Users/.../xiaoshitou-scenes/scene-skill-core/...
@@ -298,8 +298,8 @@ else
 fi
 
 # 检查 3: 参考图
-if [ -f "scene-skill-core/ip-profiles/default-little-stone/assets/character/primary-character-reference.png" ]; then
-  size=$(stat -f%z "scene-skill-core/ip-profiles/default-little-stone/assets/character/primary-character-reference.png")
+if [ -f "scene-skill-core/ip-profiles/default-little-stone/assets/character/reference/primary-character-reference.png" ]; then
+  size=$(stat -f%z "scene-skill-core/ip-profiles/default-little-stone/assets/character/reference/primary-character-reference.png")
   echo "✓ 参考图存在 ($size bytes)"
 else
   echo "✗ 参考图不存在"
@@ -335,7 +335,7 @@ imagen(
     prompt="16:9, 纯白背景 #FFFFFF, ...",
     aspect_ratio="16:9",
     reference_images=[
-        "scene-skill-core/ip-profiles/default-little-stone/assets/character/primary-character-reference.png"
+        "scene-skill-core/ip-profiles/default-little-stone/assets/character/reference/primary-character-reference.png"
     ]
 )
 ```

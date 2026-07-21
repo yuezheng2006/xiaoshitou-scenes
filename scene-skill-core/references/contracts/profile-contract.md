@@ -46,7 +46,7 @@ input_kind: brand_mark | character_art | generated_draft
 
 `ref_mode` 描述当前运行真正可用的参考协议：
 
-- `none`：无固定 IP，使用 `ip-profiles/none`，不传角色设定图。
+- `none`：无固定 IP，使用 `ip-profiles/no-character`，不传角色设定图。
 - `single`：只有身份锚点，身份图回答“这是谁”。
 - `dual`：身份锚点 + 当前模式校准图；身份图回答“这是谁”，校准图回答“在这个模式下怎么画”。
 

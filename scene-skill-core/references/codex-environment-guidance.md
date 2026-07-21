@@ -84,7 +84,7 @@ ip-profiles/default-little-stone/
 ```bash
 # Agent 在首次执行任务时，读取关键文件确认路径
 Read scene-skill-core/ip-profiles/default-little-stone/character.md
-Read scene-skill-core/ip-profiles/default-little-stone/assets/character/primary-character-reference.png
+Read scene-skill-core/ip-profiles/default-little-stone/assets/character/reference/primary-character-reference.png
 ```
 
 **失败引导**：
@@ -111,7 +111,7 @@ imagen(
     prompt="16:9, 纯白背景 #FFFFFF, ...",
     aspect_ratio="16:9",  # 或 "3:4", "4:5", "9:16"
     reference_images=[
-        "scene-skill-core/ip-profiles/default-little-stone/assets/character/primary-character-reference.png"
+        "scene-skill-core/ip-profiles/default-little-stone/assets/character/reference/primary-character-reference.png"
     ]
 )
 ```
@@ -123,8 +123,8 @@ imagen(
     prompt="16:9, 纯白背景 #FFFFFF, ...",
     aspect_ratio="16:9",
     reference_images=[
-        "scene-skill-core/ip-profiles/default-little-stone/assets/character/primary-character-reference.png",
-        "scene-skill-core/ip-profiles/default-little-stone/assets/persona/author-persona-panorama.png"
+        "scene-skill-core/ip-profiles/default-little-stone/assets/character/reference/primary-character-reference.png",
+        "scene-skill-core/ip-profiles/default-little-stone/assets/persona/reference/author-persona-panorama.png"
     ]
 )
 ```
@@ -155,10 +155,10 @@ imagen(
 
 ```text
 相对路径（推荐）：
-  scene-skill-core/ip-profiles/default-little-stone/assets/character/primary-character-reference.png
+  scene-skill-core/ip-profiles/default-little-stone/assets/character/reference/primary-character-reference.png
 
 绝对路径（备选）：
-  /Users/.../xiaoshitou-scenes/scene-skill-core/ip-profiles/default-little-stone/assets/character/primary-character-reference.png
+  /Users/.../xiaoshitou-scenes/scene-skill-core/ip-profiles/default-little-stone/assets/character/reference/primary-character-reference.png
 
 imagen 工具要求：
   - 文件必须存在且可读
@@ -430,7 +430,7 @@ QA 检查：references/brand-mark-mode.md § QA
    - 参考：references/common-qa-repair.md
 
 4. **本地资产复用**：
-   - 把私有 Logo 放到 ip-profiles/<your-ip>/assets/brand-private/
+   - 把私有 Logo 放到 ip-profiles/<your-ip>/assets/brand/private/
    - 引用时会自动读取
 
 5. **Evals 测试**：

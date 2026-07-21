@@ -1,12 +1,12 @@
 ---
 name: scene-skill-core
 description: |
-  使用当前 IP profile 生成多模式配图和视频：实物图走 2.0 简笔物件小现场；手绘图走 1.0 白板手绘解释图；知识卡走竖版收藏传播图；PPT 演讲模式走整套手绘风演讲页面；视频模式走 60-90 秒带旁白的动画讲解视频。默认 profile 是 default-little-stone（小石头 + 老杨双 IP 互动），可通过 ip-profiles/ 替换形象、persona、资产与 Logo 边界；也可切换 ip-profiles/none（不要人物 / 纯物件）。
+  使用当前 IP profile 生成多模式配图和视频：实物图走 2.0 简笔物件小现场；手绘图走 1.0 白板手绘解释图；知识卡走竖版收藏传播图；PPT 演讲模式走整套手绘风演讲页面；视频模式走 60-90 秒带旁白的动画讲解视频。默认 profile 是 default-little-stone（小石头 + 老杨双 IP 互动），可通过 ip-profiles/ 替换形象、persona、资产与 Logo 边界；也可切换 ip-profiles/no-character（不要人物 / 纯物件）。
 when-to-use: |
   用户要用当前 IP profile 为中文内容生成配图、插图、shot list、解释图、知识卡、海报、演讲 PPT 或讲解视频时触发——**不必**要求用户写 `$scene-skill-core` 或 `Use $...`。
   双 IP 入口：老杨、yuezheng2006、老杨和小石头、老杨 IP 图解、让我和小石头一起——触发后默认「老杨讲、小石头干」双 IP 互动。
   老杨小剧场入口：必须含「小剧场」（小剧场 / 老杨小剧场 / IP小剧场）——潮玩视觉印记；默认同人；同句加「小石头」→ C 组合（flat 2D）；无「小剧场」不进此入口。
-  无角色入口：不要人物、纯物件、无 IP、none——切换 ip-profiles/none。  显式风格词：实物图、实物场景、物件小现场；手绘图、手绘解释、白板图、逻辑图；知识卡、图文号知识卡、手机海报、方法拆解图、收藏图、竖版传播图；PPT、课件、直播分享页、主题演讲、整套演讲页面、按大纲逐页出图、演讲页面、导演规划卡；视频讲解、动画视频、手绘视频、配音视频、讲解视频、小石头视频。默认 profile 也接受「小石头实物图 / 小石头手绘图 / 小石头视频」。
+  无角色入口：不要人物、纯物件、无 IP、none——切换 ip-profiles/no-character。  显式风格词：实物图、实物场景、物件小现场；手绘图、手绘解释、白板图、逻辑图；知识卡、图文号知识卡、手机海报、方法拆解图、收藏图、竖版传播图；PPT、课件、直播分享页、主题演讲、整套演讲页面、按大纲逐页出图、演讲页面、导演规划卡；视频讲解、动画视频、手绘视频、配音视频、讲解视频、小石头视频。默认 profile 也接受「小石头实物图 / 小石头手绘图 / 小石头视频」。
   典型意图：生成/设计/出图/配图/插图；这篇内容想配图请先推荐；16:9 正文图；9:16 手机海报；3:4/4:5 知识卡；流程解释、结构拆解、方法论图；彩蛋模式、长卷、项目复盘；先分析配图方案暂不生图；改图、减标签、重生成；按大纲/逐字稿逐页出 PPT；生成讲解视频、带旁白的动画。
   输入可以是正文、主题、观点、节点列表、项目说明、演讲大纲/逐字稿/旧 PPT，或指定母版类型。
 allowed-tools:
@@ -138,7 +138,7 @@ PPT 演讲：老杨主讲页 + 小石头执行点缀（双 IP 推荐）
 ## 当前 Profile（执行摘要）
 
 - **默认 profile**：`ip-profiles/default-little-stone/profile.md`。
-- **无角色 profile**：`ip-profiles/none/profile.md`（用户说不要人物 / 纯物件 / none 时切换）。
+- **无角色 profile**：`ip-profiles/no-character/profile.md`（用户说不要人物 / 纯物件 / none 时切换）。
 - **主角色（小石头）**：从 `character.md` 读取；生图默认**单锚点**设定图。
 - **双参考（对齐人 · 老杨）**：实物跟 `author-persona-panorama.png`；手绘系跟 `author-persona-panorama-handdrawn.png` + 实体 panorama（手绘更重要）。猫为金**黄**金渐层（默认不强制出镜）。
 - **Persona**：从当前 profile 的 persona 文件读取触发词、渲染语言和资产路由。
@@ -173,7 +173,7 @@ PPT 演讲：老杨主讲页 + 小石头执行点缀（双 IP 推荐）
 公共规则（多种模式都可能用）：
 
 - `ip-profiles/default-little-stone/profile.md`：默认 IP profile 总入口；更换 IP 时优先替换 profile。
-- `ip-profiles/none/profile.md`：无品牌角色路径。
+- `ip-profiles/no-character/profile.md`：无品牌角色路径。
 - `references/common-prompt-slots.md`：通用 prompt 槽位组装；**双参考用于对齐老杨**。
 - `references/common-character-lock.md`：通用 Character Lock、维度锁、多人差异锁机制。
 - `references/common-persona-calibration.md`：所有人像参考图的生成前校准卡、生成后身份/年龄/比例检查；未通过不得生成或交付。
@@ -283,7 +283,7 @@ REQUESTED → USER_REFERENCE → IDENTITY_PLAN → CONFIRMED → CANONICAL_ASSET
 - 多人/多 Agent/团队协作场景允许 2-4 个主角色个体，但必须像同一 IP 家族里的不同个体：**胶囊宽高比全批一致**（见 `common-character-lock.md` 形体一致锁），只允许整体等比缩放（±10–15%）、倾斜、朝向、站位、动作职责不同，禁止瘦高/矮胖/横扁形体混用；生成前写入 **Limbs Lock**，生成后必做 **Confirm Gate**（L1–L4 四肢 + E1–E2 眼面；老杨出现则 P1–P7）。
 - 画面出现 persona 肖像时：除 Persona Identity Lock 外，并列 **Persona Feature Stability Lock + Persona Expression Lock**（见 `common-character-lock.md`）。
 - 复杂姿态、多人协作或小比例远景时，加读 profile 的动作扩展资产。
-- 用户要求无角色时，切换 `ip-profiles/none/`，跳过本段角色资产。
+- 用户要求无角色时，切换 `ip-profiles/no-character/`，跳过本段角色资产。
 
 ### 1D. 双 IP 互动（persona 触发时强制）
 

@@ -73,11 +73,11 @@
 
 ### B. 仅小石头（未触发老杨）→ 单锚点
 
-1. **必传** `assets/character/primary-character-reference.png`
+1. **必传** `assets/character/reference/primary-character-reference.png`
 2. 复杂姿态 / 多人 / 小比例：可加 `primary-character-actions.png`
 3. 身份漂移时可选 `assets/character/examples/` 样张 1 张（**非强制**）
 
-### C. `$IP=none` / `ip-profiles/none`
+### C. `$IP=none` / `ip-profiles/no-character`
 
 不传角色设定图；画面以物件/结构为主；需要「谁在操作」时可画功能性简笔人。
 

@@ -13,7 +13,7 @@
 3. 触发 persona 时，读取 `common-persona-calibration.md` + `persona-author.md` + `persona-author-assets.md`（**老杨双参考 · 对齐人**）+ `persona-quick-checklist.md`。
 4. 生图前：小石头传设定图；老杨出镜传对应模式全景并完成参考图校准。组装顺序见 `common-prompt-slots.md`。
 5. 多人、复杂姿态或小比例远景时，再读取对应动作扩展资产。
-6. 用户要求无角色 / 纯物件时，改读 `ip-profiles/none/`，跳过本文件对默认角色的强制项。
+6. 用户要求无角色 / 纯物件时，改读 `ip-profiles/no-character/`，跳过本文件对默认角色的强制项。
 
 ## Character Lock
 

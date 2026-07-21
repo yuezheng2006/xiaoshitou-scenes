@@ -4,7 +4,7 @@
 
 **槽位组装（优先）**：生成前先读 `common-prompt-slots.md`。  
 **双参考只用于对齐老杨**（spec + 模式校准图）。小石头默认单锚点设定图。  
-**无角色**：读 `ip-profiles/none/`。
+**无角色**：读 `ip-profiles/no-character/`。
 
 ## 提示词语言
 
@@ -82,7 +82,7 @@ Negative: generic business man, thick black glasses, black long-sleeve shirt, un
 
 用于处境、情绪、项目故事、正文观点隐喻。生成 16:9 主角色实物图。
 
-生成前：读取当前 profile 的主角色设定图（默认 `ip-profiles/default-little-stone/assets/character/primary-character-reference.png`，单锚点）；若老杨出镜，传 `author-persona-panorama.png`（复杂动作或小比例加 `author-persona-actions.png`，脸漂时加 `author-persona-face-lock.png`）。从 `physical-master-anchors.md` 选择 `01`–`06` 中最匹配的母版类型；若对应 PNG 存在，只作质量锚点，不复制布局。将 `character.md` 的 `{IP_DESC}` 与 `{IP_STYLE_ADAPT}` 按 `common-prompt-slots.md` 写入 prompt。
+生成前：读取当前 profile 的主角色设定图（默认 `ip-profiles/default-little-stone/assets/character/reference/primary-character-reference.png`，单锚点）；若老杨出镜，传 `author-persona-panorama.png`（复杂动作或小比例加 `author-persona-actions.png`，脸漂时加 `author-persona-face-lock.png`）。从 `physical-master-anchors.md` 选择 `01`–`06` 中最匹配的母版类型；若对应 PNG 存在，只作质量锚点，不复制布局。将 `character.md` 的 `{IP_DESC}` 与 `{IP_STYLE_ADAPT}` 按 `common-prompt-slots.md` 写入 prompt。
 
 ```text
 Generate one standalone 16:9 horizontal Chinese article illustration in 主角色实物图风格.

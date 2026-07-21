@@ -173,7 +173,7 @@ ip-profiles/<ip-id>/
 └── assets/
     ├── character/
     ├── persona/
-    └── brand-private/
+    └── brand/private/
 ```
 
 新增 IP 不应要求修改四种模式的核心规则。
@@ -191,7 +191,7 @@ REQUESTED → USER_REFERENCE → IDENTITY_PLAN → CONFIRMED → CANONICAL_ASSET
 
 它复用 Task / Plan / Render / QA Card 的交接思想，但首轮不得调用图片生成；只有 Profile 进入 `AVAILABLE` 后才进入普通内容链路。
 
-主路径输入是 `brand_mark`（Logo/App Icon），不是从 0 生成吉祥物。`character_art` 与 `generated_draft` 为支线。公开演示 profile 为 `ip-profiles/mark-demo/`；`custom-ip-demo` 仅作私有立绘样例。
+主路径输入是 `brand_mark`（Logo/App Icon），不是从 0 生成吉祥物。`character_art` 与 `generated_draft` 为支线。公开演示 profile 为 `ip-profiles/brand-mark-demo/`；`custom-ip-demo` 仅作私有立绘样例。
 
 ### 5.2 Persona 插件
 

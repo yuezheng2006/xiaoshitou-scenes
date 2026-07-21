@@ -83,7 +83,7 @@ Brand mark anthropomorphization lock:
 ## 销售演示
 
 - **本地主示例（生动）**：`.temp/brand-mark-enrollment/doubao-local/`（豆包 Icon，不进 Git）
-- **公开占位**：`ip-profiles/mark-demo/`（自创示意标）
+- **公开占位**：`ip-profiles/brand-mark-demo/`（自创示意标）
 
 ## 相关文件
 

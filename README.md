@@ -104,19 +104,11 @@ PNG：`author-persona-spec.png`、`author-persona-actions.png`、`author-persona
 - EverOS 示例：`examples/everos.md`
 - 实物图母版：`scene-skill-core/assets/masters/`
 
-### 自定义品牌标（公开占位 + 本地销售示例）
+### 自定义 IP（抖音 · 拉布布）
 
-**对客户演示（推荐 · 本地）：** [`.temp/brand-mark-enrollment/doubao-local/`](.temp/brand-mark-enrollment/doubao-local/) — 豆包 App Icon → 三层参考（Icon → 拟人设定图 → 模式校准）→ 正文试跑（不进 Git）
+**飞书文档 §5：** [自定义 IP 两条路径](https://m2miovoqda.feishu.cn/wiki/KCaAwyeeaiIxiokw0T9cAwWanEe) — 品牌标（抖音 Icon 拟人）+ 立绘（拉布布）
 
-**公开占位金样：** [`scene-skill-core/ip-profiles/mark-demo/`](scene-skill-core/ip-profiles/mark-demo/) — 同上三层链路，自创示意标
-
-销售交付说明：[`examples/custom-ip-delivery.md`](examples/custom-ip-delivery.md)
-
-**完整验证（豆包）：** [`examples/local-validation-brand-mark-doubao.md`](examples/local-validation-brand-mark-doubao.md) · 报告 [`.validation-output/brand-mark-doubao/REPORT.md`](.validation-output/brand-mark-doubao/REPORT.md)
-
-### 自定义 IP · 立绘支线（本地私有样例）
-
-`custom-ip-demo` 展示「已有角色立绘」录入链路，**不作为公开销售金样**：
+公开占位：[`mark-demo`](scene-skill-core/ip-profiles/mark-demo/) · 立绘样例：[`custom-ip-demo`](scene-skill-core/ip-profiles/custom-ip-demo/) · 交付说明：[`custom-ip-delivery.md`](examples/custom-ip-delivery.md)
 
 ```text
 两张用户参考图
