@@ -2,6 +2,8 @@
 
 面向中文内容的多模式配图 Codex Skill：**小石头 + 老杨双 IP 互动**，把文章、观点、流程、方法论或演讲大纲转成四类图。
 
+**飞书知识库（完整架构说明）：** [xiaoshitou-scenes：一个可验证的视觉 Skill 仓库](https://m2miovoqda.feishu.cn/wiki/KCaAwyeeaiIxiokw0T9cAwWanEe)
+
 核心包是 `scene-skill-core/`。默认 IP profile 是 `scene-skill-core/ip-profiles/default-little-stone/`——小石头是执行 Agent，老杨是主讲 persona；触发老杨后默认「老杨讲、小石头干」。
 
 ## 效果预览
