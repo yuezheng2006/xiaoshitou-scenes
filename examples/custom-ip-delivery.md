@@ -56,6 +56,24 @@
 
 公开占位金样：[`mark-demo`](scene-skill-core/ip-profiles/mark-demo/)（自创示意标，无第三方商标）
 
+## 自定义 IP + 公司品牌（雷石示例）
+
+与 §6「小石头 + 雷石」并列的另一层组合：**客户 Icon 拟人助手**做场景主角，**雷石 Logo** 作为公司品牌层叠加上去。
+
+| 层 | 是什么 | 雷石示例 |
+| --- | --- | --- |
+| 场景主角 | 客户 `brand_mark` 拟人助手 | 抖音 Icon → 拟人小助手 |
+| 公司品牌 | Logo / 工牌 / 模块牌 | 雷石横排 Logo、挂绳工牌、任务模块牌 |
+| 业务场景 | 办公 / Agent 工程语境 | 接需求 · 跑链路 · 守权限 · 回传 |
+
+硬规则（同 `logo-safety.md`）：
+
+- 雷石 Logo **1:1 贴授权资产**，只在工牌牌面 / 模块牌 / 道具上
+- **禁止**把雷石 Logo 贴到客户助手脑袋或身体上
+- **禁止**把客户 App Icon 方标贴到小石头
+
+飞书 §5 已含三层组合图 + 手绘 / 实物生图示例；本地样张：`.temp/feishu-douyin-demo/custom-ip-thunderstone-*.png`
+
 ## 公开占位金样（无第三方商标）
 
 可进 README / 公开仓：[`scene-skill-core/ip-profiles/mark-demo/`](../scene-skill-core/ip-profiles/mark-demo/)

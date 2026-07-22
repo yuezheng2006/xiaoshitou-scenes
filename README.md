@@ -110,6 +110,8 @@ PNG：`author-persona-spec.png`、`author-persona-actions.png`、`author-persona
 
 公开占位：[`mark-demo`](scene-skill-core/ip-profiles/mark-demo/) · 立绘样例：[`custom-ip-demo`](scene-skill-core/ip-profiles/custom-ip-demo/) · 交付说明：[`custom-ip-delivery.md`](examples/custom-ip-delivery.md)
 
+**自定义 IP + 雷石品牌（飞书 §5）：** 客户 Icon 拟人助手做场景主角；雷石 Logo 仅在工牌 / 任务模块牌 / 道具牌面，不贴助手身上。样张见飞书文档。
+
 ```text
 两张用户参考图
   → Profile Enrollment / 身份锚点确认
