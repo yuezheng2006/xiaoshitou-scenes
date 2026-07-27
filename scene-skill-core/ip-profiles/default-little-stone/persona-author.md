@@ -63,7 +63,7 @@ persona-author.md（本文件，确认触发与分工）
 
 传图组合与多场景一致性锁见 [persona-author-assets.md](persona-author-assets.md)（含**三档分工**、**引用优先级链**、**双 IP 同框最小传图**、**批内金样锚定**）。
 
-**验收与校准索引**：[`examples/local-validation-dual-ip.md`](../../../../examples/local-validation-dual-ip.md)
+**验收与校准索引**：[`examples/local-validation-dual-ip.md`](../../../examples/local-validation-dual-ip.md)
 
 ## 双 IP 同框 · 最小传图（摘要）
 

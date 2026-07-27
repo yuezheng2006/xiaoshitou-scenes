@@ -9,7 +9,7 @@
 | **生图** | Agent 按 `references/common-generation-templates.md` 组装中文优先的生图提示词，必要时保留少量英文风格关键词，调用 `image_gen` 逐张出图 |
 | **你写什么** | 只写中文场景意图即可；配色、Character Lock、母版锁定由 Skill 内部处理 |
 
-> 本页是 18 个 **小石头实物图** 试跑场景（01–18 均有样张，位于 `assets/test-output/`）。手绘图 / 知识卡 / PPT 扩展场景见 [test-scenarios-extended.md](test-scenarios-extended.md)。
+> 本页是 18 个 **小石头实物图** 试跑场景（01–18 均有样张，位于 `assets/test-output/`）。手绘图 / 知识卡 / PPT 样张见 [assets/examples/gallery/README.md](../assets/examples/gallery/README.md)。
 
 ---
 

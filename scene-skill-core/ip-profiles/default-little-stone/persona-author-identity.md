@@ -6,7 +6,7 @@
 - **手绘身材比例金样** → `assets/persona/author-persona-handdrawn-body.png`
 - **多角度面相锁定（跨场景）** → `assets/persona/face-lock/author-persona-face-lock.png`
 - **面相锁定（多角度 + 禁止偏移）** → `assets/persona/face-lock/author-persona-face-lock.png`
-- **最高相似度金样对照组** → `assets/persona/author-persona-flat-ip-sheet.png` + `assets/persona/author-persona-flat-ip-sheet-navy.png`（同脸同身材，藏蓝仅为换色）
+- **最高相似度金样对照组** → `assets/persona/calibration/author-persona-flat-ip-sheet.png` + `assets/persona/calibration/author-persona-flat-ip-sheet-navy.png`（同脸同身材，藏蓝仅为换色）
 
 两张全景必须是同一个人。重建资产时，面相结构和比例可按用户会话临时 1:1 肖像还原，但不落仓。本文是文字版 ground truth，资产缺失时退回本文。
 

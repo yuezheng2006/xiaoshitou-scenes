@@ -54,7 +54,7 @@
 
 **推荐对客户演示：** 飞书文档 [§5 自定义 IP（抖音 · 拉布布）](https://m2miovoqda.feishu.cn/wiki/KCaAwyeeaiIxiokw0T9cAwWanEe) · 本地样张 `.temp/feishu-douyin-demo/`（**不进 Git**）
 
-公开占位金样：[`mark-demo`](scene-skill-core/ip-profiles/mark-demo/)（自创示意标，无第三方商标）
+公开占位金样：[`brand-mark-demo`](scene-skill-core/ip-profiles/brand-mark-demo/)（自创示意标，无第三方商标）
 
 ## 自定义 IP + 公司品牌（雷石示例）
 
@@ -76,15 +76,15 @@
 
 ## 公开占位金样（无第三方商标）
 
-可进 README / 公开仓：[`scene-skill-core/ip-profiles/mark-demo/`](../scene-skill-core/ip-profiles/mark-demo/)
+可进 README / 公开仓：[`scene-skill-core/ip-profiles/brand-mark-demo/`](../scene-skill-core/ip-profiles/brand-mark-demo/)
 
-- [Layer 1 示意标](../scene-skill-core/ip-profiles/mark-demo/assets/reference/brand-mark-primary.png)
-- [Layer 2 拟人设定图](../scene-skill-core/ip-profiles/mark-demo/assets/examples/00-identity-sheet.png)
-- [Layer 3 手绘 / 实物 / 动作库](../scene-skill-core/ip-profiles/mark-demo/assets/examples/)
+- [Layer 1 示意标](../scene-skill-core/ip-profiles/brand-mark-demo/assets/reference/brand-mark-primary.png)
+- [Layer 2 拟人设定图](../scene-skill-core/ip-profiles/brand-mark-demo/assets/examples/00-identity-sheet.png)
+- [Layer 3 手绘 / 实物 / 动作库](../scene-skill-core/ip-profiles/brand-mark-demo/assets/examples/)
 
 ## 与 custom-ip-demo 分流
 
-| | doubao-local（本地） | mark-demo（公开） | custom-ip-demo |
+| | doubao-local（本地） | brand-mark-demo（公开） | custom-ip-demo |
 | --- | --- | --- | --- |
 | 输入 | 豆包 App Icon | 自创示意标 | 第三方立绘 |
 | 公开 | 否，销售私演示 | 是 | 否 |

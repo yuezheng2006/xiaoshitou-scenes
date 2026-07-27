@@ -51,7 +51,7 @@ PPT 演讲模式：主题《EverOS 项目解读》，8 页分享。先出导演�
 
 ### 单张提示词见
 
-[examples/everos.md](../../../examples/everos.md)
+提示词已合并到 [examples/usage.md](../../../examples/usage.md)
 
 ---
 

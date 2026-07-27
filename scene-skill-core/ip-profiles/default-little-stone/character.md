@@ -183,7 +183,7 @@ Little Stone color lock:
 
 多人 / 多 Agent / 团队协作场景允许 2-4 个小石头，但它们必须像同一 IP 家族里的不同个体：共享 **#f39800 平涂、相同胶囊宽高比、相同白圆眼画法、相同细线肢体语言**；只允许通过 **整体等比缩放（±10–15% 高度差）、角度、站位、手脚姿态、动作职责** 拉开差异，**禁止**把 A 画成细长条、B 画成矮胖球、C 画成横扁椭圆；禁止复制粘贴平移。
 
-> **金样对齐**：`primary-character-actions.png` 多人协作格文案为「体量与姿态差异要明显」；手语为 **B 档简笔拟人**（细黑线小掌+2–3 短指）。手部/多人专项校准可加读 `assets/character/examples/calibrate-hands-multi.png`。
+> **金样对齐**：`primary-character-actions.png` 多人协作格文案为「体量与姿态差异要明显」；手语为 **B 档简笔拟人**（细黑线小掌+2–3 短指）。手部/多人专项校准可加读 `assets/character/calibration/calibrate-hands-multi.png`。
 
 ### 多人协作精细锁（CRITICAL · 2+ 个小石头同图）
 
@@ -330,7 +330,7 @@ Little Stone proportion lock: vertical capsule aspect ~1:1.3–1:1.6; two flat w
 
 **仍禁止**：KTV 包厢实景、舞台灯效、房态巡检服务员叙事、真实品牌 Logo、点歌 App UI 截图。物件规则详见 `physical-object-patterns.md`。
 
-专项金样：`assets/character/examples/calibrate-karaoke-actions.png`（内容相关时加读；不替代主设定图）。
+专项金样：`assets/character/calibration/calibrate-karaoke-actions.png`（内容相关时加读；不替代主设定图）。
 
 **禁止默认**：放大镜、灯泡、纯站桩讲解、与锚定句无关的装饰姿态、无关内容硬塞麦克风/包厢
 
@@ -352,9 +352,10 @@ Little Stone proportion lock: vertical capsule aspect ~1:1.3–1:1.6; two flat w
 | --- | --- |
 | 默认 / 拿不准 | `assets/character/examples/physical/calibrate-object-scene.png` |
 | 多人协作 / Agent 分工 | `physical/calibrate-multi-agent.png` |
-| 手部拟人 / 递接拉绳手脚 | `examples/calibrate-hands-multi.png` |
-| K 歌 / 握麦点歌合唱 | `examples/calibrate-karaoke-actions.png`（仅内容相关） |
+| 手部拟人 / 递接拉绳手脚 | `calibration/calibrate-hands-multi.png` |
+| K 歌 / 握麦点歌合唱 | `calibration/calibrate-karaoke-actions.png`（仅内容相关） |
 | 白板 / 流程 / 拉线 | `handdrawn/calibrate-whiteboard.png` |
+| 系统图 / 多模块关系 | `handdrawn/calibrate-system-map.png` |
 | **雷石工牌 / AI native 员工** | `logo-safety.md` + 用户会话工牌参考（本地） |
 | 知识卡模块 | `knowledge-card/calibrate-knowledge-card.png` |
 | 3D / 渐变 / 体积漂移 | 设定图 + 上表对应模式 calibrate + 强化 2D Flat Lock |

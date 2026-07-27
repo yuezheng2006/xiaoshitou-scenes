@@ -2,7 +2,7 @@
 
 > **路径 C**。与路径 B **分流**（有「小剧场」走 C，无则 B）。  
 > **默认单人**；同句出现「小石头」→ **C 组合**（潮玩底 + flat 2D 小石头）。  
-> **深度参考**：[Adrian Punk 视觉印记](../../../../.temp/adrian-punk-visual-imprint-ip-illustration.md)；组合路由见 `docs/superpowers/specs/2026-07-15-theater-combo-routing-design.md`。
+> **深度参考（本地留档，不随仓库分发）**：`.temp/adrian-punk-visual-imprint-ip-illustration.md`。C 单人 / C 组合的分流与路由规则已写入本文件「触发词」「C 组合」「与路径 B」各节，无需额外 spec 文件。
 
 ## 核心定位
 

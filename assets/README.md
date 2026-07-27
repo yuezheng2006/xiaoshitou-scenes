@@ -5,8 +5,10 @@ assets/
 ├── examples/
 │   ├── gallery/          # README 示例图库（工作流、角色资产、密度对比、三种模式样张）
 │   ├── ppt-mode/         # PPT 演讲模式页面样张
-│   └── everos/           # EverOS 主题成套示例
-└── test-output/    # 本地试跑样张（含提示词，见 examples/test-scenarios*.md）
+│   ├── everos/           # EverOS 主题成套示例
+│   └── readme/           # 根 README 效果预览图
+├── showcase/             # 飞书知识库配图（外部文档引用，仓库内不直接引用）
+└── test-output/          # 本地试跑样张（含提示词，见 examples/test-scenarios.md；不入库）
 ```
 
 Skill 核心包内的默认 profile 资产与母版在：

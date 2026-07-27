@@ -99,7 +99,7 @@ privacy:
 
 - Profile Logo 规则：`logo-safety.md`
 - 公开包不随 profile 分发真实品牌 Logo 源文件。
-- 雷石 Logo 参考：`assets/brand/private/thunderstone-logo-with-wordmark.png`（工牌牌面默认）、`thunderstone-logo-mark.png`（纯图标）；**prompt + 传参考图**。
+- 雷石 Logo 参考：`assets/brand/private/thunderstone-logo-with-wordmark.png`（工牌牌面默认）、`thunderstone-logo-mark.png`（纯图标）——**本地私有资产，不随仓库分发**；**prompt + 传参考图**。
 - `K 歌 / KTV / 音乐科技 / 车载 / 汽车内 / 智能电动 / 家用 / 商用 / 门店经营` 只触发可选物件语境，不自动触发真实 Logo。
 - 小石头的背景气味通过中性道具、动作和场景关系表达，不通过真实公司名或商标表达。
 
@@ -114,7 +114,7 @@ privacy:
 
 ## 无角色路径
 
-用户说「不要人物 / 纯物件 / 无 IP / none」时，切换到 `../none/profile.md`，不要继续使用本 profile 的角色资产。
+用户说「不要人物 / 纯物件 / 无 IP / none」时，切换到 `../no-character/profile.md`，不要继续使用本 profile 的角色资产。
 
 ## 替换 IP 的原则
 

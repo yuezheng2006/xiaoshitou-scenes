@@ -31,4 +31,7 @@ scene-skill-core/assets/persona/private/
 scene-skill-core/assets/brand/private/
 scene-skill-core/ip-profiles/*/assets/persona/private/
 
+# 真实品牌 Logo（雷石等）：不进公开仓库，仅本地留档供生图时读取参考。
+scene-skill-core/ip-profiles/*/assets/brand/
+
 雷石logo-png格式/

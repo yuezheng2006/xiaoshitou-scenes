@@ -1,7 +1,7 @@
 # 老杨 · 校准图与全景资产
 
 > **双参考协议（对齐人）**：设定图 = 01 主锚全景；校准图 = 本目录按主题选 1 张（可选）。  
-> **验收索引**：[`examples/local-validation-dual-ip.md`](../../../../../examples/local-validation-dual-ip.md)
+> **验收索引**：[`examples/local-validation-dual-ip.md`](../../../../../../examples/local-validation-dual-ip.md)
 
 ## 批内金样（多场景 likeness · 预览验收后）
 
@@ -13,8 +13,8 @@
 
 | 文件 | 风格 | 用途 |
 | --- | --- | --- |
-| `../author-persona-panorama.png` | 真人实体 | 实物图 / 长卷身份主锚；金黄金渐层猫 |
-| `../author-persona-panorama-handdrawn.png` | 手绘 | 手绘 / 知识卡 / PPT 身份主锚（**更重要**）；须与实体全景同一人 |
+| `../reference/author-persona-panorama.png` | 真人实体 | 实物图 / 长卷身份主锚；金黄金渐层猫 |
+| `../reference/author-persona-panorama-handdrawn.png` | 手绘 | 手绘 / 知识卡 / PPT 身份主锚（**更重要**）；须与实体全景同一人 |
 
 手绘出图：**手绘全景 + 实体全景** 同传，锁「同一个人」。
 
@@ -22,16 +22,16 @@
 
 | 文件 | 用途 |
 | --- | --- |
-| `../author-persona-face-lock.png` | 多角度脸特写；**多场景同批必加** |
-| `../author-persona-flat-ip-sheet.png` + `../author-persona-flat-ip-sheet-navy.png` | 最高相似度金样对（同脸同身材；藏蓝仅换色） |
-| `../author-persona-face-lock.png` | 面相锁定（多角度） + **禁止偏移区**；**返修不像老杨时必对照** |
+| `../face-lock/author-persona-face-lock.png` | 多角度脸特写；**多场景同批必加** |
+| `../calibration/author-persona-flat-ip-sheet.png` + `../calibration/author-persona-flat-ip-sheet-navy.png` | 最高相似度金样对（同脸同身材；藏蓝仅换色） |
+| `../face-lock/author-persona-face-lock.png` | 面相锁定（多角度） + **禁止偏移区**；**返修不像老杨时必对照** |
 
 ## 03 动作扩展（条件）
 
 | 文件 | 用途 |
 | --- | --- |
 | `../author-persona-handdrawn-body.png` | 手绘全身比例金样（183cm · 4:6 上短下长） |
-| `../author-persona-actions.png` | 实物小比例 / 复杂姿态 |
+| `../reference/author-persona-actions.png` | 实物小比例 / 复杂姿态 |
 | `../author-persona-handdrawn.png` | 历史线稿动作（全景优先） |
 
 ## 按主题选校准图（身份漂移或质量不稳时 · 可选 1 张）

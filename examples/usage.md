@@ -208,7 +208,7 @@ PPT 演讲模式：主题《AI 时代，内容怎么配图才有效》，8 页�
 ## 试跑场景
 
 - **实物图 01–18**（含 K 歌 / 工牌）：[test-scenarios.md](test-scenarios.md)，样张在 `assets/test-output/`
-- **手绘图 / 知识卡 / PPT 扩展**：[test-scenarios-extended.md](test-scenarios-extended.md)
+- **手绘图 / 知识卡 / PPT 扩展样张**：[assets/examples/gallery/README.md](../assets/examples/gallery/README.md)
 - **自动化验收**：`scene-skill-core/evals/evals.json`（19 条用例）
 
 示例：

@@ -572,7 +572,6 @@ codex exec "小石头视频：为什么环境检测很重要
 ### 核心文档
 - `codex-environment-guidance.md` - 完整环境检测指南（17 KB）
 - `QUICK-START.md § -1` - 环境检测清单（4 项）
-- `SUCCESS-REPORT.md` - 实战验证报告
 
 ### 模式文档
 - `video-mode.md` - 视频模式 + imagen

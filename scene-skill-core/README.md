@@ -34,7 +34,7 @@ Codex Skill 核心包。默认 profile 是 **小石头 + 老杨双 IP 互动**�
 - **🔀 模式不确定**：`references/mode-decision-matrix.md`
 
 ### 🔧 维护者
-- **🏗️ 文档架构**：`ARCHITECTURE-DESIGN.md`
+- **🏗️ 文档架构**：[docs/ARCHITECTURE-DESIGN.md](../docs/ARCHITECTURE-DESIGN.md)（仓库级，不随 Skill 包安装）
 - **✅ Evals**：`evals/evals.json`
 
 ---

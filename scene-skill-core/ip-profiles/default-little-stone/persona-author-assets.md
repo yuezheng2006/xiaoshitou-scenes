@@ -128,7 +128,7 @@ Also keep: handdrawn-panorama + panorama + face-lock + handdrawn-body (if full b
 Do NOT fix likeness by thinning brows, flattening cheekbones, or thinning lips.
 ```
 
-金样文件：`assets/persona/examples/validated-batch-anchor-handdrawn.png` · 验收索引 [`examples/local-validation-dual-ip.md`](../../../../examples/local-validation-dual-ip.md)
+金样文件：`assets/persona/examples/validated-batch-anchor-handdrawn.png` · 验收索引 [`examples/local-validation-dual-ip.md`](../../../examples/local-validation-dual-ip.md)
 
 ## 与小石头
 

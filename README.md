@@ -103,8 +103,8 @@ PNG：`author-persona-spec.png`、`author-persona-actions.png`、`author-persona
 
 - 示例图库：`assets/examples/`
 - 可复制提示词：`examples/usage.md`
-- 试跑场景：`examples/test-scenarios.md`、`examples/test-scenarios-extended.md`
-- EverOS 示例：`examples/everos.md`
+- 试跑场景：`examples/test-scenarios.md`
+- EverOS 示例：`assets/examples/everos/README.md`
 - 实物图母版：`scene-skill-core/assets/masters/`
 
 ### 自定义 IP（抖音 · 拉布布）
