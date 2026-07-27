@@ -1,4 +1,12 @@
-# References 命名说明
+# References 命名说明（L3 On-demand）
+
+本目录是 Agent Skills progressive disclosure 的 **L3**：只在 `QUICK-START.md` 或 `SKILL.md`「一层加载表」点名时再读，不要在激活 Skill 时全量加载。
+
+加载约定：
+
+1. 从 `SKILL.md` / `QUICK-START.md` 只跳 **一层** 到本目录某个文件。
+2. 该文件内部可再指向同目录或 `../ip-profiles/` 的下一层；Agent 按需打开，不要预读整树。
+3. 完整路由表见 `../SKILL.md` → Before Starting；本文件是索引，不是启动必读。
 
 本目录按用途前缀区分。具体 IP 形象、persona、Logo 边界和资产路径放在 `../ip-profiles/<ip-id>/`；本目录只保留通用流程、模式、QA 和模板。
 

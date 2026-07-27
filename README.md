@@ -1,6 +1,8 @@
 # xiaoshitou-scenes
 
-面向中文内容的多模式配图 Codex Skill：**小石头 + 老杨双 IP 互动**，把文章、观点、流程、方法论或演讲大纲转成四类图。
+面向中文内容的多模式配图 Codex Skill：**小石头 + 老杨双 IP 互动**，把文章、观点、流程、方法论或演讲大纲转成五类产物：实物图、手绘图、知识卡、PPT 演讲页和讲解视频。
+
+Skill 包遵循 [Agent Skills 开放规范](https://agentskills.io/specification)：标准 frontmatter（`name` / `description` / `license` / `compatibility` / `metadata` / `allowed-tools`）+ L0–L4 渐进加载分层（discovery → `SKILL.md` → `QUICK-START.md` → `references/` → `assets/`）。
 
 **飞书知识库（完整架构说明）：** [xiaoshitou-scenes：一个可验证的视觉 Skill 仓库](https://m2miovoqda.feishu.cn/wiki/KCaAwyeeaiIxiokw0T9cAwWanEe)
 
@@ -46,7 +48,7 @@
 小石头手绘图：把下面的 Agent 工作流解释成一张白板图。
 ```
 
-## 四种模式
+## 五种模式
 
 | 模式 | 适合内容 |
 | --- | --- |
@@ -54,8 +56,9 @@
 | 手绘图 | 流程、结构、系统关系、方法论、认知拆解 |
 | 知识卡 | 步骤、对比、诊断、课程总览、可收藏传播的内容 |
 | PPT 演讲模式 | 直播分享、课程课件、主题演讲、案例复盘 |
+| 视频模式 | 60-90 秒带旁白的动画讲解视频（1080×1440 竖版） |
 
-实物图和手绘图是默认主力模式。知识卡和 PPT 演讲模式只在用户明确触发，或内容明显需要独立传播容器 / 整套演讲页面时使用。
+实物图和手绘图是默认主力模式。知识卡、PPT 演讲和视频模式只在用户明确触发，或内容明显需要独立传播容器 / 整套演讲页面 / 讲解视频时使用。
 
 ## IP Profile
 
@@ -67,7 +70,7 @@
 - 作者 persona（分层）：`persona-author.md` → identity / assets / modes / prompts
 - Logo 边界：`scene-skill-core/ip-profiles/default-little-stone/logo-safety.md`
 
-无品牌角色：`scene-skill-core/ip-profiles/none/`（触发词：不要人物 / 纯物件 / 无 IP / none）。
+无品牌角色：`scene-skill-core/ip-profiles/no-character/`（触发词：不要人物 / 纯物件 / 无 IP / none）。
 
 通用规则在 `scene-skill-core/references/`。其中 `common-prompt-slots.md` 定义槽位组装（双参考只用于对齐人）；`common-character-lock.md`、`common-persona-routing.md` 和 `common-logo-safety.md` 只描述机制，不写死具体 IP。
 
@@ -108,7 +111,7 @@ PNG：`author-persona-spec.png`、`author-persona-actions.png`、`author-persona
 
 **飞书文档 §5：** [自定义 IP 两条路径](https://m2miovoqda.feishu.cn/wiki/KCaAwyeeaiIxiokw0T9cAwWanEe) — 品牌标（抖音 Icon 拟人）+ 立绘（拉布布）
 
-公开占位：[`mark-demo`](scene-skill-core/ip-profiles/mark-demo/) · 立绘样例：[`custom-ip-demo`](scene-skill-core/ip-profiles/custom-ip-demo/) · 交付说明：[`custom-ip-delivery.md`](examples/custom-ip-delivery.md)
+公开占位：[`brand-mark-demo`](scene-skill-core/ip-profiles/brand-mark-demo/) · 立绘样例：[`custom-ip-demo`](scene-skill-core/ip-profiles/custom-ip-demo/) · 交付说明：[`custom-ip-delivery.md`](examples/custom-ip-delivery.md)
 
 **自定义 IP + 雷石品牌（飞书 §5）：** 客户 Icon 拟人助手做场景主角；雷石 Logo 仅在工牌 / 任务模块牌 / 道具牌面，不贴助手身上。样张见飞书文档。
 
@@ -165,7 +168,7 @@ cp -R ./scene-skill-core "${CODEX_HOME:-$HOME/.codex}/skills/"
 └── scene-skill-core/        # Codex Skill 核心包
     ├── SKILL.md
     ├── assets/masters/      # 实物图母版 01-06
-    ├── ip-profiles/         # 可替换 IP profile（含 none）
+    ├── ip-profiles/         # 可替换 IP profile（含 no-character）
     ├── evals/               # 验收用例
     └── references/          # 通用流程、模式、QA、模板、槽位组装
 ```

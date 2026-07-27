@@ -1,42 +1,44 @@
 ---
 name: scene-skill-core
-description: |
-  使用当前 IP profile 生成多模式配图和视频：实物图走 2.0 简笔物件小现场；手绘图走 1.0 白板手绘解释图；知识卡走竖版收藏传播图；PPT 演讲模式走整套手绘风演讲页面；视频模式走 60-90 秒带旁白的动画讲解视频。默认 profile 是 default-little-stone（小石头 + 老杨双 IP 互动），可通过 ip-profiles/ 替换形象、persona、资产与 Logo 边界；也可切换 ip-profiles/no-character（不要人物 / 纯物件）。
-when-to-use: |
-  用户要用当前 IP profile 为中文内容生成配图、插图、shot list、解释图、知识卡、海报、演讲 PPT 或讲解视频时触发——**不必**要求用户写 `$scene-skill-core` 或 `Use $...`。
-  双 IP 入口：老杨、yuezheng2006、老杨和小石头、老杨 IP 图解、让我和小石头一起——触发后默认「老杨讲、小石头干」双 IP 互动。
-  老杨小剧场入口：必须含「小剧场」（小剧场 / 老杨小剧场 / IP小剧场）——潮玩视觉印记；默认同人；同句加「小石头」→ C 组合（flat 2D）；无「小剧场」不进此入口。
-  无角色入口：不要人物、纯物件、无 IP、none——切换 ip-profiles/no-character。  显式风格词：实物图、实物场景、物件小现场；手绘图、手绘解释、白板图、逻辑图；知识卡、图文号知识卡、手机海报、方法拆解图、收藏图、竖版传播图；PPT、课件、直播分享页、主题演讲、整套演讲页面、按大纲逐页出图、演讲页面、导演规划卡；视频讲解、动画视频、手绘视频、配音视频、讲解视频、小石头视频。默认 profile 也接受「小石头实物图 / 小石头手绘图 / 小石头视频」。
-  典型意图：生成/设计/出图/配图/插图；这篇内容想配图请先推荐；16:9 正文图；9:16 手机海报；3:4/4:5 知识卡；流程解释、结构拆解、方法论图；彩蛋模式、长卷、项目复盘；先分析配图方案暂不生图；改图、减标签、重生成；按大纲/逐字稿逐页出 PPT；生成讲解视频、带旁白的动画。
-  输入可以是正文、主题、观点、节点列表、项目说明、演讲大纲/逐字稿/旧 PPT，或指定母版类型。
-allowed-tools:
-  - Read
-  - Write
-  - Edit
-  - Bash
-  - imagen
-context: fork
+description: >
+  为中文内容按当前 IP profile 生成多模式配图与讲解视频：实物图（简笔物件小现场）、手绘图（白板解释）、知识卡（竖版传播）、PPT 演讲页、60-90 秒旁白动画。默认 default-little-stone（小石头+老杨双 IP），可换 ip-profiles/；不要人物/纯物件/无 IP/none 切 no-character。在用户要配图、插图、出图、shot list、知识卡、海报、演讲 PPT、讲解视频时使用——无需写 $scene-skill-core。触发含：实物图/物件小现场、手绘图/白板图/逻辑图、知识卡/手机海报/收藏图、PPT/课件/直播分享/导演规划卡、视频讲解/动画视频/小石头视频；双 IP：老杨、yuezheng2006、老杨和小石头；小剧场入口须含「小剧场」；也接受小石头实物图/手绘图/视频。输入可为正文、主题、大纲或逐字稿。
+license: MIT
+compatibility: Requires Codex (CLI / Desktop / claude.ai/code) with the imagen tool for image generation, plus local filesystem access to this skill's assets and profiles.
+metadata:
+  author: yuezheng2006
+  version: "1.1"
+  openaispec: agents/openai.yaml
+  codex-context: fork
+  codex-tools: imagen
+allowed-tools: Read Write Edit Bash imagen
 ---
 
 # Profile 化多模式配图
 
-## 🚀 快速开始（Agent 必读）
+本 Skill 遵循 [Agent Skills](https://agentskills.io/specification) 的 progressive disclosure：先读 discovery 元数据，激活后再读本文件核心流程，细节文件按任务一层加载。
 
-**第一次执行任务？先读这个：**
+## 分层加载（Agent 必守）
 
-→ **`QUICK-START.md`**（5 秒决策表：环境检测 + 模式判断 + 必读文件 + persona 触发 + 简化 Confirm Gate）
+| 层 | 何时加载 | 内容 | 入口 |
+| --- | --- | --- | --- |
+| L0 Discovery | 客户端启动时 | 仅 `name` + `description` | 本文件 frontmatter |
+| L1 Activation | 任务匹配本 Skill | 路由、底线、Core Flow、质量门 | **本文件正文**（不要一次读完所有 references） |
+| L2 Task router | 接到具体任务后立刻读 | 环境检测 + 模式/persona 5 秒决策 | **`QUICK-START.md`** |
+| L3 On-demand | 决策表指向时再读 | 模式 DNA、QA、persona、contracts | `references/`、`ip-profiles/`（索引：`references/README.md`） |
+| L4 Resources | 生图/渲染时 | 母版、角色参考图、脚本 | `assets/`、`scripts/` |
 
-不要直接读完本文件全部内容；按 QUICK-START 的决策表按需加载。
+**执行顺序**：匹配本 Skill → 读 `QUICK-START.md` 做路由 → 只打开决策表点名的一层文件 → 回本文件 Core Flow 执行。禁止把 `references/` 全量塞进上下文。
 
-**⚠️ 环境硬性约束**：本 Skill 必须在 **Codex 环境**运行，生图必须使用 Codex 自带的 **`imagen` 工具**。详见 `QUICK-START.md` § -1 和 `references/codex-environment-guidance.md`。
+**环境硬约束**：须在 **Codex** 运行；生图必须用 **`imagen`**。详见 `QUICK-START.md` § -1、`references/codex-environment-guidance.md`。
 
-**常见场景快速跳转：**
-- 实物图任务 → `QUICK-START.md` 决策表 A
-- 手绘图任务 → `QUICK-START.md` 决策表 B
-- 知识卡任务 → `QUICK-START.md` 决策表 C
-- PPT 任务 → `QUICK-START.md` 决策表 D
-- 触发 persona（老杨双 IP）→ `references/persona-quick-checklist.md`
-- 触发老杨小剧场 → `references/persona-theater-checklist.md`
+**常见跳转（均为一层引用）：**
+- 实物图 → `QUICK-START.md` 决策表 A
+- 手绘图 → `QUICK-START.md` 决策表 B
+- 知识卡 → `QUICK-START.md` 决策表 C
+- PPT → `QUICK-START.md` 决策表 D
+- 视频 → `QUICK-START.md` 决策表 E
+- 老杨双 IP → `references/persona-quick-checklist.md`
+- 老杨小剧场 → `references/persona-theater-checklist.md`
 - 模式不确定 → `references/mode-decision-matrix.md`
 
 ## 触发方式
@@ -128,12 +130,13 @@ PPT 演讲：老杨主讲页 + 小石头执行点缀（双 IP 推荐）
 - **已触发老杨且用户只粘贴内容、未指定模式**：先读 `persona-scene-patterns.md`，输出双 IP 出图方案推荐（模式 + 张数 + 互动场景类型），不要逼用户先选模式词。
 - 仍不确定时，先给 1-2 句说明并选择最贴合内容的模式，不要反复追问；实物图/手绘图之外的两种模式不确定时优先退回实物图或手绘图，不要主动升级。
 
-## 四种模式
+## 五种模式
 
 - **实物图模式**：16:9 正文图，一个简笔物件小现场；也支持彩蛋长卷故事图。参考 `physical-style-dna.md`、`physical-master-anchors.md`、`physical-object-patterns.md`。
 - **手绘图模式**：16:9 白板手绘解释图；用 1 个核心结构和少量红橙蓝批注解释流程、系统或方法。参考 `handdrawn-style-dna.md`、`handdrawn-composition-patterns.md`、`handdrawn-qa-checklist.md`。
 - **知识卡模式**：3:4/4:5/9:16 竖版独立传播图，可承载标题、模块、步骤、风险、行动、多个主角色协作分工。参考 `knowledge-card-mode.md`。
 - **PPT 演讲模式**：16:9 连续多页整套演讲页面，先出导演规划卡再分批生成。参考 `ppt-presentation-mode.md`。
+- **视频模式**：60-90 秒带旁白的动画讲解视频（1080×1440 竖版），场景插图必须用 `imagen` 生成。参考 `video-mode.md`。
 
 ## 当前 Profile（执行摘要）
 
@@ -147,7 +150,7 @@ PPT 演讲：老杨主讲页 + 小石头执行点缀（双 IP 推荐）
 
 完整规则：`references/common-character-lock.md` + 当前 profile 的 `character.md`。
 
-## 共同底线（四种模式都必须保留）
+## 共同底线（所有模式都必须保留）
 
 模式只改变表达载体，不改变当前 profile 主角色自己的识别。
 
@@ -164,68 +167,44 @@ PPT 演讲：老杨主讲页 + 小石头执行点缀（双 IP 推荐）
 - **手绘图模式** 承袭 Ian / helloianneo 手绘解释工作流（1.0）：白底手绘解释图，适合拆流程、结构和方法。
 - **实物图模式** 承袭 Ian / helloianneo 实物场景工作流（2.0）：简笔物件小现场，适合表达处境、情绪和故事。
 - **知识卡模式** / **PPT 演讲模式**：在实物图/手绘图的 profile 主角色和视觉语言基础上新增的两种容器型模式，参考 [haloshin/ip-diagram-creator](https://github.com/haloshin/ip-diagram-creator) 的知识卡与 PPT 演讲模式思路本地化而来，默认不主动触发。公开示例图见仓库根目录 `assets/examples/gallery/` 与 `assets/examples/ppt-mode/`；Skill 包内 `assets/masters/` 只放实物图母版 01–06。
-- 四种模式共享当前 profile，但生成时必须按当前任务只选一种，不要把不同模式的构图/尺寸/信息量混成一张。
+- 所有模式共享当前 profile，但生成时必须按当前任务只选一种，不要把不同模式的构图/尺寸/信息量混成一张。
 
-## Before Starting
+## Before Starting（L3 一层加载表）
 
-按任务需要读取，不要一次全部塞进上下文。`references/` 文件按前缀分组：
+完整文件索引与前缀约定见 `references/README.md`。本表只列「先读哪一个」；被指向文件内部再展开细节，避免从 `SKILL.md` 深链多层。
 
-公共规则（多种模式都可能用）：
+| 场景 | 先读（一层） | 需要时再读 |
+| --- | --- | --- |
+| 任意任务路由 | `QUICK-START.md` | 决策表点名的文件 |
+| 默认 IP | `ip-profiles/default-little-stone/profile.md` | 同目录 `character.md` / persona-* |
+| 无角色 | `ip-profiles/no-character/profile.md` | — |
+| Prompt 组装 | `references/common-prompt-slots.md` | 当前 profile 文案槽位 |
+| 多图 / 形象锁 | `references/common-character-lock.md` | profile `character.md` |
+| 人像校准 | `references/common-persona-calibration.md` | — |
+| 双 IP 路由 | `references/persona-quick-checklist.md` | `common-persona-routing.md`、`persona-scene-patterns.md`、profile `persona-author.md` |
+| 小剧场 | `references/persona-theater-checklist.md` | profile `persona-author-theater.md` |
+| Logo / 品牌 | `references/common-logo-safety.md` | 当前 profile `logo-safety.md` |
+| 交接卡 | `references/contracts/task-card.md` | `plan-card` / `render-card` / `qa-card` |
+| 自定义 IP 录入 | `references/contracts/profile-contract.md` | `brand-mark-mode.md` |
+| 实物图 | `references/physical-master-anchors.md` | `physical-style-dna` / `physical-object-patterns` / `physical-qa-checklist` |
+| 手绘图 | `references/handdrawn-composition-patterns.md` | `handdrawn-style-dna` / `handdrawn-qa-checklist` |
+| 知识卡 | `references/knowledge-card-mode.md` | `common-modes-and-sizes.md` |
+| PPT | `references/ppt-presentation-mode.md` | — |
+| 视频 | `references/video-mode.md` | `scripts/`、`assets/remotion-template/` |
+| 返修 | `references/common-qa-repair.md` | 对应模式 QA |
 
-- `ip-profiles/default-little-stone/profile.md`：默认 IP profile 总入口；更换 IP 时优先替换 profile。
-- `ip-profiles/no-character/profile.md`：无品牌角色路径。
-- `references/common-prompt-slots.md`：通用 prompt 槽位组装；**双参考用于对齐老杨**。
-- `references/common-character-lock.md`：通用 Character Lock、维度锁、多人差异锁机制。
-- `references/common-persona-calibration.md`：所有人像参考图的生成前校准卡、生成后身份/年龄/比例检查；未通过不得生成或交付。
-- `references/common-persona-routing.md`：通用 persona 触发、双 IP 路由和安全边界。
-- `references/persona-scene-patterns.md`：**触发 persona 时必读**——老杨 × 小石头六类互动场景、出图方案推荐、失败信号。
-- `references/common-logo-safety.md`：通用 Logo / 品牌资产安全规则；具体 Logo 边界读取当前 profile 的 `logo-safety.md`。
-- `references/common-story-extraction.md`：如何从正文里提炼用户处境、动作和短标签。
-- `references/common-generation-templates.md`：实物图、手绘图、长卷与批量图的提示词模板。
-- `references/common-qa-repair.md`：装饰性测试、用户反馈映射表、标准化返修输出格式；收到主观返修意见或做角色装饰性检查时读取。
-- `references/common-modes-and-sizes.md`：尺寸池与图内信息量分级语言；判断出图方案或触发知识卡/PPT 演讲模式时读取。
+资产路径（L4，按需打开文件，不预读全文）：
 
-交接协议：
-
-- `references/contracts/task-card.md`：记录用户需求、事实、Profile 和 Persona 入口。
-- `references/contracts/plan-card.md`：记录模式、结构、动作、资产和生成前方案。
-- `references/contracts/render-card.md`：记录 Prompt、参考图、硬性限制和返修预案。
-- `references/contracts/qa-card.md`：记录 Confirm Gate、模式 QA 和返修定位。
-- `references/contracts/profile-contract.md`：记录 IP 身份、参考图、录入状态和发布边界。
-
-实物图规则：
-
-- `references/physical-style-dna.md`：实物图视觉 DNA、比例、留白、颜色、真实物件规则。
-- `references/physical-object-patterns.md`：真实物件选择、场景类型、原创隐喻和反复刻规则。
-- `references/physical-master-anchors.md`：实物图 01-06 母版类型、抽象骨架、变异与拦截规则。
-- `references/physical-qa-checklist.md`：实物图生成后质量检查、失败信号和迭代方向。
-
-手绘图规则：
-
-- `references/handdrawn-style-dna.md`：手绘图视觉 DNA、颜色、标注和禁忌。
-- `references/handdrawn-composition-patterns.md`：手绘图结构类型、隐喻生成和反复刻规则。
-- `references/handdrawn-qa-checklist.md`：手绘图生成后质量检查。
-
-知识卡模式规则（仅触发知识卡模式时读取）：
-
-- `references/knowledge-card-mode.md`：知识卡触发词、结构形态库、角色分工、必填字段、硬性预算、QA 与失败信号——一份文件涵盖全部规则。
-
-PPT 演讲模式规则（仅触发 PPT 演讲模式时读取）：
-
-- `references/ppt-presentation-mode.md`：PPT 演讲模式工作流、导演规划卡、page card、页面类型库、节奏规则、QA——一份文件涵盖全部规则。
-
-资产：
-
-- 当前 profile 的主角色资产：默认位于 `ip-profiles/default-little-stone/assets/character/`。
-- 当前 profile 的 persona 资产：默认位于 `ip-profiles/default-little-stone/assets/persona/`，仅触发 persona 时读取。
-- `assets/masters/`：实物图母版 `01`–`06`；只作为质量锚点，不和根目录公开示例混用。
+- 主角色：`ip-profiles/default-little-stone/assets/character/`
+- Persona：`ip-profiles/default-little-stone/assets/persona/`（仅触发时）
+- 实物母版：`assets/masters/`（`01`–`06` 质量锚点；根目录 `assets/examples/` 不是母版）
 
 开始前确认：
 
 - 先判定模式、尺寸、是否作者出镜、是否涉及事实/品牌/Logo。
-- `K 歌服务` 不自动触发品牌 Logo；Logo/工牌/展会/物料才读取 `common-logo-safety.md` 和当前 profile 的 `logo-safety.md`，只预留 Logo 区或使用用户本地私有授权 Logo。
+- `K 歌服务` 不自动触发品牌 Logo；Logo/工牌/展会/物料才读取 `common-logo-safety.md` 与当前 profile `logo-safety.md`。
 - 未明确要生成时，只输出 shot list 或方案；明确“看效果 / 输出 / 生成”时，必须先完成对应模式锁定。
-- 生图前：小石头传设定图（单锚点）；老杨出镜执行双参考（spec + 模式校准）；复杂姿态/小比例再加对应扩展；实物母版按上方规则读取。老杨双参考未进上下文不得声称已走对齐流程。
+- 生图前：小石头传设定图（单锚点）；老杨出镜执行双参考；复杂姿态/小比例再加扩展。老杨双参考未进上下文不得声称已对齐。
 - **凡涉及人像参考图，必须先完成 `common-persona-calibration.md` 校准卡；校准 FAIL 不得生成。**
 
 ## Core Flow

@@ -1,6 +1,8 @@
-# Agent 快速决策表
+# Agent 快速决策表（L2 Task router）
 
-**目标**：5 秒内判断模式 + 必读文件 + 是否触发 persona，无需完整阅读 SKILL.md。
+**在分层中的位置**：`SKILL.md` L1 激活后 → **先读本文件** → 再按表打开 L3（`references/` / `ip-profiles/`）→ 执行 `SKILL.md` Core Flow。
+
+**目标**：5 秒内判断模式 + 必读文件 + 是否触发 persona，无需完整阅读 `SKILL.md` 或整包 references。
 
 ## -1. 环境检测（首次任务必做）
 

@@ -6,6 +6,18 @@ Codex Skill 核心包。默认 profile 是 **小石头 + 老杨双 IP 互动**�
 
 生图时：**双参考对齐老杨**（spec + 模式校准图）；小石头默认单锚点。Prompt 按 `references/common-prompt-slots.md` 组装。
 
+## 分层（对齐 Agent Skills progressive disclosure）
+
+| 层 | 路径 | 用途 |
+| --- | --- | --- |
+| L0 | `SKILL.md` frontmatter | discovery：`name` + `description` |
+| L1 | `SKILL.md` 正文 | 激活后：路由底线 + Core Flow |
+| L2 | `QUICK-START.md` | 任务路由器（环境 / 模式 / persona） |
+| L3 | `references/`、`ip-profiles/` | 按需细节；索引见 `references/README.md` |
+| L4 | `assets/`、`scripts/` | 母版、参考图、可执行脚本 |
+
+规范：https://agentskills.io/specification
+
 ## 📖 文档导航（按角色）
 
 ### 👤 用户使用
@@ -14,16 +26,16 @@ Codex Skill 核心包。默认 profile 是 **小石头 + 老杨双 IP 互动**�
 - **测试场景**：[examples/test-scenarios.md](../examples/test-scenarios.md)
 
 ### 🤖 Agent 开发
-- **⚡ 首次任务必读**：`QUICK-START.md`（5 秒决策表：环境检测 + 模式路由 + 必读文件）
-- **🔧 环境与工具**：`references/codex-environment-guidance.md`（Codex 环境检测 + imagen 工具使用规范）
-- **💡 实战经验**：`references/codex-exec-best-practices.md`（codex exec 踩坑指南 + 性能优化 + 场景模板）
-- **👥 Persona 触发**：`references/persona-quick-checklist.md`（双 IP 快速决策）
-- **🔀 模式路由不确定**：`references/mode-decision-matrix.md`（四种模式对比）
-- **📚 完整规范**：`SKILL.md`（主工作流）
+- **⚡ L2 首次任务**：`QUICK-START.md`
+- **📚 L1 主流程**：`SKILL.md`
+- **🔧 环境与工具**：`references/codex-environment-guidance.md`
+- **💡 实战经验**：`references/codex-exec-best-practices.md`
+- **👥 Persona**：`references/persona-quick-checklist.md`
+- **🔀 模式不确定**：`references/mode-decision-matrix.md`
 
 ### 🔧 维护者
-- **🏗️ 文档架构**：`ARCHITECTURE.md`（依赖关系 + 单一真相来源原则）
-- **✅ Evals 测试**：`evals/evals.json`
+- **🏗️ 文档架构**：`ARCHITECTURE-DESIGN.md`
+- **✅ Evals**：`evals/evals.json`
 
 ---
 
@@ -66,7 +78,7 @@ Codex Skill 核心包。默认 profile 是 **小石头 + 老杨双 IP 互动**�
 
 触发词：`老杨`、`yuezheng2006`、`老杨和小石头`、`老杨 IP 图解` 等。互动场景库：`references/persona-scene-patterns.md`。
 
-## 四种模式
+## 五种模式
 
 | 模式 | 适合内容 | 双 IP 典型结构 |
 | --- | --- | --- |
@@ -74,13 +86,14 @@ Codex Skill 核心包。默认 profile 是 **小石头 + 老杨双 IP 互动**�
 | 手绘图 | 流程、结构、方法论 | 老杨画结构 + 小石头拉线/搬模块 |
 | 知识卡 | 步骤、对比、收藏传播 | 老杨主讲 + 小石头模块分工 |
 | PPT 演讲 | 直播、课件、主题演讲 | 老杨主讲页 + 小石头执行点缀 |
+| 视频讲解 | 60-90 秒带旁白的动画讲解（1080×1440 竖版） | 老杨旁白 + 小石头动作演示 |
 
 ## 文档索引（完整列表）
 
 **核心入口**：
 - `QUICK-START.md` - Agent 5 秒决策表（**推荐首次阅读**）
 - `SKILL.md` - 完整工作流与规则
-- `ARCHITECTURE.md` - 文档架构与维护指南
+- `ARCHITECTURE-DESIGN.md` - 文档架构与维护指南
 
 **角色规范**（单一真相来源）：
 - `ip-profiles/default-little-stone/character.md` - 小石头形象唯一定义
@@ -91,6 +104,7 @@ Codex Skill 核心包。默认 profile 是 **小石头 + 老杨双 IP 互动**�
 - `references/handdrawn-composition-patterns.md` - 手绘图结构类型
 - `references/knowledge-card-mode.md` - 知识卡模式
 - `references/ppt-presentation-mode.md` - PPT 演讲模式
+- `references/video-mode.md` - 视频模式
 
 **快速决策**：
 - `references/persona-quick-checklist.md` - 双 IP 快速决策
