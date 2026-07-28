@@ -5,7 +5,7 @@ import {AbsoluteFill,Easing,Img,Sequence,interpolate,staticFile,useCurrentFrame,
 import captionJson from './generated/captions.json';
 import {getMotionPreset,type MotionPreset} from './motionPresets';
 import {presets,type LayoutFamily,type StylePreset} from './stylePresets';
-import type {Plan,Scene} from './types';
+import type {CaptionLookId,Plan,Scene} from './types';
 
 const captionMap = captionJson as Record<string, Caption[]>;
 
@@ -16,8 +16,8 @@ const titleStyle = (fontFamily: string, preset: StylePreset, size = 86): CSSProp
   fontFamily,
   fontSize: size,
   fontWeight: 800,
-  lineHeight: 1.08,
-  letterSpacing: 0,
+  lineHeight: 1.15,
+  letterSpacing: size >= 52 ? 0.5 : 0,
   color: preset.ink,
   whiteSpace: 'pre-line',
 });
@@ -77,14 +77,183 @@ const Art: React.FC<{
     <div style={{
       position:'absolute',
       inset:0,
-      background:`linear-gradient(90deg, ${preset.background} 0%, ${preset.background} 42%, transparent 58%, transparent 100%)`,
+      background:`linear-gradient(90deg, ${preset.background} 0%, ${preset.background} 28%, transparent 48%, transparent 100%)`,
       translate:`${interpolate(draw,[0,1],[0,120],clamp)}% 0px`,
-      opacity:0.72,
+      opacity:0.28,
       mixBlendMode:'multiply',
       pointerEvents:'none',
     }}/>
   </div>;
 };
+
+/** QuietChrome bottom caption looks (plan.style.captionLook). */
+const captionLooks = {
+  ink: (preset: StylePreset) => ({
+    color: preset.ink,
+    background: 'transparent' as const,
+    padding: '8px 4px' as const,
+    borderRadius: 0,
+    textShadow: `0 2px 16px ${preset.background}, 0 0 4px ${preset.background}`,
+  }),
+  accent: (preset: StylePreset) => ({
+    color: preset.accent,
+    background: 'transparent' as const,
+    padding: '8px 4px' as const,
+    borderRadius: 0,
+    textShadow: `0 2px 14px ${preset.background}, 0 0 3px ${preset.background}`,
+  }),
+  soft: (preset: StylePreset) => ({
+    color: `${preset.ink}CC`,
+    background: 'transparent' as const,
+    padding: '8px 4px' as const,
+    borderRadius: 0,
+    textShadow: `0 1px 10px ${preset.background}`,
+  }),
+  'pill-light': (preset: StylePreset) => ({
+    color: preset.ink,
+    background: `${preset.background}F2`,
+    padding: '12px 22px' as const,
+    borderRadius: 18,
+    textShadow: 'none' as const,
+  }),
+  'pill-dark': (preset: StylePreset) => ({
+    color: preset.background,
+    background: `${preset.ink}E8`,
+    padding: '12px 22px' as const,
+    borderRadius: 18,
+    textShadow: 'none' as const,
+  }),
+  outline: (preset: StylePreset) => ({
+    color: preset.ink,
+    background: 'transparent' as const,
+    padding: '8px 4px' as const,
+    borderRadius: 0,
+    textShadow: [
+      `0 0 2px ${preset.background}`,
+      `1px 0 0 ${preset.background}`,
+      `-1px 0 0 ${preset.background}`,
+      `0 1px 0 ${preset.background}`,
+      `0 -1px 0 ${preset.background}`,
+      `0 2px 12px ${preset.background}`,
+    ].join(', '),
+  }),
+} as const;
+
+/** Three-band QuietChrome: title / stage / caption — art never fights type. */
+const QuietChromeStage: React.FC<{
+  scene: Scene;
+  preset: StylePreset;
+  index: number;
+  headingFont: string;
+  bodyFont: string;
+  motion: MotionPreset;
+  captionText?: string;
+  issueRight?: boolean;
+  captionLook?: CaptionLookId;
+  captionBottomRatio?: number;
+}> = ({
+  scene,preset,index,headingFont,bodyFont,motion,captionText,issueRight = false,
+  captionLook = 'ink',
+  captionBottomRatio = 0.11,
+}) => {
+  const frame = useCurrentFrame();
+  const {width,height} = useVideoConfig();
+  const titleEnter = enterValue(frame,motion.enterFrames);
+  const captionEnter = enterValue(frame,motion.enterFrames + 8);
+  const titleMotion = motionShift(frame,titleEnter,motion.titleFrom);
+  const captionMotion = motionShift(frame,captionEnter,motion.captionFrom);
+  const accent = scene.accent ?? preset.accent;
+  const issue = num(index);
+
+  // Vertical rhythm for 3:4 / 9:16 explainers
+  const padX = Math.round(width * 0.07);
+  const titleTop = Math.round(height * 0.042);
+  const titleBand = Math.round(height * 0.168);
+  const captionBand = Math.round(height * Math.min(0.15, Math.max(0.1, captionBottomRatio ?? 0.11)));
+  const stageGap = Math.round(height * 0.012);
+  const stageTop = titleTop + titleBand + stageGap;
+  const stageBottom = captionBand + stageGap;
+
+  const titleSize = Math.round(Math.min(72, Math.max(52, width * 0.058)));
+  const captionSize = Math.round(Math.min(32, Math.max(26, width * 0.026)));
+  const issueSize = Math.round(titleSize * 0.32);
+  const shadow = `0 2px 18px ${preset.background}, 0 0 5px ${preset.background}`;
+
+  const caption = (captionText || scene.caption || '').trim();
+  const showCaption = caption.length > 0 && caption !== scene.headline.trim();
+  const look = (captionLooks as Record<string, typeof captionLooks.ink>)[captionLook ?? 'ink'] ?? captionLooks.ink;
+  const lookStyle = look(preset);
+
+  return <main style={{position:'absolute',inset:0,background:preset.background}}>
+    {/* Content stage — reserved middle band */}
+    <div style={{
+      position:'absolute',
+      top:stageTop,
+      bottom:stageBottom,
+      left:padX,
+      right:padX,
+      display:'flex',
+      alignItems:'center',
+      justifyContent:'center',
+    }}>
+      <div style={{width:'100%',height:'100%',minHeight:0}}>
+        <Art scene={scene} preset={preset} motion={motion} fit="contain"/>
+      </div>
+    </div>
+
+    {/* Title band wash */}
+    <div style={{
+      position:'absolute',left:0,right:0,top:0,height:stageTop,pointerEvents:'none',
+      background:`linear-gradient(180deg, ${preset.background} 0%, ${preset.background}F2 62%, ${preset.background}00 100%)`,
+    }}/>
+    {/* Caption band wash */}
+    <div style={{
+      position:'absolute',left:0,right:0,bottom:0,height:stageBottom,pointerEvents:'none',
+      background:`linear-gradient(0deg, ${preset.background} 0%, ${preset.background}F2 58%, ${preset.background}00 100%)`,
+    }}/>
+
+    <header style={{
+      position:'absolute',left:padX,right:padX,top:titleTop,height:titleBand,
+      display:'flex',flexDirection:issueRight ? 'row' : 'column',
+      alignItems:issueRight ? 'flex-start' : 'flex-start',
+      justifyContent:issueRight ? 'space-between' : 'flex-start',
+      gap:issueRight ? 16 : 8,
+      ...titleMotion,
+      zIndex:4,
+    }}>
+      {issueRight ? <>
+        <div style={{flex:1,minWidth:0}}>
+          <h1 style={{...titleStyle(headingFont,preset,titleSize),textShadow:shadow}}>{scene.headline}</h1>
+          <div style={{marginTop:10,width:Math.round(width * 0.12),height:3,background:accent,borderRadius:2,opacity:0.85}}/>
+        </div>
+        <div style={{fontFamily:bodyFont,fontSize:issueSize,fontWeight:800,color:accent,opacity:0.95,paddingTop:4,textShadow:shadow}}>{issue}</div>
+      </> : <>
+        <div style={{fontFamily:bodyFont,fontSize:issueSize,fontWeight:800,color:accent,letterSpacing:1.4,opacity:0.95,textShadow:shadow}}>{issue}</div>
+        <h1 style={{...titleStyle(headingFont,preset,titleSize),maxWidth:'96%',textShadow:shadow}}>{scene.headline}</h1>
+        <div style={{marginTop:4,width:Math.round(width * 0.1),height:3,background:accent,borderRadius:2,opacity:0.85}}/>
+      </>}
+    </header>
+
+    {showCaption ? <div style={{
+      position:'absolute',left:padX,right:padX,bottom:0,height:captionBand,
+      display:'flex',alignItems:'center',justifyContent:'center',...captionMotion,
+      zIndex:5,
+    }}>
+      <div style={{
+        fontFamily:bodyFont,fontSize:captionSize,fontWeight:650,lineHeight:1.45,
+        letterSpacing:0.6,textAlign:'center',maxWidth:'92%',
+        color:lookStyle.color,
+        background:lookStyle.background,
+        padding:lookStyle.padding,
+        borderRadius:lookStyle.borderRadius,
+        textShadow:lookStyle.textShadow,
+      }}>{caption}</div>
+    </div> : null}
+  </main>;
+};
+
+/** @deprecated name kept for call sites — use QuietChromeStage */
+const QuietChromeOverlay = QuietChromeStage;
 
 const CaptionBlock: React.FC<{
   text: string;
@@ -98,27 +267,28 @@ const CaptionBlock: React.FC<{
   const enter = enterValue(frame,motion.enterFrames + 10);
   const underline = interpolate(enter,[0,1],[0,1],clamp);
   const dark = variant === 'dark';
+  const quiet = variant === 'bar' || variant === 'inline';
   return <div style={{
     ...captionStyle(bodyFont,preset),
     ...motionShift(frame,enter,motion.captionFrom),
-    fontSize:variant === 'side' ? 34 : variant === 'note' ? 38 : 42,
-    background:dark ? `${preset.ink}E6` : preset.panel,
+    fontSize:variant === 'side' ? 30 : variant === 'note' ? 34 : quiet ? 34 : 40,
+    background:dark ? `${preset.ink}E6` : quiet ? 'transparent' : preset.panel,
     color:dark ? preset.background : preset.ink,
-    borderTop:variant === 'bar' ? `5px solid ${accent}` : undefined,
-    borderLeft:variant === 'side' || variant === 'note' ? `7px solid ${accent}` : undefined,
-    padding:variant === 'inline' ? '0' : '18px 26px',
-    boxShadow:variant === 'inline' ? undefined : `0 16px 40px ${preset.ink}18`,
+    borderTop:variant === 'bar' ? `2px solid ${accent}55` : undefined,
+    borderLeft:variant === 'side' || variant === 'note' ? `3px solid ${accent}` : undefined,
+    padding:variant === 'inline' ? '4px 0 0' : quiet ? '10px 4px 0' : '14px 18px',
+    boxShadow:quiet || variant === 'inline' ? undefined : `0 8px 24px ${preset.ink}10`,
     textAlign:variant === 'side' ? 'left' : 'center',
   }}>
     <span>{text}</span>
-    {variant !== 'inline' && <div style={{
-      height:3,
+    {variant !== 'inline' && variant !== 'bar' && <div style={{
+      height:2,
       width:'100%',
       background:accent,
-      marginTop:10,
+      marginTop:8,
       transformOrigin:'left center',
       scale:`${underline} 1`,
-      opacity:0.72,
+      opacity:0.45,
     }}/>}
   </div>;
 };
@@ -132,13 +302,16 @@ const Layout: React.FC<{
   bodyFont: string;
   text: string;
   motion: MotionPreset;
-}> = ({layout,scene,preset,index,headingFont,bodyFont,text,motion}) => {
+  captionLook?: CaptionLookId;
+  captionBottomRatio?: number;
+}> = ({layout,scene,preset,index,headingFont,bodyFont,text,motion,captionLook,captionBottomRatio}) => {
   const frame = useCurrentFrame();
   const titleEnter = enterValue(frame,motion.enterFrames);
   const accent = scene.accent ?? preset.accent;
   const issue = num(index);
   const titleMotion = motionShift(frame,titleEnter,motion.titleFrom);
   const common = {scene,preset,motion};
+  const quietProps = {scene,preset,index,headingFont,bodyFont,motion,captionText:text,captionLook,captionBottomRatio};
 
   if (layout === 'grid-briefing') {
     return <main style={{position:'absolute',inset:'86px 72px 86px',display:'grid',gridTemplateColumns:'340px 1fr',gap:34}}>
@@ -172,17 +345,7 @@ const Layout: React.FC<{
   }
 
   if (layout === 'notebook-diary') {
-    return <main style={{position:'absolute',inset:'88px 78px 82px',display:'grid',gridTemplateRows:'auto 1fr auto',gap:26}}>
-      <header style={{display:'flex',alignItems:'flex-start',gap:22,rotate:'-0.3deg',...titleMotion}}>
-        <span style={{fontFamily:bodyFont,fontSize:30,fontWeight:800,color:accent,paddingTop:10}}>{issue}</span>
-        <h1 style={titleStyle(headingFont,preset,82)}>{scene.headline}</h1>
-      </header>
-      <div style={{position:'relative'}}>
-        <div style={{position:'absolute',left:18,top:-10,width:156,height:38,background:'#EFD8A888',rotate:'-4deg',zIndex:2}}/>
-        <Art {...common}/>
-      </div>
-      <CaptionBlock text={text} preset={preset} bodyFont={bodyFont} accent={accent} motion={motion} variant="note"/>
-    </main>;
+    return <QuietChromeStage {...quietProps}/>;
   }
 
   if (layout === 'ink-poster') {
@@ -273,16 +436,7 @@ const Layout: React.FC<{
   }
 
   if (layout === 'chalk-lesson' || layout === 'blueprint-callout') {
-    return <main style={{position:'absolute',inset:'74px 72px 82px',display:'grid',gridTemplateRows:'auto 1fr auto',gap:24}}>
-      <header style={{display:'grid',gridTemplateColumns:'1fr 132px',gap:22,alignItems:'end',...titleMotion}}>
-        <h1 style={titleStyle(headingFont,preset,82)}>{scene.headline}</h1>
-        <div style={{fontFamily:bodyFont,fontSize:34,fontWeight:900,color:accent,textAlign:'right'}}>{issue}</div>
-      </header>
-      <div style={{border:`3px solid ${preset.ink}55`,background:preset.panel,padding:24,boxShadow:`inset 0 0 0 1px ${accent}42`}}>
-        <Art {...common}/>
-      </div>
-      <CaptionBlock text={text} preset={preset} bodyFont={bodyFont} accent={accent} motion={motion} variant={layout === 'chalk-lesson' ? 'dark' : 'bar'}/>
-    </main>;
+    return <QuietChromeStage {...quietProps} issueRight/>;
   }
 
   if (layout === 'sticker-stage') {
@@ -296,14 +450,8 @@ const Layout: React.FC<{
     </main>;
   }
 
-  return <main style={{position:'absolute',inset:'82px 78px 82px',display:'grid',gridTemplateRows:'auto 1fr auto',gap:28}}>
-    <header style={{display:'grid',gridTemplateColumns:'76px 1fr',gap:20,alignItems:'start',...titleMotion}}>
-      <div style={{fontFamily:bodyFont,fontSize:32,fontWeight:900,color:accent,paddingTop:10}}>{issue}</div>
-      <h1 style={titleStyle(headingFont,preset,88)}>{scene.headline}</h1>
-    </header>
-    <Art {...common}/>
-    <CaptionBlock text={text} preset={preset} bodyFont={bodyFont} accent={accent} motion={motion} variant="bar"/>
-  </main>;
+  // editorial-opener / default quiet chrome
+  return <QuietChromeStage {...quietProps}/>;
 };
 
 const MotionOverlay: React.FC<{preset: StylePreset; motion: MotionPreset; accent: string}> = ({preset,motion,accent}) => {
@@ -339,10 +487,11 @@ const SceneView: React.FC<{scene:Scene;plan:Plan;index:number;playSceneAudio:boo
   const accent = scene.accent ?? preset.accent;
   const textureMove = motion.texture === 'grid' || motion.texture === 'blueprint' ? frame * 0.15 : frame * 0.04;
 
+  const quietChrome = preset.layout === 'editorial-opener' || preset.layout === 'chalk-lesson' || preset.layout === 'notebook-diary';
   return <AbsoluteFill style={{background:preset.background,color:preset.ink,overflow:'hidden'}}>
-    <AbsoluteFill style={{backgroundImage:preset.texture,backgroundSize:preset.layout.includes('grid') || preset.layout.includes('blueprint') ? '42px 42px':'18px 18px',opacity:0.74,translate:`${textureMove}px ${textureMove}px`}}/>
-    <MotionOverlay preset={preset} motion={motion} accent={accent}/>
-    <div style={{position:'absolute',top:48,left:72,right:72,height:6,background:accent,opacity:0.9}}/>
+    <AbsoluteFill style={{backgroundImage:preset.texture,backgroundSize:preset.layout.includes('grid') || preset.layout.includes('blueprint') ? '42px 42px':'18px 18px',opacity:quietChrome ? 0.28 : 0.74,translate:`${textureMove}px ${textureMove}px`}}/>
+    {!quietChrome ? <MotionOverlay preset={preset} motion={motion} accent={accent}/> : null}
+    {!quietChrome ? <div style={{position:'absolute',top:36,left:40,right:40,height:2,background:accent,opacity:0.55}}/> : null}
     <Layout
       layout={preset.layout}
       scene={scene}
@@ -352,6 +501,8 @@ const SceneView: React.FC<{scene:Scene;plan:Plan;index:number;playSceneAudio:boo
       bodyFont={bodyFont}
       text={active?.text ?? scene.caption ?? scene.narration}
       motion={motion}
+      captionLook={plan.style?.captionLook}
+      captionBottomRatio={plan.style?.captionBottomRatio}
     />
     {playSceneAudio && scene.audio ? <Audio src={staticFile(scene.audio)}/> : null}
   </AbsoluteFill>;

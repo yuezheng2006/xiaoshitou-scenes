@@ -67,4 +67,6 @@
 
 - `knowledge-card-mode.md`：知识卡模式的形态库、角色分工、硬性预算和失败信号。
 - `ppt-presentation-mode.md`：PPT 演讲模式的导演规划卡、page card、页面类型库和 QA。
-- `video-mode.md`：视频模式的工作流、plan.json 格式、场景插图生成（必须用 Codex imagen）、TTS 配置、Remotion 渲染、QA 检查清单。
+- `video-mode.md`：视频模式生产门禁、plan.json、imagen 场景、TTS、字幕对齐、Remotion、交付检查。
+- `video-motion-director.md`：运动 thesis、stateChange、Anti-PPT（场景图前必读）。
+- `contracts/video-handoff.md`：handoff / job-state / 预览批准契约（参考 rachel 数字人生产门禁）。

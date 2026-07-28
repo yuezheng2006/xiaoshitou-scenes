@@ -27,7 +27,7 @@ export type StylePreset = {
 };
 
 export const presets: Record<StyleId, StylePreset> = {
-  'warm-editorial': {background:'#F5F0E6',ink:'#27231F',muted:'#6E675F',accent:'#D77B55',panel:'#FFFCF5E8',headingFont:'"Noto Serif SC","Source Han Serif SC",SimSun,serif',bodyFont:'"Noto Sans SC","Microsoft YaHei",sans-serif',layout:'editorial-opener',texture:'radial-gradient(#27231F12 0.8px, transparent 0.8px)'},
+  'warm-editorial': {background:'#FFFFFF',ink:'#27231F',muted:'#6E675F',accent:'#f39800',panel:'#FFFFFFE8',headingFont:'"Noto Serif SC","Source Han Serif SC",SimSun,serif',bodyFont:'"Noto Sans SC","Microsoft YaHei",sans-serif',layout:'editorial-opener',texture:'none'},
   'modern-grid': {background:'#F4F1E8',ink:'#121B2A',muted:'#596273',accent:'#2D63D8',panel:'#FBFAF5EE',headingFont:'DengXian,"Noto Sans SC",sans-serif',bodyFont:'"Noto Sans SC","Microsoft YaHei",sans-serif',layout:'grid-spotlight',texture:'linear-gradient(#2D63D812 1px,transparent 1px),linear-gradient(90deg,#2D63D812 1px,transparent 1px)'},
   notebook: {background:'#FFFDF5',ink:'#263044',muted:'#6C7381',accent:'#E36E54',panel:'#FFFDF5EE',headingFont:'"ZCOOL KuaiLe",KaiTi,cursive',bodyFont:'"Noto Sans SC","Microsoft YaHei",sans-serif',layout:'notebook-diary',texture:'repeating-linear-gradient(0deg,transparent 0 35px,#6D91C018 36px 37px)'},
   'ink-poster': {background:'#EFE8DA',ink:'#171512',muted:'#5E5850',accent:'#B9362A',panel:'#F7F0E4E8',headingFont:'"Ma Shan Zheng",STKaiti,KaiTi,cursive',bodyFont:'"Noto Sans SC","Microsoft YaHei",sans-serif',layout:'ink-poster',texture:'radial-gradient(#17151218 0.9px, transparent 0.9px)'},

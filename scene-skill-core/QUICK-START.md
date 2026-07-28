@@ -304,54 +304,56 @@ references/persona-quick-checklist.md
 ### 必读文件（按顺序）
 ```
 1. references/video-mode.md
-   → 视频工作流、plan.json 格式、TTS 配置
+   → 生产门禁、plan.json、TTS、Remotion、交付
 
-2. ip-profiles/default-little-stone/character.md
-   → 确认小石头形象（视频中每个场景都要一致）
+2. references/video-motion-director.md
+   → motion thesis、stateChange、Anti-PPT
 
-3. references/physical-style-dna.md（实物图风格视频）
+3. references/contracts/video-handoff.md
+   → handoff / job-state / 预览批准门禁
+
+4. ip-profiles/default-little-stone/character.md
+   → 小石头形象（每场景一致）
+
+5. references/physical-style-dna.md（实物图风格视频）
    或 references/handdrawn-style-dna.md（手绘图风格视频）
-   → 场景图片生成规则
 ```
 
 ### 可选文件（按需）
 ```
 - references/physical-master-anchors.md
-  → 实物图风格视频选母版时读
-
 - references/handdrawn-composition-patterns.md
-  → 手绘图风格视频选结构类型时读
 ```
 
 ### 生成前检查清单
-- [ ] 已生成 plan.json，包含 6-9 个场景
-- [ ] 每个场景包含：headline、narration、caption、imagePrompt
-- [ ] 已选定视频风格（实物图风格 or 手绘图风格）
-- [ ] 已选定视觉风格预设（warm-editorial / chalk-classroom 等）
-- [ ] imagePrompt 符合小石头 IP 规范
-- [ ] 旁白文案口语化，每句 15-25 字
-- [ ] 用户已配置 Fish Audio 或 ElevenLabs API key
+- [ ] `video_check_setup.sh` PASS
+- [ ] handoff / job-state 已初始化（含三闸门）
+- [ ] plan.motion.thesis 已写
+- [ ] 6-9 场景含 headline / narration / caption / stateChange / imagePrompt
+- [ ] **Gate1** `video_approve.py --gate storyboard`（未批不得批量 imagen）
+- [ ] video_preflight.py PASS（付费步骤前）
+- [ ] 已选定实物/手绘车道与 remotion_style
+- [ ] FISH_AUDIO_API_KEY 已配置（不打印密钥）
 
 ### 图片生成后检查清单
-- [ ] 每个场景都有 1080×1440 PNG 图片
-- [ ] **形象快检**（每个场景）：L1-L4 四肢 + E1-E2 眼面
-- [ ] 所有场景的小石头形象一致（不能场景 1 和场景 6 像两个不同角色）
-- [ ] 实物图：背景纯白、物件真实、留白充足
-- [ ] 手绘图：白底黑线、批注克制、结构清晰
+- [ ] 仅对 Gate1 通过镜生图；每场景 1080×1440 PNG；**图内禁止中文**
+- [ ] `video_contact_sheet.py` → 用户审总览
+- [ ] **Gate2** `video_approve.py --gate stills`（可 `--scenes` 部分通过）
+- [ ] 形象快检 L1-L4 + E1-E2；跨场景角色一致
+- [ ] 实物图：白底、真实物件；手绘图：白底黑线
 
-### 旁白生成后检查清单
-- [ ] 音频文件存在且可播放（public/audio/narration.mp3）
-- [ ] 音频时长与脚本匹配（无截断）
-- [ ] 声音自然（非机器人腔）
-- [ ] plan.json 已更新场景时长（audioDurationSeconds、durationInFrames）
+### 旁白 / 字幕检查清单
+- [ ] public/audio/narration.mp3 可播、未截断
+- [ ] plan 场景时长已按音频更新
+- [ ] video_align_captions.py 已跑（默认 scripted）；交付勿用 estimated
+- [ ] 可用 `bash scripts/video_build.sh <项目>` 增量装配（`--from`/`--only`）
 
-### 视频渲染后检查清单
-- [ ] 视频时长符合预期（60-90 秒）
-- [ ] 字幕与旁白同步
-- [ ] 场景切换流畅
-- [ ] 标题、图片、字幕都清晰可见
-- [ ] 无黑屏、无闪烁
-- [ ] 运行 video_verify_output.py 自动检查通过
+### 预览与渲染检查清单
+- [ ] still/preview 已出
+- [ ] **Gate3** `video_approve.py --gate preview`（哈希绑定；改产物后 `--check`）
+- [ ] npm run render 完成
+- [ ] video_verify_output.py PASS
+- [ ] video_check_delivery.py PASS
 
 ---
 
@@ -376,7 +378,11 @@ references/persona-quick-checklist.md
 | 一次读完所有 references/ 文件 | ❌ 按决策表按需读取 |
 | 跳过母版锁定直接生图 | ❌ 实物图必须先选母版类型 + 写变异点 |
 | 跳过导演规划直接批量出 PPT | ❌ PPT 必须先出规划卡 |
-| 视频模式未配置 TTS 就开始渲染 | ❌ 必须先确认 Fish Audio/ElevenLabs API key 已配置 |
+| 视频模式未配置 TTS 就开始渲染 | ❌ 必须先 `video_check_setup` + `video_preflight.py --require-fish-key`，再跑 Fish |
+| 未过 Gate1 就批量 imagen | ❌ 先分镜批准；Gate2 前出 contact sheet；可部分通过 |
+| 跳过预览直接全片 | ❌ Gate3 `approve --gate preview`；改 plan/图后 `--check` 见 stale 须重批 |
+| 图内烧中文标签 | ❌ 生图禁止中文；标题/字幕由 Remotion 统一叠 |
+| 用字数估字幕当交付 | ❌ 跑 `video_align_captions.py`；estimated 仅草稿 |
 | 视频场景图片不一致 | ❌ 所有场景必须传入同一个 character 设定图，确保 IP 一致性 |
 | 把 Confirm Gate 输出给用户看 | ❌ 只在内部检查，FAIL 时用自然语言说明问题 |
 | 触发 persona 但忘记读 persona-quick-checklist | ❌ 所有双 IP 任务必读 |

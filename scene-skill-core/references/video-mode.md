@@ -2,7 +2,17 @@
 
 ## 定位
 
-将小石头实物图/手绘图转化为 60-90 秒带旁白的动画讲解视频。
+**长视频 · 低成本 · 高 IP**：小石头竖版讲解片（默认 60–90 秒+）。
+
+| 目标 | 做法 |
+|------|------|
+| 长视频 | 多镜叙事 + Fish 连续旁白 + Remotion 组装；音频是主时钟 |
+| 低成本 | 贵步骤后置：Gate1 分镜确认 → 再生图；scripted 字幕；改字号/动效只重渲 |
+| 高 IP | 小石头设定锁 + 图内禁止中文标签 + Remotion 统一大标题/小字幕 |
+
+贵：`imagen × N` + Fish 一条旁白。便宜：Remotion 重渲 / 字幕 / 切镜。
+
+将小石头实物图/手绘图转化为带旁白的动画讲解视频。
 
 **核心理念**：
 - 复用 scene-skill-core 的图片生成能力（**Codex imagen 工具** + 小石头 IP）
@@ -34,52 +44,107 @@
 
 ## 工作流
 
-### 阶段 0：需求确认
-1. 确认主题和内容
-2. 确认视频风格：
-   - **实物图风格**（默认）：简笔物件小现场 + 旁白
-   - **手绘图风格**：白板手绘解释 + 旁白
-3. 确认时长：默认 60-90 秒（6-9 个场景）
+**生产门禁**（长视频·低成本·高 IP；吸收 gbro 三闸门 / 灵剪签名审批 / min-skill 音频主时钟）：
+
+```text
+check_setup → Gate1 分镜确认（approve storyboard）
+→ imagen 仅通过镜 → contact sheet → Gate2 静帧确认（可部分通过）
+→ Fish TTS → align captions（scripted）
+→ Remotion still → Gate3 preview 批准（哈希绑定）
+→ full render → check_delivery
+```
+
+也可一条命令装配（已有 plan/images/audio 时）：
+`bash scripts/video_build.sh <remotion项目> [--from still] [--only align,still] [--force]`
+
+脚本：
+- `bash scripts/video_check_setup.sh [项目]` — 缺什么只报缺失项
+- `python scripts/video_approve.py --project <dir> --gate storyboard|stills|preview [--scenes scene-01,scene-03]`
+- `python scripts/video_approve.py --project <dir> --check` — 内容变更则批准变 stale
+- `python scripts/video_contact_sheet.py --project <dir>` — Gate2 编号总览
+
+契约见 `contracts/video-handoff.md`；运动叙事见 `video-motion-director.md`。
+
+### 从外部 skill 吸收的硬规则
+1. **音频时长是主时钟**（min-skill）——`ffprobe` 实测旁白，再缩放分镜/字幕。
+2. **不要用 ASR 转录自己的口播稿**（min-skill）——默认 `scripted`。
+3. **图内不烧中文字**（本仓）——标题/字幕由 Remotion 统一字号。
+4. **贵步骤后置 + 部分通过**（gbro）——先审分镜再生图；contact sheet 只放行通过镜。
+5. **批准绑产物哈希**（灵剪）——改 plan/图/字幕后批准自动 stale，须重批。
+6. **增量重跑**——`video_build.sh` 支持 `--from` / `--only` / `--force`。
+
+### 什么时候不要用视频模式
+- 只要 5 秒无旁白 B-roll / 半调拼贴垫片 → 用别的 skill
+- 要发布级真动态口播短视频全栈（Seedance/多 TTS/导演台）→ 灵剪路线，不是本模式
+- 要可逐层编辑时间线 → Remotion 源码级改，不要当黑箱一键片
+
+### 阶段 0：交接与预检
+1. `bash scripts/video_check_setup.sh <项目目录>`
+2. 写 `handoff.md`（或确认用户已提供等价契约）
+3. `python scripts/video_init_job_state.py --project <项目目录>`
+4. 生成 `plan.json`（含 motion.thesis + 每镜 stateChange）后 **Gate1**：把分镜表给用户审；通过后：
+   `python scripts/video_approve.py --project <dir> --gate storyboard`
+5. `python scripts/video_preflight.py --project <项目目录> --require-fish-key`
+6. 未 Gate1 批准，不得批量 imagen
+
+### 阶段 0.5：运动叙事（Anti-PPT）
+1. 读 `video-motion-director.md`
+2. 写入一句 `plan.motion.thesis`
+3. 每个场景补 `stateChange` + `characterAction`（可见状态变化，禁止纯切图）
 
 ### 阶段 1：生成脚本和分镜
 1. 从用户内容提炼核心观点
 2. 生成 6-9 个场景，每个场景包含：
    - **场景标题**（headline）：4-22 个中文字符
    - **旁白文案**（narration）：口语化讲解，15-25 字
-   - **画面描述**（caption）：简短概括，在画面底部显示
-   - **图片提示词**（imagePrompt）：用于 imagegen 生成插图
-3. 生成 `plan.json`（符合 muyang-handdrawn-video 的格式）
+   - **画面描述**（caption）：简短概括，叠在画面底部（Remotion 小字幕；图内禁止烧中文）
+   - **状态变化**（stateChange）：这一镜画面上具体变了什么
+   - **图片提示词**（imagePrompt）：用于 `imagen` 生成插图
+3. 生成 `plan.json` → **先停在 Gate1**，给候选讲法时优先 2 版提纲让用户挑，不要只问「可以吗」
 
 ### 阶段 2：生成场景插图
-1. 使用 imagegen 为每个场景生成 1080×1440 竖版插图
-2. **必须遵守小石头 IP 规范**：
-   - 单锚点设定图 `primary-character-reference.png`
-   - 2D Flat Lock + Limbs Lock
-   - 实物图风格：白色背景 + 真实物件 + 小石头动作
-   - 手绘图风格：白底黑线 + 红橙蓝批注 + 小石头概念动作
-3. 保存到项目的 `public/images/<scene-id>.png`
+1. 仅对 Gate1 `passed_scene_ids` 使用 Codex `imagen`（竖版；图内禁止中文标签）
+2. **必须遵守小石头 IP 规范**
+3. `python scripts/video_contact_sheet.py --project <dir>` → 用户审总览
+4. 部分通过：`python scripts/video_approve.py --project <dir> --gate stills --scenes scene-01,scene-02,scene-04`
+5. 未过镜只重生图，不整批重做
 
 ### 阶段 3：生成连续旁白
-1. 使用 Fish Audio 或 ElevenLabs 合成旁白音频
+1. 使用 Fish Audio 合成旁白音频（当前仓库唯一已实现的 TTS）
 2. **连续模式**（默认）：整段旁白一次合成，保存为 `public/audio/narration.mp3`
 3. 使用 `ffprobe` 测算实际音频时长
-4. 更新 `plan.json` 中的场景时长和字幕时间戳
+4. 更新 `plan.json` 中的场景时长
 
-### 阶段 4：Remotion 渲染
-1. 创建 Remotion 项目（从 `assets/remotion-template` 复制）
+### 阶段 3.5：对齐字幕（终稿音频）
+1. 旁白定稿后运行：
+   `python scripts/video_align_captions.py --project <项目目录>`
+   （默认 `--mode scripted`：已知旁白 × 实测音频，参考 [min-skill](https://github.com/limin112/min-skill)）
+2. 可选 `--mode whisper-api` / `whisper-local`（未知音频才需要 ASR）
+3. `timing_source=scripted|whisper-*` 可交付；`estimated` 仅草稿（见 `video_check_delivery.py`）
+
+### 阶段 4：预览门禁 → Remotion 渲染
+1. 创建 Remotion 项目（从 `assets/remotion-template` 复制）——若尚未创建
 2. 应用视觉风格预设：
    - 实物图 → `warm-editorial` 或 `modern-grid`
    - 手绘图 → `chalk-classroom` 或 `notebook`
-3. 应用动效预设（自动匹配风格）
-4. 运行 `npm install` 和 `npm run render`
-5. 输出 `out/video.mp4`
+   - **小石头视频默认插图铺满**。Remotion 管全部文字：**大标题（约宽 7.8%）+ 小字幕（约宽 2.8%）**。**硬规则：图内禁止烧中文标签**；**禁止大面积底部蒙层**
+3. 先出 still 预览：`npm run still` → `out/preview.png`
+4. **Gate3**：`python scripts/video_approve.py --project <dir> --gate preview`（用户明确批准后）
+5. 用户明确跳过预览门禁时才可直接全片渲染（delivery 须 `--allow-unapproved`）
+6. `npm run render` → `out/video.mp4`
 
-### 阶段 5：质量验证
+
+### 阶段 5：质量验证与交付
 1. 检查视频时长是否符合预期
-2. 检查字幕是否同步
+2. 检查字幕是否同步（`captions-meta.json` 的 timing_source）
 3. 检查旁白是否完整（未截断）
 4. 检查小石头形象是否一致（Confirm Gate）
-5. 运行 `scripts/verify_output.py` 自动检查
+5. 运行媒体规格检查：
+   `python scripts/video_verify_output.py out/video.mp4 --plan src/generated/plan.json`
+6. 运行交付门禁：
+   `python scripts/video_check_delivery.py --project .`
+   （草稿可用 `--allow-estimated --allow-unapproved`）
+7. 改 plan/图/旁白后先 `video_approve.py --check`；出现 stale 必须重批对应闸门
 
 ---
 
@@ -103,7 +168,9 @@
   },
   "motion": {
     "id": "editorial-drift",
-    "intensity": "medium"
+    "intensity": "medium",
+    "thesis": "空钱包散落到复利雪球长大，证明越早存越轻松",
+    "anti_ppt": true
   },
   "voice": {
     "provider": "fish-audio",
@@ -119,9 +186,12 @@
       "headline": "月光族的困境",
       "narration": "每个月工资到手，还没捂热就花光了。",
       "caption": "月光族：工资秒光",
+      "stateChange": "钱包摊开，钞票与收据散落",
+      "characterAction": "双手扶头",
+      "narrativeJob": "hook",
       "image": "images/scene-01.png",
-      "imagePrompt": "16:9, 纯白背景 #FFFFFF, 简笔物件小现场...",
-      "accent": "#D77B55",
+      "imagePrompt": "1080x1440 vertical (3:4), pure white background #FFFFFF, miniature physical object scene...",
+      "accent": "#f39800",
       "audio": "",
       "audioDurationSeconds": 4.5,
       "durationInFrames": 135
@@ -131,12 +201,16 @@
 ```
 
 ### 关键字段说明
-- `width` × `height`：固定 1080×1440（竖版），适配手机观看
+- `width` × `height`：**可设置**。常用竖版 `1080×1440`（3:4，默认）或 `1080×1920`（9:16）；横版可用 `1920×1080`。改 plan 后 Remotion 按此画布渲染；`video_preflight.py` 校验白名单尺寸。
 - `style.id`：视觉风格，从 muyang 的 10 种预设中选择
+- `style.captionLook`：QuietChrome 字幕配色（可选）：`ink`（默认）/ `accent` / `soft` / `pill-light` / `pill-dark` / `outline`
+- `style.captionBottomRatio`：字幕区高度比例，默认 `0.11`–`0.12`（三区布局：顶标题 / 中插画 / 底字幕，互不叠压）
 - `motion.id`：动效风格，可省略（自动匹配 style）
-- `voice.provider`：优先 `fish-audio`，备选 `elevenlabs`
+- `motion.thesis`：**必填**运动主张（见 `video-motion-director.md`）
+- `scenes[].stateChange` / `characterAction`：可见状态变化与小石头动词
+- `voice.provider`：默认 `fish-audio`（当前仓库已实现）；`elevenlabs` 仅保留类型兼容，脚本未接入
 - `voice.mode`：默认 `continuous`（连续旁白）
-- `scenes[].imagePrompt`：必须符合小石头 IP 规范
+- `scenes[].imagePrompt`：必须符合小石头 IP 规范；**画布比例须与 plan.width/height 一致**（不要写错成 16:9 横构图去填竖版）
 
 ---
 
@@ -164,7 +238,7 @@
 
 ### 实物图场景
 ```
-16:9 横版，纯白背景 #FFFFFF，白色摄影棚表面，真实物件小现场。
+1080×1440 竖版（3:4），纯白背景 #FFFFFF，白色摄影棚表面，真实物件小现场。
 
 主角色：
 - 小石头：flat 2D 平涂胶囊体，简笔两臂两腿，白圆双眼无瞳孔，
@@ -174,10 +248,11 @@
 物件：
 - 使用真实物件（非 icon）：钱包、笔记本、日历、手机等
 - 物件有光影，主角色保持 flat 2D
-- 中等覆盖面积，视觉重量轻
+- 中等覆盖面积，视觉重量轻；构图按竖版留白，避免按 16:9 横构图再裁切
 
 文字：
-- 1-3 个短中文标签（3-8 字），黑色，干净字体
+- **视频模式硬规则：图内禁止任何中文标题/字幕/标签**（全部由 Remotion 统一字号叠：大标题 + 小字幕）
+- 物件上的英文/字段示意可以保留（如 Task/Owner），但不要写中文说明字
 - 禁止大段解释、UI 截图、Logo
 
 约束：
@@ -186,7 +261,7 @@
 
 ### 手绘图场景
 ```
-16:9 横版，纯白背景 #FFFFFF，黑色手绘线稿结构。
+1080×1440 竖版（3:4），纯白背景 #FFFFFF，黑色手绘线稿结构。
 
 主角色：
 - 小石头：flat 2D 平涂胶囊体（同实物图）
@@ -198,29 +273,25 @@
 - 5-8 个短批注（红色 #E74C3C / 橙色 #F39C12 / 蓝色 #3498DB）
 
 约束：
-- 禁止：真实物件光影、UI 截图、PPT 化、复杂架构图
+- 禁止：真实物件光影、UI 截图、PPT 化、复杂架构图；禁止写 16:9 横版
 ```
 
 ---
 
 ## TTS 配置
 
-### Fish Audio（推荐）
-1. 用户需配置 `.env` 文件：
+### Fish Audio（推荐 · 当前唯一已实现）
+1. 在 Remotion 项目根或仓库根配置 `.env`：
    ```
    FISH_API_KEY=your_key_here
    FISH_MODEL=s2.1-pro-free
    ```
-2. 调用脚本：`python scripts/fish_audio_project.py --project <项目目录>`
+2. 调用脚本：`python scripts/video_fish_audio.py --project <项目目录>`
 3. 成本：约 ¥0.05/分钟
 
-### ElevenLabs（备选）
-1. 用户需配置 `.env` 文件：
-   ```
-   ELEVENLABS_API_KEY=your_key_here
-   ```
-2. 调用脚本：`python scripts/elevenlabs_project.py --project <项目目录> --auto-voice`
-3. 仅使用中文/普通话声音，禁止英文声音配中文
+### ElevenLabs（类型预留，脚本未接入）
+- `types.ts` / `plan.json` 仍可写 `provider: "elevenlabs"`，但仓库**没有** `video_elevenlabs.py`
+- 需要 ElevenLabs 时，先自行补脚本，或改用 Fish Audio；不要按旧文档调用不存在的 `elevenlabs_project.py`
 
 ---
 
@@ -252,31 +323,30 @@
 - [ ] 场景切换流畅
 - [ ] 标题、图片、字幕都清晰可见
 - [ ] 无黑屏、无闪烁
-- [ ] 运行 `python scripts/verify_output.py out/video.mp4 --plan src/generated/plan.json`
+- [ ] 字幕已对齐（`captions-meta.json` timing_source ≠ estimated，或明确草稿）
+- [ ] 运行 `python scripts/video_verify_output.py out/video.mp4 --plan src/generated/plan.json`
+- [ ] 运行 `python scripts/video_check_delivery.py --project .`（交付）
 
 ---
 
 ## 脚本文件清单
 
-从 muyang-handdrawn-video 复制并适配的脚本：
-
 ```
 scene-skill-core/
 ├── scripts/
+│   ├── video_check_setup.sh        # 环境自检
 │   ├── video_create_project.py     # 创建 Remotion 项目
+│   ├── video_init_job_state.py     # job-state + 三闸门
+│   ├── video_approve.py            # Gate1/2/3 哈希批准
+│   ├── video_contact_sheet.py      # Gate2 contact sheet
+│   ├── video_preflight.py          # 付费/批量步骤前预检
 │   ├── video_fish_audio.py         # Fish Audio TTS
-│   ├── video_elevenlabs.py         # ElevenLabs TTS（备选）
-│   └── video_verify_output.py     # 视频质量验证
+│   ├── video_align_captions.py     # scripted 字幕
+│   ├── video_build.sh              # align→still→render→check
+│   ├── video_verify_output.py      # 媒体规格
+│   └── video_check_delivery.py     # 交付门禁（含 stale）
 └── assets/
-    └── remotion-template/          # Remotion 模板（复制自 muyang）
-        ├── package.json
-        ├── remotion.config.ts
-        └── src/
-            ├── Explainer.tsx
-            ├── Root.tsx
-            ├── stylePresets.ts
-            ├── motionPresets.ts
-            └── types.ts
+    └── remotion-template/
 ```
 
 ---
@@ -290,28 +360,15 @@ scene-skill-core/
 
 ### Agent 执行流程
 ```
-1. 读取 video-mode.md
-2. 生成脚本和分镜（6 个场景）
-3. 创建 plan.json
-4. 为每个场景调用 imagegen：
-   - 读取 character.md（小石头 IP 规范）
-   - 读取 physical-style-dna.md（实物图规则）
-   - 生成 6 张 1080×1440 PNG
-   - 做 Confirm Gate 检查
-5. 创建 Remotion 项目：
-   python scripts/video_create_project.py --plan plan.json --output video-project
-6. 生成旁白：
-   python scripts/video_fish_audio.py --project video-project
-7. 渲染视频：
-   cd video-project
-   npm install
-   npm run render
-8. 验证输出：
-   python ../scripts/video_verify_output.py out/video.mp4 --plan src/generated/plan.json
-9. 交付：
-   - 视频文件：video-project/out/video.mp4
-   - 可编辑项目：video-project/
-   - 脚本导出：video-project/script/
+1. video_check_setup.sh + 读 video-mode / motion-director / video-handoff
+2. 写 motion.thesis 与 6 场景 plan → Gate1 给用户审
+   python scripts/video_approve.py --project video-project --gate storyboard
+3. 创建项目 / init job-state / preflight
+4. imagen 仅通过镜（图内无中文）→ contact_sheet → Gate2
+   python scripts/video_approve.py --project video-project --gate stills
+5. Fish 旁白 → video_align_captions.py（scripted）
+6. npm run still → Gate3 approve preview → npm run render
+7. video_check_delivery.py
 ```
 
 ---
@@ -322,10 +379,14 @@ scene-skill-core/
 |---------|------|----------|
 | 小石头形象不一致 | 未传设定图或 Lock 失效 | 重新生成，确保传入 primary-character-reference.png |
 | 旁白截断 | 音频生成失败或时长计算错误 | 检查 TTS API 配置，重新生成音频 |
-| 字幕不同步 | 音频时长未更新到 plan.json | 重新运行 TTS 脚本，确保更新时长 |
+| 字幕不同步 | 未按终稿音频对齐 | 跑 `video_align_captions.py`（默认 scripted）；勿用 estimated 当交付 |
+| 字幕字号乱飘 / 双字幕 | 图内烧了中文标签 | 生图禁止中文；Remotion 叠大标题+小时长字幕 |
+| 底部被白块挡住 | 大面积底部蒙层 | 禁止底部蒙层；字幕用固定小字号叠层 |
+| 预览未批就全片 | 跳过 Gate3 | still 后 `video_approve.py --gate preview`；改产物后 `--check` 见 stale 须重批 |
 | 视频黑屏 | 图片文件缺失或路径错误 | 检查 public/images/ 目录，确保所有场景图片存在 |
 | Remotion 渲染失败 | Node.js 版本过低或依赖缺失 | 升级 Node.js 到 18+，运行 npm install |
-| 声音不自然 | TTS 参数不当 | 调整 Fish Audio 模型或 ElevenLabs 声音 |
+| 声音不自然 | TTS 参数不当 | 调整 Fish Audio 模型或参考音色 |
+| 幻灯片感 | 无 motion thesis / stateChange | 读 `video-motion-director.md` 重写分镜 |
 
 ---
 
@@ -352,7 +413,7 @@ scene-skill-core/
 ## 成本估算
 
 ### 单个 60 秒视频（6 个场景）
-- **图片生成**：6 张 × 约 ¥0.1 = ¥0.6（imagegen）
+- **图片生成**：6 张 × 约 ¥0.1 = ¥0.6（Codex `imagen`）
 - **语音合成**：1 分钟 × ¥0.05 = ¥0.05（Fish Audio）
 - **视频渲染**：本地免费（Remotion 开源）
 - **总成本**：约 ¥0.65

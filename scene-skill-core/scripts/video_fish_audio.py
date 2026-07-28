@@ -141,7 +141,10 @@ def main() -> None:
         raise SystemExit(f"Missing plan: {plan_path}")
     plan = json.loads(plan_path.read_text(encoding="utf-8-sig"))
     load_env(project)
-    key = os.environ.get("FISH_API_KEY", "").strip()
+    key = (
+        os.environ.get("FISH_AUDIO_API_KEY", "").strip()
+        or os.environ.get("FISH_API_KEY", "").strip()
+    )
     reference_id = args.reference_id.strip() or None
     if args.dry_run:
         print(json.dumps({
@@ -155,7 +158,10 @@ def main() -> None:
         }, ensure_ascii=False, indent=2))
         return
     if not key:
-        raise SystemExit("Fish Audio is not configured. Add FISH_API_KEY to the project .env; never paste it into chat or commit it.")
+        raise SystemExit(
+            "Fish Audio is not configured. Add FISH_AUDIO_API_KEY (or FISH_API_KEY) "
+            "to the project .env; never paste it into chat or commit it."
+        )
 
     audio_dir = project / "public" / "audio"
     audio_dir.mkdir(parents=True, exist_ok=True)

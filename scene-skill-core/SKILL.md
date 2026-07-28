@@ -190,7 +190,7 @@ PPT 演讲：老杨主讲页 + 小石头执行点缀（双 IP 推荐）
 | 手绘图 | `references/handdrawn-composition-patterns.md` | `handdrawn-style-dna` / `handdrawn-qa-checklist` |
 | 知识卡 | `references/knowledge-card-mode.md` | `common-modes-and-sizes.md` |
 | PPT | `references/ppt-presentation-mode.md` | — |
-| 视频 | `references/video-mode.md` | `scripts/`、`assets/remotion-template/` |
+| 视频 | `references/video-mode.md` | `video-motion-director.md`、`contracts/video-handoff.md`、`scripts/`、`assets/remotion-template/` |
 | 返修 | `references/common-qa-repair.md` | 对应模式 QA |
 
 资产路径（L4，按需打开文件，不预读全文）：

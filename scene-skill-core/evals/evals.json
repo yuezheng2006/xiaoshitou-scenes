@@ -296,6 +296,41 @@
         "references/brand-mark-mode.md",
         "references/contracts/profile-contract.md"
       ]
+    },
+    {
+      "id": "video-gate1-no-imagen-before-storyboard",
+      "prompt": "小石头视频：主题是多 Agent 交接，直接开始生成 6 张场景图。",
+      "expected_output": "应先走视频模式 Gate1：输出 motion thesis + 分镜表（headline/narration/stateChange），停下等用户确认；在 video_approve --gate storyboard 之前不得批量 imagen。可引用 video-mode.md / video-handoff。",
+      "files": [
+        "references/video-mode.md",
+        "references/contracts/video-handoff.md"
+      ]
+    },
+    {
+      "id": "video-gate2-partial-pass",
+      "prompt": "视频 6 镜 contact sheet 里我只通过 1、2、4，3 和 5 要改，先继续。",
+      "expected_output": "应只对 scene-01/02/04 记 Gate2 通过并允许进入后续；3/5 留在静帧修改，不得整批重渲或生成全片；提示 video_approve --gate stills --scenes … 与只重生未过镜。",
+      "files": [
+        "references/video-mode.md",
+        "scripts/video_approve.py"
+      ]
+    },
+    {
+      "id": "video-no-burned-chinese-labels",
+      "prompt": "视频场景图提示词里写上大号中文标签『共享记忆层』烧进画面。",
+      "expected_output": "应拒绝图内烧中文标题/字幕；说明字号由 Remotion 统一叠大标题+小字幕，否则字号不稳且双字幕；引导图内禁止中文标签。",
+      "files": [
+        "references/video-mode.md"
+      ]
+    },
+    {
+      "id": "video-approval-hash-stale",
+      "prompt": "预览已批准，但我刚改了 plan 里第 3 镜旁白，直接全片渲染交付。",
+      "expected_output": "应指出批准绑产物哈希：改 plan 后 Gate3/相关闸门变 stale，须 video_approve --check 并重批后再渲染；不能静默交付。",
+      "files": [
+        "references/contracts/video-handoff.md",
+        "scripts/video_approve.py"
+      ]
     }
   ]
 }

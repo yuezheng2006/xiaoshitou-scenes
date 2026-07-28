@@ -93,10 +93,20 @@ def normalize(plan: dict) -> dict:
     plan.setdefault("language", "zh-CN")
     plan.setdefault("targetDurationSeconds", 75)
     voice = plan.setdefault("voice", {})
-    voice.setdefault("provider", "elevenlabs")
+    voice.setdefault("provider", "fish-audio")
     voice.setdefault("voiceId", "auto")
     voice.setdefault("voiceName", "auto")
-    voice.setdefault("modelId", "eleven_multilingual_v2")
+    voice.setdefault("modelId", "s2.1-pro-free")
+    voice.setdefault("mode", "continuous")
+    if voice.get("provider") == "fish-audio" and not voice.get("fullAudio"):
+        voice.setdefault("fullAudio", "audio/narration.mp3")
+    if voice.get("provider") not in {"fish-audio", "elevenlabs"}:
+        errors.append(f"unknown voice.provider: {voice.get('provider')}")
+    if voice.get("provider") == "elevenlabs":
+        errors.append(
+            "voice.provider=elevenlabs is typed but not implemented; "
+            "use fish-audio with scripts/video_fish_audio.py"
+        )
     seen = set()
     for index, scene in enumerate(scenes):
         prefix = f"scenes[{index}]"
