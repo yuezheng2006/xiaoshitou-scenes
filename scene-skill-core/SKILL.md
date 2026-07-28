@@ -1,12 +1,12 @@
 ---
 name: scene-skill-core
 description: >
-  为中文内容按当前 IP profile 生成多模式配图与讲解视频：实物图（简笔物件小现场）、手绘图（白板解释）、知识卡（竖版传播）、PPT 演讲页、60-90 秒旁白动画。默认 default-little-stone（小石头+老杨双 IP），可换 ip-profiles/；不要人物/纯物件/无 IP/none 切 no-character。在用户要配图、插图、出图、shot list、知识卡、海报、演讲 PPT、讲解视频时使用——无需写 $scene-skill-core。触发含：实物图/物件小现场、手绘图/白板图/逻辑图、知识卡/手机海报/收藏图、PPT/课件/直播分享/导演规划卡、视频讲解/动画视频/小石头视频；双 IP：老杨、yuezheng2006、老杨和小石头；小剧场入口须含「小剧场」；也接受小石头实物图/手绘图/视频。输入可为正文、主题、大纲或逐字稿。
+  为中文内容按当前 IP profile 生成多模式配图与讲解视频：实物图（简笔物件小现场）、手绘图（白板解释）、知识卡（竖版传播）、PPT 演讲页、60-90 秒+旁白讲解视频（Gate 门禁 + 可替换 TTS + Remotion）。默认 default-little-stone（小石头+老杨双 IP），可换 ip-profiles/；不要人物/纯物件/无 IP/none 切 no-character。在用户要配图、插图、出图、shot list、知识卡、海报、演讲 PPT、讲解视频时使用——无需写 $scene-skill-core。触发含：实物图/物件小现场、手绘图/白板图/逻辑图、知识卡/手机海报/收藏图、PPT/课件/直播分享/导演规划卡、视频讲解/动画视频/小石头视频；双 IP：老杨、yuezheng2006、老杨和小石头；小剧场入口须含「小剧场」；也接受小石头实物图/手绘图/视频。输入可为正文、主题、大纲或逐字稿。
 license: MIT
 compatibility: Requires Codex (CLI / Desktop / claude.ai/code) with the imagen tool for image generation, plus local filesystem access to this skill's assets and profiles.
 metadata:
   author: yuezheng2006
-  version: "1.1"
+  version: "1.2"
   openaispec: agents/openai.yaml
   codex-context: fork
   codex-tools: imagen
@@ -136,7 +136,7 @@ PPT 演讲：老杨主讲页 + 小石头执行点缀（双 IP 推荐）
 - **手绘图模式**：16:9 白板手绘解释图；用 1 个核心结构和少量红橙蓝批注解释流程、系统或方法。参考 `handdrawn-style-dna.md`、`handdrawn-composition-patterns.md`、`handdrawn-qa-checklist.md`。
 - **知识卡模式**：3:4/4:5/9:16 竖版独立传播图，可承载标题、模块、步骤、风险、行动、多个主角色协作分工。参考 `knowledge-card-mode.md`。
 - **PPT 演讲模式**：16:9 连续多页整套演讲页面，先出导演规划卡再分批生成。参考 `ppt-presentation-mode.md`。
-- **视频模式**：60-90 秒带旁白的动画讲解视频（1080×1440 竖版），场景插图必须用 `imagen` 生成。参考 `video-mode.md`。
+- **视频模式**：60-90 秒+ 带旁白的竖版讲解片（默认 1080×1440）；定位 **长视频 · 低成本 · 高 IP**。场景插图必须用 `imagen`；旁白经 `scripts/video_tts.py`（默认 Fish，可换 `external` / 预留引擎）；字幕 scripted；版式 QuietChrome 可换 `captionLook`。必读 `video-mode.md`；契约 `contracts/video-handoff.md`、`contracts/video-tts.md`。
 
 ## 当前 Profile（执行摘要）
 
@@ -190,7 +190,7 @@ PPT 演讲：老杨主讲页 + 小石头执行点缀（双 IP 推荐）
 | 手绘图 | `references/handdrawn-composition-patterns.md` | `handdrawn-style-dna` / `handdrawn-qa-checklist` |
 | 知识卡 | `references/knowledge-card-mode.md` | `common-modes-and-sizes.md` |
 | PPT | `references/ppt-presentation-mode.md` | — |
-| 视频 | `references/video-mode.md` | `video-motion-director.md`、`contracts/video-handoff.md`、`scripts/`、`assets/remotion-template/` |
+| 视频 | `references/video-mode.md` | `video-motion-director.md`、`contracts/video-handoff.md`、`contracts/video-tts.md`、`scripts/video_tts.py`、`assets/remotion-template/` |
 | 返修 | `references/common-qa-repair.md` | 对应模式 QA |
 
 资产路径（L4，按需打开文件，不预读全文）：

@@ -67,7 +67,7 @@
 
 - `knowledge-card-mode.md`：知识卡模式的形态库、角色分工、硬性预算和失败信号。
 - `ppt-presentation-mode.md`：PPT 演讲模式的导演规划卡、page card、页面类型库和 QA。
-- `video-mode.md`：视频模式生产门禁、plan.json、imagen 场景、TTS、字幕对齐、Remotion、交付检查。
+- `video-mode.md`：视频模式生产门禁、plan.json、imagen 场景、**可替换 TTS**（`video_tts.py`）、字幕对齐、Remotion、交付检查。定位：长视频 · 低成本 · 高 IP。
 - `video-motion-director.md`：运动 thesis、stateChange、Anti-PPT（场景图前必读）。
 - `contracts/video-handoff.md`：handoff / job-state / 预览批准契约（参考 rachel 数字人生产门禁）。
 - `contracts/video-tts.md`：TTS 引擎可替换契约（`video_tts.py` 路由）。

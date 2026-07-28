@@ -393,7 +393,7 @@ scene-skill-core/
 3. 创建项目 / init job-state / preflight
 4. imagen 仅通过镜（图内无中文）→ contact_sheet → Gate2
    python scripts/video_approve.py --project video-project --gate stills
-5. Fish 旁白 → video_align_captions.py（scripted）
+5. video_tts.py 旁白 → video_align_captions.py（scripted）
 6. npm run still → Gate3 approve preview → npm run render
 7. video_check_delivery.py
 ```
@@ -412,7 +412,7 @@ scene-skill-core/
 | 预览未批就全片 | 跳过 Gate3 | still 后 `video_approve.py --gate preview`；改产物后 `--check` 见 stale 须重批 |
 | 视频黑屏 | 图片文件缺失或路径错误 | 检查 public/images/ 目录，确保所有场景图片存在 |
 | Remotion 渲染失败 | Node.js 版本过低或依赖缺失 | 升级 Node.js 到 18+，运行 npm install |
-| 声音不自然 | TTS 参数不当 | 调整 Fish Audio 模型或参考音色 |
+| 声音不自然 | TTS 参数不当 | 换 `FISH_REFERENCE_ID` / provider，或 `--provider external` 自备旁白 |
 | 幻灯片感 | 无 motion thesis / stateChange | 读 `video-motion-director.md` 重写分镜 |
 
 ---
@@ -460,7 +460,7 @@ scene-skill-core/
 |------|------|
 | DONE | 视频已生成并通过 QA 检查 |
 | DONE_WITH_CONCERNS | 视频已交付，但存在字幕稳定性、声音自然度等待优化项 |
-| BLOCKED | 缺少 TTS API 配置、Node.js 环境或 FFmpeg |
+| BLOCKED | 缺少 TTS 就绪（Fish key 或 external 音频）、Node.js 环境或 FFmpeg |
 
 ---
 
@@ -469,8 +469,8 @@ scene-skill-core/
 1. **首次使用需配置环境**：
    - 安装 Node.js 18+
    - 安装 FFmpeg
-   - 配置 Fish Audio API key
+   - TTS：默认配置 Fish Audio API key；或准备自备旁白走 `video_tts.py --provider external`
 2. **图片必须符合小石头 IP 规范**，不能因为是视频就放松角色一致性
-3. **连续旁白优先于分段旁白**，保证声音连贯
+3. **连续旁白优先于分段旁白**，保证声音连贯；统一经 `video_tts.py`，下游只认 `narration.mp3` 契约
 4. **视频时长控制在 60-90 秒**，过长用户难以看完
 5. **字幕是强制的**，即使有旁白也要显示字幕（无声观看场景）

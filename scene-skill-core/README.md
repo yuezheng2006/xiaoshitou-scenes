@@ -104,7 +104,9 @@ Codex Skill 核心包。默认 profile 是 **小石头 + 老杨双 IP 互动**�
 - `references/handdrawn-composition-patterns.md` - 手绘图结构类型
 - `references/knowledge-card-mode.md` - 知识卡模式
 - `references/ppt-presentation-mode.md` - PPT 演讲模式
-- `references/video-mode.md` - 视频模式
+- `references/video-mode.md` - 视频模式（长视频·低成本·高 IP；可替换 TTS）
+- `references/contracts/video-tts.md` - TTS 引擎契约（`video_tts.py`）
+- `references/contracts/video-handoff.md` - 视频交接 / 三闸门
 
 **快速决策**：
 - `references/persona-quick-checklist.md` - 双 IP 快速决策

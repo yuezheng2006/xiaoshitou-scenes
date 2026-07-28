@@ -233,19 +233,22 @@ QA 检查：references/ppt-presentation-mode.md § QA
 ### 3.5 视频模式 → imagen（批量场景）
 
 ```text
-触发词：视频讲解 / 动画视频 / 手绘视频 / 配音视频
+触发词：视频讲解 / 动画视频 / 手绘视频 / 配音视频 / 小石头视频
+定位：长视频 · 低成本 · 高 IP
 工具组合：
-  - imagen（必须，生成场景插图）
-  - Fish Audio / ElevenLabs（TTS，可选）
+  - imagen（必须，生成场景插图；产品锁定）
+  - video_tts.py（旁白路由；默认 fish-audio，可 external 自备音频）
   - Remotion（视频渲染，本地）
-尺寸：1080×1440（竖版，9:16 比例）
+尺寸：1080×1440（竖版，默认 3:4；也可 1080×1920）
 参考图：同实物图/手绘图模式
 工作流：
-  1. 生成 plan.json（不调用 imagen）
-  2. 为每个场景调用 imagen 生成插图（6-9 张）
-  3. 生成旁白音频（Fish Audio / ElevenLabs）
-  4. Remotion 渲染视频（本地）
+  1. check_setup + handoff → 生成 plan.json（不调用 imagen）
+  2. Gate1 storyboard 批准后，仅为通过镜调用 imagen（6-9 张）
+  3. contact sheet → Gate2 stills（可部分通过）
+  4. video_tts.py 生成旁白（契约：narration.mp3 + plan 时长）
+  5. video_align_captions.py（scripted）→ still → Gate3 → render
 提示词模板：references/video-mode.md § 图片生成约束
+TTS 契约：references/contracts/video-tts.md
 QA 检查：references/video-mode.md § QA 检查清单
 ```
 
@@ -341,15 +344,18 @@ QA 检查：references/brand-mark-mode.md § QA
 - Read / Write / Bash（文件操作）
 
 可选（用户环境配置）：
-- Fish Audio API key（TTS 旁白）
+- TTS：默认 Fish Audio API key；或 VIDEO_TTS_PROVIDER=external 自备旁白
 - Node.js 18+（Remotion 渲染）
-- FFmpeg（音视频处理）
+- FFmpeg / ffprobe（音视频处理、contact sheet、时长主时钟）
 ```
 
 **环境检测时机**：
 
 ```text
-用户触发视频模式 → 检测必需工具（imagen）→ 检测可选工具 → 给出清单
+用户触发视频模式 → bash scripts/video_check_setup.sh
+  → 检测必需工具（imagen / ffmpeg / node）
+  → 按 TTS provider 检查就绪（fish key 或 external 说明）
+  → 给出清单
 
 如果 TTS / Node.js / FFmpeg 缺失：
   选项 A：仅生成场景插图 + plan.json，用户自行配置后渲染
@@ -364,13 +370,13 @@ QA 检查：references/brand-mark-mode.md § QA
 
 ✓ 已就绪：imagen 工具（生成场景插图）
 ? 待确认：
-  - Fish Audio API key（生成旁白）
+  - TTS：Fish API key（默认）或自备旁白（video_tts.py --provider external）
   - Node.js 18+（渲染视频）
   - FFmpeg（音视频处理）
 
 建议：
-1. 我先生成场景插图和脚本（plan.json）
-2. 您配置环境后，运行脚本完成视频渲染
+1. 我先走 Gate1 分镜 + 场景插图（plan.json）
+2. 您配置 TTS / 环境后，用 video_tts.py → video_build.sh 完成装配
 
 或者，如果暂不需要视频，我可以：
 - 生成静态实物图/手绘图（6-9 张）
@@ -467,7 +473,8 @@ Confirm Gate + 模式 QA
 | DALL-E / GPT-4V | ❌ 不支持 | 无法传入本地参考图文件 |
 | Midjourney | ❌ 不支持 | 非 Codex 工具，无法自动化调用 |
 | Stable Diffusion | ❌ 不支持 | 需要本地部署，脱离 Codex 环境 |
-| Fish Audio | ✅ 视频模式可选 | TTS 旁白，用户需配置 API key |
+| Fish Audio | ✅ 视频模式默认 TTS | 经 `video_tts.py`；用户需配置 API key |
+| external 旁白 | ✅ 可替换 | `video_tts.py --provider external --audio` |
 | Remotion | ✅ 视频模式本地 | 开源视频渲染，本地运行 |
 
 ### 6.3 开放性说明
@@ -534,5 +541,6 @@ Confirm Gate + 模式 QA
 - `QUICK-START.md` — 快速决策表
 - `common-prompt-slots.md` — 提示词槽位组装（imagen 专用）
 - `contracts/profile-contract.md` — IP 录入状态机
-- `video-mode.md` — 视频模式（imagen + TTS + Remotion）
+- `video-mode.md` — 视频模式（imagen + 可替换 TTS + Remotion）
+- `contracts/video-tts.md` — TTS 产物契约
 - `brand-mark-mode.md` — 自定义 IP（imagen 用于校准）

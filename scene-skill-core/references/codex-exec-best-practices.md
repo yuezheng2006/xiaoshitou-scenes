@@ -519,7 +519,8 @@ codex exec "小石头视频：<主题>
 
 时长：60-90 秒
 风格：<实物图/手绘图>
-场景数：6-9 个"
+场景数：6-9 个
+# 旁白默认 Fish；可换音色或自备音频（见 contracts/video-tts.md）"
 ```
 
 **示例**：
@@ -531,6 +532,8 @@ codex exec "小石头视频：为什么环境检测很重要
 风格：实物图
 场景数：6 个"
 ```
+
+**Agent 提醒**：Gate1 前不批量 imagen；TTS 走 `scripts/video_tts.py`，不要绑死单一厂商脚本。
 
 ---
 
@@ -574,7 +577,8 @@ codex exec "小石头视频：为什么环境检测很重要
 - `QUICK-START.md § -1` - 环境检测清单（4 项）
 
 ### 模式文档
-- `video-mode.md` - 视频模式 + imagen
+- `video-mode.md` - 视频模式 + imagen + 可替换 TTS
+- `contracts/video-tts.md` - TTS 契约
 - `brand-mark-mode.md` - 自定义 IP + imagen
 
 ### 实战案例

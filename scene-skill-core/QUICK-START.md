@@ -304,7 +304,7 @@ references/persona-quick-checklist.md
 ### 必读文件（按顺序）
 ```
 1. references/video-mode.md
-   → 生产门禁、plan.json、TTS、Remotion、交付
+   → 生产门禁、plan.json、可替换 TTS、Remotion、交付
 
 2. references/video-motion-director.md
    → motion thesis、stateChange、Anti-PPT
@@ -312,10 +312,13 @@ references/persona-quick-checklist.md
 3. references/contracts/video-handoff.md
    → handoff / job-state / 预览批准门禁
 
-4. ip-profiles/default-little-stone/character.md
+4. references/contracts/video-tts.md
+   → TTS 产物契约（narration.mp3）；入口 video_tts.py
+
+5. ip-profiles/default-little-stone/character.md
    → 小石头形象（每场景一致）
 
-5. references/physical-style-dna.md（实物图风格视频）
+6. references/physical-style-dna.md（实物图风格视频）
    或 references/handdrawn-style-dna.md（手绘图风格视频）
 ```
 
@@ -326,14 +329,14 @@ references/persona-quick-checklist.md
 ```
 
 ### 生成前检查清单
-- [ ] `video_check_setup.sh` PASS
+- [ ] `video_check_setup.sh` PASS（按 `VIDEO_TTS_PROVIDER` / plan.voice.provider 检查）
 - [ ] handoff / job-state 已初始化（含三闸门）
 - [ ] plan.motion.thesis 已写
 - [ ] 6-9 场景含 headline / narration / caption / stateChange / imagePrompt
 - [ ] **Gate1** `video_approve.py --gate storyboard`（未批不得批量 imagen）
-- [ ] video_preflight.py PASS（付费步骤前）
+- [ ] `video_preflight.py --require-tts` PASS（付费步骤前）
 - [ ] 已选定实物/手绘车道与 remotion_style
-- [ ] FISH_AUDIO_API_KEY 已配置（不打印密钥）
+- [ ] TTS 就绪：默认 Fish 需 API key；`external` 则 Gate2 后自备 `--audio`（不打印密钥）
 
 ### 图片生成后检查清单
 - [ ] 仅对 Gate1 通过镜生图；每场景 1080×1440 PNG；**图内禁止中文**
@@ -343,6 +346,7 @@ references/persona-quick-checklist.md
 - [ ] 实物图：白底、真实物件；手绘图：白底黑线
 
 ### 旁白 / 字幕检查清单
+- [ ] `python scripts/video_tts.py --project <dir>`（推荐入口；勿绑死厂商脚本）
 - [ ] public/audio/narration.mp3 可播、未截断
 - [ ] plan 场景时长已按音频更新
 - [ ] video_align_captions.py 已跑（默认 scripted）；交付勿用 estimated
@@ -366,7 +370,7 @@ references/persona-quick-checklist.md
 | "老杨和小石头：白板图解释工作流" | 手绘图 + 双 IP → 读 character + handdrawn-style-dna + handdrawn-composition + persona-quick-checklist |
 | "做一张能发朋友圈的方法论图" | 知识卡（竖版+收藏） → 读 knowledge-card-mode + modes-and-sizes |
 | "把这 10 页大纲做成 PPT" | PPT 演讲 → 读 ppt-presentation-mode → 先出导演规划卡 |
-| "小石头视频：为什么存钱越早越轻松" | 视频模式 + 单 IP → 读 video-mode + character + style-dna → 生成 6-9 场景 |
+| "小石头视频：为什么存钱越早越轻松" | 视频模式 + 单 IP → 读 video-mode + video-tts + character + style-dna → Gate1 后再 imagen |
 | "纯物件，不要小石头" | none profile → 读 `ip-profiles/no-character/`，跳过角色资产 |
 
 ---
@@ -378,7 +382,7 @@ references/persona-quick-checklist.md
 | 一次读完所有 references/ 文件 | ❌ 按决策表按需读取 |
 | 跳过母版锁定直接生图 | ❌ 实物图必须先选母版类型 + 写变异点 |
 | 跳过导演规划直接批量出 PPT | ❌ PPT 必须先出规划卡 |
-| 视频模式未配置 TTS 就开始渲染 | ❌ 必须先 `video_check_setup` + `video_preflight.py --require-fish-key`，再跑 Fish |
+| 视频模式未配置 TTS 就开始渲染 | ❌ 必须先 `video_check_setup` + `video_preflight.py --require-tts`，再 `video_tts.py` |
 | 未过 Gate1 就批量 imagen | ❌ 先分镜批准；Gate2 前出 contact sheet；可部分通过 |
 | 跳过预览直接全片 | ❌ Gate3 `approve --gate preview`；改 plan/图后 `--check` 见 stale 须重批 |
 | 图内烧中文标签 | ❌ 生图禁止中文；标题/字幕由 Remotion 统一叠 |
