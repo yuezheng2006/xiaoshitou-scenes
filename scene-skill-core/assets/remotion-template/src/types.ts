@@ -33,11 +33,13 @@ export type MotionConfig = {
   anti_ppt?: boolean;
 };
 export type VoiceConfig = {
-  provider: 'elevenlabs' | 'fish-audio';
+  /** Swap via video_tts.py — backends write the same narration.mp3 contract */
+  provider: 'fish-audio' | 'external' | 'elevenlabs';
   voiceId: string;
   voiceName?: string;
   modelId: string;
   mode?: 'continuous' | 'segmented';
+  /** continuous: path under public/, usually audio/narration.mp3 */
   fullAudio?: string;
 };
 export type Scene = {

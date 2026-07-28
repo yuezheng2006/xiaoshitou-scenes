@@ -98,15 +98,16 @@ def normalize(plan: dict) -> dict:
     voice.setdefault("voiceName", "auto")
     voice.setdefault("modelId", "s2.1-pro-free")
     voice.setdefault("mode", "continuous")
-    if voice.get("provider") == "fish-audio" and not voice.get("fullAudio"):
+    if voice.get("provider") in {"fish-audio", "external"} and not voice.get("fullAudio"):
         voice.setdefault("fullAudio", "audio/narration.mp3")
-    if voice.get("provider") not in {"fish-audio", "elevenlabs"}:
-        errors.append(f"unknown voice.provider: {voice.get('provider')}")
-    if voice.get("provider") == "elevenlabs":
+    if voice.get("provider") not in {"fish-audio", "external", "elevenlabs"}:
         errors.append(
-            "voice.provider=elevenlabs is typed but not implemented; "
-            "use fish-audio with scripts/video_fish_audio.py"
+            f"unknown voice.provider: {voice.get('provider')} "
+            f"(use fish-audio | external | elevenlabs; route via video_tts.py)"
         )
+    if voice.get("provider") == "elevenlabs":
+        # Soft: allow plan to declare it; synthesis fails clearly at video_tts.py
+        pass
     seen = set()
     for index, scene in enumerate(scenes):
         prefix = f"scenes[{index}]"

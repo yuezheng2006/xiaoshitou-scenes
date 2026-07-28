@@ -6,7 +6,7 @@
 
 吸收来源：rachel job-state、gbro 三闸门、灵剪批准绑产物、min-skill 音频主时钟。
 
-Agent 在批量 `imagen` / Fish TTS / 全片 Remotion 渲染前，必须先有交接契约或等价 `work/job-state.json`。
+Agent 在批量 `imagen` / TTS（经 `video_tts.py`）/ 全片 Remotion 渲染前，必须先有交接契约或等价 `work/job-state.json`。
 
 ## 项目目录（推荐）
 
@@ -66,7 +66,7 @@ status: queued
 
 ```text
 check_setup → Gate1 storyboard → imagen(通过镜)
-→ contact sheet → Gate2 stills → Fish TTS → scripted captions
+→ contact sheet → Gate2 stills → video_tts.py → scripted captions
 → still → Gate3 preview → render → check_delivery
 ```
 

@@ -49,7 +49,16 @@ def main() -> int:
     parser.add_argument("--project", required=True, type=Path)
     parser.add_argument("--require-images", action="store_true", help="require all scene PNGs to exist")
     parser.add_argument("--require-audio", action="store_true", help="require narration audio to exist")
-    parser.add_argument("--require-fish-key", action="store_true", help="require FISH_API_KEY in env or .env")
+    parser.add_argument(
+        "--require-fish-key",
+        action="store_true",
+        help="require Fish key when provider is fish-audio (alias kept for old callers)",
+    )
+    parser.add_argument(
+        "--require-tts",
+        action="store_true",
+        help="require TTS readiness for plan.voice.provider / VIDEO_TTS_PROVIDER",
+    )
     args = parser.parse_args()
 
     project = args.project.resolve()
@@ -104,18 +113,37 @@ def main() -> int:
         elif audio_duration is not None and audio_duration < 5:
             issues.append(f"narration too short: {audio_duration:.2f}s")
 
-    # Detect FISH_API_KEY without printing it.
-    fish_present = bool(os.environ.get("FISH_API_KEY", "").strip())
+    # Detect Fish keys without printing them.
+    fish_present = bool(
+        os.environ.get("FISH_API_KEY", "").strip()
+        or os.environ.get("FISH_AUDIO_API_KEY", "").strip()
+    )
     if not fish_present:
         for env_file in (project / ".env", project.parent / ".env"):
             if not env_file.exists():
                 continue
             for line in env_file.read_text(encoding="utf-8-sig").splitlines():
-                if re.match(r"^FISH_API_KEY=\S+", line.strip()):
+                if re.match(r"^(FISH_API_KEY|FISH_AUDIO_API_KEY)=\S+", line.strip()):
                     fish_present = True
                     break
-    if args.require_fish_key and not fish_present:
-        issues.append("FISH_API_KEY not found in env or .env (value not printed)")
+            if fish_present:
+                break
+
+    voice = (plan or {}).get("voice") or {}
+    provider = (
+        os.environ.get("VIDEO_TTS_PROVIDER", "").strip().lower()
+        or str(voice.get("provider") or "fish-audio").strip().lower()
+    )
+    need_tts = args.require_tts or args.require_fish_key
+    if need_tts:
+        if provider == "fish-audio" and not fish_present:
+            issues.append("TTS provider=fish-audio but FISH_API_KEY / FISH_AUDIO_API_KEY missing")
+        elif provider == "elevenlabs":
+            issues.append("TTS provider=elevenlabs not shipped — use fish-audio or external via video_tts.py")
+        elif provider == "external":
+            warnings.append("TTS provider=external — pass --audio to video_tts.py after Gate2")
+        elif provider not in {"fish-audio", "external", "elevenlabs"}:
+            issues.append(f"unknown TTS provider: {provider}")
 
     package = project / "package.json"
     if not package.exists():
@@ -129,6 +157,7 @@ def main() -> int:
         "project": str(project),
         "issues": issues,
         "warnings": warnings,
+        "tts_provider": provider if plan else os.environ.get("VIDEO_TTS_PROVIDER", "fish-audio"),
         "fish_api_key_present": fish_present,
         "audio_duration_seconds": audio_duration,
         "scene_count": len(plan.get("scenes", [])) if plan else 0,

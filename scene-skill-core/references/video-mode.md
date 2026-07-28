@@ -6,18 +6,31 @@
 
 | 目标 | 做法 |
 |------|------|
-| 长视频 | 多镜叙事 + Fish 连续旁白 + Remotion 组装；音频是主时钟 |
+| 长视频 | 多镜叙事 + 连续旁白 + Remotion 组装；**音频是主时钟** |
 | 低成本 | 贵步骤后置：Gate1 分镜确认 → 再生图；scripted 字幕；改字号/动效只重渲 |
 | 高 IP | 小石头设定锁 + 图内禁止中文标签 + Remotion 统一大标题/小字幕 |
 
-贵：`imagen × N` + Fish 一条旁白。便宜：Remotion 重渲 / 字幕 / 切镜。
+贵：`imagen × N` + 一条旁白。便宜：Remotion 重渲 / 字幕 / 切镜。
 
 将小石头实物图/手绘图转化为带旁白的动画讲解视频。
 
 **核心理念**：
 - 复用 scene-skill-core 的图片生成能力（**Codex imagen 工具** + 小石头 IP）
-- 增加 TTS 语音合成（Fish Audio 优先）
+- TTS / 字幕 / 版式按**契约可替换**（默认 Fish Audio）
 - 使用 Remotion 渲染引擎组装成 MP4
+
+### 可替换插槽（设计原则）
+
+| 插槽 | 灵活度 | 换法 | 契约 |
+|------|--------|------|------|
+| TTS 引擎 | 高 | `video_tts.py --provider …` | `contracts/video-tts.md` → `narration.mp3` |
+| 音色 ID | 最高 | `FISH_REFERENCE_ID` / `--reference-id` | 同上 |
+| 自备旁白 | 高 | `--provider external --audio` | 同上 |
+| 字幕对齐 | 中 | `video_align_captions.py --mode` | scripted 默认 |
+| captionLook / 字号 | 高 | `plan.style` + 重渲 | QuietChrome |
+| 分镜文案 | 高 | Gate1 前改 plan | handoff |
+| imagen | 低 | 产品锁定 Codex imagen | IP 规范 |
+| Remotion 模板 | 低 | 改 Explainer；整栈换 = 另一 skill | plan.json |
 
 **⚠️ 工具硬性约束**：
 - 场景插图生成**必须**使用 Codex 自带的 `imagen` 工具
@@ -49,7 +62,7 @@
 ```text
 check_setup → Gate1 分镜确认（approve storyboard）
 → imagen 仅通过镜 → contact sheet → Gate2 静帧确认（可部分通过）
-→ Fish TTS → align captions（scripted）
+→ video_tts.py（默认 fish-audio）→ align captions（scripted）
 → Remotion still → Gate3 preview 批准（哈希绑定）
 → full render → check_delivery
 ```
@@ -84,7 +97,7 @@ check_setup → Gate1 分镜确认（approve storyboard）
 3. `python scripts/video_init_job_state.py --project <项目目录>`
 4. 生成 `plan.json`（含 motion.thesis + 每镜 stateChange）后 **Gate1**：把分镜表给用户审；通过后：
    `python scripts/video_approve.py --project <dir> --gate storyboard`
-5. `python scripts/video_preflight.py --project <项目目录> --require-fish-key`
+5. `python scripts/video_preflight.py --project <项目目录> --require-tts`
 6. 未 Gate1 批准，不得批量 imagen
 
 ### 阶段 0.5：运动叙事（Anti-PPT）
@@ -110,10 +123,12 @@ check_setup → Gate1 分镜确认（approve storyboard）
 5. 未过镜只重生图，不整批重做
 
 ### 阶段 3：生成连续旁白
-1. 使用 Fish Audio 合成旁白音频（当前仓库唯一已实现的 TTS）
-2. **连续模式**（默认）：整段旁白一次合成，保存为 `public/audio/narration.mp3`
-3. 使用 `ffprobe` 测算实际音频时长
-4. 更新 `plan.json` 中的场景时长
+1. 经路由调用（推荐）：`python scripts/video_tts.py --project <项目目录>`
+   - 默认 `fish-audio`（已实现）；或 `--provider external --audio voice.mp3`
+   - 契约见 `contracts/video-tts.md`
+2. **连续模式**（默认）：整段旁白 → `public/audio/narration.mp3`
+3. `ffprobe` 实测时长，回写 `plan.json` 场景 `durationInFrames`
+4. 直接调 `video_fish_audio.py` 仍可用（等价于 `--provider fish-audio`）
 
 ### 阶段 3.5：对齐字幕（终稿音频）
 1. 旁白定稿后运行：
@@ -208,7 +223,7 @@ check_setup → Gate1 分镜确认（approve storyboard）
 - `motion.id`：动效风格，可省略（自动匹配 style）
 - `motion.thesis`：**必填**运动主张（见 `video-motion-director.md`）
 - `scenes[].stateChange` / `characterAction`：可见状态变化与小石头动词
-- `voice.provider`：默认 `fish-audio`（当前仓库已实现）；`elevenlabs` 仅保留类型兼容，脚本未接入
+- `voice.provider`：默认 `fish-audio`；也可用 `external`（自备音频）或预留 `elevenlabs`。统一经 `video_tts.py` 路由，契约见 `contracts/video-tts.md`
 - `voice.mode`：默认 `continuous`（连续旁白）
 - `scenes[].imagePrompt`：必须符合小石头 IP 规范；**画布比例须与 plan.width/height 一致**（不要写错成 16:9 横构图去填竖版）
 
@@ -278,20 +293,31 @@ check_setup → Gate1 分镜确认（approve storyboard）
 
 ---
 
-## TTS 配置
+## TTS 配置（可替换）
 
-### Fish Audio（推荐 · 当前唯一已实现）
-1. 在 Remotion 项目根或仓库根配置 `.env`：
+统一入口：`python scripts/video_tts.py --project <dir>`（见 `contracts/video-tts.md`）。
+
+### Fish Audio（默认后端）
+1. `.env`：
    ```
    FISH_API_KEY=your_key_here
    FISH_MODEL=s2.1-pro-free
+   # FISH_REFERENCE_ID=…   # 换音色（最高频替换点）
+   # VIDEO_TTS_PROVIDER=fish-audio
    ```
-2. 调用脚本：`python scripts/video_fish_audio.py --project <项目目录>`
+2. `python scripts/video_tts.py --project <项目目录>`  
+   或直调：`python scripts/video_fish_audio.py --project <项目目录>`
 3. 成本：约 ¥0.05/分钟
 
-### ElevenLabs（类型预留，脚本未接入）
-- `types.ts` / `plan.json` 仍可写 `provider: "elevenlabs"`，但仓库**没有** `video_elevenlabs.py`
-- 需要 ElevenLabs 时，先自行补脚本，或改用 Fish Audio；不要按旧文档调用不存在的 `elevenlabs_project.py`
+### external（自备旁白）
+```bash
+python scripts/video_tts.py --project <dir> --provider external --audio /path/to/voice.mp3
+```
+路由只负责拷贝 + 按时长重算分镜；其后仍跑 scripted align。
+
+### ElevenLabs（类型预留）
+- `plan.voice.provider: "elevenlabs"` 可写；合成时 `video_tts.py` 会明确报未实现
+- 临时方案：外部合成后走 `external`；长期：补 `video_elevenlabs.py` 并在路由注册
 
 ---
 
@@ -340,7 +366,8 @@ scene-skill-core/
 │   ├── video_approve.py            # Gate1/2/3 哈希批准
 │   ├── video_contact_sheet.py      # Gate2 contact sheet
 │   ├── video_preflight.py          # 付费/批量步骤前预检
-│   ├── video_fish_audio.py         # Fish Audio TTS
+│   ├── video_tts.py                # TTS 路由（可替换引擎）
+│   ├── video_fish_audio.py         # Fish Audio 后端
 │   ├── video_align_captions.py     # scripted 字幕
 │   ├── video_build.sh              # align→still→render→check
 │   ├── video_verify_output.py      # 媒体规格

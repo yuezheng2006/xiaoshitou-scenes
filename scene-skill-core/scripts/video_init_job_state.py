@@ -16,7 +16,7 @@ def build_state(name: str) -> dict[str, Any]:
         "created_at": date.today().isoformat(),
         "positioning": {
             "goal": "long-form + low-cost + high-IP",
-            "costly": ["imagen scenes", "Fish TTS"],
+            "costly": ["imagen scenes", "TTS via video_tts.py"],
             "cheap": ["Remotion re-render", "scripted captions", "typography"],
         },
         "handoff": "handoff.md",
@@ -25,6 +25,7 @@ def build_state(name: str) -> dict[str, Any]:
             "provider": "fish-audio",
             "mode": "continuous",
             "full_audio": "public/audio/narration.mp3",
+            "router": "scripts/video_tts.py",
         },
         "captions": {
             "timing_source": None,
