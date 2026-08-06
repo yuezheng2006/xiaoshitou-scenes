@@ -30,7 +30,7 @@ Profile 身份层
   ip-profiles/<ip-id>/
         ↓
 模式表达层
-  physical · handdrawn · knowledge-card · ppt
+  physical · handdrawn · knowledge-card · ppt · video
         ↓
 公共编排层
   story extraction · prompt slots · generation templates · mode sizing
@@ -74,13 +74,13 @@ Profile 不应定义某个模式的完整构图流程。它只回答：画面里
 
 当前默认 Profile：`default-little-stone`。
 
-Profile 身份层通过 `references/contracts/profile-contract.md` 暴露统一接口。Contract 只声明身份资产、参考模式、动作库、序列规则和失败信号；具体形象细节仍由当前 profile 的 `character.md` / persona 文件定义。
+Profile 身份层通过 `references/contracts/profile-contract.md` 暴露统一接口，机器可读入口是各 profile 下的 `profile.manifest.json`，结构由 `references/contracts/profile-manifest.schema.json` 约束。Contract 只声明身份资产、参考模式、动作库、序列规则和失败信号；具体形象细节仍由当前 profile 的 `character.md` / persona 文件定义。
 
-无角色 Profile：`none`。它用于验证系统可以在没有固定品牌角色的情况下复用公共模式流程。
+无角色 Profile：`no-character`。它用于验证系统可以在没有固定品牌角色的情况下复用公共模式流程。
 
 ### 3.3 模式表达层
 
-当前模式：
+当前模式（五种；路由唯一真相源见 `scene-skill-core/references/mode-decision-matrix.md`）：
 
 | 模式 | 主要任务 | 默认容器 |
 |---|---|---|
@@ -88,6 +88,7 @@ Profile 身份层通过 `references/contracts/profile-contract.md` 暴露统一�
 | 手绘图 | 表达流程、结构、系统关系和方法 | 16:9 白板解释图 |
 | 知识卡 | 表达可独立传播、收藏和复盘的完整内容 | 3:4 / 4:5 / 9:16 |
 | PPT | 表达连续演讲、课程和主题分享 | 16:9 多页面 |
+| 视频 | 表达带旁白的连续讲解和可见状态变化 | 默认 1080×1440 竖版 |
 
 每个模式必须拥有自己的：
 
@@ -154,7 +155,7 @@ Profile 身份层通过 `references/contracts/profile-contract.md` 暴露统一�
 禁止形成的依赖：
 
 - 手绘模式依赖实物母版的空间布局。
-- `none` Profile 依赖默认角色资产。
+- `no-character` Profile 依赖默认角色资产。
 - 公共 Prompt 槽位写死老杨或小石头的视觉细节。
 - 某个模式直接修改另一个模式的尺寸、信息密度或结构规则。
 - 生成平台的限制反向污染内容理解和模式判断。
@@ -176,7 +177,7 @@ ip-profiles/<ip-id>/
     └── brand/private/
 ```
 
-新增 IP 不应要求修改四种模式的核心规则。
+新增 IP 不应要求修改五种模式的核心规则。
 
 新增 IP 还必须填写 Profile Contract 的最小字段，并明确 `ref_mode`。当前模式缺少 calibration asset 时允许降级为 `single`，但必须在 Render Card / QA Card 中留下记录。
 
@@ -256,6 +257,7 @@ QA 分成公共门禁和模式扩展：
   + handdrawn QA
   + knowledge-card QA
   + PPT QA
+  + Video QA / handoff
   + Persona QA（如适用）
 ```
 
@@ -330,7 +332,7 @@ Persona 同时影响入口、资产、Prompt、模式职责和 QA。新增 Perso
 
 - [ ] 新增 IP 不需要修改模式的视觉规则。
 - [ ] 新增模式有独立的结构锁和模式 QA。
-- [ ] `none` Profile 可以跳过所有默认角色资产。
+- [ ] `no-character` Profile 可以跳过所有默认角色资产。
 - [ ] Persona 规则没有散落进多个模式文件。
 - [ ] Prompt 可以通过槽位替换风格或生成平台。
 - [ ] 公共规则没有写死具体 IP 名称和资产路径。

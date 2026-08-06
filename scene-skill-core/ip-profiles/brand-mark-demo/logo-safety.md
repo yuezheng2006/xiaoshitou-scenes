@@ -2,7 +2,7 @@
 
 ## 本 Profile 的标是谁
 
-`mark-demo` 使用的是**项目自有的公开示意品牌标**（深青绿圆角方标 + 路径折角图形），用于演示 `input_kind=brand_mark` 录入与多模式配图流程。
+`brand-mark-demo` 使用的是**项目自有的公开示意品牌标**（深青绿圆角方标 + 路径折角图形），用于演示 `input_kind=brand_mark` 录入与多模式配图流程。
 
 - 该示意标可进入 `public_assets`，可提交到公开仓库。
 - 它不是 Claude Code、Anthropic 或任何第三方的商标。
@@ -13,14 +13,14 @@
 | 类型 | 默认归属 | 公开仓 |
 | --- | --- | --- |
 | 客户真实 Logo / App Icon | `private_assets` | 禁止 |
-| mark-demo 示意标 | `public_assets` | 允许 |
+| brand-mark-demo 示意标 | `public_assets` | 允许 |
 | default-little-stone 雷石 Logo | 授权资产 / 本地 | 按品牌规范，不混入 mark-demo |
 
 **硬规则：**
 
 - 不得把客户商标写入公开示例、Prompt 模板或 git 历史。
-- 不得在 mark-demo 文档或资产中替换为客户提供的真实标识。
-- 不得自动把 `default-little-stone` 的雷石 Logo 贴到 mark-demo 或 brand_mark 录入流程中。
+- 不得在 brand-mark-demo 文档或资产中替换为客户提供的真实标识。
+- 不得自动把 `default-little-stone` 的雷石 Logo 贴到 brand-mark-demo 或 brand_mark 录入流程中。
 
 ## brand_mark 与 logo-safety 分工
 

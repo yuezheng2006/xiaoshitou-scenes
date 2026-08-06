@@ -1,0 +1,297 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xiaoshitou-scenes.dev/contracts/profile-manifest.schema.json",
+  "title": "scene-skill-core Profile Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "profile_id",
+    "display_name",
+    "status",
+    "input_kind",
+    "identity",
+    "references",
+    "behavior",
+    "qa",
+    "privacy"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.0$"
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "asset_source": {
+      "type": "object",
+      "required": [
+        "profile_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "profile_id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "REQUESTED",
+        "USER_REFERENCE",
+        "IDENTITY_PLAN",
+        "CONFIRMED",
+        "CANONICAL_ASSET",
+        "MODE_CALIBRATION",
+        "AVAILABLE"
+      ]
+    },
+    "input_kind": {
+      "type": "string",
+      "enum": [
+        "none",
+        "brand_mark",
+        "character_art",
+        "generated_draft"
+      ]
+    },
+    "identity": {
+      "type": "object",
+      "required": [
+        "canonical_asset",
+        "reference_source",
+        "anchors",
+        "temperament"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "canonical_asset": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reference_source": {
+          "type": "string",
+          "enum": [
+            "user_provided",
+            "generated_draft",
+            "none"
+          ]
+        },
+        "anchors": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "temperament": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description_source": {
+          "type": "string",
+          "enum": [
+            "character.md",
+            "profile.md"
+          ]
+        },
+        "identity_sheet": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "references": {
+      "type": "object",
+      "required": [
+        "ref_mode",
+        "ref_mode_policy",
+        "calibration"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ref_mode": {
+          "type": "string",
+          "enum": [
+            "none",
+            "single",
+            "dual"
+          ]
+        },
+        "ref_mode_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "identity_assets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "calibration": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "calibration_status": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "physical": {
+              "type": "string",
+              "enum": [
+                "AVAILABLE",
+                "DEFERRED",
+                "REJECTED"
+              ]
+            },
+            "handdrawn": {
+              "type": "string",
+              "enum": [
+                "AVAILABLE",
+                "DEFERRED",
+                "REJECTED"
+              ]
+            },
+            "knowledge-card": {
+              "type": "string",
+              "enum": [
+                "AVAILABLE",
+                "DEFERRED",
+                "REJECTED"
+              ]
+            },
+            "ppt": {
+              "type": "string",
+              "enum": [
+                "AVAILABLE",
+                "DEFERRED",
+                "REJECTED"
+              ]
+            },
+            "video": {
+              "type": "string",
+              "enum": [
+                "AVAILABLE",
+                "DEFERRED",
+                "REJECTED"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "behavior": {
+      "type": "object",
+      "required": [
+        "actions",
+        "sequence_guide"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "sequence_guide": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role_contract": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "presenter": {
+              "type": "string",
+              "minLength": 1
+            },
+            "executor": {
+              "type": "string",
+              "minLength": 1
+            },
+            "handoff": {
+              "type": "string",
+              "minLength": 1
+            },
+            "requires_trigger": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "qa": {
+      "type": "object",
+      "required": [
+        "failure_signals"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "failure_signals": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "critical_checks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "required": [
+        "public_assets",
+        "private_assets"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "public_assets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "private_assets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

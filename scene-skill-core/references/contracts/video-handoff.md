@@ -14,6 +14,7 @@ Agent 在批量 `imagen` / TTS（经 `video_tts.py`）/ 全片 Remotion 渲染�
 <video-project>/
 ├── handoff.md
 ├── work/job-state.json
+├── work/task-manifest.json
 ├── src/generated/plan.json
 ├── src/generated/captions.json
 ├── public/images/scene-*.png
@@ -78,3 +79,14 @@ check_setup → Gate1 storyboard → imagen(通过镜)
 6. 交付以 `video_check_delivery.py` exit 0 为准。
 
 **禁止**写入 API key。
+
+## 与统一 Task Manifest 的关系
+
+视频的 `work/task-manifest.json` 是静态图任务 manifest 的视频扩展，不替代
+`work/job-state.json`：
+
+- Task Manifest 记录 Profile 版本、实际参考资产、视频模式、输出产物和最终 QA。
+- Job State 记录 Gate1/Gate2/Gate3 的批准状态、哈希和 stale 变化。
+- Gate3 通过前，Task Manifest 的 QA 状态只能是 `DRAFT` 或 `NEEDS_REVIEW`。
+- 改动 `plan.json`、场景图、旁白或 captions 后，先由 `video_approve.py --check`
+  发现 stale，再更新 Task Manifest 的 `revision` 与 Prompt/产物 hash。

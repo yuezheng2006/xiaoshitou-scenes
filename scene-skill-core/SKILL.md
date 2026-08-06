@@ -3,7 +3,7 @@ name: scene-skill-core
 description: >
   为中文内容按当前 IP profile 生成多模式配图与讲解视频：实物图（简笔物件小现场）、手绘图（白板解释）、知识卡（竖版传播）、PPT 演讲页、60-90 秒+旁白讲解视频（Gate 门禁 + 可替换 TTS + Remotion）。默认 default-little-stone（小石头+老杨双 IP），可换 ip-profiles/；不要人物/纯物件/无 IP/none 切 no-character。在用户要配图、插图、出图、shot list、知识卡、海报、演讲 PPT、讲解视频时使用——无需写 $scene-skill-core。触发含：实物图/物件小现场、手绘图/白板图/逻辑图、知识卡/手机海报/收藏图、PPT/课件/直播分享/导演规划卡、视频讲解/动画视频/小石头视频；双 IP：老杨、yuezheng2006、老杨和小石头；小剧场入口须含「小剧场」；也接受小石头实物图/手绘图/视频。输入可为正文、主题、大纲或逐字稿。
 license: MIT
-compatibility: Requires Codex (CLI / Desktop / claude.ai/code) with the imagen tool for image generation, plus local filesystem access to this skill's assets and profiles.
+compatibility: Requires either native Codex imagen access or Cursor with the codex CLI bridge; image generation still runs through Codex imagen, plus local filesystem access to this skill's assets and profiles.
 metadata:
   author: yuezheng2006
   version: "1.2"
@@ -29,7 +29,7 @@ allowed-tools: Read Write Edit Bash imagen
 
 **执行顺序**：匹配本 Skill → 读 `QUICK-START.md` 做路由 → 只打开决策表点名的一层文件 → 回本文件 Core Flow 执行。禁止把 `references/` 全量塞进上下文。
 
-**环境硬约束**：须在 **Codex** 运行；生图必须用 **`imagen`**。详见 `QUICK-START.md` § -1、`references/codex-environment-guidance.md`。
+**环境硬约束**：生图必须使用 Codex 的 **`imagen`**。在 Cursor 中没有原生 `imagen` 时，必须通过 `scripts/codex_exec_bridge.py` 启动 `codex exec` 子会话，并复用已登录的 Codex CLI 会话；不依赖 `OPENAI_API_KEY`，不能改用外部生图 API。详见 `QUICK-START.md` § -1、`references/codex-environment-guidance.md`。
 
 **常见跳转（均为一层引用）：**
 - 实物图 → `QUICK-START.md` 决策表 A
@@ -103,7 +103,7 @@ PPT 演讲：老杨主讲页 + 小石头执行点缀（双 IP 推荐）
 - `brand_mark` 方标可作为 canonical 候选；**须先 identity_sheet 再模式校准**；角色化必须可回溯原标锚点，禁止 icon-as-head。详见 `references/brand-mark-mode.md`。
 - 推荐用户先提供一张真实图；首轮优先接收并登记该图作为身份锚点。
 - 首轮只建立 Profile Enrollment Card，提取身份锚点、气质、参考图来源和待确认项。
-- 用户确认身份方案前，不调用图片生成工具，不进入四种内容生成模式。
+- 用户确认身份方案前，不调用图片生成工具，不进入五种内容生成模式。
 - 半身 / 胸像先标记为“用户真实图-待补全”，不能直接冒充全身 canonical asset。
 - 没有真实图时，文字方案或系统生成草图只能标记为临时草稿；除非用户明确授权，不得作为正式 IP 参考。
 - 当前模式没有校准图时使用 `single`，不能声称 `dual`。
@@ -218,7 +218,7 @@ REQUESTED → USER_REFERENCE → IDENTITY_PLAN → CONFIRMED → CANONICAL_ASSET
           → MODE_CALIBRATION（可懒加载）→ AVAILABLE
 ```
 
-该状态机只负责让 Profile 变得可用，不负责生成普通内容图。录入阶段的确认和资产状态必须记录在 Profile Enrollment Card 中；完成后才回到普通交接卡协议。
+该状态机只负责让 Profile 变得可用，不负责生成普通内容图。录入阶段的确认和资产状态必须记录在 Profile Enrollment Card 中；完成后可用 `scripts/create-ip-pack.py` 导出可携带 IP Pack，再用 `scripts/resolve-ip-assets.py` 按目标模式选择参考资产，最后回到普通交接卡协议。Pack 未通过 `scripts/validate-ip-pack.py` 或授权未确认时，不得作为 READY 包导入。
 
 ### 1. 消化内容
 
@@ -328,6 +328,25 @@ shot list 张数 ≥ 3，或隐喻/标签/事实推断较多时，先输出内�
 
 每张图单独生成，不要把多张拼成一张（PPT 演讲模式除外——按 page card 分批生成整套页面）。
 
+### 3A. 生图工具路由
+
+生成前先判断当前会话是否有原生 `imagen`：
+
+```text
+原生 imagen 可用
+  → 直接调用 imagen
+
+当前在 Cursor，原生 imagen 不可用，codex CLI 可用
+  → 调用 scripts/codex_exec_bridge.py
+  → 由新的 codex exec 子会话读取本 Skill 并调用 imagen
+  → 子会话把 PNG 保存到当前任务 output-dir
+
+两者都不可用
+  → BLOCKED，说明需要安装并登录 codex CLI 或切换 Codex 原生环境
+```
+
+Cursor bridge 必须传入当前任务的完整 Prompt、实际参考图路径和目标输出目录；不要只输出一条建议命令后结束任务。
+
 提示词默认尽量使用中文。交付给用户复制使用的完整提示词、返修提示词、图内文字、标签、批注和结构描述都优先中文；仅保留必要英文风格关键词、资产文件名、技术参数、专有名词和少量负面约束短语。
 
 提示词必须包含对应模式：
@@ -353,7 +372,7 @@ shot list 张数 ≥ 3，或隐喻/标签/事实推断较多时，先输出内�
 
 ### 5. QA 和迭代
 
-按模式选 QA：实物图/长卷读 `physical-qa-checklist.md`；手绘图读 `handdrawn-qa-checklist.md`；知识卡和 PPT 读各自模式文件；主观返修先查 `common-qa-repair.md`。**每张候选图必须先做形象检查并输出 Confirm Gate**（小石头 L1–L4/E1–E2；老杨 P1–P7；见 `common-character-lock.md`），**只有结论 `CONFIRMED` 才可交付**，再做模式 QA。文档/预览/仓库示例与正文配图同一标准。第一张生成图永远只是候选图，必须查看并比对后才能交付。元素清单化、母版复刻化、读不懂、商品图感、素材拼贴、标签概念化、主角色不动作、维度漂移、**四肢锚点错误/有嘴/多手**、**形象锁定失败（粗黑框/黑长袖/generic 人脸/背身/露齿）**、隐私/Logo 未授权，均不得交付为最终图。
+按模式选 QA：实物图/长卷读 `physical-qa-checklist.md`；手绘图读 `handdrawn-qa-checklist.md`；知识卡和 PPT 读各自模式文件；主观返修先查 `common-qa-repair.md`。**每张候选图必须先做形象检查并输出 Confirm Gate**（小石头 L1–L4/E1–E2；老杨 P1–P7；见 `common-character-lock.md`），**只有结论 `CONFIRMED` 才可交付**，再做模式 QA。结构化观察结果可交给 `scripts/score-ip-qa.py`，其 Critical 违规直接阻塞交付。文档/预览/仓库示例与正文配图同一标准。第一张生成图永远只是候选图，必须查看并比对后才能交付。元素清单化、母版复刻化、读不懂、商品图感、素材拼贴、标签概念化、主角色不动作、维度漂移、**四肢锚点错误/有嘴/多手**、**形象锁定失败（粗黑框/黑长袖/generic 人脸/背身/露齿）**、隐私/Logo 未授权，均不得交付为最终图。
 
 ### 6. 保存交付
 

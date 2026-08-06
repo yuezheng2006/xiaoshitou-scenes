@@ -44,18 +44,30 @@
       "id": "mode-routing-implicit",
       "prompt": "帮我把这篇讲『需求评审总是被拉回改』的文章配 4 张图，没说要实物图还是手绘图。",
       "expected_output": "应判断内容是处境/情绪类，默认走实物图模式而不是手绘图或知识卡模式；不应反复追问用户要哪种模式，先给 1-2 句说明后直接按实物图模式给 shot list。",
+      "assertions": {
+        "must": ["实物图", "shot list|分镜"],
+        "must_not": ["反复追问", "知识卡模式"]
+      },
       "files": []
     },
     {
       "id": "mode-routing-explicit-knowledge-card",
       "prompt": "小石头知识卡：把这套『四步方法论』做成一张能发朋友圈的图。",
       "expected_output": "应识别显式风格词『知识卡』，读取 knowledge-card-mode.md，选竖版尺寸（3:4/4:5/9:16），并因为是方法论/步骤类内容默认安排至少 2 个小石头协作分工，而不是只有一个小石头配文字。",
+      "assertions": {
+        "must": ["知识卡", "3:4|4:5|9:16", "至少 2 个|两个小石头|2-3 个小石头"],
+        "must_not": ["只有一个小石头"]
+      },
       "files": []
     },
     {
       "id": "mode-routing-explicit-ppt",
       "prompt": "我要做一套 10 页直播分享 PPT，主题是《小石头 IP 是怎么做出来的》，先不要出图。",
       "expected_output": "应判断为 PPT 演讲模式，先输出整套导演规划卡（页码/页面类型/视觉权重/沟通任务/人物使用/QA 风险），不应直接批量出图，也不应把这套需求当成普通知识卡或手绘图处理。",
+      "assertions": {
+        "must": ["PPT", "导演规划卡|规划卡"],
+        "must_not": ["直接批量出图", "知识卡模式"]
+      },
       "files": []
     },
     {
@@ -74,6 +86,10 @@
       "id": "author-persona-trigger-boundary",
       "prompt": "小石头手绘图：解释一下这个 Agent 工作流。",
       "expected_output": "用户没有提到老杨/作者/yuezheng2006/我本人等触发词，不应加入作者数字形象；只出现小石头承担核心概念动作。",
+      "assertions": {
+        "must": ["不出现老杨|不会出现老杨|单 IP|只有小石头"],
+        "must_not": ["老杨主讲", "老杨出镜"]
+      },
       "files": []
     },
     {
@@ -226,6 +242,10 @@
       "id": "profile-reference-single-fallback",
       "prompt": "使用现有小石头 IP 做一张知识卡，但当前 profile 没有知识卡校准图。请说明参考图协议。",
       "expected_output": "应读取 Profile Contract，声明当前运行使用 single：传身份锚点；不得声称 dual；可以记录知识卡 calibration asset 后续懒加载，但不阻塞当前任务。",
+      "assertions": {
+        "must": ["single", "不能.*dual|不得.*dual|不要声称 dual"],
+        "must_not": ["已使用双参考", "dual 已生效"]
+      },
       "files": [
         "references/contracts/profile-contract.md",
         "references/common-prompt-slots.md",
@@ -253,7 +273,11 @@
     {
       "id": "profile-enrollment-brand-mark",
       "prompt": "用这个 App Icon 做一个自定义 IP：先建立角色档案，暂时不要生成配图。",
-      "expected_output": "应进入 profile_enrollment，input_kind=brand_mark；建立 Profile Enrollment Card（含原件类型 app_icon/logo、身份锚点、授权确认项）；确认前不调用图片生成工具，不进入四种内容模式。",
+      "expected_output": "应进入 profile_enrollment，input_kind=brand_mark；建立 Profile Enrollment Card（含原件类型 app_icon/logo、身份锚点、授权确认项）；确认前不调用图片生成工具，不进入五种内容模式。",
+      "assertions": {
+        "must": ["profile_enrollment", "brand_mark", "Profile Enrollment Card|录入卡", "不调用|不得.*生成"],
+        "must_not": ["直接生成配图"]
+      },
       "files": [
         "references/contracts/profile-contract.md",
         "QUICK-START.md",
@@ -301,6 +325,10 @@
       "id": "video-gate1-no-imagen-before-storyboard",
       "prompt": "小石头视频：主题是多 Agent 交接，直接开始生成 6 张场景图。",
       "expected_output": "应先走视频模式 Gate1：输出 motion thesis + 分镜表（headline/narration/stateChange），停下等用户确认；在 video_approve --gate storyboard 之前不得批量 imagen。可引用 video-mode.md / video-handoff。",
+      "assertions": {
+        "must": ["视频模式", "Gate1|分镜", "stateChange|状态变化"],
+        "must_not": ["直接开始生成", "批量 imagen"]
+      },
       "files": [
         "references/video-mode.md",
         "references/contracts/video-handoff.md"
@@ -330,6 +358,139 @@
       "files": [
         "references/contracts/video-handoff.md",
         "scripts/video_approve.py"
+      ]
+    },
+    {
+      "id": "dual-ip-narrative-handoff",
+      "prompt": "老杨和小石头：把三步 Agent 交接做成一张知识卡，直接出图。",
+      "expected_output": "应先建立双 IP 叙事字段：老杨主讲/指向，小石头在步骤区搬卡或递交结果，并明确 state_change 与 handoff；不能只出现老杨头像和文字。",
+      "assertions": {
+        "must": ["老杨", "小石头", "主讲|指向", "执行|搬卡|递交", "state_change|状态变化", "handoff|交接"],
+        "must_not": ["只有老杨", "只放老杨头像"]
+      },
+      "files": [
+        "references/contracts/dual-ip-narrative.md",
+        "references/knowledge-card-mode.md"
+      ]
+    },
+    {
+      "id": "ppt-narrative-page-boundary",
+      "prompt": "老杨和小石头：做一套 8 页 PPT，每页都把两个人放大讲一遍。",
+      "expected_output": "应拒绝重复站桩式编排；每页只承担一个沟通任务，老杨负责讲解/批注，小石头只在有执行职责的页面出现，并写明跨页 state_change 或 handoff。",
+      "assertions": {
+        "must": ["PPT", "每页一个|单页一个", "老杨", "小石头", "state_change|状态变化"],
+        "must_not": ["每页都放大", "每页都出现"]
+      },
+      "files": [
+        "references/contracts/dual-ip-narrative.md",
+        "references/ppt-presentation-mode.md"
+      ]
+    },
+    {
+      "id": "video-dual-ip-motion-contract",
+      "prompt": "老杨和小石头：把这段复盘做成 60 秒视频，先给分镜。",
+      "expected_output": "应先输出 motion thesis 和分镜；每镜记录 presenter、executor、characterAction、stateChange、handoff，确保老杨调度、小石头执行，不能退化为双 IP 静帧轮播。",
+      "assertions": {
+        "must": ["motion thesis", "presenter|主讲", "executor|执行", "characterAction|动作", "stateChange|状态变化", "handoff|交接"],
+        "must_not": ["静帧轮播", "直接批量生成"]
+      },
+      "files": [
+        "references/contracts/dual-ip-narrative.md",
+        "references/video-mode.md",
+        "references/contracts/video-handoff.md"
+      ]
+    },
+    {
+      "id": "persona-no-trigger-no-injection",
+      "prompt": "小石头 PPT：把这个流程拆成 6 页，先给导演规划卡。",
+      "expected_output": "未触发老杨时，规划卡不得自动注入 presenter=老杨、老杨资产或双 IP handoff；只保留小石头与当前 Profile 的角色职责。",
+      "assertions": {
+        "must": ["PPT", "导演规划卡", "不出现老杨|不自动加入老杨|单 IP"],
+        "must_not": ["老杨主讲", "author-persona-panorama"]
+      },
+      "files": [
+        "references/contracts/dual-ip-narrative.md",
+        "references/ppt-presentation-mode.md"
+      ]
+    },
+    {
+      "id": "codex-auth-no-openai-key",
+      "prompt": "Cursor 中生图报 OPENAI_API_KEY missing，应该怎么处理？",
+      "expected_output": "应判断图片生成误走了 OpenAI SDK/API 路径；生图应复用已登录的 Codex CLI，会先检查 codex login status，指导执行 codex login 或 codex login --device-auth，而不是要求配置 OPENAI_API_KEY。",
+      "assertions": {
+        "must": ["codex login status", "codex login|device-auth", "Codex", "不需要|不要.*OPENAI_API_KEY"],
+        "must_not": ["配置.*OPENAI_API_KEY", "外部图片 API"]
+      },
+      "files": [
+        "references/codex-environment-guidance.md",
+        "scripts/codex_exec_bridge.py"
+      ]
+    },
+    {
+      "id": "codex-auth-fail-before-imagen",
+      "prompt": "Cursor 没有原生 imagen，Codex CLI 也没有登录，直接开始生成图片。",
+      "expected_output": "应在调用 imagen 前停止，先检查 codex login status；提示 codex login 或 device auth，不应把认证错误延迟到图片生成阶段。",
+      "assertions": {
+        "must": ["codex login status", "提前|先.*登录|调用 imagen 前", "codex login|device-auth"],
+        "must_not": ["直接调用 imagen", "OPENAI_API_KEY"]
+      },
+      "files": [
+        "QUICK-START.md",
+        "references/codex-environment-guidance.md",
+        "scripts/codex_exec_bridge.py"
+      ]
+    },
+    {
+      "id": "laoyang-physical-face-age-lock",
+      "prompt": "老杨 physical 实物图：使用我提供的真人脸，人物约 35 岁，身高 180cm，完整展示全身。",
+      "expected_output": "应使用 physical 私有人脸校准；年龄约 35 岁、成熟但不显老；身高 180cm、躯干约 40%、腿约 60%；禁止把人物生成成 160/175 视觉档、矮宽压扁或 40+ 疲态。",
+      "assertions": {
+        "must": ["physical", "私有.*人脸|真人脸", "35", "180cm", "40%", "60%"],
+        "must_not": ["182cm", "160cm", "矮宽", "明显眼袋", "过度显老"]
+      },
+      "files": [
+        "ip-profiles/laoyang/character.md",
+        "ip-profiles/laoyang/profile.md"
+      ]
+    },
+    {
+      "id": "laoyang-new-balance-brand-gate",
+      "prompt": "老杨 physical 穿 New Balance 2002R，要求鞋款品牌准确。",
+      "expected_output": "应附带 2002R 鞋图作为独立参考，保留 New Balance 大写 N、灰色网眼/麂皮和分层中底；明确禁止 Nike swoosh 与其他品牌漂移。",
+      "assertions": {
+        "must": ["New Balance", "2002R", "大写 N|N 标识", "禁止.*Nike|Nike swoosh"],
+        "must_not": ["Nike swoosh 通过", "泛化运动鞋"]
+      },
+      "files": [
+        "ip-profiles/laoyang/character.md",
+        "ip-profiles/laoyang/profile.manifest.json"
+      ]
+    },
+    {
+      "id": "laoyang-asset-source-resolver",
+      "prompt": "用 laoyang Profile 运行 handdrawn Asset Resolver，老杨复用 default-little-stone 的已验收资产。",
+      "expected_output": "应解析 asset_source.profile_id=default-little-stone；选择 canonical、handdrawn calibration 与 action sheet；独立老杨任务允许 presenter 和 executor 都是老杨，不得强行注入小石头。",
+      "assertions": {
+        "must": ["asset_source", "default-little-stone", "canonical", "handdrawn", "action", "老杨"],
+        "must_not": ["必须.*小石头执行", "路径不存在"]
+      },
+      "files": [
+        "ip-profiles/laoyang/profile.manifest.json",
+        "scripts/resolve-ip-assets.py",
+        "scripts/validate-task-manifest.py"
+      ]
+    },
+    {
+      "id": "profile-fixed-version-calibration",
+      "prompt": "用户反馈老杨年龄或身高需要微调，继续校准即可，不要升级 Profile 版本号。",
+      "expected_output": "应直接更新当前人物锁与校准规则，保持 Profile 固定版本标识；不自动生成 1.4.0、1.5.0 等版本升级。",
+      "assertions": {
+        "must": ["固定版本|不升级版本|保持.*版本"],
+        "must_not": ["1.4.0", "1.5.0", "自动升级"]
+      },
+      "files": [
+        "ip-profiles/laoyang/profile.md",
+        "ip-profiles/laoyang/profile.manifest.json"
       ]
     }
   ]

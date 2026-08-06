@@ -33,10 +33,11 @@ references:
   ref_mode: single
   ref_mode_policy: 默认单锚点；当前模式明确使用校准图时升级为 dual
   calibration:
-    physical: assets/character/examples/
-    handdrawn: assets/character/examples/
-    knowledge-card: none
+    physical: assets/character/examples/physical/calibrate-object-scene.png
+    handdrawn: assets/character/examples/handdrawn/calibrate-whiteboard.png
+    knowledge-card: assets/character/examples/knowledge-card/calibrate-knowledge-card.png
     ppt: none
+    video: none
 behavior:
   actions: [拉, 挡, 推, 扛, 解, 贴, 接, 修, 守, 递]
   sequence_guide: 沿故事路径承担一个连续动作，不在每个节点复制或站桩装饰
@@ -48,6 +49,10 @@ privacy:
 ```
 
 默认小石头主角色使用 `single` 身份锚点；老杨是独立 persona，遵循 persona 自己的双参考协议，不把双 IP 的参考图规则混入小石头 Profile。
+
+模式校准状态与降级规则见 `../../references/contracts/mode-calibration.md`。
+当前 PPT 与视频仍为 `DEFERRED`：可以使用身份锚点生成方案或代表任务，但不得声称
+已经使用对应模式的双参考校准图；视频仍必须经过独立 Gate1/Gate2/Gate3。
 
 ## 主角色
 

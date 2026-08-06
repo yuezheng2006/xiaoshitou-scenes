@@ -7,14 +7,14 @@
 
 ## Profile ID
 
-`mark-demo`
+`brand-mark-demo`
 
 ## Profile Contract
 
 契约：`../../references/contracts/profile-contract.md`。
 
 ```yaml
-id: mark-demo
+id: brand-mark-demo
 display_name: 示意品牌标（公开演示）
 status: AVAILABLE
 input_kind: brand_mark

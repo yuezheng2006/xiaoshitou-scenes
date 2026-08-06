@@ -36,6 +36,13 @@ Codex Skill 核心包。默认 profile 是 **小石头 + 老杨双 IP 互动**�
 ### 🔧 维护者
 - **🏗️ 文档架构**：[docs/ARCHITECTURE-DESIGN.md](../docs/ARCHITECTURE-DESIGN.md)（仓库级，不随 Skill 包安装）
 - **✅ Evals**：`evals/evals.json`
+- **🧾 Profile 契约**：`references/contracts/profile-manifest.schema.json` + 各 profile 的 `profile.manifest.json`
+- **👤 独立 Persona Profile**：`ip-profiles/laoyang/`；单人任务不自动加入小石头，双 IP 时显式组合
+- **📦 IP Pack**：`references/contracts/ip-pack.schema.json` + `scripts/create-ip-pack.py`，把已确认 Profile 导出为可导入包；`scripts/resolve-ip-assets.py` 按模式生成 Task Manifest 参考资产片段
+- **🎯 IP QA Scorer**：`scripts/score-ip-qa.py` 按 identity/style/action/role 和负向违规输出结构化 QA 结论
+- **🧾 Task 契约**：`references/contracts/task-manifest.schema.json` + `examples/task-manifest.example.json`；任务级 `run_id`、`revision`、`state` 和双 IP `narrative` 统一记录
+- **🔍 本地校验**：`python scripts/validate-profile.py`、`python scripts/validate-task-manifest.py`
+- **🖼️ Cursor 生图桥**：`scripts/codex_exec_bridge.py --check --json` 先输出 capability，再走 Cursor → 已登录 Codex CLI → `codex exec` → `imagen`；不需要 `OPENAI_API_KEY`
 
 ---
 

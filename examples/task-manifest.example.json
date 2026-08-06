@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.1",
+  "run_id": "handdrawn-dual-ip-20260806-a1",
+  "revision": 0,
+  "state": {
+    "phase": "PLAN",
+    "status": "DRAFT",
+    "stale": false,
+    "stale_reason": null
+  },
+  "task_id": "progress-board-01",
+  "input_digest": null,
+  "profile": {
+    "id": "default-little-stone",
+    "version": "1.0.0"
+  },
+  "mode": "handdrawn",
+  "reference_protocol": "dual",
+  "reference_assets": [
+    "assets/character/reference/primary-character-reference.png",
+    "assets/character/actions/primary-character-actions.png",
+    "assets/character/examples/handdrawn/calibrate-whiteboard.png"
+  ],
+  "prompt_sha256": null,
+  "narrative": {
+    "presenter": "老杨",
+    "executor": "小石头",
+    "narrative_job": "mechanism",
+    "actor_action": "小石头把任务卡贴到白板并递回老杨",
+    "state_change": "任务从未分类变成已交接",
+    "handoff": "老杨检查结果并指出下一步"
+  },
+  "outputs": [],
+  "qa": {
+    "status": "DRAFT",
+    "profile_character": "N/A",
+    "mode": "N/A",
+    "content": "N/A",
+    "facts_authorization": "N/A",
+    "failed_layer": null,
+    "notes": "生成前方案阶段；候选图生成后补 outputs 与 QA 结论"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "default-little-stone",
+  "display_name": "小石头 + 老杨",
+  "version": "1.0.0",
+  "status": "AVAILABLE",
+  "input_kind": "character_art",
+  "identity": {
+    "canonical_asset": "assets/character/reference/primary-character-reference.png",
+    "reference_source": "user_provided",
+    "anchors": [
+      "橙色胶囊",
+      "白圆眼",
+      "无嘴",
+      "2 臂 2 腿",
+      "flat 2D"
+    ],
+    "temperament": "认真、靠谱、略笨、有点倔",
+    "description_source": "character.md"
+  },
+  "references": {
+    "ref_mode": "single",
+    "ref_mode_policy": "默认 single；当前模式有校准资产并实际传入时升级为 dual",
+    "identity_assets": [
+      "assets/character/reference/primary-character-reference.png",
+      "assets/character/actions/primary-character-actions.png"
+    ],
+    "calibration": {
+      "physical": "assets/character/examples/physical/calibrate-object-scene.png",
+      "handdrawn": "assets/character/examples/handdrawn/calibrate-whiteboard.png",
+      "knowledge-card": "assets/character/examples/knowledge-card/calibrate-knowledge-card.png",
+      "ppt": null,
+      "video": null
+    },
+    "calibration_status": {
+      "physical": "AVAILABLE",
+      "handdrawn": "AVAILABLE",
+      "knowledge-card": "AVAILABLE",
+      "ppt": "DEFERRED",
+      "video": "DEFERRED"
+    }
+  },
+  "behavior": {
+    "actions": [
+      "拉",
+      "挡",
+      "推",
+      "扛",
+      "解",
+      "贴",
+      "接",
+      "修",
+      "守",
+      "递"
+    ],
+    "sequence_guide": "沿故事路径承担一个连续动作，不在每个节点复制或站桩装饰",
+    "role_contract": {
+      "presenter": "老杨（仅在触发后）",
+      "executor": "小石头",
+      "handoff": "老杨提出判断，小石头执行并递交结果，老杨检查或收束",
+      "requires_trigger": true
+    }
+  },
+  "qa": {
+    "failure_signals": [
+      "颜色漂移",
+      "胶囊比例漂移",
+      "有嘴",
+      "多手臂",
+      "角色只站桩"
+    ],
+    "critical_checks": [
+      "平涂 #f39800",
+      "两只白圆眼",
+      "2 臂 2 腿且锚点连续",
+      "无嘴",
+      "承担核心动作"
+    ]
+  },
+  "privacy": {
+    "public_assets": [
+      "assets/character/reference/primary-character-reference.png",
+      "assets/character/actions/primary-character-actions.png",
+      "assets/character/examples/physical/calibrate-object-scene.png",
+      "assets/character/examples/handdrawn/calibrate-whiteboard.png",
+      "assets/character/examples/knowledge-card/calibrate-knowledge-card.png"
+    ],
+    "private_assets": [
+      "assets/persona/private/"
+    ]
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "custom-ip-demo",
+  "display_name": "用户参考图驱动的森林潮玩角色（示例）",
+  "version": "1.0.0",
+  "status": "IDENTITY_PLAN",
+  "input_kind": "character_art",
+  "identity": {
+    "canonical_asset": "assets/reference/reference-character-primary-brown.png",
+    "reference_source": "user_provided",
+    "anchors": [
+      "毛绒长耳",
+      "圆润头身比例",
+      "大椭圆眼睛",
+      "小鼻子与顽皮笑容",
+      "短手短脚",
+      "紧凑潮玩体量"
+    ],
+    "temperament": "紧凑、顽皮、愿意动手解决问题",
+    "description_source": "profile.md"
+  },
+  "references": {
+    "ref_mode": "single",
+    "ref_mode_policy": "主参考图锁身份；模式校准图仅辅助表达，不覆盖身份锚点",
+    "identity_assets": [
+      "assets/reference/reference-character-primary-brown.png",
+      "assets/reference/reference-character-variant-blue.png"
+    ],
+    "calibration": {
+      "physical": "assets/examples/02-physical-scene-untangle-thread.png",
+      "handdrawn": "assets/examples/01-handdrawn-calibration-input-process-output.png",
+      "knowledge-card": "assets/examples/03-knowledge-card-three-steps.png",
+      "ppt": null,
+      "video": null
+    }
+  },
+  "behavior": {
+    "actions": [
+      "拉",
+      "拖",
+      "抱",
+      "探",
+      "爬",
+      "递",
+      "挡",
+      "守",
+      "庆"
+    ],
+    "sequence_guide": "沿故事路径承担一个动作，不在每个节点复制角色或站桩装饰"
+  },
+  "qa": {
+    "failure_signals": [
+      "长耳缺失",
+      "头身比例漂移",
+      "眼睛形状漂移",
+      "多余角色",
+      "品牌元素误复制"
+    ],
+    "critical_checks": [
+      "用户确认身份方案前不得进入普通任务",
+      "半身或变体参考不能替代主身份锚点",
+      "当前状态不是 AVAILABLE"
+    ]
+  },
+  "privacy": {
+    "public_assets": [],
+    "private_assets": [
+      "assets/reference/reference-character-primary-brown.png",
+      "assets/reference/reference-character-variant-blue.png",
+      "assets/examples/"
+    ]
+  }
+}

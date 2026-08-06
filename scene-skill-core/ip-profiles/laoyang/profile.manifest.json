@@ -1,0 +1,102 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "laoyang",
+  "display_name": "老杨",
+  "version": "1.0.0",
+  "asset_source": {
+    "profile_id": "default-little-stone"
+  },
+  "status": "AVAILABLE",
+  "input_kind": "character_art",
+  "identity": {
+    "canonical_asset": "assets/persona/reference/author-persona-panorama.png",
+    "reference_source": "user_provided",
+    "anchors": [
+      "成熟中国男性",
+      "180cm / 86kg 高大结实体态",
+      "腿较长、上短下长 4:6、头身约 1:7–1:7.5",
+      "长但不细的长方椭圆脸",
+      "浅灰细框大镜片眼镜",
+      "短直发 3-5cm",
+      "厚下唇与极淡侧颊胡茬",
+      "New Balance 1906R 或 2002R 复古跑鞋"
+    ],
+    "temperament": "沉稳、直接、会拆解问题并推动行动",
+    "description_source": "character.md"
+  },
+  "references": {
+    "ref_mode": "single",
+    "ref_mode_policy": "单人任务按当前模式选择对应身份锚点；有模式校准图且实际传入时升级为 dual",
+    "identity_assets": [
+      "assets/persona/reference/author-persona-panorama-handdrawn.png",
+      "assets/persona/reference/author-persona-panorama.png",
+      "assets/persona/face-lock/author-persona-face-lock.png",
+      "assets/persona/reference/author-persona-actions.png"
+    ],
+    "calibration": {
+      "physical": "assets/persona/reference/author-persona-panorama.png",
+      "handdrawn": "assets/persona/reference/author-persona-panorama-handdrawn.png",
+      "knowledge-card": "assets/persona/examples/validated-batch-anchor-handdrawn.png",
+      "ppt": null,
+      "video": null
+    },
+    "calibration_status": {
+      "physical": "AVAILABLE",
+      "handdrawn": "AVAILABLE",
+      "knowledge-card": "AVAILABLE",
+      "ppt": "DEFERRED",
+      "video": "DEFERRED"
+    }
+  },
+  "behavior": {
+    "actions": [
+      "讲解",
+      "指向",
+      "拆解",
+      "批注",
+      "调度",
+      "检查",
+      "收束",
+      "递交判断"
+    ],
+    "sequence_guide": "老杨负责提出问题、解释机制和检查结果；动作必须推动叙事，不得只作为装饰肖像",
+    "role_contract": {
+      "presenter": "老杨",
+      "executor": "老杨（单人任务）",
+      "handoff": "老杨提出判断、执行拆解并检查结果；双 IP 任务可将执行动作交给小石头",
+      "requires_trigger": false
+    }
+  },
+  "qa": {
+    "failure_signals": [
+      "脸型漂成窄长或 V 字脸",
+      "眼镜丢失或漂成粗黑框",
+      "短直发漂成卷发或过度后退",
+      "年龄幼态或过度显老",
+      "体态漂成普通身高、矮宽压扁或纤细体型",
+      "人物缩小、头身偏大、腿占比不足或视觉漂成 175cm",
+      "鞋款漂移成帆布鞋、Nike 鞋型或不符合日常造型的鞋",
+      "手绘与实物渲染语言混用",
+      "单人任务偷入小石头或其他角色"
+    ],
+    "critical_checks": [
+      "180cm / 86kg、躯干 40% / 腿 60%、上短下长 4:6、头身约 1:7.5",
+      "浅灰细框大镜片眼镜",
+      "成熟但不过熟的中国男性面相",
+      "New Balance 1906R 或 2002R 鞋款保持一致，保留大写 N 标识且无 Nike swoosh",
+      "手绘模式使用扁平黑线人物",
+      "实物模式使用成熟克制的风格化 3D",
+      "单人任务不自动加入小石头"
+    ]
+  },
+  "privacy": {
+    "public_assets": [
+      "assets/persona/reference/author-persona-panorama-handdrawn.png",
+      "assets/persona/reference/author-persona-panorama.png",
+      "assets/persona/face-lock/author-persona-face-lock.png",
+      "assets/persona/reference/author-persona-actions.png",
+      "assets/persona/examples/validated-batch-anchor-handdrawn.png"
+    ],
+    "private_assets": []
+  }
+}

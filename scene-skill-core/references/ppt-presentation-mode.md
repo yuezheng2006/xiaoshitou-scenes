@@ -124,6 +124,12 @@ page card 是生成提示词和出图后 QA 的依据。
 
 ## QA
 
+### 双 IP 叙事字段
+
+触发老杨时，每张 page card 增加 `presenter`、`executor`、`narrative_job`、
+`actor_action`、`state_change` 和 `handoff`。老杨承担讲解/批注，小石头只在确有
+执行职责的页面出现；跨页必须保持职责连续，不能连续多页只放老杨大头像。
+
 单页 QA：
 
 - 是否符合 page card。

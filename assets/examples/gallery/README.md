@@ -8,7 +8,7 @@
 
 | 文件 | 用途 |
 | --- | --- |
-| `gallery-workflow-overview-16x9.png` | 工作流总览：中文内容 → 模式路由 → 四种产出 |
+| `gallery-workflow-overview-16x9.png` | 工作流总览：中文内容 → 模式路由 → 五种产出 |
 | `gallery-character-assets-sample.png` | 角色资产：小石头锚点 + 老杨三份风格化资产 |
 | `gallery-diagram-modes-density-16x9.png` | 信息密度对比：低（实物）→ 中（手绘）→ 高（知识卡） |
 | `physical-illustration-low-density.png` | 实物图样例：留白多、一个物件 + 物理动作 |

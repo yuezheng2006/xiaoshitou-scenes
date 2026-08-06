@@ -104,6 +104,8 @@ check_setup → Gate1 分镜确认（approve storyboard）
 1. 读 `video-motion-director.md`
 2. 写入一句 `plan.motion.thesis`
 3. 每个场景补 `stateChange` + `characterAction`（可见状态变化，禁止纯切图）
+4. 双 IP 时额外补 `presenter`、`executor`、`handoff`；老杨主讲/调度，小石头
+   执行并造成状态变化，未触发老杨时不得自动加入 persona 字段或资产
 
 ### 阶段 1：生成脚本和分镜
 1. 从用户内容提炼核心观点

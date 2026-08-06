@@ -1,0 +1,324 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xiaoshitou-scenes.dev/contracts/task-manifest.schema.json",
+  "title": "scene-skill-core Task Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "revision",
+    "state",
+    "task_id",
+    "profile",
+    "mode",
+    "reference_protocol",
+    "reference_assets",
+    "outputs",
+    "qa"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.1$"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "state": {
+      "type": "object",
+      "required": [
+        "phase",
+        "status",
+        "stale"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "phase": {
+          "type": "string",
+          "enum": [
+            "PLAN",
+            "GENERATE",
+            "QA",
+            "DELIVER",
+            "BLOCKED"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "DRAFT",
+            "RUNNING",
+            "NEEDS_REVIEW",
+            "CONFIRMED",
+            "REJECTED",
+            "BLOCKED"
+          ]
+        },
+        "stale": {
+          "type": "boolean"
+        },
+        "stale_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "task_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "input_digest": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "profile": {
+      "type": "object",
+      "required": [
+        "id",
+        "version"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        }
+      }
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "physical",
+        "physical-long-scroll",
+        "handdrawn",
+        "knowledge-card",
+        "ppt",
+        "video"
+      ]
+    },
+    "reference_protocol": {
+      "type": "string",
+      "enum": [
+        "none",
+        "single",
+        "dual",
+        "DEGRADED_TO_SINGLE"
+      ]
+    },
+    "reference_assets": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "prompt_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "narrative": {
+      "type": "object",
+      "required": [
+        "presenter",
+        "executor",
+        "narrative_job",
+        "actor_action",
+        "state_change",
+        "handoff"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "presenter": {
+          "type": "string",
+          "minLength": 1
+        },
+        "executor": {
+          "type": "string",
+          "minLength": 1
+        },
+        "narrative_job": {
+          "type": "string",
+          "enum": [
+            "hook",
+            "reveal",
+            "contrast",
+            "mechanism",
+            "proof",
+            "close"
+          ]
+        },
+        "actor_action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "state_change": {
+          "type": "string",
+          "minLength": 1
+        },
+        "handoff": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "kind"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "png",
+              "jpg",
+              "pdf",
+              "pptx",
+              "mp4",
+              "json",
+              "other"
+            ]
+          },
+          "sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "width": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "height": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "aspect_ratio": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^(?:\\d+(?:\\.\\d+)?:\\d+(?:\\.\\d+)?)$"
+          },
+          "metadata_clean": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "bytes": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "qa": {
+      "type": "object",
+      "required": [
+        "status",
+        "profile_character",
+        "mode",
+        "content",
+        "facts_authorization"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "DRAFT",
+            "NEEDS_REVIEW",
+            "CONFIRMED",
+            "REJECT"
+          ]
+        },
+        "profile_character": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "N/A"
+          ]
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "N/A"
+          ]
+        },
+        "content": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "N/A"
+          ]
+        },
+        "facts_authorization": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "N/A"
+          ]
+        },
+        "failed_layer": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "content",
+            "plan",
+            "asset",
+            "prompt",
+            "generation",
+            "qa",
+            null
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

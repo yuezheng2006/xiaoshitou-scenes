@@ -14,7 +14,7 @@
 {REF_IMAGE}            ← 附件见下方：老杨双参考 / 小石头单锚点 / none
 {IP_DESC}              ← 主角色 character.md「填入 {IP_DESC}」；none 读 none profile
 {PERSONA_DESC}         ← 仅老杨出镜：Persona Identity Lock + 面相锚点；否则删除
-{MODE_DNA}             ← 当前模式视觉 DNA（实物/手绘/知识卡/PPT）
+{MODE_DNA}             ← 当前模式视觉 DNA（实物/手绘/知识卡/PPT/视频）
 {WHITESPACE_DESC}      ← 留白与背景约束
 {STYLE_ADAPT}          ← 通用层：模式如何适配有角色的画面（不写死具体锚点色）
 {IP_STYLE_ADAPT}       ← 主角色 character.md「填入 {IP_STYLE_ADAPT}」；无则留空

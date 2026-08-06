@@ -1,6 +1,6 @@
 # Codex 环境检测与引导
 
-> **核心约束**：本 Skill 面向 Codex 环境设计，生图**必须**使用 Codex 自带的 `imagen` 工具。
+> **核心约束**：生图**必须**使用 Codex 自带的 `imagen` 工具。Cursor 没有原生 `imagen` 时，通过 `scripts/codex_exec_bridge.py` 启动 `codex exec` 子会话。
 
 ## 一、环境检测（任务开始前）
 
@@ -9,15 +9,18 @@
 执行任务前，Agent 必须确认运行环境：
 
 ```text
-✓ 正确环境：Codex CLI / Codex Desktop / claude.ai/code
-✗ 错误环境：claude.ai 普通对话 / API 直接调用 / 第三方集成
+✓ 直接环境：Codex CLI / Codex Desktop / claude.ai/code
+✓ 桥接环境：Cursor + 已安装并登录的 codex CLI
+✗ 不支持：claude.ai 普通对话 / API 直接调用 / 第三方生图集成
 ```
 
 **检测方法**：
 
-- Codex 环境会提供 `imagen` 工具（图片生成）
+- Codex 原生环境会提供 `imagen` 工具（图片生成）
 - Codex 环境会提供 `Read`、`Write`、`Bash` 等文件操作工具
-- 如果用户在非 Codex 环境提及本 Skill，应引导切换环境
+- Cursor 环境应检查 `command -v codex`，并通过 bridge 启动子会话
+- Cursor bridge 应先执行 `codex login status`；生图复用 Codex 登录态，不要求 `OPENAI_API_KEY`
+- 只有 Cursor 中 `codex` CLI 不可用时，才引导用户修复环境
 
 **引导话术**：
 
@@ -98,6 +101,65 @@ Read scene-skill-core/ip-profiles/default-little-stone/assets/character/referenc
 
 如果文件缺失，请重新克隆仓库或检查 .gitignore。
 ```
+
+### 1.4 Cursor bridge
+
+Cursor 不提供原生 `imagen` 工具时，使用仓库内 bridge：
+
+```bash
+python3 scene-skill-core/scripts/codex_exec_bridge.py --check --json
+```
+
+该预检返回统一的 capability 结果，至少确认 `codex_cli_available`、
+`authenticated`、`can_generate` 和 `api_key_required`。只有 `can_generate: true`
+时才进入实际生图：
+
+```bash
+python3 scene-skill-core/scripts/codex_exec_bridge.py \
+  --output-dir assets/<topic-slug>-scenes \
+  --image scene-skill-core/ip-profiles/default-little-stone/assets/character/reference/primary-character-reference.png \
+  --prompt-file /tmp/xiaoshitou-prompt.txt
+```
+
+Bridge 会执行：
+
+```text
+Cursor → codex exec 子会话 → scene-skill-core → imagen → 项目 output-dir
+```
+
+Bridge 启动前必须通过：
+
+```bash
+command -v codex
+codex login status
+```
+
+认证使用 Codex 已保存的登录态（账号登录或 device auth），不是 OpenAI API Key。
+不要执行 `codex login --with-api-key`，也不要在 prompt、`.env` 或脚本中要求
+`OPENAI_API_KEY`。不得使用 `--dangerously-bypass-approvals-and-sandbox`。
+
+如果 `codex` 未安装、未登录或子会话失败，应停止并报告：
+
+```text
+Codex bridge 不可用：请先执行 codex login（或 codex login --device-auth）。
+本次生图不需要 OPENAI_API_KEY；若错误提到该变量，说明误走了外部 API/SDK 路径。
+```
+
+不得退回外部图片 API。
+
+### 1.5 CODEX_HOME 与跨环境
+
+Cursor、终端、IDE 集成或 CI 可能使用不同的 `CODEX_HOME`。bridge 会继承当前进程
+的 `CODEX_HOME`，因此登录和执行必须使用同一个环境：
+
+```bash
+export CODEX_HOME="$HOME/.codex"
+codex login status
+python3 scene-skill-core/scripts/codex_exec_bridge.py ...
+```
+
+如果更换用户、容器、远程开发机或 `CODEX_HOME`，需要在新环境重新执行
+`codex login`；不要通过复制或写入 API Key 来“修复”登录态。
 
 ## 二、imagen 工具使用规范
 
@@ -276,7 +338,7 @@ QA 检查：references/brand-mark-mode.md § QA
 
 | 错误信息 | 原因 | 解决方案 |
 |---------|------|----------|
-| "Tool not found: imagen" | 不在 Codex 环境 | 引导用户切换到 Codex |
+| "Tool not found: imagen" | 当前会话没有原生 imagen | Cursor 使用 `scripts/codex_exec_bridge.py`；没有 codex CLI 才引导切换 Codex |
 | "Reference image not found" | 文件路径错误 | 检查路径，使用 Read 验证 |
 | "Invalid aspect ratio" | 尺寸参数错误 | 检查模式对应的尺寸（16:9 / 3:4 / 9:16） |
 | "Prompt too long" | 提示词超长 | 压缩提示词，移除冗余描述 |
@@ -424,7 +486,7 @@ QA 检查：references/brand-mark-mode.md § QA
 进阶技巧：
 
 1. **自定义 IP**：
-   - 提供 Logo/Icon → 录入自定义 IP → 复用四种模式
+   - 提供 Logo/Icon → 录入自定义 IP → 复用五种模式
    - 参考：examples/custom-ip-delivery.md
 
 2. **批量生成**：
@@ -501,7 +563,7 @@ Confirm Gate + 模式 QA
 
 **每次任务开始前，Agent 应快速确认**：
 
-- [ ] 运行环境是 Codex（有 imagen、Read、Write、Bash 工具）
+- [ ] 运行环境满足其一：Codex 原生有 imagen；或 Cursor 中 codex CLI 可用并准备走 bridge
 - [ ] 当前目录在 xiaoshitou-scenes 或其子目录
 - [ ] 可以读取 scene-skill-core/ip-profiles/default-little-stone/character.md
 - [ ] 可以读取小石头参考图 primary-character-reference.png
@@ -528,7 +590,8 @@ Confirm Gate + 模式 QA
 
 ```text
 ✓ 用户在 Codex 中直接说需求 → 自动生成 → 交付
-✓ 用户不在 Codex → 友好引导切换环境
+✓ Cursor 没有原生 imagen → 自动通过 codex exec bridge
+✓ Codex / bridge 都不可用 → 友好引导修复环境
 ✓ 用户尝试外部工具 → 解释原因 + 提供正确路径
 ✓ 环境缺失依赖 → 给出清单 + 可选降级方案
 ```

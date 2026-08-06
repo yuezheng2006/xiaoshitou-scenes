@@ -2,14 +2,18 @@
 
 ## 用途
 
-Profile Contract 是 IP 的身份、参考资产、模式校准和质量失败信号的统一接口。
+Profile Contract 是 IP 的身份、参考资产、模式校准和质量失败信号的统一接口。机器可读版本位于每个 profile 的 `profile.manifest.json`，结构由 `profile-manifest.schema.json` 约束。
 
 它是 profile 的索引契约，不替代现有的 `profile.md`、`character.md` 或 persona 文件：
 
 - `profile.md`：入口、读取顺序、资产索引和边界。
 - `character.md`：主角色身份、`{IP_DESC}`、`{IP_STYLE_ADAPT}` 和 Character Lock。
 - persona 文件：真人 / 作者形象的身份与模式适配。
+- `asset_source`：可选的资产来源 Profile；用于独立 Persona Profile 复用已验收的风格化资产，避免重复拷贝二进制文件。
 - 本契约：声明这些模块如何被路由、组装和验收。
+- `profile.manifest.json`：记录可执行状态、资产路径、版本和模式校准；校验入口为 `scripts/validate-profile.py`。
+- `pack.manifest.json`：由 `scripts/create-ip-pack.py` 从 Profile 导出，记录可携带资产的角色、哈希、隐私级别与 QA；校验入口为 `scripts/validate-ip-pack.py`。
+- `resolve-ip-assets.py`：读取 Pack，按目标模式解析身份锚点、校准图和动作表，输出可写入 Task Manifest 的参考资产片段。
 
 ## Profile 实例最小字段
 
@@ -38,6 +42,8 @@ privacy:
   public_assets: [<可公开资产>]
   private_assets: [<仅本地 / 用户授权资产>]
 input_kind: brand_mark | character_art | generated_draft
+asset_source:
+  profile_id: <optional source profile id>
 ```
 
 字段可以用 Markdown 表格或自然语言表达，但不能让 Prompt 临时发明身份规则。
@@ -52,7 +58,7 @@ input_kind: brand_mark | character_art | generated_draft
 
 不能只有一张身份图却声称使用 `dual`。当前模式没有校准图时，运行降级为 `single`，并记录“可懒加载该模式校准图”，不阻塞普通内容任务。
 
-profile 文件可以声明默认值，例如 `single`；当当前模式存在并实际传入校准图时，本次运行可以升级为 `dual`。因此 profile 的默认参考模式不等于每次运行的最终参考模式，最终值必须写入 Render Card / QA Card。
+profile 文件可以声明默认值，例如 `single`；当当前模式存在并实际传入校准图时，本次运行可以升级为 `dual`。因此 profile 的默认参考模式不等于每次运行的最终参考模式，最终值必须写入 Render Card / QA Card，并同步到任务 manifest 的 `reference_protocol` / `reference_assets`。
 
 ```text
 Profile Identity → 角色是谁、主色、比例、核心特征
@@ -125,3 +131,5 @@ input_kind：brand_mark / character_art / generated_draft
 `failure_signals` 供 QA Card 做 Profile / Character Lock 检查。失败应定位到 Profile / 资产 / QA 层，不应通过修改当前场景内容掩盖身份漂移。
 
 公共仓库只分发 `public_assets`。真人参考图、品牌 Logo 和用户上传的自定义 IP 默认属于 `private_assets`，未经授权不得进入公开示例、Prompt 模板或提交历史。
+
+独立 Profile 可以声明 `asset_source.profile_id` 复用另一个 Profile 的资产路径；Builder 导出 Pack 时会从来源 Profile 复制资产，Pack 本身仍保持路径、哈希和隐私边界自洽。

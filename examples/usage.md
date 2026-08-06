@@ -38,6 +38,37 @@ yuezheng2006：PPT 演讲模式，主题《AI 时代内容怎么配图》，8 �
 cp -R ./scene-skill-core "${CODEX_HOME:-$HOME/.codex}/skills/"
 ```
 
+在 Cursor 中生图时，Skill 会通过 `codex exec` bridge 启动新的 Codex 子会话：
+
+```bash
+python3 scene-skill-core/scripts/codex_exec_bridge.py \
+  --output-dir assets/demo-scenes \
+  --image scene-skill-core/ip-profiles/default-little-stone/assets/character/reference/primary-character-reference.png \
+  --prompt-file /tmp/xiaoshitou-prompt.txt
+```
+
+Bridge 使用本机 Codex 登录态，不需要 `OPENAI_API_KEY`。首次使用先确认：
+
+```bash
+codex login status
+# 未登录时：
+codex login
+# 或：
+codex login --device-auth
+```
+
+如果错误提示 `OPENAI_API_KEY missing`，说明调用链误走了 OpenAI SDK/API；
+不要把 Key 写进 Skill、Prompt 或 `.env`，应检查 Codex CLI 登录态和 bridge 路由。
+
+在远程开发机、容器或切换用户时，先确认 `CODEX_HOME` 一致：
+
+```bash
+export CODEX_HOME="$HOME/.codex"
+codex login status
+```
+
+不同 `CODEX_HOME` 是不同的 Codex 登录环境，需要在新环境重新登录。
+
 ---
 
 ## 常用提示词
@@ -209,7 +240,7 @@ PPT 演讲模式：主题《AI 时代，内容怎么配图才有效》，8 页�
 
 - **实物图 01–18**（含 K 歌 / 工牌）：[test-scenarios.md](test-scenarios.md)，样张在 `assets/test-output/`
 - **手绘图 / 知识卡 / PPT 扩展样张**：[assets/examples/gallery/README.md](../assets/examples/gallery/README.md)
-- **自动化验收**：`scene-skill-core/evals/evals.json`（19 条用例）
+- **自动化验收**：`scene-skill-core/evals/evals.json`（45 条用例）
 
 示例：
 

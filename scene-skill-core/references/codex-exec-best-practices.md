@@ -65,7 +65,7 @@ codex exec "小石头实物图：环境检测通过"
 ## -1. 环境检测（首次任务必做）
 
 执行任务前确认：
-- [ ] 运行环境是 Codex（有 imagen、Read、Write、Bash 工具）
+- [ ] 运行环境满足其一：Codex 原生有 imagen；或 Cursor 中 codex CLI 可用并准备走 bridge
 - [ ] 当前目录在 xiaoshitou-scenes 或其子目录
 - [ ] 可以读取 character.md
 - [ ] 可以读取参考图 primary-character-reference.png
@@ -114,7 +114,37 @@ codex exec "$(cat prompt.txt)"
 codex exec -i reference.png "用这个风格生成配图"
 ```
 
-### 2.2 实战案例：环境检测场景
+### 2.2 Cursor 中的标准桥接入口
+
+Cursor Agent 不应直接假设当前会话拥有 `imagen`。如果当前会话没有该工具，
+使用仓库内的 bridge，让新的 Codex 子会话重新加载 Skill：
+
+```bash
+python3 scene-skill-core/scripts/codex_exec_bridge.py \
+  --output-dir assets/<topic-slug>-scenes \
+  --image scene-skill-core/ip-profiles/default-little-stone/assets/character/reference/primary-character-reference.png \
+  --prompt-file /tmp/xiaoshitou-prompt.txt
+```
+
+Bridge 内部固定使用：
+
+```bash
+codex exec -C <repo> -s workspace-write --ephemeral -o <output>/codex-last-message.txt -
+```
+
+Bridge 启动前先确认：
+
+```bash
+command -v codex
+codex login status
+```
+
+生图使用 Codex 登录态，不需要 `OPENAI_API_KEY`；不要执行
+`codex login --with-api-key`，也不要把 API key 写进 Prompt、`.env` 或 Skill。
+不要使用 `--dangerously-bypass-approvals-and-sandbox`。
+如果 bridge 返回非零状态，应报告 Codex 子会话错误，不要静默改用外部生图服务。
+
+### 2.3 实战案例：环境检测场景
 
 **提示词文件** (`/tmp/generate_test_image.txt`)：
 
@@ -163,7 +193,7 @@ Token 使用: 118,479
 执行时间: ~2 分钟
 ```
 
-### 2.3 常见错误和解决
+### 2.4 常见错误和解决
 
 #### 错误 1: 模型不支持
 

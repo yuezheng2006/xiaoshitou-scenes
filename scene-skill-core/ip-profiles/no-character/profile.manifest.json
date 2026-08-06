@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "no-character",
+  "display_name": "无固定 IP",
+  "version": "1.0.0",
+  "status": "AVAILABLE",
+  "input_kind": "none",
+  "identity": {
+    "canonical_asset": null,
+    "reference_source": "none",
+    "anchors": [],
+    "temperament": "不绑定固定角色，以物件和结构表达内容",
+    "description_source": "profile.md"
+  },
+  "references": {
+    "ref_mode": "none",
+    "ref_mode_policy": "不传角色身份图；可按需使用功能性简笔演员",
+    "identity_assets": [],
+    "calibration": {
+      "physical": null,
+      "handdrawn": null,
+      "knowledge-card": null,
+      "ppt": null,
+      "video": null
+    }
+  },
+  "behavior": {
+    "actions": [
+      "指向",
+      "搬运",
+      "连接",
+      "分拣"
+    ],
+    "sequence_guide": "以物件、结构和标签为主，不自动加入默认 IP 或作者 persona"
+  },
+  "qa": {
+    "failure_signals": [
+      "误加入默认 IP",
+      "误加入品牌资产"
+    ],
+    "critical_checks": [
+      "不传默认角色参考图",
+      "不自动出现老杨"
+    ]
+  },
+  "privacy": {
+    "public_assets": [],
+    "private_assets": []
+  }
+}

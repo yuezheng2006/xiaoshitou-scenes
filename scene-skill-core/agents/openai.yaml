@@ -1,6 +1,6 @@
 interface:
   display_name: "小石头多模式配图"
-  short_description: "实物图 / 手绘图 / 知识卡 / PPT 演讲 / 讲解视频 · #f39800 胶囊体 · 16:9 / 竖版 / 长卷 · 可替换 TTS · 41 条 evals"
-  default_prompt: "默认根据内容自动选择小石头实物图或小石头手绘图；用户明确说知识卡/图文号知识卡/手机海报/方法拆解图/收藏图/竖版传播图，或 PPT/课件/直播分享页/主题演讲/整套演讲页面/按大纲逐页出图/导演规划卡时，才进入知识卡或 PPT 演讲模式；用户明确要视频讲解/动画视频/小石头视频时进入视频模式（Gate 门禁 + video_tts 可替换旁白 + Remotion）。无论哪种模式，都保持 #f39800 胶囊体、白圆眼、物理/概念动作和短中文标签；实物图/手绘图还必须保持充足留白；视频模式图内禁止中文，标题字幕由 Remotion 叠。作者出镜时：实物图用 author-persona-panorama（复杂动作或小比例加 author-persona-actions）；手绘/知识卡/PPT 用 author-persona-panorama-handdrawn + author-persona-panorama（全身比例加 author-persona-handdrawn-body，多场景加 author-persona-face-lock；author-persona-spec 仅作面相补强）。"
+  short_description: "实物图 / 手绘图 / 知识卡 / PPT 演讲 / 讲解视频 · #f39800 胶囊体 · 16:9 / 竖版 / 长卷 · 可替换 TTS · 45 条 evals"
+  default_prompt: "默认根据内容自动选择小石头实物图或小石头手绘图；用户明确说知识卡/图文号知识卡/手机海报/方法拆解图/收藏图/竖版传播图，或 PPT/课件/直播分享页/主题演讲/整套演讲页面/按大纲逐页出图/导演规划卡时，才进入知识卡或 PPT 演讲模式；用户明确要视频讲解/动画视频/小石头视频时进入视频模式（Gate 门禁 + video_tts 可替换旁白 + Remotion）。无论哪种模式，都保持 #f39800 胶囊体、白圆眼、物理/概念动作和短中文标签；实物图/手绘图还必须保持充足留白；视频模式图内禁止中文，标题字幕由 Remotion 叠。作者出镜时：实物图用 author-persona-panorama（复杂动作或小比例加 author-persona-actions）；手绘/知识卡/PPT 用 author-persona-panorama-handdrawn + author-persona-panorama（全身比例加 author-persona-handdrawn-body，多场景加 author-persona-face-lock；author-persona-spec 仅作面相补强）。在 Cursor 中如果没有原生 imagen，先检查 codex login status，再调用 scene-skill-core/scripts/codex_exec_bridge.py 通过 codex exec 子会话复用 Codex 登录态生图；不要求 OPENAI_API_KEY，不改用外部图片 API。"
 policy:
   allow_implicit_invocation: true

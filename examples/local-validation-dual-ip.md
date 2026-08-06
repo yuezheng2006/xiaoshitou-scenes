@@ -63,7 +63,8 @@ cp -R ./scene-skill-core "${CODEX_HOME:-$HOME/.codex}/skills/"
 - [ ] 老杨 = 主讲/指向；小石头 = 2–3 个执行分工（搬卡/标风险等）
 - [ ] 遵守多人差异锁（体型/姿态/分工不同）
 - [ ] **不能**只有老杨 + 文字、没有小石头
-- [ ] 资产：读 `author-persona-spec.png` + `author-persona-handdrawn.png`；**不**读 actions.png
+- [ ] 资产：读 `author-persona-panorama-handdrawn.png` + `author-persona-panorama.png`；
+  **不**读 `author-persona-actions.png`
 
 ---
 

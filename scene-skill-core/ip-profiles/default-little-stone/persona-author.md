@@ -53,13 +53,11 @@ persona-author.md（本文件，确认触发与分工）
 | 01 | `author-persona-panorama.png` | 真人实体全身身份（实物/长卷必传） |
 | 02 | `author-persona-panorama-handdrawn.png` | 手绘全身身份（手绘系必传，更关键） |
 | 03 | `author-persona-face-lock.png` | 多角度面相锁定（**多场景同批必加**；宽脸） |
-| 03b | `author-persona-handdrawn-body.png` | 手绘全身比例金样（183cm · 4:6 上短下长） |
+| 03b | `author-persona-handdrawn-body.png` | 手绘全身比例金样（182cm/86kg · 腿较长 · 4:6 上短下长） |
 | **批内金样** | `assets/persona/examples/validated-batch-anchor-handdrawn.png` | 用户验收 likeness 锚；多场景同批预览通过后加传 |
-| 03c | `author-persona-flat-ip-sheet.png` | 复古扁平立体设定图金样（米色 · 用户认定满意） |
-| 03d | `author-persona-flat-ip-sheet-navy.png` | 同脸 navy T 变体 |
-| 05 | `author-persona-actions.png` | 动作扩展（小比例/复杂姿态） |
+| 03c | `assets/persona/examples/validated-batch-anchor-handdrawn.png` | 批内验收后的 likeness 锚 |
+| 04 | `author-persona-handdrawn-body.png` | 全身 182cm/86kg · 腿较长 · 4:6 比例锁 |
 | 05 | `author-persona-actions.png` | 实物小比例/复杂姿态 |
-| 06 | `author-persona-handdrawn.png` | 旧手绘动作参考（全景优先） |
 
 传图组合与多场景一致性锁见 [persona-author-assets.md](persona-author-assets.md)（含**三档分工**、**引用优先级链**、**双 IP 同框最小传图**、**批内金样锚定**）。
 

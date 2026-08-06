@@ -30,9 +30,9 @@
 
 | 文件 | 用途 |
 | --- | --- |
-| `../author-persona-handdrawn-body.png` | 手绘全身比例金样（183cm · 4:6 上短下长） |
+| `../author-persona-handdrawn-body.png` | 手绘全身比例金样（182cm/86kg · 腿较长 · 4:6 上短下长） |
 | `../reference/author-persona-actions.png` | 实物小比例 / 复杂姿态 |
-| `../author-persona-handdrawn.png` | 历史线稿动作（全景优先） |
+| `../reference/author-persona-panorama-handdrawn.png` | 手绘全身身份（全景优先） |
 
 ## 按主题选校准图（身份漂移或质量不稳时 · 可选 1 张）
 

@@ -6,36 +6,56 @@
 
 ## -1. 环境检测（首次任务必做）
 
-**硬性约束**：本 Skill 面向 **Codex 环境**，生图**必须**使用 Codex 自带的 `imagen` 工具。
+**硬性约束**：生图**必须**使用 Codex 自带的 `imagen` 工具。Cursor 没有原生 `imagen` 时，使用仓库内 `scripts/codex_exec_bridge.py` 启动 `codex exec` 子会话完成生图。
 
 ### 快速检测清单
 
 执行任务前确认：
 
-- [ ] 运行环境是 Codex（有 `imagen`、`Read`、`Write`、`Bash` 工具）
+- [ ] 运行环境满足其一：Codex 原生有 `imagen`；或 Cursor 中 `codex` CLI 可执行且 `codex login status` 已登录
 - [ ] 当前目录在 `xiaoshitou-scenes` 或其子目录
 - [ ] 可以读取 `scene-skill-core/ip-profiles/default-little-stone/character.md`
 - [ ] 可以读取小石头参考图 `primary-character-reference.png`
 
-**如果任何一项失败**：停止任务 → 输出清晰错误信息和解决方案 → 等待用户修复。
+**认证边界**：`imagen` 复用 Codex 登录态，不要求 `OPENAI_API_KEY`。不要为了生图
+调用 OpenAI SDK、外部图片 API 或 `codex login --with-api-key`。
+
+**如果资产检查失败**：停止任务 → 输出清晰错误信息和解决方案 → 等待用户修复。
+**如果仅原生 `imagen` 不可用但 `codex` CLI 可用且已登录**：切换到 Cursor bridge，不要停止任务。
+**如果 CLI 未登录**：提前停止并提示执行 `codex login` 或 `codex login --device-auth`，
+不要把错误延迟到生成阶段，更不要要求用户配置 OpenAI API Key。
 
 **非 Codex 环境引导**：
 
 ```text
-这个 Skill 需要在 Codex 环境中运行，因为：
-1. 生图必须使用 Codex 自带的 imagen 工具（支持传入 IP 参考图）
-2. 需要读取本地 IP profile 资产文件
-3. 需要保存生成的图片到项目目录
+这个 Skill 的生图必须由 Codex 的 imagen 完成：
+1. Codex 原生环境可直接调用 imagen
+2. Cursor 环境通过 `codex exec` 启动子会话，再由子会话调用 imagen
+3. 两种路径都需要读取本地 IP profile 资产并保存到项目目录
 
-请在以下环境之一使用：
+可在以下环境使用：
 - Codex CLI（终端命令行）
 - Codex Desktop（桌面应用）
 - claude.ai/code（Web 版 Codex）
+- Cursor（需安装并登录 `codex` CLI）
 ```
 
 **详细环境检测规则**：见 `references/codex-environment-guidance.md`。
 
 **实战经验与踩坑指南**：见 `references/codex-exec-best-practices.md`（包含 codex exec 使用、参考图传递、性能优化、常见场景模板）。
+
+### Cursor bridge 调用约定
+
+Cursor 中明确要生图时，Agent 应使用以下入口，而不是尝试调用不存在的 `imagen`：
+
+```bash
+python3 scene-skill-core/scripts/codex_exec_bridge.py \
+  --output-dir assets/<topic-slug>-scenes \
+  --image scene-skill-core/ip-profiles/default-little-stone/assets/character/reference/primary-character-reference.png \
+  --prompt-file /tmp/xiaoshitou-prompt.txt
+```
+
+Bridge 会在项目根目录执行 `codex exec -s workspace-write --ephemeral`，把任务交给新的 Codex 子会话；子会话必须按本 Skill 调用 `imagen`，并把最终 PNG 写入 `--output-dir`。
 
 ---
 
@@ -279,7 +299,7 @@ references/persona-quick-checklist.md
 - P1 眼镜：大镜片浅灰细框（非粗黑框）
 - P3 脸型：长但不细的长方椭圆
 - P6 可见性：正面或 3/4（禁止背身/后脑勺）
-- **P12 身高**（全身/大半身）：**183 视觉档 + 4:6 长腿**；禁止漂成 ~175 平均身高 / 短腿敦实
+- **P12 身高**（全身/大半身）：**182cm / 86kg + 腿较长 + 4:6**；禁止漂成 ~175 平均身高 / 短腿敦实
 
 ### 交付标准
 - ✅ **所有 CRITICAL 项 PASS** → 继续模式 QA → 交付
@@ -293,7 +313,7 @@ references/persona-quick-checklist.md
 ❌ 不合格："老杨的眼镜是粗黑框，不符合他的形象（应该是浅灰细框），我来返修"
    而不是："Persona Feature Stability Lock: P1 FAIL"
 
-❌ 不合格："老杨这张看起来像普通 175 身高，腿偏短，我按 183、上短下长加长腿返修"
+❌ 不合格："老杨这张看起来像普通 175 身高，腿偏短，我按 182/86kg、腿较长、上短下长返修"
    而不是："P12 Height Lock FAIL (~175 drift)"
 ```
 
@@ -396,7 +416,7 @@ references/persona-quick-checklist.md
 | 换表情丢眼镜/发型 | ❌ 配件层 face/head 每张必带 |
 | 猫不够金黄 / 灰虎斑 | ❌ 必须金黄金渐层英短 |
 | 方法论知识卡只有老杨+文字 | ❌ 必须安排小石头执行分工 |
-| 老杨漂成 ~175 / 短腿敦实 | ❌ 全身必写 Height Lock 183+4:6；加传 handdrawn-body；P12 FAIL 必返修 |
+| 老杨漂成 ~175 / 短腿敦实 | ❌ 全身必写 Height Lock 182/86kg+长腿+4:6；加传 handdrawn-body；P12 FAIL 必返修 |
 | 多人瘦高+矮胖混用 / 假互动 | ❌ 同胶囊比例只许缩放；每人独立动词；递接物在两握点间；手脚末端按动作选型 |
 | 手太抽象（纯 C/环）或写实五指 | ❌ 简笔拟人手：小掌+2–3 短指；绳与臂分笔 |
 | 无关内容硬塞麦/包厢 | ❌ K 歌动作仅内容相关；加读 calibrate-karaoke-actions |

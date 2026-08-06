@@ -6,6 +6,9 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 CORE="$ROOT/scene-skill-core"
 PROFILE="$CORE/ip-profiles/default-little-stone"
 CUSTOM_PROFILE="$CORE/ip-profiles/custom-ip-demo"
+IMAGE_CHECKER="$CORE/scripts/check-image-assets.py"
+IP_PACK_TMP="$(mktemp -d "${TMPDIR:-/tmp}/xiaoshitou-ip-pack.XXXXXX")"
+trap 'rm -rf "$IP_PACK_TMP"' EXIT
 FAIL=0
 
 ok() { echo "  ✓ $1"; }
@@ -13,6 +16,81 @@ err() { echo "  ✗ $1"; FAIL=1; }
 
 echo "== scene-skill-core 本地验证 =="
 echo "ROOT: $ROOT"
+echo
+
+echo "[0] 机器可读契约"
+if python3 "$CORE/scripts/validate-profile.py"; then
+  ok "Profile manifest"
+else
+  err "Profile manifest"
+fi
+if python3 "$ROOT/scene-skill-core/scripts/validate-task-manifest.py" \
+  "$ROOT/examples/task-manifest.example.json"; then
+  ok "Task manifest example"
+else
+  err "Task manifest example"
+fi
+for f in \
+  "$PROFILE/assets/character/reference/primary-character-reference.png" \
+  "$PROFILE/assets/character/examples/physical/calibrate-object-scene.png" \
+  "$PROFILE/assets/character/examples/handdrawn/calibrate-whiteboard.png" \
+  "$PROFILE/assets/character/examples/knowledge-card/calibrate-knowledge-card.png"
+do
+  if python3 "$IMAGE_CHECKER" --image "$f" --kind png >/dev/null; then
+    ok "图片资产门禁: $(basename "$f")"
+  else
+    err "图片资产门禁: $f"
+  fi
+done
+if python3 "$ROOT/scripts/test-codex-bridge-auth.py"; then
+  ok "Codex bridge authentication regression"
+else
+  err "Codex bridge authentication regression"
+fi
+if python3 "$CORE/scripts/create-ip-pack.py" \
+  default-little-stone \
+  --output "$IP_PACK_TMP/default-little-stone" \
+  --consent CONFIRMED \
+  && python3 "$CORE/scripts/validate-ip-pack.py" \
+  "$IP_PACK_TMP/default-little-stone/pack.manifest.json" \
+  && python3 "$CORE/scripts/resolve-ip-assets.py" \
+  --pack "$IP_PACK_TMP/default-little-stone/pack.manifest.json" \
+  --mode handdrawn \
+  --action handoff \
+  --output "$IP_PACK_TMP/default-little-stone/handdrawn-resolution.json" \
+  && python3 - "$IP_PACK_TMP/default-little-stone/handdrawn-resolution.json" <<'PY'
+import json
+import sys
+
+resolution = json.load(open(sys.argv[1], encoding="utf-8"))
+assert resolution["reference_protocol"] == "dual"
+assert resolution["reference_assets"]
+assert resolution["resolution"]["blocked"] is False
+PY
+then
+  ok "Portable IP Pack export and validation"
+else
+  err "Portable IP Pack export and validation"
+fi
+if python3 "$CORE/scripts/score-ip-qa.py" \
+  --profile-manifest "$PROFILE/profile.manifest.json" \
+  --mode handdrawn \
+  --observations "$ROOT/examples/ip-qa-observations.example.json" \
+  --output "$IP_PACK_TMP/ip-qa-pass.json" \
+  && python3 - "$IP_PACK_TMP/ip-qa-pass.json" <<'PY'
+import json
+import sys
+
+result = json.load(open(sys.argv[1], encoding="utf-8"))
+assert result["decision"]["status"] == "CONFIRMED"
+assert result["score"] == 100.0
+assert result["task_manifest_qa"]["profile_character"] == "PASS"
+PY
+then
+  ok "IP QA scorer confirmed path"
+else
+  err "IP QA scorer confirmed path"
+fi
 echo
 
 echo "[1] 核心入口"
@@ -35,6 +113,17 @@ for f in \
   "$CORE/references/contracts/render-card.md" \
   "$CORE/references/contracts/qa-card.md" \
   "$CORE/references/contracts/profile-contract.md" \
+  "$CORE/references/contracts/mode-calibration.md" \
+  "$CORE/references/contracts/dual-ip-narrative.md" \
+  "$CORE/references/contracts/ip-pack.md" \
+  "$CORE/references/contracts/profile-manifest.schema.json" \
+  "$CORE/references/contracts/task-manifest.schema.json" \
+  "$CORE/references/contracts/ip-pack.schema.json" \
+  "$CORE/scripts/codex_exec_bridge.py" \
+  "$CORE/scripts/create-ip-pack.py" \
+  "$CORE/scripts/validate-ip-pack.py" \
+  "$CORE/scripts/resolve-ip-assets.py" \
+  "$CORE/scripts/score-ip-qa.py" \
   "$CORE/evals/evals.json"
 do
   [[ -f "$f" ]] && ok "$(basename "$f")" || err "缺失: $f"
@@ -78,11 +167,11 @@ done
 echo
 echo "[2] 角色资产 PNG"
 for f in \
-  "$PROFILE/assets/character/primary-character-reference.png" \
-  "$PROFILE/assets/character/primary-character-actions.png" \
-  "$PROFILE/assets/persona/author-persona-spec.png" \
-  "$PROFILE/assets/persona/author-persona-actions.png" \
-  "$PROFILE/assets/persona/author-persona-handdrawn.png"
+  "$PROFILE/assets/character/reference/primary-character-reference.png" \
+  "$PROFILE/assets/character/actions/primary-character-actions.png" \
+  "$PROFILE/assets/persona/face-lock/author-persona-face-lock.png" \
+  "$PROFILE/assets/persona/reference/author-persona-actions.png" \
+  "$PROFILE/assets/persona/reference/author-persona-panorama-handdrawn.png"
 do
   if [[ -f "$f" ]]; then
     size=$(wc -c < "$f" | tr -d ' ')

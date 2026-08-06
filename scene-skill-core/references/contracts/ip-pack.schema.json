@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xiaoshitou-scenes.dev/contracts/ip-pack.schema.json",
+  "title": "scene-skill-core Portable IP Pack",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "pack_id",
+    "display_name",
+    "profile_id",
+    "profile_version",
+    "status",
+    "source",
+    "assets",
+    "modes",
+    "privacy",
+    "qa"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.0$"
+    },
+    "pack_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "profile_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "CALIBRATING",
+        "READY",
+        "DEPRECATED"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "input_kind",
+        "consent"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "input_kind": {
+          "type": "string",
+          "enum": [
+            "none",
+            "brand_mark",
+            "character_art",
+            "generated_draft"
+          ]
+        },
+        "consent": {
+          "type": "string",
+          "enum": [
+            "CONFIRMED",
+            "PENDING",
+            "NOT_REQUIRED"
+          ]
+        }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "asset_id",
+          "role",
+          "path",
+          "visibility",
+          "sha256",
+          "bytes"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9._-]*$"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "canonical",
+              "identity_sheet",
+              "identity_reference",
+              "action_sheet",
+              "calibration",
+              "failure_example"
+            ]
+          },
+          "mode": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "public",
+              "private"
+            ]
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "modes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "mode",
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "physical",
+              "physical-long-scroll",
+              "handdrawn",
+              "knowledge-card",
+              "ppt",
+              "video"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "AVAILABLE",
+              "DEFERRED",
+              "REJECTED"
+            ]
+          },
+          "calibration_asset_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9][a-z0-9._-]*$"
+            }
+          }
+        }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "required": [
+        "public_asset_count",
+        "private_asset_count"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "public_asset_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "private_asset_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "qa": {
+      "type": "object",
+      "required": [
+        "identity",
+        "calibration",
+        "packaging"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "identity": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "PENDING",
+            "FAIL"
+          ]
+        },
+        "calibration": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "PENDING",
+            "FAIL"
+          ]
+        },
+        "packaging": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "FAIL"
+          ]
+        }
+      }
+    }
+  }
+}

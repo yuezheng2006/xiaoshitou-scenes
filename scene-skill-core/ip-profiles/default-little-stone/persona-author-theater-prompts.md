@@ -1,5 +1,7 @@
 # 老杨小剧场 · 提示词片段
 
+> **最新人物造型覆盖（2026-08-06）**：老杨 182cm / 86kg，腿较长，上短下长 4:6；鞋款优先 New Balance 1906R 或 2002R。后文旧的 183/90 或其他鞋型描述以本覆盖为准。
+
 仅用于**路径 C**。勿与 Dual-IP 片段混贴。  
 方法来源：Adrian Punk「视觉印记」——**设定图 + 内容** 两步法。
 
@@ -19,7 +21,7 @@ Likeness: 神似 ONLY via anchors — do NOT chase photo 1:1.
 SPIRIT ANCHORS (OUR face/hair — NOT Punk's sunglasses face):
 - Mature Chinese male ~36-38 成熟一丝丝 NOT older. Face: 憨厚 slightly LONGER soft-rectangle / short-rectangle — NOT round chubby face, NOT soft circle cheeks. Compact head-top, cheekbones a BIT HIGHER, eyes a BIT SMALLER, LOWER LIP clearly THICKER, thick brows. Stubble: cheek-side short only, mouth clean. Thin light-gray glasses. Warm tan.
 - Hair (OURS): SHORT STRAIGHT HARD black 3-5cm (硬直). Bang/fringe CHARACTERISTIC: NOT left-right symmetric — RIGHT side slightly LONGER than left (右边略长). FORBIDDEN curly/wavy/fluffy, FORBIDDEN perfectly symmetric bangs, FORBIDDEN 1cm scalp 毛寸.
-BODY (hard): TALL+SOLID **183cm** /90 微健壮 + slight soft belly; legs LONG 4:6 sturdy-thick — MUST look clearly taller than average **175cm** male; FORBIDDEN short stubby legs / average 175 squat toy / equal 5:5 torso-leg. Head ~1:7–1:7.5.
+BODY (hard): TALL+SOLID **182cm / 86kg**; legs LONG 4:6 — MUST look clearly taller than average **175cm** male; FORBIDDEN short stubby legs / average 175 squat toy / equal 5:5 torso-leg. Head ~1:7–1:7.5.
 Hero outfit: navy crew tee + khaki shorts + off-white chunky sneakers + black sports watch. Solo. NO Little Stone.
 Attach: Punk style sheet for STYLE only + face-lock/flat-ip-sheet for spirit anchors.
 ```
@@ -31,7 +33,7 @@ Lao Yang Visual Theater (Adrian vinyl-toy 3D anime imprint + 神似 — solo def
 TWO inputs: (1) approved stylized character sheet; (2) «{CONTENT_OR_TOPIC}».
 STYLE: same 3D vinyl-toy / matte collectible anime rendering as Punk sheet — NOT semi-real, NOT photo-real.
 Keep spirit face/hair/glasses + navy/khaki outfit; only pose changes.
-BODY: **183cm** tall long sturdy legs 4:6 upright — visibly taller than ~175 average; SAFE pointing: elbow ~90° clear chain.
+BODY: **182cm / 86kg** with long legs 4:6 upright — visibly taller than ~175 average; SAFE pointing: elbow ~90° clear chain.
 Character INSIDE idea. Solo unless Combo fragment is attached. NO Little Stone in solo mode.
 ```
 
@@ -80,12 +82,12 @@ Spirit Face Lock (theater — 神似 vinyl-toy, 憨厚, not photo chase):
 Face shape: slightly LONGER soft square-oval 憨厚 — face a bit longer than short-square; head top NOT oversized/big dome; compact adult skull.
 Cheekbones a BIT HIGHER; eyes a BIT SMALLER; LOWER LIP clearly THICKER than upper; thick brows; light stubble; warm tan.
 Hair SHORT STRAIGHT HARD 3-5cm (硬直); bangs NOT symmetric — RIGHT slightly longer. Glasses thin light-gray large lenses.
-Face NOT round — slightly longer soft-rectangle 憨厚. Age ~36-38 mature-a-touch NOT older. Stubble: cheek-side short only, mouth clean. BODY: 183/90 sturdy 微健壮 + slight belly, LONG 4:6 legs — NOT skinny, NOT short legs.
+Face NOT round — slightly longer soft-rectangle 憨厚. Age ~36-38 mature-a-touch NOT older. Stubble: cheek-side short only, mouth clean. BODY: 182/86 sturdy, LONG 4:6 legs — NOT skinny, NOT short legs.
 ```
 
 ## 表情
 
-复用 `persona-author-prompts.md` 表情预设 E0–E4（选一）。身材以 **183/90 · 4:6 · 微健壮 + 小肚子** 为准。
+复用 `persona-author-prompts.md` 表情预设 E0–E4（选一）。身材以 **182/86 · 长腿 · 4:6** 为准。
 
 ## 指向姿势解剖锁（流程拆解常用）
 

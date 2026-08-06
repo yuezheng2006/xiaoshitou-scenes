@@ -74,7 +74,7 @@ Rules:
 - For Little Stone in any panel: attach primary-character-reference.png; flat 2D #f39800 uniform fill, **vertical rounded oval capsule** (NOT grey pebble, NOT smooth river stone, NOT orange blob with black-dot eyes only), **two flat white circle eyes** + optional tiny pupil, thin black limbs.
 - After generation, run identity QA before saving to assets/examples/.
 
-Panel content: {描述各格主题，如四模式/路由/双IP/母版/工作流}
+Panel content: {描述各格主题，如五模式/路由/双IP/母版/工作流}
 Negative: generic business man, thick black glasses, black long-sleeve shirt, uninvented mascot, 3D Little Stone, grey pebble Little Stone, smiley orange blob without white circle eyes, version numbers, brand logos.
 ```
 

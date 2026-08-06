@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "profile_id": "brand-mark-demo",
+  "display_name": "示意品牌标（公开演示）",
+  "version": "1.0.0",
+  "status": "AVAILABLE",
+  "input_kind": "brand_mark",
+  "identity": {
+    "canonical_asset": "assets/reference/brand-mark-primary.png",
+    "reference_source": "user_provided",
+    "identity_sheet": "assets/examples/00-identity-sheet.png",
+    "anchors": [
+      "圆角方标外轮廓",
+      "深青绿底 #0F766E",
+      "浅色 Y 形分叉图形",
+      "无文字",
+      "扁平单层图标"
+    ],
+    "temperament": "利落、可执行、偏工具感",
+    "description_source": "profile.md"
+  },
+  "references": {
+    "ref_mode": "dual",
+    "ref_mode_policy": "有身份设定图和模式校准图时使用 dual；缺少模式校准时降级 single",
+    "identity_assets": [
+      "assets/reference/brand-mark-primary.png",
+      "assets/examples/00-identity-sheet.png"
+    ],
+    "calibration": {
+      "physical": "assets/examples/02-physical-scene.png",
+      "handdrawn": "assets/examples/01-handdrawn-calibration.png",
+      "knowledge-card": null,
+      "ppt": null,
+      "video": null
+    }
+  },
+  "behavior": {
+    "actions": [
+      "指向",
+      "拉动",
+      "托举",
+      "连接",
+      "挡开",
+      "递交"
+    ],
+    "sequence_guide": "沿故事路径做一个主动作；图标角色化必须可回溯到品牌标身份锚点"
+  },
+  "qa": {
+    "failure_signals": [
+      "画成小石头白圆眼橙色胶囊",
+      "丢失圆角方标外轮廓",
+      "主色漂成橙或紫",
+      "出现第三方商标",
+      "站桩装饰无动作"
+    ],
+    "critical_checks": [
+      "brand_mark 必须先经过 identity_sheet",
+      "不得使用默认小石头替代品牌标角色",
+      "品牌原件保持可追溯"
+    ]
+  },
+  "privacy": {
+    "public_assets": [
+      "assets/reference/brand-mark-primary.png",
+      "assets/examples/00-identity-sheet.png",
+      "assets/examples/01-handdrawn-calibration.png",
+      "assets/examples/02-physical-scene.png",
+      "assets/examples/03-action-library.png"
+    ],
+    "private_assets": []
+  }
+}

@@ -73,7 +73,7 @@ Persona Identity Lock（老杨 · 双风格）：
 - 脸型/年龄/比例校准：author-persona-flat-ip-sheet.png + author-persona-flat-ip-sheet-navy.png（用户确认最高相似度金样对照组；藏蓝仅换色）
 - 六项识别：细框大镜片眼镜 / 短直发3-5cm / 米色T+橄榄卡其短裤 / **自然粗眉 + 高颧骨 + 厚下唇（中上脸三锚点）** / 小麦肤 / **35-40岁成熟男性（无法令纹）**
 - **Age Lock**：35-40 岁成熟男性范围；所有图在此范围；NO 20s baby-faced drift、NO 45+/50+ elderly drift、NO nasolabial folds / deep forehead wrinkles；成熟不靠皱纹
-- **Height Lock（CRITICAL · 全身/大半身必写）**：净身高视觉档 **183cm**；上身:下身 **4:6**（腿约占立姿 60%）；一眼偏高、上短下长。**禁止漂成 175cm 左右平均身高**、禁止短腿敦实/5:5 均分/头大玩具比。全身手绘必传 `author-persona-handdrawn-body.png`
+- **Height Lock（CRITICAL · 全身/大半身必写）**：身高 **182cm / 86kg**；腿较长，上身:下身 **4:6**（腿约占立姿 60%）；一眼偏高、上短下长。**禁止漂成 175cm 左右平均身高**、禁止短腿敦实/5:5 均分/头大玩具比。全身手绘必传 `author-persona-handdrawn-body.png`
 - **Mouth Lock**：下唇厚于上唇；闭合中性；人中清晰；无法令纹
 - **面相族裔**：中国北方/山东男性脸，脸宽结实；**禁止韩范**（小脸、V下巴、冷白皮、爱豆脸）
 - **多场景**：same exact person；跨图脸/眼镜/发/穿搭/身高比例差异要小
@@ -84,7 +84,7 @@ Persona Identity Lock（老杨 · 双风格）：
 ### Height / Body Lock（全身或大半身出镜时 CRITICAL · 必写）
 ```text
 Height Lock HARD (Lao Yang):
-- Target silhouette = 183cm tall Chinese male — visibly TALLER than average ~175cm office male
+- Target silhouette = 182cm / 86kg Chinese male with visibly long legs — visibly TALLER than average ~175cm office male
 - Upper:lower body = 4:6 (short torso, LONG legs; legs ~60% of standing height)
 - Head ~1:7–1:7.5 of height — NOT big-head toy, NOT stubby 175 squat
 - Full-body handdrawn/knowledge/PPT: MUST attach author-persona-handdrawn-body.png and match it
@@ -100,7 +100,7 @@ Persona Feature Stability Lock（特征稳定 · 多场景复用同一段）：
 - 颧骨：略高一点、中脸有骨感分明（比磨皮圆脸更高）；非刀削网红颧
 - 眉毛：深色自然粗眉、轻柔自然拱形；可有少量散乱眉丝
 - 皮肤：生活感小麦肤，极轻纹理；禁止韩系磨皮奶油肌 / 过度平滑
-- Outfit Layer: 米色短袖棉 T + 橄榄卡其短裤 + 米白帆布鞋（同批禁止换装）
+- Outfit Layer: 米色短袖棉 T + 橄榄卡其短裤 + New Balance 1906R 或 2002R 复古跑鞋（同批禁止换装）
 - Accessory Layer (场景/表情变化也必须保留):
   - face: 大镜片浅灰细框矩形眼镜
   - head: 短直发 3-5cm；接近平直发际线
@@ -138,10 +138,10 @@ Negative: toothy smile, exaggerated laugh, back view, old lady silhouette
 | P3 | 脸型 | 长但不细长方椭圆；圆下巴；下半脸略宽；**略高颧骨有支撑感** | 窄长少年脸、V 脸、中脸塌平、老太太轮廓 |
 | P4 | 嘴唇 | **厚唇饱满**；下唇尤其明显更厚更高 | 薄唇、过小嘴、线嘴 |
 | P4b | 眉毛 | **深色自然粗眉**；毛量清晰；轻柔拱形 | 细弯韩范眉、过淡、无眉 |
-| P5 | 穿搭 | 米色短袖 T + 橄榄卡其短裤 | 黑长袖、正装、运动裤、批内换装 |
+| P5 | 穿搭 | 米色短袖 T + 橄榄卡其短裤 + New Balance 1906R/2002R 复古跑鞋 | 黑长袖、正装、运动裤、帆布鞋、批内换装 |
 | P6 | 可见性 | 正面或 3/4 可见上述锚点 | 背身、后脑勺、仅气泡无脸 |
 | P7 | 表情 | 平静/专注/略严肃；唇闭合或微解释不露齿 | 夸张笑、露齿、疲惫叔、幼态脸 |
-| **P12** | **身高比例** | **183 视觉档**；上短下长 **4:6**；腿长舒展；一眼偏高 | **漂成 ~175**、短腿敦实、5:5 均分、头大玩具比 |
+| **P12** | **身高比例** | **182 / 86kg 视觉档**；腿较长；上短下长 **4:6**；一眼偏高 | **漂成 ~175**、短腿敦实、5:5 均分、头大玩具比 |
 
 > **P12 适用范围**：全身 / 大半身 / 立姿出镜时为 **CRITICAL**（与 P1/P3/P6 同级）。仅头肩特写可不检 P12，但半身以下可见时必须检。
 
@@ -243,7 +243,7 @@ X 项 FAIL → **只返修 FAIL 张**（合格样保留）；对照双全景 + f
 2. 短发 3-5cm 发际线可见
 3. 米色短袖 + 卡其短裤辨识度
 4. 健康肤色（非苍白/灰调）
-5. 成熟男性体态（非少年/女性）；全身时仍要有 **183 偏高** 轮廓，勿压成 175 敦实
+5. 成熟男性体态（非少年/女性）；全身时仍要有 **182 / 86kg、腿较长** 的偏高轮廓，勿压成 175 敦实
 6. 厚下唇至少在某帧可见
 
 **格子太小无法辨识时**：
@@ -258,7 +258,7 @@ X 项 FAIL → **只返修 FAIL 张**（合格样保留）；对照双全景 + f
 | 用户反馈 | 返修方向 |
 |---------|---------|
 | 不像老杨 / 不像我 | 实物对照实体全景；手绘系对照手绘全景 + 实体全景；面相漂移再加 face-lock/spec，强化六项识别 |
-| 老杨偏矮 / 像 175 / 短腿 | **P12**：加传 handdrawn-body；Height Lock HARD 183+4:6；加长腿、压矮头；禁 175 平均身高漂移 |
+| 老杨偏矮 / 像 175 / 短腿 | **P12**：加传 handdrawn-body；Height Lock HARD 182/86kg+长腿+4:6；加长腿、压矮头；禁 175 平均身高漂移 |
 | 预览图老杨不像 / 粗黑框 | 文档/总览图也必须走 Persona Lock；过小格子改抽象符号 |
 | 老杨背身/后脑勺 | 知识卡/手绘/PPT 须正面或 3/4；传手绘全景 + 实体全景返修 |
 | 老杨像老太太 | 禁止灰卷白发、盘发、老年女性轮廓；对照 P2/P3 返修 |

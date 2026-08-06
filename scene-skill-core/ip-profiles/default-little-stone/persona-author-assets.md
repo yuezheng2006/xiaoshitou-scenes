@@ -44,7 +44,7 @@
 | 01 真人实体全景 | `author-persona-panorama.png` | **真人实体风格**全身身份：正侧背、表情、动态、休闲穿搭、金黄金渐层猫 | 实物图 / 长卷出镜**必传** |
 | 02 手绘全景 | `author-persona-panorama-handdrawn.png` | **手绘风格**全身身份（与①同一人）；线稿/轻色块全景 | 手绘 / 知识卡 / PPT 出镜**必传**（一致性更关键） |
 | 03 面相锁定 | `author-persona-face-lock.png` | **多角度脸特写 + 禁止偏移区**（正面/3/4/讲解），压跨场景脸漂；**明显偏宽方圆脸** | **多场景同批必加传**；单张脸占比大或不稳、返修时加传 |
-| 04 手绘身材比例 | `author-persona-handdrawn-body.png` | **手绘全身比例金样**（183cm · **上短下长 4:6**；头肩协调） | 手绘系全身出镜**建议加传**；比例跑偏返修**必传** |
+| 04 手绘身材比例 | `author-persona-handdrawn-body.png` | **手绘全身比例金样**（182cm/86kg · **腿较长、上短下长 4:6**；头肩协调） | 手绘系全身出镜**建议加传**；比例跑偏返修**必传** |
 | 05 动作扩展 | `author-persona-actions.png` | 实物小比例/复杂姿态 | 实物需要时加传 |
 | **临时引用** | 会话临时 1:1 肖像 | 重建资产时的面相最高优先级 | 仅重建资产；不落仓 |
 | **批内金样** | `assets/persona/examples/validated-batch-anchor-handdrawn.png` | **用户验收 likeness 锚** | 多场景同批、预览通过后**加传**；见 `examples/local-validation-dual-ip.md` |
@@ -93,7 +93,7 @@
 
 | 层 | 字段 | 锁定内容 |
 | --- | --- | --- |
-| **服装** | top / bottom / shoes | 米色短袖棉 T / 橄榄卡其短裤 / 米白帆布鞋 |
+| **服装** | top / bottom / shoes | 米色短袖棉 T / 橄榄卡其短裤 / New Balance 1906R 或 2002R 复古跑鞋 |
 | **配件 · face** | glasses | 大镜片浅灰/透明细框方框（第一识别件） |
 | **配件 · head** | hair | 短直发 3–5cm、接近平直发际 |
 | **配件 · 禁止** | — | 粗黑框、帽子（默认无）、手表腕饰 |

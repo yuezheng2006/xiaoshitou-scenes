@@ -11,14 +11,14 @@
 
 ## Profile ID
 
-`none`
+`no-character`
 
 ## Profile Contract
 
 契约模板：`../../references/contracts/profile-contract.md`。
 
 ```yaml
-id: none
+id: no-character
 display_name: 无固定 IP
 identity:
   canonical_asset: none

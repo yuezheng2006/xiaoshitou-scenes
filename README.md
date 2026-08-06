@@ -10,7 +10,7 @@ Skill 包遵循 [Agent Skills 开放规范](https://agentskills.io/specification
 
 ## 效果预览
 
-![四种模式预览](assets/examples/readme/readme-preview-modes.png)
+![五种模式预览](assets/examples/readme/readme-preview-modes.png)
 
 ![IP profile 解耦](assets/examples/readme/readme-preview-profile.png)
 
@@ -18,7 +18,7 @@ Skill 包遵循 [Agent Skills 开放规范](https://agentskills.io/specification
 
 ## 快速使用
 
-**⚠️ 环境要求**：本 Skill 必须在 **Codex 环境**中运行（Codex CLI / Codex Desktop / claude.ai/code），因为生图依赖 Codex 自带的 `imagen` 工具。详见 `scene-skill-core/references/codex-environment-guidance.md`。
+**⚠️ 环境要求**：生图必须由 Codex 自带的 `imagen` 完成。可直接在 Codex CLI / Codex Desktop / claude.ai/code 运行；也可在 Cursor 中通过 `scene-skill-core/scripts/codex_exec_bridge.py` 调用已安装并登录的 `codex` CLI。详见 `scene-skill-core/references/codex-environment-guidance.md`。
 
 安装 Skill 后，直接用中文说需求即可。
 
@@ -97,7 +97,8 @@ Skill 包遵循 [Agent Skills 开放规范](https://agentskills.io/specification
 | 模式 | `persona-author-modes.md` |
 | 提示词 | `persona-author-prompts.md` |
 
-PNG：`author-persona-spec.png`、`author-persona-actions.png`、`author-persona-handdrawn.png`
+PNG：`author-persona-panorama.png`、`author-persona-panorama-handdrawn.png`、
+`author-persona-face-lock.png`、`author-persona-handdrawn-body.png`、`author-persona-actions.png`
 
 ## 示例与资产
 

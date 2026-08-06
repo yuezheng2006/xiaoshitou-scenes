@@ -17,12 +17,12 @@
 | 维度 | 相对窄脸特写 | 锁定目标 |
 | --- | --- | --- |
 | 脸宽 | 比参考 **再宽一档**（约 5–8% 视觉） | 明显偏宽短方 / 宽软长方；腮帮撑满；脸宽 ≥ 脸长 |
-| 肩宽 / 躯干 | 比参考 **略宽、略稳** | 183cm / 86kg 稳实肩；非 Office 瘦削 |
-| 身高比例 | 比参考 **更高、上短下长** | 净身高 **183cm**；**上身:下身 = 4:6**（腿占 60%）；对齐 `handdrawn-body` |
+| 肩宽 / 躯干 | 比参考 **略宽、略稳** | 182cm / 86kg 稳实肩；非 Office 瘦削 |
+| 身高比例 | 比参考 **更高、腿较长、上短下长** | 净身高 **182cm**；**上身:下身 = 4:6**（腿占 60%）；对齐 `handdrawn-body` |
 | 眼镜 | 不以特写粗黑框为准 | **大镜片浅灰/透明细框**（IP 第一识别件） |
 
 Prompt 必写：
-`Relative to narrow portrait reference: face SLIGHTLY WIDER (cheeks/jaw), shoulders SLIGHTLY BROADER, 183cm tall with 4:6 upper-to-lower body ratio (short torso, long legs, legs ~60% of height) — do NOT copy lean narrow oval, slim shoulders, or equal 5:5 proportions from close-up photo.`
+`Relative to narrow portrait reference: face SLIGHTLY WIDER (cheeks/jaw), shoulders SLIGHTLY BROADER, 182cm/86kg with visibly long legs and 4:6 upper-to-lower body ratio (short torso, long legs, legs ~60% of height) — do NOT copy lean narrow oval, slim shoulders, or equal 5:5 proportions from close-up photo.`
 
 ## 面相族裔锁（CRITICAL）
 
@@ -56,7 +56,7 @@ Prompt 必写：
    - **自然粗眉**：深色、清晰可见、轻柔拱形，非韩范细眉
    - **厚嘴唇**：下唇明显厚于上唇，整体唇量饱满，非薄唇线
 3. **下半脸宽度**：宽腮、宽下颌、圆下巴；脸宽 ≥ 脸长；比窄脸特写 **再宽一档**
-4. **米色/浅卡其短袖棉 T + 橄榄卡其短裤 + 米白帆布鞋**
+4. **米色/浅卡其短袖棉 T + 橄榄卡其短裤 + New Balance 1906R 或 2002R 复古跑鞋**
 5. **适中偏小、略垂、沉稳的眼睛**（不要大眼/动漫眼）
 6. **左右两腮 / 下颌线极淡短茬**（不是嘴周胡子）
 
@@ -107,7 +107,7 @@ Prompt：
 | 维度 | 必须保留 | 禁止偏移 |
 | --- | --- | --- |
 | 年龄感 | **视觉年龄范围：35-40岁成熟男性**；沉稳成熟但不显老；**所有资产与同批图一致**；成熟靠骨相/气质，**绝不靠皱纹** | 幼态娃娃脸（20多岁）；法令纹/抬头纹/眼袋堆年龄；显老叔感（45+/50+）；同批年龄跳变 |
-| 体型 | 约 **183cm / 86kg**；肩宽稳实；观感**明显偏高、上短下长**；**上身:下身 = 4:6**（头+躯干约 40%，腿约 60%）；手绘全身对齐 `author-persona-handdrawn-body.png` 并朝更高更长腿校正 | 头过大/短腿/5:5 均分/ torso 过长、整体偏矮敦实、少年细肢、Office 瘦削体 |
+| 体型 | 约 **182cm / 86kg**；肩宽稳实；**腿较长**，观感明显偏高、上短下长；**上身:下身 = 4:6**（头+躯干约 40%，腿约 60%）；手绘全身对齐 `author-persona-handdrawn-body.png` 并保持长腿比例 | 头过大/短腿/5:5 均分/ torso 过长、整体偏矮敦实、少年细肢、Office 瘦削体 |
 | 发型 | 短直发 3–5cm；顺直、自然立起 | 卷/波浪/蓬松乱发、板寸、长发 |
 | 发际线 | 接近平直，中间仅极轻微柔和下探 | 夸张 V 字尖角、大 M 型后退 |
 | 脸型 | **1:1 跟宽脸校准图**：**明显偏宽**的方圆/短方脸；颧骨位置略高且有自然立体支撑，颧骨到下颌横向撑满；腮帮有肉；下巴略宽圆；脸宽 ≥ 脸长观感，绝不纵向拉长 | 瘦长脸、窄椭圆、中等偏窄脸、颧骨过低或面中塌平、颧骨以下被拉空、韩系小脸、V 字尖下巴、清瘦细脸 |
@@ -169,8 +169,8 @@ Prompt：
 | 眼镜（配件层 face） | 同一副大镜片浅灰/透明细框方框 | 框线粗细、镜片形状不可漂；场景变了也不能丢 |
 | 发型发际（配件层 head） | 短直发 3–5cm、接近平直发际 | 不可一卷一短、一黑一灰 |
 | 肤色年龄 | 小麦肤、**约38岁成熟感（批内不可跳变；无法令纹）** | 不可一张幼态一张显老；不可用皱纹堆年龄 |
-| 穿搭（服装层） | 米色短袖棉 T + 橄榄卡其短裤 + 米白帆布鞋 | **同批禁止换装**（除非用户明确要求工装/运动） |
-| 体型 | ~183cm / 稳实肩宽；**上短下长 4:6**；手绘全身对齐 `author-persona-handdrawn-body.png` | 不可 5:5 均分；不可头大短腿/偏矮敦实 |
+| 穿搭（服装层） | 米色短袖棉 T + 橄榄卡其短裤 + New Balance 1906R 或 2002R 复古跑鞋 | **同批禁止换装**（除非用户明确要求工装/运动） |
+| 体型 | ~182cm / 86kg / 稳实肩宽；**腿较长、上短下长 4:6**；手绘全身对齐 `author-persona-handdrawn-body.png` | 不可 5:5 均分；不可头大短腿/偏矮敦实 |
 | 族裔感 | 中国北方男性 | 禁止韩范小脸 / V 下巴 / 冷白皮 |
 | 年龄范围 | **35-40 岁成熟男性**；允许范围内 ±2-3 岁波动 | 20 多岁幼态；45+/50+ 显老；同批跳变 |
 
@@ -227,13 +227,13 @@ Prompt 必写：
 Prompt 必写：
 `Lip Lock HARD: noticeably FULL fleshy lips; LOWER lip clearly THICKER and TALLER than upper; soft subtle cupid's bow; lips gently closed; neutral relaxed corners; clear philtrum; visible lip volume in line art; clean mouth area. NO thin lips, NO line-mouth. NO nasolabial folds beside the mouth.`
 
-## 手绘全身比例锁（CRITICAL · 183cm · 上短下长 4:6）
+## 手绘全身比例锁（CRITICAL · 182cm / 86kg · 长腿 · 上短下长 4:6）
 
 手绘 / 知识卡 / PPT / 小剧场里老杨占全身或大半身时，身材比例必须满足：
 
 | 维度 | 锁定值 | 禁止（高频漂移） |
 | --- | --- | --- |
-| 净身高 | **183cm** 视觉档 — **一眼高于普通成年男** | **~175cm 平均身高**、178 偏矮、190+ 巨人感 |
+| 净身高 | **182cm / 86kg** 视觉档，腿较长 — **一眼高于普通成年男** | **~175cm 平均身高**、178 偏矮、190+ 巨人感 |
 | 上下身比 | **上身:下身 = 4:6**（头+肩+躯干 : 腿） | 5:5 均分、6:4 上身偏长 |
 | 腿 | 约占立姿身高 **60%**；站姿舒展、膝下够长 | 短腿、膝下被截、下半身压缩、敦实玩具腿 |
 | 头身 | 约 **1:7–1:7.5**；头与肩宽协调 | 漫画大头、头占身高 >1/7、潮玩矮胖头身 |
@@ -247,7 +247,7 @@ Prompt 必写：
 ```
 
 生成时**必须**写入（全身/大半身）：
-`Height Lock HARD: 183cm tall Chinese male — visibly TALLER than average ~175cm office male; upper:lower = 4:6 (short torso, LONG legs ~60% height); head ~1:7–1:7.5; align author-persona-handdrawn-body.png. FORBIDDEN: 175cm average drift, short stubby legs, 5:5 split, stocky-short, oversized head.`
+`Height Lock HARD: 182cm / 86kg Chinese male with visibly LONG legs — visibly TALLER than average ~175cm office male; upper:lower = 4:6 (short torso, LONG legs ~60% height); head ~1:7–1:7.5; align author-persona-handdrawn-body.png. FORBIDDEN: 175cm average drift, short stubby legs, 5:5 split, stocky-short, oversized head.`
 
 全身手绘 / 知识卡 / PPT：**必传** `author-persona-handdrawn-body.png`（比例金样），不能只口头写 183。
 
