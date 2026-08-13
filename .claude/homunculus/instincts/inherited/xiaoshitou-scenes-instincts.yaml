@@ -1,0 +1,389 @@
+# Instincts generated from https://github.com/yuezheng2006/xiaoshitou-scenes
+# Generated: 2026-07-14T04:54:08.240Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: xiaoshitou-scenes-commit-conventional
+trigger: "when writing a commit message"
+confidence: 0.85
+domain: git
+source: repo-analysis
+source_repo: https://github.com/yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Commit Conventional
+
+## Action
+
+Use conventional commit format with prefixes: feat, refactor
+
+## Evidence
+
+- 3 commits analyzed
+- Detected conventional commit pattern
+- Examples: refactor: 优化 skill 可维护性、用户体验与 Agent 友好度, feat: 老杨双全景 + face-lock/body 锁，强化多场景 prompt 一致性
+
+---
+id: xiaoshitou-scenes-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Commit Length
+
+## Action
+
+Keep commit messages concise (~40 characters)
+
+## Evidence
+
+- Average commit message length: 40 chars
+- Based on 3 commits
+
+---
+id: xiaoshitou-scenes-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Naming Files
+
+## Action
+
+Use kebab-case naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: kebab-case
+
+---
+id: xiaoshitou-scenes-import-relative
+trigger: "when importing modules"
+confidence: 0.75
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Import Relative
+
+## Action
+
+Use relative imports for project files
+
+## Evidence
+
+- Import analysis shows relative import pattern
+- Example: import { x } from '../lib/x'
+
+---
+id: xiaoshitou-scenes-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: xiaoshitou-scenes-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: xiaoshitou-scenes-workflow-add-or-update-persona-assets-and-metadata
+trigger: "when doing add or update persona assets and metadata"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Workflow Add Or Update Persona Assets And Metadata
+
+## Action
+
+Follow the add-or-update-persona-assets-and-metadata workflow:
+1. Add or update image assets under scene-skill-core/ip-profiles/[persona]/assets/persona/
+2. Update or create persona metadata files: persona-author-assets.md, persona-author-identity.md, persona-author-prompts.md, persona-author.md
+3. Update or create references: references/common-character-lock.md, references/common-prompt-slots.md, references/persona-quick-checklist.md
+4. Optionally update QUICK-START.md to reflect new persona or changes
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: scene-skill-core/ip-profiles/*/assets/persona/*.png, scene-skill-core/ip-profiles/*/persona-author-assets.md, scene-skill-core/ip-profiles/*/persona-author-identity.md
+
+---
+id: xiaoshitou-scenes-workflow-documentation-architecture-and-quickstart-update
+trigger: "when doing documentation architecture and quickstart update"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Workflow Documentation Architecture And Quickstart Update
+
+## Action
+
+Follow the documentation-architecture-and-quickstart-update workflow:
+1. Create or update ARCHITECTURE.md with diagrams and maintenance checklists
+2. Create or update QUICK-START.md for onboarding or quick reference
+3. Update SKILL.md and README.md to reflect new navigation or documentation structure
+4. Update or add references as needed for new documentation sections
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: scene-skill-core/ARCHITECTURE.md, scene-skill-core/QUICK-START.md, scene-skill-core/SKILL.md
+
+---
+id: xiaoshitou-scenes-instinct-file-naming
+trigger: "When creating or renaming a file in the codebase"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Instinct File Naming
+
+## Action
+
+Use kebab-case for file names
+
+## Evidence
+
+- Pattern in namingConventions.files: kebab-case
+
+---
+id: xiaoshitou-scenes-instinct-function-naming
+trigger: "When defining a function"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Instinct Function Naming
+
+## Action
+
+Use camelCase for function names
+
+## Evidence
+
+- Pattern in namingConventions.functions: camelCase
+
+---
+id: xiaoshitou-scenes-instinct-class-naming
+trigger: "When defining a class"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Instinct Class Naming
+
+## Action
+
+Use PascalCase for class names
+
+## Evidence
+
+- Pattern in namingConventions.classes: PascalCase
+
+---
+id: xiaoshitou-scenes-instinct-constant-naming
+trigger: "When defining a constant"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Instinct Constant Naming
+
+## Action
+
+Use SCREAMING_SNAKE_CASE for constant names
+
+## Evidence
+
+- Pattern in namingConventions.constants: SCREAMING_SNAKE_CASE
+
+---
+id: xiaoshitou-scenes-instinct-import-style
+trigger: "When importing modules"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Instinct Import Style
+
+## Action
+
+Use relative import paths
+
+## Evidence
+
+- Pattern in importStyle: relative
+
+---
+id: xiaoshitou-scenes-instinct-export-style
+trigger: "When exporting from a module"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Instinct Export Style
+
+## Action
+
+Use named exports
+
+## Evidence
+
+- Pattern in exportStyle: named
+
+---
+id: xiaoshitou-scenes-instinct-test-location
+trigger: "When adding or updating tests"
+confidence: 0.7
+domain: testing
+source: repo-analysis
+source_repo: yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Instinct Test Location
+
+## Action
+
+Place test files in a separate directory from source code
+
+## Evidence
+
+- Pattern in architecture.folderStructure.testLocation: separate
+
+---
+id: xiaoshitou-scenes-instinct-git-commit-format
+trigger: "When writing a commit message"
+confidence: 0.9
+domain: git
+source: repo-analysis
+source_repo: yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Instinct Git Commit Format
+
+## Action
+
+Use conventional commit prefixes such as 'feat' or 'refactor', followed by a colon and a concise description
+
+## Evidence
+
+- Pattern in commits.type: conventional
+- Examples: 'feat: ...', 'refactor: ...'
+
+---
+id: xiaoshitou-scenes-instinct-git-commit-length
+trigger: "When writing a commit message"
+confidence: 0.7
+domain: git
+source: repo-analysis
+source_repo: yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Instinct Git Commit Length
+
+## Action
+
+Keep the commit message concise, aiming for around 40 characters
+
+## Evidence
+
+- Pattern in commits.averageLength: 40
+
+---
+id: xiaoshitou-scenes-instinct-add-or-update-persona-assets
+trigger: "When introducing a new persona or updating an existing persona's assets or documentation"
+confidence: 0.95
+domain: workflow
+source: repo-analysis
+source_repo: yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Instinct Add Or Update Persona Assets
+
+## Action
+
+Add or update persona image assets and metadata files, and synchronize references and checklists as per the workflow
+
+## Evidence
+
+- Workflow: add-or-update-persona-assets-and-metadata
+- Files: scene-skill-core/ip-profiles/*/assets/persona/*.png, persona-author-*.md, references/*.md, QUICK-START.md
+
+---
+id: xiaoshitou-scenes-instinct-documentation-update
+trigger: "When improving documentation structure, onboarding guides, or architectural diagrams/checklists"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: yuezheng2006/xiaoshitou-scenes
+---
+
+# Xiaoshitou Scenes Instinct Documentation Update
+
+## Action
+
+Create or update ARCHITECTURE.md, QUICK-START.md, SKILL.md, README.md, and relevant references
+
+## Evidence
+
+- Workflow: documentation-architecture-and-quickstart-update
+- Files: ARCHITECTURE.md, QUICK-START.md, SKILL.md, README.md, references/*.md
+
