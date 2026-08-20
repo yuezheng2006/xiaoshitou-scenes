@@ -75,7 +75,7 @@ Persona 触发词：`老杨`、`yuezheng2006`、`老杨和小石头`、`老杨 I
 老杨小剧场 + 小石头 · 车载场景：流程拆解图
 ```
 
-**硬门槛**：必须出现 `小剧场`。读 `persona-author-theater.md` / `persona-theater-checklist.md`。默认单人；同句「小石头」→ **C 组合**（潮玩底 + flat 2D，不打回 B）。仅说「老杨」无「小剧场」→ 路径 B。
+**硬门槛**：必须出现 `小剧场`。读 `persona-author-theater.md` / `persona-theater-checklist.md` / `references/theater-prompt-blueprint.md`。默认单人；同句「小石头」→ **C 组合**（潮玩底 + flat 2D，不打回 B）。仅说「老杨」无「小剧场」→ 路径 B。出场景用 **vinyl-theater × shape** 编译一条 prompt（勿把 Punk Cover 风格菜单当小剧场画风）。
 
 未触发老杨且未触发小剧场时，只出现小石头，不出现老杨。
 
@@ -182,7 +182,7 @@ PPT 演讲：老杨主讲页 + 小石头执行点缀（双 IP 推荐）
 | 多图 / 形象锁 | `references/common-character-lock.md` | profile `character.md` |
 | 人像校准 | `references/common-persona-calibration.md` | — |
 | 双 IP 路由 | `references/persona-quick-checklist.md` | `common-persona-routing.md`、`persona-scene-patterns.md`、profile `persona-author.md` |
-| 小剧场 | `references/persona-theater-checklist.md` | profile `persona-author-theater.md` |
+| 小剧场 | `references/persona-theater-checklist.md` + `theater-prompt-blueprint.md` | profile `persona-author-theater.md` + `theater-styles/` + `theater-shapes/` |
 | Logo / 品牌 | `references/common-logo-safety.md` | 当前 profile `logo-safety.md` |
 | 交接卡 | `references/contracts/task-card.md` | `plan-card` / `render-card` / `qa-card` |
 | 自定义 IP 录入 | `references/contracts/profile-contract.md` | `brand-mark-mode.md` |

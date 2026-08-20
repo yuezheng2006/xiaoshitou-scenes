@@ -98,7 +98,7 @@ Bridge 会在项目根目录执行 `codex exec -s workspace-write --ephemeral`�
 | 不要人物、纯物件、无 IP、none | → 改用 `ip-profiles/no-character/`（跳过默认角色资产） |
 
 **路径 B 触发后**：所有模式都增加 `persona-quick-checklist.md`。none 模式不读 persona。  
-**路径 C 触发后**：读 `persona-theater-checklist.md`，**不要**套双 IP「必须互动」规则。
+**路径 C 触发后**：读 `persona-theater-checklist.md` → `theater-prompt-blueprint.md` → `persona-author-theater.md`；**不要**套双 IP「必须互动」规则。长文先 **Imprint Plan Card**；设定图非 **APPROVED** 禁止开批；缺图型先轻确认门；场景 prompt 按 **vinyl-theater × shape** 编译。
 
 **人像硬门禁**：只要任务涉及人像参考图，先读 `references/common-persona-calibration.md`，完成参考图校准卡；校准 FAIL 时不生成、不批量、不交付。
 
