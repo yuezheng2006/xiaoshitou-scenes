@@ -492,6 +492,62 @@
         "ip-profiles/laoyang/profile.md",
         "ip-profiles/laoyang/profile.manifest.json"
       ]
+    },
+    {
+      "id": "laoyang-flat-2d-detail-style",
+      "prompt": "老杨手绘知识卡：参考真人脸部结构，但使用有细节的扁平 2D 角色插画风格。",
+      "expected_output": "应保留真人骨相、五官比例和自然不对称，使用有粗细变化的线稿、平涂、局部阴影、发丝分组和衣物褶皱；不能变成照片级肖像、3D 渲染或无细节扁平图标。",
+      "assertions": {
+        "must": ["真人骨相|五官比例", "扁平 2D", "线稿", "平涂", "局部.*阴影", "发丝|衣物.*褶皱"],
+        "must_not": ["照片级写实", "3D", "无细节扁平图标"]
+      },
+      "files": [
+        "ip-profiles/laoyang/character.md",
+        "ip-profiles/laoyang/profile.md",
+        "ip-profiles/laoyang/profile.manifest.json"
+      ]
+    },
+    {
+      "id": "laoyang-integration-dual-ip-loop",
+      "prompt": "老杨和小石头：把用户反馈到下一轮验证做成一张知识卡，直接出图。",
+      "expected_output": "应使用老杨修正后的面部、180cm 体态和扁平 2D 细节风格；老杨负责主讲/指向 Profile 修订，小石头分别执行反馈搬运与 QA 勾选，形成完整闭环。",
+      "assertions": {
+        "must": ["老杨", "小石头", "180cm", "扁平 2D", "主讲|指向", "搬运", "QA|勾选", "反馈.*验证|下一轮"],
+        "must_not": ["只有老杨", "只放头像", "双 IP 站桩"]
+      },
+      "files": [
+        "references/contracts/dual-ip-narrative.md",
+        "references/knowledge-card-mode.md",
+        "ip-profiles/laoyang/profile.md"
+      ]
+    },
+    {
+      "id": "laoyang-face-style-feedback-repair",
+      "prompt": "老杨面部上一轮太真实，这一轮又没有细节，请按反馈返修。",
+      "expected_output": "应识别为风格尺度问题，先降低照片级皮肤和摄影光影，再补回眉眼转折、鼻口体积、发丝分组、眼镜结构和衣物褶皱；保持扁平 2D，不改年龄、身高和人物身份。",
+      "assertions": {
+        "must": ["过于真实|照片级", "没有细节|扁平", "扁平 2D", "眉眼|鼻口|发丝|眼镜|衣物"],
+        "must_not": ["改年龄", "改身高", "升级 Profile 版本", "清晰唇线", "嘴缝线"]
+      },
+      "files": [
+        "references/common-qa-repair.md",
+        "ip-profiles/laoyang/character.md",
+        "ip-profiles/laoyang/profile.md"
+      ]
+    },
+    {
+      "id": "laoyang-identity-boundary-contract",
+      "prompt": "老杨已经确认，继续给文章生成多张配图；动作可以变化，但不能改变人物身份。",
+      "expected_output": "应使用已确认的老杨身份资产作为默认参考，只允许变化动作、姿态、朝向、视线、轻微表情和道具关系；必须保留年龄、180cm 体态、脸型、眼镜、发型、无唇线嘴部、服装和 New Balance 鞋款。",
+      "assertions": {
+        "must": ["已确认|CONFIRMED|READY", "允许.*动作|动作.*变化", "180cm", "无唇线", "New Balance", "固定身份|identity"],
+        "must_not": ["修改年龄", "160cm", "175cm", "自动加入小石头", "照片级写实"]
+      },
+      "files": [
+        "references/contracts/profile-manifest.schema.json",
+        "ip-profiles/laoyang/profile.manifest.json",
+        "ip-profiles/laoyang/profile.md"
+      ]
     }
   ]
 }

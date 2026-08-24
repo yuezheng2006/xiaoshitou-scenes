@@ -13,7 +13,7 @@
 | 路径 | 触发 | 行为 |
 | --- | --- | --- |
 | **B 双 IP** | `老杨`、`yuezheng2006`、`老杨和小石头` 等（见 `persona-author.md`）；**无「小剧场」** | 读本文件「双 IP 互动」+ `persona-scene-patterns.md` |
-| **C 小剧场** | **必须含** `小剧场`；可再加 `小石头` → **C 组合** | 读 `persona-author-theater.md`；**不**套用下方双 IP 强制规则 |
+| **C 小剧场** | **必须含** `小剧场`；可再加 `小石头` → **C 组合** | 读 checklist → `persona-author-theater.md`（Plan Card + Confirm Gate）；**不**套用下方双 IP 强制规则 |
 | 冲突 | 「小剧场」+「小石头」 | **C 组合**（不打回 B） |
 
 ## 双 IP 互动（默认 profile · 仅路径 B）
@@ -36,7 +36,7 @@ persona（老杨）= 主讲 / 拆解 / 批注 / 调度
 
 每张图必须有明确的双 IP 动作关系；不能只有 persona 肖像，也不能 persona 触发后只有小石头干活。
 
-路径 C 的读取链见 `persona-author-theater.md`，不要把「每张必须双 IP」套到小剧场。
+路径 C 的读取链见 `persona-author-theater.md`（执行序：Plan Card → 设定图 Confirm Gate → Preview → Render → QA），不要把「每张必须双 IP」套到小剧场。
 
 ## 读取顺序
 

@@ -12,14 +12,32 @@
     "canonical_asset": "assets/persona/reference/author-persona-panorama.png",
     "reference_source": "user_provided",
     "anchors": [
-      "成熟中国男性",
-      "180cm / 86kg 高大结实体态",
-      "腿较长、上短下长 4:6、头身约 1:7–1:7.5",
-      "长但不细的长方椭圆脸",
+      "约 34–35 岁、清爽年轻一丢丢的中国男性",
+      "180cm / 86kg 略健壮的高大稳实体态，肩背与胸廓略宽厚",
+      "腿比普通比例略长但自然：胯部到脚底约 55%–56%、头顶到胯部约 44%–45%，禁止 1:1 和超长腿怪物比例",
+      "更接近真人结构的宽方圆脸、脸长适中、脸颊自然饱满、圆下巴，不做过短过圆卡通脸",
       "浅灰细框大镜片眼镜",
       "短直发 3-5cm",
-      "厚下唇与极淡侧颊胡茬",
+      "下唇体积明显但不画清晰唇线、嘴缝线或上下唇勾勒；侧颊与下颌线只有极淡短胡茬",
+      "米色短袖 T 恤与橄榄卡其宽松过膝短裤",
       "New Balance 1906R 或 2002R 复古跑鞋"
+    ],
+    "allowed_variations": [
+      "动作：讲解、指向、拆解、批注、调度、检查和收束",
+      "姿态：站立、坐姿、行走和轻微前倾，但保持 180cm 高挑视觉",
+      "朝向：正面或 3/4 面部可见，必要时允许侧身完成动作",
+      "视线：根据叙事对象改变视线方向",
+      "表情：克制的专注、判断、解释和轻微满意，不改变年龄感"
+    ],
+    "forbidden_drift": [
+      "年龄漂移为显老、疲态或幼态",
+      "身高漂移为 160cm/175cm、小矮子或矮宽压扁",
+      "腿部漂移为短腿、1:1 上下半身、超长怪物腿或竹竿腿",
+      "嘴部出现清晰唇线、嘴缝线、上下唇勾勒或露齿",
+      "眼镜漂移为粗黑框、无框或其他镜型",
+      "鞋款漂移为 Nike、帆布鞋或泛化运动鞋",
+      "手绘模式漂移为 3D、照片级写实或无细节扁平图标",
+      "单人任务自动加入小石头或其他角色"
     ],
     "temperament": "沉稳、直接、会拆解问题并推动行动",
     "description_source": "character.md"
@@ -30,12 +48,13 @@
     "identity_assets": [
       "assets/persona/reference/author-persona-panorama-handdrawn.png",
       "assets/persona/reference/author-persona-panorama.png",
+      "assets/persona/reference/author-persona-flat-2d-detail.png",
       "assets/persona/face-lock/author-persona-face-lock.png",
       "assets/persona/reference/author-persona-actions.png"
     ],
     "calibration": {
       "physical": "assets/persona/reference/author-persona-panorama.png",
-      "handdrawn": "assets/persona/reference/author-persona-panorama-handdrawn.png",
+      "handdrawn": "assets/persona/reference/author-persona-flat-2d-detail.png",
       "knowledge-card": "assets/persona/examples/validated-batch-anchor-handdrawn.png",
       "ppt": null,
       "video": null
@@ -70,6 +89,7 @@
   "qa": {
     "failure_signals": [
       "脸型漂成窄长或 V 字脸",
+      "嘴部出现清晰唇线、嘴缝线或上下唇勾勒",
       "眼镜丢失或漂成粗黑框",
       "短直发漂成卷发或过度后退",
       "年龄幼态或过度显老",
@@ -80,9 +100,11 @@
       "单人任务偷入小石头或其他角色"
     ],
     "critical_checks": [
-      "180cm / 86kg、躯干 40% / 腿 60%、上短下长 4:6、头身约 1:7.5",
+      "180cm / 86kg、略健壮肩背与胸廓、四肢略饱满、小腿略粗壮饱满但不健美不粗短、腰线收住、胯部到脚底 55%–56%、头顶到胯部 44%–45%、头身约 1:7.5",
       "浅灰细框大镜片眼镜",
-      "成熟但不过熟的中国男性面相",
+      "约 34–35 岁、清爽但不幼态的中国男性面相，真人骨相 + 有细节的扁平 2D 角色插画；下唇有体积但无清晰唇线、嘴缝线或上下唇勾勒；不做照片级写实、3D 或无细节扁平图标",
+      "橄榄卡其宽松短裤，裤长盖过膝盖一点，不贴腿不紧身",
+      "小腿略粗壮饱满，与大腿和肩背协调，禁止竹竿腿、粗短柱状腿和健美腿",
       "New Balance 1906R 或 2002R 鞋款保持一致，保留大写 N 标识且无 Nike swoosh",
       "手绘模式使用扁平黑线人物",
       "实物模式使用成熟克制的风格化 3D",
@@ -93,6 +115,7 @@
     "public_assets": [
       "assets/persona/reference/author-persona-panorama-handdrawn.png",
       "assets/persona/reference/author-persona-panorama.png",
+      "assets/persona/reference/author-persona-flat-2d-detail.png",
       "assets/persona/face-lock/author-persona-face-lock.png",
       "assets/persona/reference/author-persona-actions.png",
       "assets/persona/examples/validated-batch-anchor-handdrawn.png"

@@ -111,8 +111,8 @@ def _semantic_errors(manifest_path: Path, manifest: dict[str, Any]) -> list[str]
         if not narrative:
             errors.append("dual task requires narrative fields")
         elif manifest["profile"]["id"] == "laoyang":
-            if narrative["presenter"] != "老杨" or narrative["executor"] != "老杨（单人任务）":
-                errors.append("laoyang dual-reference task must assign 老杨 as presenter and executor")
+            if narrative["presenter"] != "老杨" or narrative["executor"] not in {"老杨（单人任务）", "小石头"}:
+                errors.append("laoyang dual-reference task must assign 老杨 as presenter and 老杨（单人任务） or 小石头 as executor")
         elif narrative["presenter"] != "老杨" or narrative["executor"] != "小石头":
             errors.append("default dual-IP task must assign 老杨 as presenter and 小石头 as executor")
 

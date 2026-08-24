@@ -7,9 +7,11 @@
 ```text
 形体：圆角胶囊 / 竖椭圆，#f39800 橙实心体
 眼睛：白色小圆 + 可选 tiny 瞳孔；无嘴、无牙、无唇线
+轮廓：身体必须有一圈连续可见的细黑手绘边；四肢同级细黑线——要有，不要特别粗
 肢体：细黑线；每体 2 臂 2 腿；臂从体侧上 1/3 伸出，腿从底缘向下
 身上：禁止任何 Logo / 品牌名 / 商标印花
 气质：认真、靠谱、略笨、有点倔；不讲大道理，只把问题一步步落地
+锁什么：形象 + 比例；姿态随场景变，不锁某一固定姿势
 ```
 
 ## 性格与品质
@@ -28,7 +30,8 @@
 
 | 维度 | 全批 / 跨图必须稳定 | 随场景自适应（单张内） |
 | --- | --- | --- |
-| 形体语言 | `#f39800` 平涂胶囊、宽高比、flat 2D、无嘴 | — |
+| 形体语言 | `#f39800` 平涂胶囊、宽:高 ≈ 1:1.3–1.6、flat 2D、无嘴 | — |
+| 轮廓线 | 连续可见细黑边；与肢同级；非马克笔加粗、非贴纸方框 | — |
 | 眼与肢 | 白圆眼画法、2 臂 2 腿、锚点与线宽 | 臂/腿**姿态**（弯、伸、跑、蹲、扶） |
 | 气质 | 认真、靠谱、略笨、有点倔 | **费劲感** 0–1 汗滴；略卡壳/顶住的姿势 |
 | 叙事 | 承担**与锚定句相关**的核心动作 | 道具类型、标签文案、占画比例、朝向 |
@@ -126,12 +129,14 @@ Keep flat #f39800 capsule, no mouth.
 
 | 图 | 路径 | 作用 |
 | --- | --- | --- |
-| **设定图（必传）** | `assets/character/reference/primary-character-reference.png` | 形体、主色、白圆眼、细线肢体 |
+| **设定图（必传）** | `assets/character/reference/primary-character-reference.png` | 形体、主色、白圆眼、细线肢体、细黑边 |
 | **动作扩展（条件）** | `assets/character/actions/primary-character-actions.png` | 复杂姿态 / 多人 / 小比例 |
 | **可选模式样张** | `assets/character/examples/` | 身份漂移时可选 1 张辅助；**非强制** |
 
 小石头识别简单（胶囊 + 白圆眼），**默认单锚点即可**。  
 **双参考协议的重点是对齐老杨**，见 `persona-author-assets.md` / `assets/persona/examples/README.md`。不要把「双参考」名额用在小石头上。
+
+**设定图**：`assets/character/reference/primary-character-reference.png` 是形象与比例金样（橙胶囊、白圆眼、挥手/叉腰立绘、连续可见细黑边）。只锁形象与比例，**不锁这张图的姿势**。若本机读不到该文件，依次降级为（1）用户本轮形象图（2）本任务已确认成图；禁止改成瘦高条 / 矮胖球 / 无边橙块。
 
 主设定图负责“像不像小石头”。扩展图只在复杂姿态、表情基调、多个小石头协作或小比例远景时加读，不替代主设定图。身份明显漂移时，可从 `examples/{physical|handdrawn|knowledge-card}/` 加读 1 张样张辅助，仍以设定图为最高锚点。
 
@@ -145,9 +150,10 @@ Little Stone (小石头): flat 2D rounded vertical oval / capsule body, solid un
 two flat white circular eyes + optional tiny black pupil dots (not glossy 3D eyeballs),
 NO mouth / teeth / lip line on the capsule — emotion via pose and at most 0-1 sweat drop,
 exactly 2 thin black line arms from upper-third lateral body sides + 2 thin black line legs from bottom edge,
-hand terminal at most one simple grip per arm (small circle / C-shape / line hook),
+a continuous visible thin black outline around the orange capsule (same family as limb stroke — present, NOT bold marker, NOT a second sticker box),
+hand terminal at most one simple grip per arm (tiny palm + 2-3 finger stubs; bare C-hook only if sheet forces it),
 temperament: earnest, reliable, slightly clumsy, a bit stubborn — express via physical action, not cute mascot posing.
-Keep exact colors and proportions from the character sheet.
+Keep exact colors and proportions from the character sheet. Pose is free; do not lock a sample pose.
 ```
 
 ## 填入 `{IP_STYLE_ADAPT}`
@@ -158,7 +164,8 @@ Keep exact colors and proportions from the character sheet.
 Little Stone color lock:
 - Body fill = solid uniform #f39800 only; even a mild orange gradient, center highlight, rim shadow, or volume lighting fails
 - Scene accent colors (cobalt tape, tomato-red marks, lemon tabs, soft pink) may appear on objects/annotations ONLY — never tint the capsule body, eyes, or limbs
-- Limbs stay thin black lines; eyes stay flat white circles — do not inherit studio lighting or whiteboard wash into the character
+- Limbs stay thin black lines; the capsule must keep a continuous visible thin black outline — not missing, not gray/faint, not extra-thick
+- Eyes stay flat white circles — do not inherit studio lighting or whiteboard wash into the character
 - When author persona appears in a different render language, Little Stone must remain strictly flat 2D and visually distinct
 ```
 
@@ -241,6 +248,7 @@ Feet: short L-bend; pull/brace = wider planted stance. NO clone poses.
 - Eyes = flat white circles + optional tiny dots, not glossy 3D eyeballs
 - No mouth, no teeth, no lip line on the capsule — emotion via pose and 0-1 sweat drop only
 - Limbs = thin black lines, not 3D tubes
+- Outline Lock: a continuous, fully visible thin black ink edge around the capsule, same stroke family as the limbs — MUST exist (orange must not melt into the background); MUST NOT be bold marker / extra-thick / double halo / rectangular sticker frame
 - The orange body must be one uniform flat color block; even a subtle orange gradient, center highlight, rim shadow, or volume lighting is a failure
 
 Limbs Lock:
@@ -261,7 +269,7 @@ Limbs Lock:
 
 | 维度 | 锁定值 | 禁止偏移 |
 | --- | --- | --- |
-| 胶囊宽高比 | 约 **1:1.3–1:1.6**（竖椭圆 / 圆角胶囊） | 细长竖条、矮胖球、横扁椭圆 |
+| 胶囊宽高比 | **宽:高 ≈ 1:1.3–1.6**（高/宽 ≈ 1.3–1.6；竖椭圆） | 细长竖条（高/宽 ≥ 1.8）、矮胖球、横扁椭圆 |
 | 单眼直径 | 约体宽的 **12–18%** | anime 大眼、眼径批内不一 |
 | 眼距 | 约 **1.2–1.8** 眼径 | 眼距过宽/过窄、单眼缺失 |
 | 臂长 | 约 **0.6–0.9** 体高（细黑线，体侧上 1/3 伸出） | 粗短 3D 臂、从非锚点长出 |
@@ -271,7 +279,7 @@ Limbs Lock:
 Prompt 可复制：
 
 ```text
-Little Stone proportion lock: vertical capsule aspect ~1:1.3–1:1.6; two flat white eyes each ~12-18% body width, spaced ~1.2-1.8 eye-diameters; thin black arms from upper-third lateral sides, legs from bottom edge; multi-instance scenes may scale ±10-15% height only — same capsule aspect ratio batch-wide.
+Little Stone proportion lock: capsule width:height ≈ 1:1.3–1.6 (height/width ≈ 1.3–1.6) — NOT a skinny 1.8–2.2 stick; two flat white eyes each ~12-18% body width, spaced ~1.2-1.8 eye-diameters; thin black arms from upper-third lateral sides, legs from bottom edge; pose is free; multi-instance scenes may scale ±10-15% height only — same capsule aspect ratio batch-wide.
 ```
 
 ## 变形边界（Deformation Limits）
@@ -391,7 +399,19 @@ NO mouth/teeth/lip line on capsule; exactly 2 arms from upper-third lateral side
 **小比例远景丢识别点**
 
 ```text
-Even at ~10-20% frame width: keep #f39800 capsule silhouette, two white dot eyes, thin limb stubs, and a clear physical action — not a generic orange blob
+Even at ~10-20% frame width: keep #f39800 capsule silhouette, two white dot eyes, thin limb stubs, a visible thin body outline, and a clear physical action — not a generic orange blob
+```
+
+**边框消失 / 发灰 / 被加得太粗**
+
+```text
+Outline Lock: continuous visible thin black ink around the #f39800 capsule, same weight family as limbs. MUST exist. NOT faint/gray/missing. NOT bold marker, NOT extra-thick, NOT a rectangular sticker frame. If user says 只改边框: edit stroke only — do not redraw pose, props, or labels.
+```
+
+**把参考姿势抄死 / 用户只要形象比例**
+
+```text
+Lock identity + proportion only (capsule 1:1.3–1.6, #f39800, white eyes, no mouth, thin present outline). Pose follows THIS scene. Do NOT copy a sample pointing/heart/standing pose.
 ```
 
 ## 失败信号
@@ -411,6 +431,8 @@ Even at ~10-20% frame width: keep #f39800 capsule silhouette, two white dot eyes
 - **手脚末端不合格**：写实五指/厚手套；或仍用纯 C 钩/纯小环代替手；握物看不出掌指接触；鞋子轮廓；多人手语批内漂移。
 - **有嘴**：胶囊上出现嘴线、牙、唇形——直接不合格；情绪应靠动作与汗滴。
 - **四肢批内不一致**：同图/同批线宽、锚点高度、末端画法漂移。
+- **边框不合格**：橙色身体没黑边、边发灰发虚融进背景；或加粗成马克笔/双层描边/矩形贴纸框。
+- **比例口径漂成瘦高条**：按「高:宽 1.8–2.2」去画（与本文件宽:高 1:1.3–1.6 冲突）——不合格。
 - **员工场景**：雷石员工画成 KTV 巡检/房态/递麦；或非员工场景误戴任何工牌；工牌比例过大。
 
 主角色与可选 persona（老杨）分工不同：小石头是 flat 2D 执行 Agent；老杨是触发型主讲 persona，见 `persona-author.md`。

@@ -76,6 +76,8 @@
 1. **必传** `assets/character/reference/primary-character-reference.png`
 2. 复杂姿态 / 多人 / 小比例：可加 `primary-character-actions.png`
 3. 身份漂移时可选 `assets/character/examples/` 样张 1 张（**非强制**）
+4. **设定图缺失**：用用户本轮形象图或本任务已确认成图作身份锚点；只锁形象与比例，**不锁姿势**
+5. 生成前写入 Outline Lock（要有细黑边、不要特别粗）+ 宽:高 1:1.3–1.6（不要按高:宽 1.8–2.2）
 
 ### C. `$IP=none` / `ip-profiles/no-character`
 
@@ -113,7 +115,8 @@
 - [ ] 表情：已声明 Expression Preset（E0–E4），未临场乱写
 - [ ] 手绘全身：已加 handdrawn-body（或比例已确认对齐金样）
 - [ ] 出猫：金黄金渐层，非灰虎斑
-- [ ] 仅小石头：设定图已进上下文（单锚点）
+- [ ] 仅小石头：设定图已进上下文（单锚点）；缺失时已用降级锚点且未抄姿势
+- [ ] Outline Lock 已写入（细黑边要有、不要特别粗）
 - [ ] `{IP_DESC}` / `{IP_STYLE_ADAPT}` 已按主角色填写
 - [ ] 老杨出镜：`{PERSONA_DESC}` / `{PERSONA_STYLE_ADAPT}` 已填写
 - [ ] flat 2D profile：`{FLAT_LIMBS_LOCK}` 已写入
